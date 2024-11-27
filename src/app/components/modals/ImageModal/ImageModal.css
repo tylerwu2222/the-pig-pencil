@@ -1,0 +1,77 @@
+/* mobile  */
+.modalImg,
+.modalImgWide {
+    /* max-height: 70vh; */
+    display: block;
+    max-width: 98vw;
+    margin: auto;
+    border: none;
+}
+
+.btnMUIBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 96vw;
+    transform: translate(-50%, -50%);
+    border: none;
+    outline: none;
+}
+
+.MUIBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    background-color: #efede7;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 24px;
+    justify-content: center;
+}
+
+.artDesc{
+    font-size: smaller;
+}
+
+.btnMUIBox .modalNavBtn {
+    opacity: 0.6;
+    color: #000;
+    background-color: #efede7;
+}
+
+.btnMUIBox .modalNavBtn:hover {
+    background-color: #cac9c4;
+}
+
+/* desktop differences */
+@media only screen and (min-width: 768px) {
+    .modalImg {
+        max-height: 70vh;
+        max-width: 70vh;
+    }
+
+    .modalImgThumbnail{
+        transition: 0.3s ease;
+    }
+
+    .modalImgThumbnail:hover{
+        cursor: pointer;
+        transform: scale(1.05);
+    }
+    
+    .modalImgWide {
+        max-height: 80vh;
+    }
+
+    .btnMUIBox {
+        width: 75vw;
+    }
+    .btnMUIBox .modalNavBtn {
+        opacity: 1;
+        color: #000;
+        background-color: #efede7;
+    }
+}

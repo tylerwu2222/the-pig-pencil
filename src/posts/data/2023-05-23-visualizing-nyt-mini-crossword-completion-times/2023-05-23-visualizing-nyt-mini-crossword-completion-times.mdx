@@ -1,0 +1,85 @@
+---
+Date: "5/24/2023"
+Title: "Visualizing NYT Mini Crossword Completion Times"
+Author:
+  - "Tyler Wu"
+AuthorURL:
+  - "https://thepigpencil.com/collaborators"
+MainTag: "puzzle"
+Tags:
+  - "puzzle"
+  - "entertainment"
+ReadingTime: "15 min"
+Languages: "D3.js"
+Caption: "In as many ways as possible"
+HasScrollspy: "true"
+HasImageModal: "true"
+SectionTitles:
+- Collecting the Data
+- Preliminary Sketches
+- The Graphs
+- Closing Thoughts
+Hidden: "false"
+---
+
+This past school year, I began playing the <a href='https://www.nytimes.com/crosswords/game/mini' target='_blank'>NYT Mini crossword</a> with some friends.
+
+For those unfamiliar, The Mini is a 5x5 daily crossword by NYT that looks like this:
+
+<img className="articleImgTall" src='/img/data/nyt_mini_scores/nyt_mini_scores1.png' alt='example-mini'/>
+
+<ScrollspyHeader/>
+
+I thought it would be interesting to collect the time it took everyone to complete
+each daily mini via screenshots and see if I could make some cool visualizations as a result of it.
+
+Here's a diagram of what an example leaderboard looked like and how I converted it to data:
+
+<ImageModal
+  imgTN={<img className="articleImgWide modalImgThumbnail" src='/img/data/nyt_mini_scores/nyt_mini_scores2.png' alt='mini-process'/>}
+  img={<img className="modalImgWide" src='/img/data/nyt_mini_scores/nyt_mini_scores2.png' alt='mini-process'/>}
+  desc='NYT Mini data conversion process'
+  title='fig. 2'
+/>
+
+<ScrollspyHeader/>
+
+A simple visualization exercise I've learned this past year in my info viz class
+is to come up with as many visualizations as you can from one dataset.
+This can be a great exercise for thinking outside the box for creating innovative vizzes.
+
+To start, I begin with some rough sketches:
+
+<ImageModal
+imgTN={<img className="articleImgWide modalImgThumbnail" src='/img/data/nyt_mini_scores/nyt_mini_scores3.png' alt='mini-sketches'/>}
+img={<img className="modalImgWide" src='/img/data/nyt_mini_scores/nyt_mini_scores3.png' alt='mini-sketches'/>}
+desc='NYT Mini early viz drafts'
+title='fig. 3'
+/>
+
+Starting with simple graphs helped me get familiar with the type of data I had and how they are commonly visualized.
+Once I had this stepping stone, it was easier to think about alterations and alternative ways I could visualize.
+
+<ScrollspyHeader/>
+After sketching, I created each viz using D3 (and the basic graphs using recharts):
+
+<h3>Basic Graphs</h3>
+I first tried making the most basic linechart using Recharts, and the result looks... messy.
+
+<h4>Daily Completion Time Per User</h4>
+<Basic1 />
+
+Side note: it turns out recharts is actually rendering all missing values as 0.
+
+Recharts' linechart does look a bit better with cumulative stats:
+
+<Basic2 />
+
+Many of my friends (including myself) played mini less and less throughout the year as our classes got busier.
+Thus, it could also be interesting to track <i>when</i> we play the mini 
+
+<ScrollspyHeader/>
+In a perfect world, I would've captured every day and I might've also screenshotted the actual crosswords for each day
+so I could look for relationships between the words/hints and completion time. But I'm human, so I didn't :(
+
+Maybe one day I'll work at NYT and have access to that sort of data...

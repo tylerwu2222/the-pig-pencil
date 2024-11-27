@@ -1,0 +1,7 @@
+.sticky-header{
+    /* padding-top: 3rem; */
+    width: fit-content;
+    position: sticky;
+    background-color: tomato;
+    z-index: 99;
+}

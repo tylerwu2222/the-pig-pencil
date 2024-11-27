@@ -1,0 +1,16 @@
+.btn-type1{
+    background-color: #FCF281;
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 30;
+    border-width: 1px;
+    /* border:none; */
+}
+
+.btn-type1:hover{
+    background-color: #8a8333;
+    color:white;
+}

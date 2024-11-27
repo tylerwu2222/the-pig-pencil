@@ -1,0 +1,134 @@
+---
+Date: "7/11/2024"
+Title: "Creating A Collection App: Day 2"
+Author:
+- "Tyler Wu"
+AuthorURL:
+- "https://thepigpencil.com/collaborators"
+MainTag: "UX-design"
+Tags:
+- "UX design"
+- "mobile development"
+- "magpie"
+ReadingTime: "15 min"
+Caption: "One day isn't one day, I'll explain later."
+HasScrollspy: "true"
+SectionTitles:
+    - 'Component driven development'
+    - 'Building components with Storybook.js'
+    - 'Rethinking feasability'
+Hidden: "false"
+---
+
+<b>If you missed <a target="_blank" href="https://thepigpencil.com/projects/2024_05_14_creating_a_collection_app_day_1">Day 1</a></b>
+
+--So I forgot to mention I was going to be travelling for a month in China. And when I got back, I had
+to do a couple ✨coding assignments✨ from tech companies. That took a whole week, but that's over for now. 
+While I was in China, I had pretty limited internet access, 
+and had trouble coding without the assistance of stack overflow + documentation as relatively new to mobile dev.
+
+<ScrollspyHeader/>
+
+With nothing much to do in the 100 degree heat, I started looking through textbooks I'd downloaded (yes, I'm like that). And found that,
+in the past, I had downloaded the PDF for a book called <a href="https://www.amazon.com/Modern-Front-end-Architecture-Development-Components/dp/1484266242" target="_blank">Modern front-end architecture</a>. 
+I only read a few chapters, but one of the most useful concepts I learned about in this book was "component-driven development" (CDD). You can read more about it <a href="https://www.componentdriven.org/" target="_blank">here</a>.
+
+The idea is that we should build out our components from the bottom up before jumping into designing entire pages.
+
+
+<img
+    className='articleImg' 
+    src="/img/projects/magpie/day2/cdd.png"
+    alt="component driven design metaphorical image"
+/>
+
+This makes sense for apps that might see multiple, reusable components. We want to first ensure that a component works independently and in its different states, 
+rather than building the component shoddily within a complex system, 
+and needing to navigate a mess of dependent components when changes need to be made.
+The author relates it to the idea of "mise en place" or having <a target="_blank" href="https://open.spotify.com/track/2kRFrWaLWiKq48YYVdGcm8"><i>everything in its right place</i></a> before you start building.
+
+A metaphor I think of is having a test-kitchen for working on ingredients, (base components), and recipes, (composite components), before adding them to the menu (pages/screens). 
+That way, when its time to put the recipes and menu together it is just that — putting ingredients together — rather than needing to go back mid-cooking to redo a whole ingredient.
+
+<ScrollspyHeader/>
+To help in building these components, I employed a library called Storybook.js. 
+It helps you isolate your components so they're easier to work on. I first started by making my own button components,
+before I remembered that I could just use component libraries. These are pre-existing libraries that other people built with styled components that you can use and further customize (thanks other people!).
+For reference, I used one called <a href="https://reactnativepaper.com/" target="_blank">react-native-paper</a>.
+ 
+Here are some screenshots of the Storybook UI with a react-native-paper button:
+
+<div className='verticalCenterContainer'>
+    <img
+        className='articleImg' 
+        src="/img/projects/magpie/day2/storybookUI1.png"
+        alt="storybook ui 1"
+    />
+    <i>all the components and stories</i>
+</div>
+
+<div className='verticalCenterContainer'>
+    <img
+        className='articleImg' 
+        src="/img/projects/magpie/day2/storybookUI2.png"
+        alt="storybook ui 2"
+    />
+    <i>can edit component props easily in the storybook UI</i>
+</div>
+
+<div className='verticalCenterContainer'>
+    <img
+        className='articleImg' 
+        src="/img/projects/magpie/day2/storybookUI3.png"
+        alt="storybook ui 3"
+    />
+    <i>and other things like changing the background</i>
+</div>
+
+So yeah it's pretty nice, and if you need to show a coworker or somebody a single component, it's pretty straightforward.
+
+### Making a card
+After building some basic components: icon buttons, text buttons, and text inputs, I put a few of these together into a more complex component: a <b>card</b>.
+
+<img
+    className='halfWidthImg' 
+    src="/img/projects/magpie/day2/card.png"
+    alt="card component"
+/>
+
+I think the way I want these cards to work is sort of like those in computer card games, (hearthstone, MTG arena, gwent, etc.). 
+
+- Tapping the card should bring up a modal where the user can edit text fields and the image
+- Cards should be able to be added to collections/categories, sort of like the save feature on Instagram.
+- (Much later on, I want to add sharing with other users too, but for a good while, it'll just be an icon to remind me).
+
+### Making a deck
+Since building the modal functionality is probably a little complicated, I decided the last thing I'd do today is aggregate some cards together into a stack or "deck".
+
+<img
+    className='halfWidthImg' 
+    src="/img/projects/magpie/day2/deck.png"
+    alt="deck component"
+/>
+
+Doing this simply involved mapping a number array (0,1,2,...,5) to my card component, and offsetting each card based on the index. 
+
+In the long-run, I'll have to set up the back-end system to store card data, and map that data to the cards in this deck component.
+
+<ScrollspyHeader/>
+Something I realized while making the card and deck components was that I kind of wanted to reframe the idea for my app.
+
+- Maybe instead of this intense, algorithm, data-visualization-heavy, all-in-one, collection app,
+ I could instead make a sort of lightweight, annotated photo gallery that manifests itself in digital/tangible cards. 
+
+- This could also enable that desire to collect and show off cards with others, 
+(thinking back to how kids like to collect trading cards and share their collections with friends), 
+ but instead turning the photo gallery on everyone's phone into fun, sharable cards.
+
+- I'm thinking something similar to Google Keep, (a lightweight note-taker that's flexibility and versatility comes from it's simplicty), 
+but with a bit more elements of collection and categorization to enhance the satisfaction of looking at your collections.
+
+Anyway, my goal for next time is to have the modal functionality for a card set up, 
+with a more comprehensive card where I can edit the image and text components.
+
+<a target="_blank" href="https://thepigpencil.com/projects/2024_05_14_creating_a_collection_app_day_1">Previous Day</a> ... (Day 3 coming soon)

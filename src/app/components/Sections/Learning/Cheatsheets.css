@@ -1,0 +1,11 @@
+.big-gif{
+    width: 90vw;
+    border: 2px black solid;
+    border-radius: 5px;
+}
+
+@media screen and (min-width: 1024px) {
+    .big-gif{
+        width: 30vw;
+    }
+}

@@ -1,0 +1,13 @@
+.buy-me-a-coffee-widget{
+    position: fixed;
+    width: fit-content;
+    /* margin-left: auto;
+    margin-top: auto; */
+    right: 10px;
+    bottom: 10px;
+}
+
+.buy-me-a-coffee-icon{
+    height: 30px;
+    width: auto;
+}

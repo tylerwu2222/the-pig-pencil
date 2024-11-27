@@ -1,0 +1,18 @@
+/* mobile-first */
+.slogan-container{
+	height: 100px;
+	width: fit-content;
+	margin: auto;
+	padding-top: 30vh;
+	text-align: left;
+	color: var(--light-black);
+}
+.slogan-container>p{
+	margin:0;
+}
+
+.home-img{
+	/* border: black solid 1px; */
+	margin: 0;
+}
+

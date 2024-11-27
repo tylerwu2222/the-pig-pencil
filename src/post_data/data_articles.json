@@ -1,0 +1,306 @@
+[
+  {
+    "Id": 0,
+    "FileName": "2021-05-09-a-visual-recap-of-the-2019-20-nba-season.mdx",
+    "FileNameNoExt": "2021-05-09-a-visual-recap-of-the-2019-20-nba-season",
+    "Thumbnail": "2021-05-09-a-visual-recap-of-the-2019-20-nba-season.png",
+    "Visuals": [
+      "svg1.js",
+      "svg2.js"
+    ],
+    "Styles": [
+      "2023-06-28-python-web-scraping-guide.css"
+    ],
+    "Date": "5/9/2021",
+    "Title": "A Visual Recap of the 2019-20 NBA Season",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "basketball",
+    "Tags": [
+      "basketball",
+      "nba",
+      "short post"
+    ],
+    "ReadingTime": "10 min",
+    "Languages": "D3.js",
+    "Caption": "The NBA 2019-2020 Regular Season as a Bar Chart Race, and other charts.",
+    "Scrollspy": "true",
+    "Hidden": "true"
+  },
+  {
+    "Id": 1,
+    "FileName": "2021-07-13-an-intro-to-tortoise-physiology.mdx",
+    "FileNameNoExt": "2021-07-13-an-intro-to-tortoise-physiology",
+    "Thumbnail": "2021-07-13-an-intro-to-tortoise-physiology.png",
+    "Visuals": [
+      "svg1.js",
+      "svg2.js"
+    ],
+    "Styles": [
+      "2023-06-28-python-web-scraping-guide.css"
+    ],
+    "Date": "7/13/2021",
+    "Title": "An Intro to Tortoise Physiology",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "ecology",
+    "Tags": [
+      "herpetology",
+      "ecology",
+      "zoology",
+      "biology",
+      "first post",
+      "long post"
+    ],
+    "ReadingTime": "15 min",
+    "Languages": "D3.js",
+    "Caption": "My pet russian tortoise, 呆呆 (Dai-Dai) inspired me to make this.",
+    "HasScrollspy": "true",
+    "SectionTitles": [
+      "Tortoises vs. Turtles",
+      "Where are Tortoises in the Great Turtle Tree?",
+      "Why Do Tortoises Retract There Necks Anyway?",
+      "Why are Some Tortoises Huge and Others So Small?",
+      "What is the Biggest Threat to Tortoises today?"
+    ],
+    "Hidden": "false"
+  },
+  {
+    "Id": 2,
+    "FileName": "2021-08-21-critiquing-music-critics-the-needle-drop.mdx",
+    "FileNameNoExt": "2021-08-21-critiquing-music-critics-the-needle-drop",
+    "Thumbnail": "2021-08-21-critiquing-music-critics-the-needle-drop.png",
+    "Visuals": [
+      "svg1.js",
+      "svg2.js",
+      "svg3.js",
+      "svg4.js"
+    ],
+    "Styles": [
+      "2021-08-21-critiquing-music-critics-the-needle-drop.css"
+    ],
+    "Date": "8/2/2021",
+    "Title": "Critiquing Music Critics: The Needle Drop",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "music",
+    "Tags": [
+      "music",
+      "entertainment",
+      "long post"
+    ],
+    "ReadingTime": "15 min",
+    "Languages": "D3.js",
+    "Caption": "Anthony Fantano (a.k.a the Needledrop, a.k.a Melon,\n a.k.a. the Best Teeth in the Game, a.k.a. Cal Chuchesta's Roomate, a.k.a Ridge Wallet Salesman)",
+    "HasScrollspy": "true",
+    "SectionTitles": [
+      "Who is Anthony Fantano?",
+      "Annual Review Statistics",
+      "Scores by Genre",
+      "Anthony's Favorite Artists?",
+      "Closing the Case on this Cantaloupe"
+    ],
+    "Hidden": "false"
+  },
+  {
+    "Id": 3,
+    "FileName": "2023-05-23-visualizing-nyt-mini-crossword-completion-times.mdx",
+    "FileNameNoExt": "2023-05-23-visualizing-nyt-mini-crossword-completion-times",
+    "Thumbnail": "2023-05-23-visualizing-nyt-mini-crossword-completion-times.png",
+    "Visuals": [
+      "Basic1.js",
+      "Basic1b.js",
+      "Basic2.js"
+    ],
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "5/24/2023",
+    "Title": "Visualizing NYT Mini Crossword Completion Times",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "puzzle",
+    "Tags": [
+      "puzzle",
+      "entertainment"
+    ],
+    "ReadingTime": "15 min",
+    "Languages": "D3.js",
+    "Caption": "In as many ways as possible",
+    "HasScrollspy": "true",
+    "HasImageModal": "true",
+    "SectionTitles": [
+      "Collecting the Data",
+      "Preliminary Sketches",
+      "The Graphs",
+      "Closing Thoughts"
+    ],
+    "Hidden": "false"
+  },
+  {
+    "Id": 4,
+    "FileName": "2024-08-19-surviving_an_NBA_draft.mdx",
+    "FileNameNoExt": "2024-08-19-surviving_an_NBA_draft",
+    "Thumbnail": "2024-08-19-surviving_an_NBA_draft.png",
+    "Visuals": [
+      "svg1.js"
+    ],
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "8/19/2024",
+    "Title": "Surviving An NBA Draft",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "basketball",
+    "Tags": [
+      "basketball",
+      "nba",
+      "short post"
+    ],
+    "ReadingTime": "10 min",
+    "Languages": "D3.js",
+    "Caption": "Longevity in the NBA.",
+    "Scrollspy": "false",
+    "Hidden": "true"
+  },
+  {
+    "Id": 5,
+    "FileName": "2024-09-15-what-would-a-car-free-LA-really-look-like.mdx",
+    "FileNameNoExt": "2024-09-15-what-would-a-car-free-LA-really-look-like",
+    "Thumbnail": "2024-09-15-what-would-a-car-free-LA-really-look-like.png",
+    "Visuals": [
+      "svg1.js"
+    ],
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "9/15/2024",
+    "Title": "What Would A Car-free LA Really Look Like?",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "main-tag",
+    "Tags": [
+      "transit"
+    ],
+    "ReadingTime": "10 min",
+    "Languages": "D3.js",
+    "Caption": "Probably less traffic",
+    "TemplateType": "js",
+    "HasScrollspy": "true",
+    "Hidden": "false"
+  },
+  {
+    "Id": 6,
+    "FileName": "wip-fantasy-basketball-adp-and-positions.mdx",
+    "FileNameNoExt": "wip-fantasy-basketball-adp-and-positions",
+    "Thumbnail": "wip-fantasy-basketball-adp-and-positions.png",
+    "Visuals": [
+      "svg1.js"
+    ],
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "12/12/2099",
+    "Title": "Fantasy Basketball: ADP and Positions",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "basketball",
+    "Tags": [
+      "basketball",
+      "entertainment",
+      "nba"
+    ],
+    "ReadingTime": "15 min",
+    "Languages": "D3.js",
+    "Caption": "Ever wondered how positions are distributed in an NBA Fantasy Draft? Probably not, but here's the answer.",
+    "Scrollspy": "true",
+    "Hidden": "true"
+  },
+  {
+    "Id": 7,
+    "FileName": "wip-understanding-the-mark-and-recpature-method.mdx",
+    "FileNameNoExt": "wip-understanding-the-mark-and-recpature-method",
+    "Thumbnail": "wip-understanding-the-mark-and-recpature-method.png",
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "12/12/2000",
+    "Title": "Understanding the Mark and Recapture Method",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "ecology",
+    "Tags": [
+      "ecology",
+      "population ecology",
+      "entertainment"
+    ],
+    "ReadingTime": "15 min",
+    "Languages": "D3.js",
+    "Caption": "A population counting method",
+    "Scrollspy": "true",
+    "Hidden": "true"
+  },
+  {
+    "Id": 8,
+    "FileName": "wip-visualizing-the-inaturalist-found-feathers-dataset.mdx",
+    "FileNameNoExt": "wip-visualizing-the-inaturalist-found-feathers-dataset",
+    "Thumbnail": "wip-visualizing-the-inaturalist-found-feathers-dataset.png",
+    "Styles": [
+      "2023-05-23-visualizing-nyt-mini-crossword-completion-times.css"
+    ],
+    "Date": "12/12/2000",
+    "Title": "Visualizing the iNaturalist Found Feathers Dataset",
+    "Author": [
+      "Tyler Wu"
+    ],
+    "AuthorURL": [
+      "https://thepigpencil.com/collaborators"
+    ],
+    "MainTag": "ecology",
+    "Tags": [
+      "ecology",
+      "ornithology",
+      "birds",
+      "zoology",
+      "biology"
+    ],
+    "ReadingTime": "10 min",
+    "Languages": "D3.js",
+    "Caption": "The original dataset had around 23,500 contributors at the time of download",
+    "Scrollspy": "true",
+    "Hidden": "true"
+  }
+]

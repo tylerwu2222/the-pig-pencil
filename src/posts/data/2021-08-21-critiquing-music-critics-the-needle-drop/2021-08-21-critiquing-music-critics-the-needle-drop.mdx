@@ -1,0 +1,92 @@
+---
+Date: "8/2/2021"
+Title: "Critiquing Music Critics: The Needle Drop"
+Author:
+  - "Tyler Wu"
+AuthorURL:
+  - "https://thepigpencil.com/collaborators"
+MainTag: "music"
+Tags:
+  - "music"
+  - "entertainment"
+  - "long post"
+ReadingTime: "15 min"
+Languages: "D3.js"
+Caption: "Anthony Fantano (a.k.a the Needledrop, a.k.a Melon,\n a.k.a. the Best Teeth in the Game, a.k.a. Cal Chuchesta's Roomate, a.k.a Ridge Wallet Salesman)"
+HasScrollspy: "true"
+SectionTitles:
+- 'Who is Anthony Fantano?'
+- 'Annual Review Statistics'
+- 'Scores by Genre'
+- "Anthony's Favorite Artists?"
+- 'Closing the Case on this Cantaloupe'
+Hidden: "false"
+---
+
+<ScrollspyHeader/>
+For those of you who recognize this man above, but not from music reviews, it might be from this infamous audio clip:
+
+
+<iframe 
+className="articleVid" 
+src="https://www.youtube.com/embed/HMKUlsJpov8"
+></iframe>
+
+But when he's not being a meme, he's actually a reputable music critic, posting most of his reviews on his youtube channel theneedledrop.
+
+A hallmark element of Anthony's videos are the ~numerical scores~ he gives at the ends of his videos.
+
+The scores range from 0-10, with a special category, "NOT GOOD", which he addresses in this video.
+Essentially, it means Anthony thought it was not worth the effort of reviewing,
+or he had a low expectation to begin with.
+
+Anthony started reviewing albums in 2008,
+and as of July 2021, has reviewed over at least [1] 1400 albums.
+That's quite a bit of data, and in this article,
+we'll use data scraped from his website to take a look at his reviewing patterns over the years.
+
+Each review clearly holds more nuance than one singular number
+and Anthony has stated that his ratings are not always comparable between different artists,
+but for the sake of our analysis we will have to make this oversimplification.
+
+At the end of the day, the numbers are just numbers chosen by Anthony,
+and this is mostly just a for-fun look at any trends in how that man chooses those numbers.
+
+[1] Not all his reviews are still posted, so my dataset only goes as far back as October 2012.
+
+<ScrollspyHeader/>
+One of the most immediate questions we might have is, what is his average rating?
+And has it changed over the years?
+
+<SVG1 />
+
+Anthony seems pretty consistent in sticking with an average score of about 6 year-to-year.
+In fact, the slight downward trend might just be due to an increased number of "Not Good" reviews (which I very arbitrarily deemed as -1).
+
+<ScrollspyHeader/>
+Let's see if this consistency holds across genres:
+
+<SVG3/>
+
+Not as much here, Anthony seems to have some preference for certain genres (nothing wrong with that).
+Regardless, when sorted by <input type="button" className="btn-link" id="interactive-link-1" value="number of reviews" />,
+we can see experimental, jazz, singer-songwriter, and folk album reviews are Anthony's <b>7th, 11th, 10th, and 8th</b> most reviewed genres respectively.
+However, when sorted by <input type="button" className="btn-link" id="interactive-link-2" value="mean score" />,
+they take <b>1st through 4th</b>, with a mean score of <b>6.89</b> compared to the other genres with a mean score of <b>6.17</b>.
+
+<ScrollspyHeader/>
+Can we paint a caricature of Fantano's favorite and least favorite artists based on his ratings? Who he deems most inconsistent?
+Let's look at the stats (with min. n reviews):
+
+<SVG4/>
+
+<ScrollspyHeader/>
+OK, closing thoughts:
+                                        
+Suprisingly, Anthony has been able to maintain his sanity reviewing music for years and continues to give out consistent ratings on the whole.
+He certainly has his own favorite genres and artists, but which reviewer doesn't. At the end of the day, critiquing is a subjective practice,
+and that's what makes it interesting.
+
+I think he's had a solid career thus far, establishing a unique lane within the review industry.
+
+Overall, I'm thinking a strong 7 to a light 8.

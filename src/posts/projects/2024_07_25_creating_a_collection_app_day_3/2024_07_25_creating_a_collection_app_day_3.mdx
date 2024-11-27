@@ -1,0 +1,41 @@
+---
+Date: "7/25/2024"
+Title: "Creating a Collection App Day 3: Making a Card Modal"
+Author:
+- "Tyler Wu"
+AuthorURL:
+- "https://thepigpencil.com/collaborators"
+MainTag: "main-tag"
+Tags:
+- "UX design"
+- "mobile development"
+- "magpie"
+ReadingTime: "10 min"
+Caption: "I make a card modal."
+HasScrollspy: "true"
+SectionTitles:
+    - 'using dummy data'
+    - 'creating the modal'
+    - 'adding blur'
+Hidden: "true"
+---
+
+<ScrollspyHeader/>
+For any data-related project I've worked on the last few years, 
+I always create a local .json file to emulate a backend so I can flesh out the UI.
+
+
+<ScrollspyHeader/>
+I used the Modal component from RN paper to wrap my existing card component --except the card shown in the modal would be editable.
+In other words, the card shown in the first view to the user would essentially just be a fancy button to open the modal view:
+
+[IMAGE HERE]
+
+So I just duplicated my "static card", and toggled the editable prop to on, which corresponded to rendering text as textInputs instead.
+
+
+<ScrollspyHeader/>
+I first tried using a react-native community package, but there was some linking issue or something, idk. 
+So I tried the expo blurView, which worked great
+
+Next time I will work on building a more traditional "gallery" view as seen in photo apps and CCGs (computer card games).

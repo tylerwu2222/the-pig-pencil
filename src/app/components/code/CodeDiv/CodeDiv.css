@@ -1,0 +1,25 @@
+.code-div {
+    background-color: #F5F2F0;
+    border: black 1px solid;
+    border-radius: 5px;
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.code-div>pre{
+    padding: 5px 15px;
+}
+
+.reset-button-span{
+    float: right;
+}
+
+/* .code-div>code {
+    display: block;
+    white-space: pre-wrap
+} */
+
+.code-block-code:focus {
+    outline: none;
+}

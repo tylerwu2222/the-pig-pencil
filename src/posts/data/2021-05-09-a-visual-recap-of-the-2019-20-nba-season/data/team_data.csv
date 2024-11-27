@@ -1,0 +1,31 @@
+index,id,full_name,abbreviation,nickname,city,state,year_founded,colors,Conference,Division
+0,1610612737,Atlanta Hawks,ATL,Hawks,Atlanta,Atlanta,1949,"('#e03a3e', '#26282a', '#c1d32f')",Eastern,Southeast
+1,1610612738,Boston Celtics,BOS,Celtics,Boston,Massachusetts,1946,"('#008348', '#bb9753')",Eastern,Atlantic
+14,1610612751,Brooklyn Nets,BKN,Nets,Brooklyn,New York,1976,"('#000000', '#8a8a8a', '#fefefe')",Eastern,Atlantic
+29,1610612766,Charlotte Hornets,CHA,Hornets,Charlotte,North Carolina,1988,"('#00788c', '#1d1160')",Eastern,Southeast
+4,1610612741,Chicago Bulls,CHI,Bulls,Chicago,Illinois,1966,"('#ce1141', '#000000')",Eastern,Central
+2,1610612739,Cleveland Cavaliers,CLE,Cavaliers,Cleveland,Ohio,1970,"('#6f263d', '#ffb81c')",Eastern,Central
+5,1610612742,Dallas Mavericks,DAL,Mavericks,Dallas,Texas,1980,"('#0053bc', '#00285e')",Western,Southwest
+6,1610612743,Denver Nuggets,DEN,Nuggets,Denver,Colorado,1976,"('#0e2240', '#fec524')",Western,Northwest
+28,1610612765,Detroit Pistons,DET,Pistons,Detroit,Michigan,1948,"('#1d428a','#c8102e', '#8e9091', '#bec0c2')",Eastern,Central
+7,1610612744,Golden State Warriors,GSW,Warriors,Golden State,California,1946,"('#006bb6', '#fdb927')",Western,Pacific
+8,1610612745,Houston Rockets,HOU,Rockets,Houston,Texas,1967,"('#ce1141', '#7d858a', '#c4ced4')",Western,Southwest
+17,1610612754,Indiana Pacers,IND,Pacers,Indiana,Indiana,1976,"('#002d62', '#fdbb30')",Eastern,Central
+9,1610612746,Los Angeles Clippers,LAC,Clippers,Los Angeles,California,1970,"('#000000', '#898b8c', '#ffffff', '#1d428a', '#c8102e')",Western,Pacific
+10,1610612747,Los Angeles Lakers,LAL,Lakers,Los Angeles,California,1948,"('#552583', '#fdb927')",Western,Pacific
+26,1610612763,Memphis Grizzlies,MEM,Grizzlies,Memphis,Tennessee,1995,"('#5d76a9', '#070a21', '#12173f')",Western,Southwest
+11,1610612748,Miami Heat,MIA,Heat,Miami,Florida,1988,"('#98002e', '#000000')",Eastern,Southeast
+12,1610612749,Milwaukee Bucks,MIL,Bucks,Milwaukee,Wisconsin,1968,"('#00471b', '#eee1c6')",Eastern,Central
+13,1610612750,Minnesota Timberwolves,MIN,Timberwolves,Minnesota,Minnesota,1989,"('#78be20', '#0c2340')",Western,Northwest
+3,1610612740,New Orleans Pelicans,NOP,Pelicans,New Orleans,Louisiana,2002,"('#002b5c', '#b4975a')",Western,Southwest
+15,1610612752,New York Knicks,NYK,Knicks,New York,New York,1946,"('#f58426', '#006bb6')",Eastern,Atlantic
+23,1610612760,Oklahoma City Thunder,OKC,Thunder,Oklahoma City,Oklahoma,1967,"('#ef3b24', '#007ac1')",Western,Northwest
+16,1610612753,Orlando Magic,ORL,Magic,Orlando,Florida,1989,"('#0077c0', '#000000')",Eastern,Southeast
+18,1610612755,Philadelphia 76ers,PHI,76ers,Philadelphia,Pennsylvania,1949,"('#006bb6', '#ED174C', '#c4ced4')",Eastern,Atlantic
+19,1610612756,Phoenix Suns,PHX,Suns,Phoenix,Arizona,1968,"('#e56020', '#1d1160')",Western,Pacific
+20,1610612757,Portland Trail Blazers,POR,Trail Blazers,Portland,Oregon,1970,"('#e03a3e', '#000000')",Western,Northwest
+21,1610612758,Sacramento Kings,SAC,Kings,Sacramento,California,1948,"('#5a2b81', '#63727a')",Western,Pacific
+22,1610612759,San Antonio Spurs,SAS,Spurs,San Antonio,Texas,1976,"('#000000', '#8b9499', '#c4ced4')",Western,Southwest
+24,1610612761,Toronto Raptors,TOR,Raptors,Toronto,Ontario,1995,"('#ce1141', '#000000')",Eastern,Atlantic
+25,1610612762,Utah Jazz,UTA,Jazz,Utah,Utah,1974,"('#f9a01b','#002b5c')",Western,Northwest
+27,1610612764,Washington Wizards,WAS,Wizards,Washington,District of Columbia,1961,"('#002b5c', '#e31837', '#c4ced4')",Eastern,Southeast

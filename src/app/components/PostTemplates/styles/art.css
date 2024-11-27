@@ -1,0 +1,59 @@
+/* mobile-first */
+.artContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.artDiv {
+    max-width: 80vw;
+    padding: 1vw;
+    margin: 0;
+}
+
+.artPiece {
+    /* border-radius: 0.5rem; */
+    border: black solid 1px;
+    max-width: 80vw;
+}
+
+.smallArt,
+.medArt,
+.largeArt {
+    max-width: 80vw;
+}
+
+.artDate,
+.artDesc{
+    margin: 0;
+}
+
+/* desktop */
+@media only screen and (min-width: 768px) {
+    .blogArtContainer {
+        justify-content: left;
+    }
+
+    .artDiv {
+        max-width: 30vh;
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .artPiece {
+        max-width: 60vh;
+    }
+
+    .smallArt {
+        max-width: 30vh;
+    }
+
+    .medArt {
+        max-width: 50vh;
+    }
+
+    .largeArt {
+        max-height: 70vh;
+        max-width: 70vh;
+    }
+}

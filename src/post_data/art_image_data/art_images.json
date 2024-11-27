@@ -1,0 +1,511 @@
+{
+  "alphabet_deities": [
+    {
+      "filename": "alphabetdeitiesstickers.png",
+      "date": "June 2022",
+      "description": "Stickers I may never print."
+    },
+    {
+      "filename": "Deli.jpg",
+      "date": "June 2023",
+      "description": "Deli, who dines in the daisy fields. Titan's older brother. He likes to eat instead of sleep. He slops 'em uuuup."
+    },
+    {
+      "filename": "Gus.jpg",
+      "date": "Dec 2019",
+      "description": "Gus, twice removed. Gus was feeling a bit wonky since he had gone through 2 back-to-back self-removal procedures. His existence had become split between his 3 selves and it was difficult for him to reestablish his precise location at any point in time…"
+    },
+    {
+      "filename": "Helios.jpg",
+      "date": "June 2022",
+      "description": "Helios, heartbreaker. Helios is a fiery individual and he loves the same way. He broke many hearts and had his heart broken just as many times. It's overwhelming at times. There might be something fundamentally wrong with himself."
+    },
+    {
+      "filename": "Obie.jpg",
+      "date": "March 2021",
+      "description": "Obie, operantly conditioned. Obie is a compulsive individual. Individual is being generous and compulsive is being conservative."
+    },
+    {
+      "filename": "Petras.jpg",
+      "date": "Feb 2021",
+      "description": "Petras, who pops pills like prayers. Petras pops a lot of pills. He doesn't eat them, he just likes seeing what's inside each pill. It gives him some sort fo satisfaction. A satisfaction that affects his existence, or defines it. It's hard to deliniate where Petras begins and where the pill popping ends. It's a blurry line, but he enjoys walking it. He also lost his clothes so he dresses like a priest now."
+    },
+    {
+      "filename": "Rick.jpg",
+      "date": "March 2021",
+      "description": "Rick, who sold his limbs to start a cactus dispensary. \"Pretty self-explanatory\" is what Rick would respond with when his friends asked about his missing appendages. Sometimes you have to break a few limbs to make a cactus dispensary as the saying goes. And these days it's all point and click, out goes the limb, and in comes the cacti."
+    },
+    {
+      "filename": "Titan.jpg",
+      "date": "March 2020",
+      "description": "Titan, who sleeps in the tulip fields. Titan loves sleeping. And he loves nature. He's slept for quite a long while that if his friends were to look for him they might soon have trouble finding him. He's blending in with the overgrowth. It feels nice."
+    },
+    {
+      "filename": "Wong.jpg",
+      "date": "Dec 2018",
+      "description": "Wong, who plays jacks. Wong plays a lot of jacks and it's tough on the feet."
+    },
+    {
+      "filename": "Xoni.jpg",
+      "date": "Feb 2019",
+      "description": "Xoni, who keeps close. Xoni is all about his Zones (or Xones as he calls them). His mother would have named him Zoni, except his elder sibling, Zulu, already had the Z name. And  we all know you can't have two Z names in the same family. So he was named Xoni. And he likes his Xones."
+    },
+    {
+      "filename": "Zulu.jpg",
+      "date": "Dec 2018",
+      "description": "Zulu, who meditates daily. He meditates with the help of mushrooms. He's the eldest son of the alphadiety line. Some might say he's the originator and that carries quite the burden. Which, some hypothesize is why he medicates. But really he's just having a good time."
+    }
+  ],
+  "dtiys": [
+    {
+      "filename": "crom1.jpg",
+      "date": "Sept 2020",
+      "description": "https://www.instagram.com/crom.ink/"
+    },
+    {
+      "filename": "crom2.jpg",
+      "date": "Dec 2020",
+      "description": "https://www.instagram.com/crom.ink/"
+    },
+    {
+      "filename": "erikly1.jpg",
+      "date": "Aug 2020",
+      "description": "https://www.instagram.com/eriklyart/"
+    },
+    {
+      "filename": "keri1.jpg",
+      "date": "Dec 2020",
+      "description": "https://www.instagram.com/kerinewton/"
+    },
+    {
+      "filename": "mrmattzan1.jpg",
+      "date": "Apr 2021",
+      "description": "https://www.instagram.com/mrmattzan/"
+    },
+    {
+      "filename": "thiago1.jpg",
+      "date": "Apr 2021",
+      "description": "https://www.instagram.com/thiago.lehmann/"
+    }
+  ],
+  "fan_art": [
+    {
+      "filename": "Giannis.jpg",
+      "date": "May 2019",
+      "description": "Real Gs move in silence like Giannis"
+    },
+    {
+      "filename": "Kawhi.jpg",
+      "date": "May 2019",
+      "description": "hahuehuheahuehe"
+    },
+    {
+      "filename": "Rina.jpg",
+      "date": "July 2021",
+      "description": "bad friend"
+    },
+    {
+      "filename": "gengar.png",
+      "date": "Aug 2022"
+    },
+    {
+      "filename": "playboi_carti.jpg",
+      "date": "Jan 2021",
+      "description": "Yo pierre…"
+    }
+  ],
+  "inktober": [
+    {
+      "filename": "Blobfish.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "ChopperOnePiece.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "DemonDude.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Frogbenius.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "FullMetalAlchemist.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Girl.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Houseonthehill.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Jawas.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Jinzo.jpg",
+      "date": "Oct 2020"
+    },
+    {
+      "filename": "Radio.jpg",
+      "date": "Oct 2020"
+    }
+  ],
+  "landscapes": [
+    {
+      "filename": "Building1.png",
+      "date": "Apr 2021",
+      "description": "apartments in Beijing China"
+    },
+    {
+      "filename": "bolsa.chica.wetlands.jpg",
+      "date": "July 2020",
+      "description": "on the way home"
+    },
+    {
+      "filename": "chicago.intersection.blue.jpg",
+      "date": "July 2018",
+      "description": "A more abstract landscape"
+    },
+    {
+      "filename": "china.lily.pond.png",
+      "date": "May 2021",
+      "description": "from a university in Nanjing"
+    },
+    {
+      "filename": "china.town.parking.jpg",
+      "date": "Nov 2019",
+      "description": "on the way to get food"
+    },
+    {
+      "filename": "circle tree.jpg",
+      "date": "2018",
+      "description": "a tree from home"
+    },
+    {
+      "filename": "garfield.ave.trees.jpg",
+      "date": "Apr 2018",
+      "description": "also near bolsa chica"
+    },
+    {
+      "filename": "hitch_courts.jpg",
+      "date": "Jan 2021",
+      "description": "UCLA's outdoor courts"
+    },
+    {
+      "filename": "oso.creek.stairs.jpg",
+      "date": "Jan 2018",
+      "description": "first digital landscape painting"
+    },
+    {
+      "filename": "oso.creek.trees.jpg",
+      "date": "Jan 2018",
+      "description": "second digital landscape painting"
+    },
+    {
+      "filename": "sunset.blvd.3806.jpg",
+      "date": "Nov 2019",
+      "description": "from the bus going to Sunset in LA"
+    },
+    {
+      "filename": "well.worth.lot.png",
+      "date": "Sept 2022",
+      "description": "from my apartment window in LA. The lot used to be pink before they painted it white."
+    }
+  ],
+  "original_digital": [
+    {
+      "filename": "ArizonaInspired1.png",
+      "date": "2022"
+    },
+    {
+      "filename": "ArizonaInspired2.png",
+      "date": "2022"
+    },
+    {
+      "filename": "Bacne.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "Coralsamurai.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "Roboboxer.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "babyfaces.png",
+      "date": "2022"
+    },
+    {
+      "filename": "cornerman.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "sicklehorns.jpg",
+      "date": "2022"
+    }
+  ],
+  "photography_bird": [
+    {
+      "filename": "american_coot (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "american_coot (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "american_robin (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "american_robin (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "american_robin (3).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "black_crowned_night_heron.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "black_crowned_night_herons.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "black_phoebe.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "cedar_waxwing (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "cedar_waxwing (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "crows.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "crow_eating_mouse.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "dark_eyed_junco.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "egyptian_duck (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "egyptian_duck (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "great_blue_heron.JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "house_finch (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "house_finch.JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "mallard_duck.JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "mourning_dove.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeon (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeon (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeons (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeons (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeon_couple (1).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeon_couple (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "pigeon_couple (3).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "ruddy_duck.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "seagull_and_pigeon.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "seagull_cone.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "song_sparrow.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "spotted_towhee.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "white_pigeon.jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "wood_duck.JPG",
+      "date": "2023"
+    }
+  ],
+  "photography_landscape": [
+    {
+      "filename": "BerkeleyMarina.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "CrystalCoveClimbedRock.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "IdaLouiseJackson.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "OaklandBay.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "plant (25).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "plant (28).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "plant (29).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "plant (31).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "SantaMonicaBrocolliTrees.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "sky (2).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "sky (4).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "sky (6).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "sky (9).jpg",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (25).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (30).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (31).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (38).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (46).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "tree (48).JPG",
+      "date": "2023"
+    },
+    {
+      "filename": "WestwoodAlley.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "WestwoodIntersection.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "YosemiteSkiSunset.jpg",
+      "date": "2023"
+    }
+  ],
+  "photography_random": [
+    {
+      "filename": "colorful_network.png",
+      "date": "2022"
+    },
+    {
+      "filename": "daidai.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "koi.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "succulent.jpg",
+      "date": "2022"
+    }
+  ],
+  "sketches": [
+    {
+      "filename": "Faces.jpg",
+      "date": "2022"
+    },
+    {
+      "filename": "Sheriff.jpg",
+      "date": "2022"
+    }
+  ]
+}

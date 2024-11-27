@@ -1,0 +1,391 @@
+{
+    "art": [
+        "0bw (0).jpg",
+        "0bw (1).jpg",
+        "0bw (2).jpg",
+        "0bw (3).jpg",
+        "0bw (4).jpg",
+        "0bw (5).jpg",
+        "0bw (6).jpg",
+        "0bw (7).jpg",
+        "0bw (8).jpg",
+        "0bw (9).jpg",
+        "0bw (10).jpg",
+        "0bw (10.1).jpg",
+        "0bw (11).jpg",
+        "0bw (12).jpg",
+        "0bw (13).jpg",
+        "0bw (14).jpg",
+        "0bw (15).jpg",
+        "0bw (16).jpg",
+        "0bw (17).jpg",
+        "0bw (18).jpg",
+        "1bwc (1).jpg",
+        "1bwc (2).jpg",
+        "1bwc (3).jpg",
+        "1bwc (4).jpg",
+        "1bwc (4.1).jpg",
+        "1bwc (5).jpg",
+        "1bwc (6).jpg",
+        "1bwc (7).jpg",
+        "1bwc (8).jpg",
+        "1bwc (9).jpg",
+        "1bwc (11).jpg",
+        "1bwc (12).jpg",
+        "1bwc (13).jpg",
+        "1bwc (14).jpg",
+        "1bwc (15).jpg",
+        "1bwc (16).jpg",
+        "1bwc (17).jpg",
+        "1bwc (18).jpg",
+        "1bwc (19).jpg",
+        "1bwc (20).jpg",
+        "2c (1).jpg",
+        "2c (2).jpg",
+        "2c (3).jpg",
+        "2c (4).jpg",
+        "2c (5).jpg",
+        "2c (6).jpg",
+        "2c (7).jpg",
+        "2c (8).jpg",
+        "2c (9).jpg",
+        "2c (10).jpg",
+        "2c (11).jpg",
+        "2c (12).jpg",
+        "2c (13).jpg",
+        "2c (14).jpg",
+        "2c (14.1).jpg",
+        "2c (15).jpg",
+        "2c (16).jpg",
+        "2c (17).jpg",
+        "2c (18).jpg",
+        "2c (19).jpg",
+        "2c (20).jpg",
+        "2c (21).jpg",
+        "2c (22).jpg",
+        "2c (23).jpg",
+        "2c (24).jpg",
+        "2c (25).jpg",
+        "2c (26).jpg",
+        "2c (27).jpg",
+        "2c (28).jpg",
+        "2c (29).jpg",
+        "2c (30).jpg",
+        "2c (31).jpg"
+    ],
+    "visualizations": [
+        {
+            "title": "BayPass Price Calculator",
+            "type": "map",
+            "date": "Spring 2024",
+            "publication": "The Daily Californian",
+            "url": "https://dailycalprojects.vercel.app/article/what-s-next-for-baypass",
+            "thumbnail": "map_dc_baypass.png",
+            "gif": "map_dc_baypass.gif",
+            "description": "An interactive map/calculator combination that helps Berkeley residents determine if the upcoming BayPass is worth purchasing based on their travel patterns.",
+            "order": 3
+        },
+        {
+            "title": "Tortoise Physiology Age, Size, Habitat Dynamic Scatterplot",
+            "type": "scatterplot",
+            "date": "Summer 2021",
+            "publication": "The Pig Pencil",
+            "url": "https://thepigpencil.com/data/tortoise_Taxonomy",
+            "thumbnail": "scatterplot_tortoise.png",
+            "gif": "tortoise_scatterplot.gif",
+            "description": "A plot that shows different tortoise stats (age, size, and/or habitat) as scatter plots or bar plots.",
+            "order": 1
+        },
+        {
+            "title": "TheNeedleDrop Music Ratings Histogram",
+            "date": "Summer 2021",
+            "type": "histogram",
+            "publication": "The Pig Pencil",
+            "url": "https://thepigpencil.com/data/the_needledrop_2021",
+            "thumbnail": "histogram_tnd.png",
+            "gif": "tnd_histogram.gif",
+            "description": "A histogram showing TheNeedleDrop's distribution of ratings in his album reviews.",
+            "order": 6
+        },
+        {
+            "title": "TheNeedleDrop Music Ratings Box Plots",
+            "type": "box plot",
+            "date": "Summer 2021",
+            "publication": "The Pig Pencil",
+            "url": "https://thepigpencil.com/data/the_needledrop_2021",
+            "thumbnail": "boxplot_tnd.png",
+            "gif": "tnd_boxplot.gif",
+            "description": "A box plot graph showing TheNeedleDrop's distribution of ratings by genre",
+            "order": 7
+        },
+        {
+            "title": "UCLA Professor Reviews",
+            "type": "bar plot",
+            "date": "Fall 2022",
+            "publication": "The Daily Bruin",
+            "url": "https://stack.dailybruin.com/2022/03/10/prof-reviews/",
+            "thumbnail": "barchart_db_prof_review.png",
+            "gif": "DB_barplot.gif",
+            "description": "A plot that shows different tortoise stats (age, size, and/or habitat) as scatter plots or bar plots.",
+            "order": 2
+        },
+        {
+            "title": "Berkeley Telegraph Avenue Redesign",
+            "type": "bar plot",
+            "date": "Fall 2022",
+            "publication": "The Daily Californian",
+            "url": "https://dailycal-projects.netlify.app/2023-03-10-telegraph-pedestrianized",
+            "thumbnail": "barchart_dc_telegraph.png",
+            "gif": "none",
+            "description": "A bar plot/area chart hybrid that shows the different designs for Berkeley's pedestrian-heavy Telegraph Avenue.",
+            "order": 8
+        },
+        {
+            "title": "Berkeley Construction Trends",
+            "type": "geographic map",
+            "date": "Fall 2023",
+            "publication": "The Daily Californian",
+            "url": "https://dailycalprojects.vercel.app/article/mapping-construction-at-berkeley",
+            "thumbnail": "map_dc_construction.png",
+            "gif": "none",
+            "description": "A map that shows the valuations of construction projects in Berkeley (between 2019-2022).",
+            "order": 4
+        },
+        {
+            "title": "Berkeley Construction Trends",
+            "type": "bar chart",
+            "date": "Fall 2023",
+            "publication": "The Daily Californian",
+            "url": "https://thepigpencil.com/me",
+            "thumbnail": "barchart_dc_construction.png",
+            "gif": "none",
+            "description": "A plot that shows the different types of construction projects going on around Berkeley recently (2023).",
+            "order": 5
+        },
+        {
+            "title": "Roommate NYT Mini Scores",
+            "type": "line chart",
+            "date": "Spring 2022",
+            "publication": "The Pig Pencil",
+            "url": "https://thepigpencil.com/data/nyt_mini_scores",
+            "thumbnail": "linechart_nyt_mini.png",
+            "gif": "none",
+            "description": "A plot that shows how my roommmates' NYT mini completion times changed over time.",
+            "order": 9
+        }
+    ],
+    "publications": [
+        {
+            "title": "Daily Californian - Telegraph Pedestrianized",
+            "publication": "The Daily Californian",
+            "url": "https://dailycal-projects.netlify.app/2023-03-10-telegraph-pedestrianized/",
+            "thumbnail": "DC_telegraph.png",
+            "gif": "none",
+            "description": "An explainer on the potential redesign options for Downtown Berkeley's renowned Telegraph Ave. Some more pedestrian-friendly than others."
+        },
+        {
+            "title": "Daily Bruin - Professor Reviews",
+            "publication": "The Daily Bruin",
+            "url": "https://stack.dailybruin.com/2022/03/10/prof-reviews/",
+            "thumbnail": "DB_prof_reviews.png",
+            "gif": "DB.mp4",
+            "description": "An in-depth look at how professor reviews differed by the professor's gender. We found certain adjectives more commonly used in reviewing female professors."
+        },
+        {
+            "title": "Psychology in Action (UCLA Psych Blog) - Color Selection in Data Visualization",
+            "publication": "Psychology in Action",
+            "url": "https://www.psychologyinaction.org/2022-5-15-choosing-the-right-color-scale-for-data-visualization/",
+            "thumbnail": "PIA_color.png",
+            "gif": "none",
+            "description": "A brief guide for selecting proper color scales for different visualizations, and the perceptual reasoning for these selections."
+        }
+    ],
+    "projects": [
+        {
+            "title": "ABCD AlBum Cover Downloader",
+            "type": "web app",
+            "thumbnail": "projects/ABCD_album_cover_downloader.png",
+            "description": "Used spotify API to create a tool for artists and music enjoyers to easily download album art.",
+            "tools": [
+                "Spotify API (spotipy)",
+                "Flask",
+                "Heroku"
+            ]
+        },
+        {
+            "title": "softNBA: An NBA Shot Chart Visualizer",
+            "type": "web app",
+            "thumbnail": "projects/softNBA_dame.gif",
+            "description": "Basically used Bokeh (a Python data viz package) and Flask to create an online shot chart visualizer.",
+            "tools": [
+                "nba_api (python)",
+                "Flask",
+                "Bokeh",
+                "Heroku"
+            ]
+        },
+        {
+            "title": "NASHboard: A Fantasy Basketball Dashboard",
+            "type": "web app",
+            "thumbnail": "projects/NASHboard_player.png",
+            "description": "I started playing fantasy basketball and wanted to create a dashboard tool to facilitate decision making.",
+            "tools": [
+                "Sportradar API",
+                "React",
+                "Google Cloud Platform"
+            ]
+        }
+    ],
+    "games": {
+        "mini motorways": [
+            {
+                "city": "Beijing",
+                "score": 2369,
+                "image": "Beijing.gif"
+            },
+            {
+                "city": "Los Angeles",
+                "score": 2425,
+                "image": "Los Angeles.gif"
+            },
+            {
+                "city": "Munich",
+                "score": 2652,
+                "image": "Munich.gif"
+            },
+            {
+                "city": "Lisbon",
+                "score": 2888,
+                "image": "Lisbon.gif"
+            },
+            {
+                "city": "Zürich",
+                "score": 3115,
+                "image": "Zürich.gif"
+            },
+            {
+                "city": "Wellington",
+                "score": 3140,
+                "image": "Wellington.gif"
+            },
+            {
+                "city": "Moscow",
+                "score": 3216,
+                "image": "Moscow.gif"
+            },
+            {
+                "city": "Mumbai",
+                "score": 3221,
+                "image": "Mumbai.gif"
+            },
+            {
+                "city": "Manila",
+                "score": 3351,
+                "image": "Manila.gif"
+            },
+            {
+                "city": "Dar es Salaam",
+                "score": 3356,
+                "image": "Dar es Salaam.gif"
+            },
+            {
+                "city": "Rio de Janeiro",
+                "score": 3379,
+                "image": "Rio de Janeiro.gif"
+            },
+            {
+                "city": "Reykjavik",
+                "score": 3412,
+                "image": "Reykjavík.gif"
+            },
+            {
+                "city": "Vancouver",
+                "score": 3581,
+                "image": "Vancouver.gif"
+            },
+            {
+                "city": "London",
+                "score": 3607,
+                "image": "London.gif"
+            },
+            {
+                "city": "Chiang Mai",
+                "score": 3883,
+                "image": "Chiang Mai.gif"
+            },
+            {
+                "city": "Busan",
+                "score": 4008,
+                "image": "Busan.gif"
+            },
+            {
+                "city": "Tokyo",
+                "score": 4088,
+                "image": "Tokyo.gif"
+            },
+            {
+                "city": "New York City",
+                "score": 4088,
+                "image": "New York City.gif"
+            },
+            {
+                "city": "Mexico City",
+                "score": 4259,
+                "image": "Mexico City.gif"
+            },
+            {
+                "city": "Dubai",
+                "score": 5923,
+                "image": "Dubai.gif"
+            },
+            {
+                "city": "Warsaw",
+                "score": 6728,
+                "image": "Warsaw.gif"
+            }
+        ],
+        "sable": [
+            "sable (1).png",
+            "sable (2).png",
+            "sable (3).png",
+            "sable (4).png",
+            "sable (5).png",
+            "sable (6).png",
+            "sable (7).png",
+            "sable (8).png",
+            "sable (9).png"
+        ]
+    },
+    "inspo": [
+        {
+            "site": "Flowing Data",
+            "image": "flowing_data.png",
+            "url": "https://flowingdata.com/"
+        },
+        {
+            "site": "Reuters Graphics",
+            "image": "reuters_graphics.png",
+            "url": "https://www.reuters.com/graphics/"
+        },
+        {
+            "site": "The Pudding",
+            "image": "the_pudding.png",
+            "url": "https://pudding.cool/"
+        },
+        {
+            "site": "NPR Visuals + News Apps",
+            "image": "npr_visuals.png",
+            "url": "https://https://blog.apps.npr.org/"
+        },
+        {
+            "site": "Insider Business (YouTube Channel)",
+            "image": "insider_business.png",
+            "url": "https://www.youtube.com/channel/UCcyq283he07B7_KUX07mmtA"
+        },
+        {
+            "site": "Vice Video",
+            "image": "vice.png",
+            "url": "https://video.vice.com/en_us"
+        }
+    ]
+}

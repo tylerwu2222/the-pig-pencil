@@ -1,0 +1,7 @@
+.xaxis line,
+.xaxis path,
+.yaxis line,
+.yaxis path {
+    stroke: #bbb;
+    opacity: 0.6;
+  }

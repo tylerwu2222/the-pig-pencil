@@ -1,0 +1,23 @@
+
+/* mobile first */
+.footer{
+	position: fixed;
+	/* vertical-align: middle; */
+	/* flex-shrink: 0; */
+	bottom: 1vh; 
+	left: 1vw;
+}
+.footer-link{
+	color: var(--light-black);
+	text-decoration: none;
+	
+}
+
+.footer-icon{
+	padding: 0px 1px;
+	transition: 0.5s;
+}
+
+.footer-icon:hover{
+	transform: scale(1.2);
+}

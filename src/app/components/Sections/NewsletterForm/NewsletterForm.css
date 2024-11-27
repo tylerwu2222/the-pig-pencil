@@ -1,0 +1,43 @@
+/* form */
+.newsletter-form {
+    display: inline;
+    /* width: fit-content; */
+}
+
+/* text input */
+.newsletter-form>input {
+    outline: none;
+    border: solid 1px var(--light-black);
+}
+
+
+/* checkboxes */
+.newsletter-options-div {
+    padding: 1em 0;
+}
+
+.newsletter-option-div {
+    display: inline;
+    padding-right: 3em;
+}
+
+/* messages */
+.newsletter-message-div {
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.newsletter-message-div>p {
+    padding: 1px 2px;
+    /* text-indent: 2em; */
+}
+
+.newsletter-error-div {
+    /* background-color: rgb(255, 211, 211); */
+    color: rgb(109, 0, 0);
+}
+
+.newsletter-success-div {
+    /* background-color: rgb(214, 255, 211); */
+    color: var(--light-black);
+}

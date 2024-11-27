@@ -1,0 +1,23 @@
+.nyt-mini-div{
+    --userA: #6A8BAF;
+    --userB: #AF6A75;
+    --userC: #77AF6A;
+    --userD: #AFA369;
+    --userE: #976AAF;
+}
+
+.userA{
+    stroke:var(--userA)
+}
+.userB{
+    stroke:var(--userB)
+}
+.userC{
+    stroke:var(--userC)
+}
+.userD{
+    stroke:var(--userD)
+}
+.userE{
+    stroke:var(--userE)
+}

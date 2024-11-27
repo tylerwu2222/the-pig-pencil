@@ -1,0 +1,97 @@
+[
+  {
+    "name": "Autography",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Autography.otf"
+  },
+  {
+    "name": "Bebas",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Bebas.otf"
+  },
+  {
+    "name": "Boulder",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Boulder.otf"
+  },
+  {
+    "name": "coolvetica",
+    "format": ".otf",
+    "src": "fonts/all_fonts/coolvetica.otf"
+  },
+  {
+    "name": "fanlste",
+    "format": ".otf",
+    "src": "fonts/all_fonts/fanlste.otf"
+  },
+  {
+    "name": "Gagisra Rigade",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Gagisra Rigade.otf"
+  },
+  {
+    "name": "Home Kitchen",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Home Kitchen.otf"
+  },
+  {
+    "name": "Jester",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/Jester.ttf"
+  },
+  {
+    "name": "KastellaScript",
+    "format": ".otf",
+    "src": "fonts/all_fonts/KastellaScript.otf"
+  },
+  {
+    "name": "KGRedHands",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/KGRedHands.ttf"
+  },
+  {
+    "name": "KGRedHandsOutline",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/KGRedHandsOutline.ttf"
+  },
+  {
+    "name": "LEMONMILK-Medium",
+    "format": ".otf",
+    "src": "fonts/all_fonts/LEMONMILK-Medium.otf"
+  },
+  {
+    "name": "LEMONMILK-Regular",
+    "format": ".otf",
+    "src": "fonts/all_fonts/LEMONMILK-Regular.otf"
+  },
+  {
+    "name": "Muthiara",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Muthiara.otf"
+  },
+  {
+    "name": "Old London",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Old London.otf"
+  },
+  {
+    "name": "Relington",
+    "format": ".otf",
+    "src": "fonts/all_fonts/Relington.otf"
+  },
+  {
+    "name": "Subway-Black",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/Subway-Black.ttf"
+  },
+  {
+    "name": "Subway-Shadow",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/Subway-Shadow.ttf"
+  },
+  {
+    "name": "TechnicalDrawing",
+    "format": ".ttf",
+    "src": "fonts/all_fonts/TechnicalDrawing.ttf"
+  }
+]
