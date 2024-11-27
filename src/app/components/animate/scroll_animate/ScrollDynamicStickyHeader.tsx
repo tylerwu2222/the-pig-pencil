@@ -8,7 +8,8 @@ interface ScrollDynamicStickyHeaderProps {
     startingLeftPosition: number,
     endLeftPosition: number,
     startingFontSize: string,
-    endingFontSize: string
+    endingFontSize: string,
+    clickBack: boolean
 }
 
 export default function ScrollDynamicStickyHeader({
@@ -17,9 +18,11 @@ export default function ScrollDynamicStickyHeader({
     startingLeftPosition = 20,
     endLeftPosition = 1,
     startingFontSize = 'x-large',
-    endingFontSize = 'medium'
+    endingFontSize = 'medium',
+    clickBack = true
 }: Partial<ScrollDynamicStickyHeaderProps>
 ) {
+    const [initialYPosition, setInitialYPosition] = useState<number | undefined>();
     const [leftPosition, setLeftPosition] = useState(startingLeftPosition);
     const [headerSize, setHeaderSize] = useState(startingFontSize);
     const headerRef = useRef<HTMLDivElement | null>(null);
@@ -52,11 +55,27 @@ export default function ScrollDynamicStickyHeader({
         };
     }, []); // Run the effect only once on mount
 
+    useEffect(() => {
+        if (!headerRef.current) return;
+        const rect = headerRef.current.getBoundingClientRect();
+        // setInitialYPosition(window.scrollY + rect.top); // offset so header has correct space above
+        setInitialYPosition(window.scrollY + rect.top - topPosition); // offset so header has correct space above
+    }, []);
+
+    const handleClick = () => {
+        window.scrollTo({ top: initialYPosition, behavior: 'smooth' });
+        // reset header position
+        // setLeftPosition(startingLeftPosition);
+        // setHeaderSize(startingFontSize);
+    }
+
     return (
         <h2
             className='sticky-header px-1 font-semibold'
             ref={headerRef}
+            onClick={clickBack ? handleClick : undefined}
             style={{
+                cursor: clickBack ? 'pointer' : 'default',
                 top: topPosition,
                 left: `${leftPosition}%`,
                 fontSize: headerSize,

@@ -499,7 +499,7 @@ const Me = () => {
                         </>}
                         content={
                             <div className='grid grid-cols-3 gap-6'>
-                            {/* <div className='flex flex-wrap gap-[1vw]'> */}
+                                {/* <div className='flex flex-wrap gap-[1vw]'> */}
                                 {
                                     portfolioData.games['mini motorways'].map((city, i) => {
                                         return (
