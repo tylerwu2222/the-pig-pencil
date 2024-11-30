@@ -93,9 +93,9 @@ const NavBar = () => {
     const [randomFontIndex, setRandomFontIndex] = useState(0);
 
     return (
-        <div className='flex flex-row w-full p-2 justify-between'>
+        <div className='grid grid-cols-3 items-center'>
             {/* TPP logo */}
-            <div className='h-10 pl-2 pt-1'>
+            <div className='h-10 pl-2 pt-1 justify-self-start'>
                 <Link
                     className='flex flex-row gap-2 align-bottom'
                     href="/"
@@ -129,93 +129,105 @@ const NavBar = () => {
                         menuVisible,
                         setMenuVisible
                     }}> */}
-            <NavigationMenu>
-                <NavigationMenuList>
-                    {/* items */}
-                    <NavigationMenuItem
-                        className={"md:min-w-[40px] lg:min-w-[50px]"}
-                    >
-                        <Link href="/section/art" legacyBehavior passHref>
-                            <NavigationMenuLink
+            <div className='justify-self-center'>
+                <NavigationMenu>
+                    <NavigationMenuList className='gap-3'>
+                        {/* items */}
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] lg:min-w-[60px] flex justify-center"}
+                        >
+                            <Link href="/section/art" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className='font-normal text-[17px]'
+                                >
+                                    Art
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] flex justify-center"}
+                        >
+                            <Link href="/section/data" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className='font-normal text-[17px]'
+                                >
+                                    Data
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] flex justify-center"}
+                        >
+                            <NavigationMenuTrigger
                                 className='font-normal text-[17px]'
                             >
-                                Art
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem
-                        className={"md:min-w-[40px] lg:min-w-[50px]"}
-                    >
-                        <Link href="/section/data" legacyBehavior passHref>
-                            <NavigationMenuLink
+                                Learning
+                            </NavigationMenuTrigger>
+                            <NavigationMenuContent
                                 className='font-normal text-[17px]'
                             >
-                                Data
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem
-                        className={"md:min-w-[40px] lg:min-w-[50px]"}
-                    >
-                        <NavigationMenuTrigger
-                            className='font-normal text-[17px]'
+                                <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
+                                    <ListItem href="/section/cheatsheets" title="Cheatsheets">
+                                        for data science, web scraping, and web dev.
+                                    </ListItem>
+                                    <ListItem href="/section/tutorials" title="Tutorials">
+                                        for lots of stuff.
+                                    </ListItem>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] flex justify-center"}
                         >
-                            Learning
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent
-                            className='font-normal text-[17px]'
+                            <Link href="/section/projects" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className='font-normal text-[17px]'
+                                >
+                                    Projects
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] flex justify-center"}
                         >
-                            <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
-                                <ListItem href="/section/cheatsheets" title="Cheatsheets">
-                                    for data science, web scraping, and web dev.
-                                </ListItem>
-                                <ListItem href="/section/tutorials" title="Tutorials">
-                                    for lots of stuff.
-                                </ListItem>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem
-                        className={"md:min-w-[40px] lg:min-w-[50px]"}
-                    >
-                        <Link href="/section/projects" legacyBehavior passHref>
-                            <NavigationMenuLink
+                            <Link href="/section/writing" legacyBehavior passHref>
+                                <NavigationMenuLink
+                                    className='font-normal text-[17px]'
+                                >
+                                    Writing
+                                </NavigationMenuLink>
+                            </Link>
+                        </NavigationMenuItem>
+                        <NavigationMenuItem
+                            className={"md:min-w-[40px] flex justify-center"}
+                        >
+                            <NavigationMenuTrigger
+                                className='font-normal text-[17px]'
+                            >People</NavigationMenuTrigger>
+                            <NavigationMenuContent
                                 className='font-normal text-[17px]'
                             >
-                                Projects
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem
-                        className={"md:min-w-[40px] lg:min-w-[50px]"}
-                    >
-                        <NavigationMenuTrigger
-                            className='font-normal text-[17px]'
-                        >People</NavigationMenuTrigger>
-                        <NavigationMenuContent
-                            className='font-normal text-[17px]'
-                        >
-                            <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
-                                <ListItem href="/section/collaborators" title="Collaborators">
-                                    the people that contribute to this blog.
-                                </ListItem>
-                                <ListItem href="/me" title="Me">
-                                    a portfolio by tyler wu for tyler wu.
-                                </ListItem>
-                            </ul>
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                </NavigationMenuList>
-            </NavigationMenu>
+                                <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
+                                    <ListItem href="/section/collaborators" title="Collaborators">
+                                        the people that contribute to this blog.
+                                    </ListItem>
+                                    <ListItem href="/me" title="Me">
+                                        a portfolio by tyler wu for tyler wu.
+                                    </ListItem>
+                                </ul>
+                            </NavigationMenuContent>
+                        </NavigationMenuItem>
+                    </NavigationMenuList>
+                </NavigationMenu>
+            </div>
             {/* subscribe button */}
-            <div>
+            <div className='pr-2 pt-1 justify-self-end'>
                 <Button
                     className='bg-pink-200 hover:bg-pink-300 px-2 py-1 text-sm leading-3 '
                 >
                     Subscribe
                 </Button>
             </div>
-
         </div>
     );
 }

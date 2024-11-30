@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AuthorLink {
+  id                   String                 @id @default(cuid())
+  url                  String
+  AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
+}
+
+model Author {
+  id                   String                 @id @default(cuid())
+  name                 String
+  role                 String?
+  pigThoughts          String?
+  internalLink         String // author link on TPP
+  email                String?                @unique
+  quote                String?
+  joinDate             DateTime               @default(now())
+  AuthorsOnPosts       AuthorsOnPosts[]
+  TagsOnAuthors        TagsOnAuthors[]
+  AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
+}
+
+// file name, same for thumbnail is derived from concatenating date (yyyy-mm-dd) to lower, hyphenated title
+model Post {
+  id             String           @id @default(cuid())
+  title          String
+  section        String
+  thumbnail      String?
+  caption        String?
+  readingTime    String?
+  hasScrollspy   Boolean?         @default(true)
+  publishDate    DateTime         @default(now())
+  updateDate     DateTime?        @default(now())
+  visibility     String           @default("hidden")
+  AuthorsOnPosts AuthorsOnPosts[]
+  TagsOnPosts    TagsOnPosts[]
+}
+
+model Tag {
+  id            String          @id @default(cuid())
+  tagName       String
+  TagsOnPosts   TagsOnPosts[]
+  TagsOnAuthors TagsOnAuthors[]
+}
+
+// JOIN TABLES
+model AuthorsOnAuthorLinks {
+  author       Author     @relation(fields: [authorId], references: [id])
+  authorId     String
+  authorLink   AuthorLink @relation(fields: [authorLinkId], references: [id])
+  authorLinkId String
+  assignedAt   DateTime   @default(now())
+
+  @@id([authorId, authorLinkId])
+}
+
+model AuthorsOnPosts {
+  author     Author   @relation(fields: [authorId], references: [id])
+  authorId   String
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     String
+  assignedAt DateTime @default(now())
+
+  @@id([authorId, postId])
+}
+
+model TagsOnPosts {
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String
+  tag    Tag    @relation(fields: [tagId], references: [id])
+  tagId  String
+
+  assignedAt DateTime @default(now())
+
+  @@id([tagId, postId])
+}
+
+model TagsOnAuthors {
+  author   Author @relation(fields: [authorId], references: [id])
+  authorId String
+  tag      Tag    @relation(fields: [tagId], references: [id])
+  tagId    String
+
+  assignedAt DateTime @default(now())
+
+  @@id([tagId, authorId])
+}

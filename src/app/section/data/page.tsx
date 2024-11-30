@@ -1,8 +1,11 @@
 import React from 'react'
+import SectionTemplate from '../SectionTemplate/SectionTemplate';
 
 const Data = () => {
   return (
-    <div>Data</div>
+    <>
+      <SectionTemplate section='data' />
+    </>
   )
 }
 

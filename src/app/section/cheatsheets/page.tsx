@@ -1,8 +1,12 @@
 import React from 'react'
+import SectionTemplate from '../SectionTemplate/SectionTemplate';
 
 const Cheatsheets = () => {
   return (
-    <div>Cheatsheets</div>
+    <>
+      <div>Cheatsheets</div>
+      <SectionTemplate section='cheatsheet' />
+    </>
   )
 }
 

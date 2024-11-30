@@ -11,7 +11,11 @@ export default {
 		extend: {
 			colors: {
 				background: 'var(--background)',
-				foreground: 'var(--foreground)'
+				foreground: 'var(--foreground)',
+				// background: '#FDFBF8',
+				borderGrey: '#E1E1E1',
+				borderHoverPink: '#f2b0ca',
+				textGrey: '#696969'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -19,7 +23,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				'sans':['"Open Sans"'],
+				'sans': ['"Open Sans"'],
 				'display': ['Oswald'],
 				'body': ['"Open Sans"']
 			}

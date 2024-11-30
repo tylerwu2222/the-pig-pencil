@@ -1,4 +1,5 @@
 // import { usePathname } from "next/navigation";
+import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -11,8 +12,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <div>
             {/* {hideNavbarRoutes.includes(pathname) ? <></> : <NavBar />} */}
-            <NavBar/>
+            <NavBar />
             {children}
+            <Footer />
         </div>
     );
 }
