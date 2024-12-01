@@ -4,6 +4,8 @@
 
 // modules
 import { filterSort } from '@/app/lib/FilterSort';
+import SearchInput from '@/app/components/inputs/SearchInput/SearchInput';
+import { DropdownInputRadio } from '@/app/components/inputs/DropdownInput/DropdownInputRadio';
 // import { CustomTextField } from '../../Modules/FormInput/CustomTextField/CustomTextField.js';
 // import { CustomSelect } from '../../Modules/FormInput/CustomSelect/CustomSelect.js';
 // import TagsBox from '../../Modules/FormInput/TagsBox/TagsBox.js';
@@ -14,7 +16,8 @@ import { PostThumbnail1 } from './PostThumbnail';
 // react
 // import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Post, Tag } from '@prisma/client';
+import { Tag } from '@prisma/client';
+import { Post } from '@/types/extendedPrismaTypes';
 
 interface SectionTemplateProps {
     // postData: Post[];
@@ -53,7 +56,7 @@ export default function SectionTemplate(
 
     const [loaded, setLoaded] = useState<boolean>(false);
     // search, filter, sort
-    const [searchKeyword, setSearchKeyword] = useState('');
+    const [searchValue, setSearchValue] = useState<string>('');
     const [allTags, setAllTags] = useState<Tag[]>([]);
     const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
     const [sortOption, setSortOption] = useState('date');
@@ -66,7 +69,7 @@ export default function SectionTemplate(
     useEffect(() => {
         // setFSPosts(filterSort(postData, searchKeyword, selectedTags, sortOption));
         // console.log(Filter)
-    }, [searchKeyword, sortOption, selectedTags]);
+    }, [searchValue, sortOption, selectedTags]);
 
     // initialize posts for section
     useEffect(() => {
@@ -81,33 +84,54 @@ export default function SectionTemplate(
         getSectionPosts();
     }, []);
 
+    const handleSearchKeywordChange = (newSearchValue: string) => {
+        setSearchValue(newSearchValue);
+    }
+
+    const handleSortOptionChange = (newSortOption: string) => {
+        setSortOption(newSortOption)
+    }
+
     return (
         <>
-            <div className=''>
-                <div className="blog-container">
-                    {/* <div className='posts-navigation-div'>
-                        {searchBarIncluded ? <CustomTextField contentType={' ' + contentType} onChangeFn={setSearchKeyword} /> : <></>}
-                        {sortPostsIncluded ? <CustomSelect sortOption={sortOption} onChangeFn={setSortOption} /> : <></>}
-                    </div> */}
-                    <div className='grid grid-cols-3 justify-items-center px-[3%] xl:px-[20%]'>
-                        {loaded ? (allPosts.length > 0 ?
-                            allPosts.map((post: Post) => {
-                                // generic section page
-                                return <PostThumbnail1
-                                    key={post.title + post.publishDate}
-                                    post={post}
-                                // img={'/img/thumbnails/' + section.toLowerCase() + '_thumbnails/' + post.thumbnail}
-                                />
-                            })
-                            : <p style={{ display: FSPosts.length === 0 ? 'block' : 'none' }}>No posts matched these filters 😔</p>
-                        ) :
-                            <></>
-                        }
-                    </div>
-                    {/* {tagBoxIncluded ? <div className='tags-div'>
+
+            <div className='py-3 px-[3%] xl:px-[20%]'>
+                {/* search + sort div */}
+                <div className='grid grid-cols-6 gap-2 p-[2vh]'>
+                    {searchBarIncluded ?
+                        <div className='col-span-5'>
+                            <SearchInput value={searchValue} onValueChangeFn={(e) => { handleSearchKeywordChange(e.target.value) }} placeholder={'search ' + section} />
+                            <div className='px-3 pt-2'>
+                                <i className='text-gray-500 min-h-[1em]'>{searchValue.length > 0 ? "Results for '" + searchValue + "'" : '\u00A0'}</i>
+                            </div>
+                        </div>
+                        : <></>}
+                    {sortPostsIncluded ?
+                        <div className='col-span-1'>
+                            <DropdownInputRadio value={sortOption} onValueChangeFn={(e) => { handleSortOptionChange(e.target.value) }} />
+                        </div>
+                        : <></>}
+                </div>
+                {/* content div */}
+                <div className='grid grid-cols-3 justify-items-center'>
+                    {loaded ? (allPosts.length > 0 ?
+                        allPosts.map((post: Post) => {
+                            // generic section page
+                            return <PostThumbnail1
+                                key={post.title + post.publishDate}
+                                post={post}
+                            // img={'/img/thumbnails/' + section.toLowerCase() + '_thumbnails/' + post.thumbnail}
+                            />
+                        })
+                        : <p style={{ display: FSPosts.length === 0 ? 'block' : 'none' }}>No posts matched these filters 😔</p>
+                    ) :
+                        <></>
+                    }
+                </div>
+                {/* tag box div */}
+                {/* {tagBoxIncluded ? <div className='tags-div'>
                         <TagsBox posts={postData} onChangeFn={setSelectedTags} />
                     </div> : <></>} */}
-                </div>
             </div>
         </>
     )

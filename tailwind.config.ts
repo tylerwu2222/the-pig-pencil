@@ -14,7 +14,8 @@ export default {
 				foreground: 'var(--foreground)',
 				// background: '#FDFBF8',
 				borderGrey: '#E1E1E1',
-				borderHoverPink: '#f2b0ca',
+				hoverLightPink: '#f2b0ca',
+				hoverDeepPink: '#f081ab',
 				textGrey: '#696969'
 			},
 			borderRadius: {

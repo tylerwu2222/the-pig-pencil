@@ -102,7 +102,7 @@ const NavBar = () => {
                 >
                     <div className="flex flex-row items-end">
                         <p
-                            className="text-2xl text-end"
+                            className="text-2xl text-end hover:text-hoverDeepPink transition-colors duration-1000 ease-in-out"
                             style={{ fontFamily: logoFontFamily }}
                         // onMouseOver={handleHover}
                         // onMouseLeave={handleLeave}
@@ -134,7 +134,7 @@ const NavBar = () => {
                     <NavigationMenuList className='gap-3'>
                         {/* items */}
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] lg:min-w-[60px] flex justify-center"}
+                            className={"md:min-w-[40px] lg:min-w-[60px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
                         >
                             <Link href="/section/art" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -145,7 +145,7 @@ const NavBar = () => {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] flex justify-center"}
+                            className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
                         >
                             <Link href="/section/data" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -156,28 +156,28 @@ const NavBar = () => {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] flex justify-center"}
+                            className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
                         >
                             <NavigationMenuTrigger
-                                className='font-normal text-[17px]'
+                                className='appearance-none font-normal text-[17px] bg-transparent hover:text-pink-600'
                             >
                                 Learning
                             </NavigationMenuTrigger>
                             <NavigationMenuContent
-                                className='font-normal text-[17px]'
+                                className='appearance-none font-normal text-[17px] bg-background'
                             >
                                 <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
-                                    <ListItem href="/section/cheatsheets" title="Cheatsheets">
+                                    <ListItem href="/section/cheatsheets" title="Cheatsheets" className='hover:text-pink-600'>
                                         for data science, web scraping, and web dev.
                                     </ListItem>
-                                    <ListItem href="/section/tutorials" title="Tutorials">
+                                    <ListItem href="/section/tutorials" title="Tutorials" className='hover:text-pink-600'>
                                         for lots of stuff.
                                     </ListItem>
                                 </ul>
                             </NavigationMenuContent>
                         </NavigationMenuItem>
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] flex justify-center"}
+                            className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
                         >
                             <Link href="/section/projects" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -188,7 +188,7 @@ const NavBar = () => {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] flex justify-center"}
+                            className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
                         >
                             <Link href="/section/writing" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -199,19 +199,21 @@ const NavBar = () => {
                             </Link>
                         </NavigationMenuItem>
                         <NavigationMenuItem
-                            className={"md:min-w-[40px] flex justify-center"}
+                            className={"md:min-w-[40px] flex justify-center p-1 rounded-md"}
                         >
                             <NavigationMenuTrigger
-                                className='font-normal text-[17px]'
-                            >People</NavigationMenuTrigger>
+                                className='appearance-none font-normal text-[17px] bg-transparent focus:bg-transparent hover:bg-transparent active:bg-transparent hover:text-pink-600'
+                            >
+                                People
+                            </NavigationMenuTrigger>
                             <NavigationMenuContent
-                                className='font-normal text-[17px]'
+                                className='font-normal text-[17px] bg-background'
                             >
                                 <ul className="grid gap-3 p-4 md:w-[200px] lg:w-[300px]">
-                                    <ListItem href="/section/collaborators" title="Collaborators">
+                                    <ListItem href="/section/collaborators" title="Collaborators" className='hover:text-pink-600'>
                                         the people that contribute to this blog.
                                     </ListItem>
-                                    <ListItem href="/me" title="Me">
+                                    <ListItem href="/me" title="Me" className='hover:text-pink-600'>
                                         a portfolio by tyler wu for tyler wu.
                                     </ListItem>
                                 </ul>
