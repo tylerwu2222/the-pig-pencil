@@ -26,15 +26,14 @@ export function DropdownInputRadio({
     const [position, setPosition] = useState("bottom")
 
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline">Sort by</Button>
+                <Button variant="outline" className='font-normal rounded-sm bg-transparent'>sort</Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56">
-                <DropdownMenuSeparator />
+            <DropdownMenuContent className="">
                 <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
                     {options.map((o, i) => {
-                        return <DropdownMenuRadioItem key={i} value={o}>{o}</DropdownMenuRadioItem>
+                        return <DropdownMenuRadioItem key={i} value={o} className='px-1 mx-0'>{o}</DropdownMenuRadioItem>
                     })}
                 </DropdownMenuRadioGroup>
             </DropdownMenuContent>

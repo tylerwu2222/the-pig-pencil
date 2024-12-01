@@ -12,11 +12,14 @@ export default {
 			colors: {
 				background: 'var(--background)',
 				foreground: 'var(--foreground)',
-				// background: '#FDFBF8',
+				backgroundWhite: '#FDFBF8',
+				highlightWhite: '#FDFDFD',
 				borderGrey: '#E1E1E1',
 				hoverLightPink: '#f2b0ca',
 				hoverDeepPink: '#f081ab',
-				textGrey: '#696969'
+				textGrey: '#696969',
+				textLightGrey: '#aaaaaa',
+				buttonGrey: '#aaaaaa'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

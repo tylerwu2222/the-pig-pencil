@@ -41,14 +41,16 @@ export async function GET(
     // Flatten the nested join data
     // const formattedSectionPosts = sectionPosts.map((post) => ({
     //     ...post,
-    //     authors: post.AuthorsOnPosts.map((a) => a.author.name), // Extract author names
-    //     tags: post.TagsOnPosts.map((t) => t.tag.tagName), // Extract tag names
+    //     // authors: post.AuthorsOnPosts.map((a) => a.author.name), // Extract author names
+    //     authors: flattenAoE(post.AuthorsOnPosts), // Extract author names
+    //     // tags: post.TagsOnPosts.map((t) => t.tag.tagName), // Extract tag names
+    //     tags: flattenAoE(post.TagsOnPosts), // Extract tag names
     // }));
 
-    const formattedSectionPosts = flattenJoinData(sectionPosts, {
-        AuthorsOnPosts: 'author',
-        TagsOnPosts: 'tag',
-    });
+    const formattedSectionPosts = flattenJoinData(sectionPosts,{
+        AuthorsOnPosts: 'authors',
+        TagsOnPosts: 'tags'
+    })
 
     // console.log('BE: section posts', formattedSectionPosts)
 

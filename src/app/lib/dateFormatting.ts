@@ -1,6 +1,6 @@
 export const formatDateToShortDate = (date: Date): string => {
     const dateF = new Date(date);
-    console.log('date input', date)
+    // console.log('date input', date)
 
     // Get the month abbreviation using toLocaleString
     const monthAbbreviation = dateF.toLocaleString('default', { month: 'short' });
@@ -10,7 +10,25 @@ export const formatDateToShortDate = (date: Date): string => {
     const year = dateF.getFullYear();
 
 
-    console.log('m,d,y', monthAbbreviation, day, year)
+    // console.log('m,d,y', monthAbbreviation, day, year)
+
+    // Return the formatted date
+    return `${monthAbbreviation} ${day}, ${year}`;
+}
+
+export const formatDateToLongDate = (date: Date): string => {
+    const dateF = new Date(date);
+    // console.log('date input', date)
+
+    // Get the month abbreviation using toLocaleString
+    const monthAbbreviation = dateF.toLocaleString('default', { month: 'long' });
+
+    // Get the day and year
+    const day = dateF.getDate();
+    const year = dateF.getFullYear();
+
+
+    // console.log('m,d,y', monthAbbreviation, day, year)
 
     // Return the formatted date
     return `${monthAbbreviation} ${day}, ${year}`;

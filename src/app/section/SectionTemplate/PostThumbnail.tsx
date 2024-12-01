@@ -7,8 +7,10 @@ import { getSlugTitle } from '@/app/lib/fileNameFormatting';
 import { formatDateToShortDate } from '@/app/lib/dateFormatting';
 
 // react
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
+
+// components
+import { Badge } from "@/components/ui/badge"
 
 interface PostThumbnailProps {
     post: Post
@@ -30,7 +32,7 @@ export const PostThumbnail1 = ({
         img = '/img/thumbnails/' + post.section.toLowerCase() + '_thumbnails/' + getSlugTitle(post.publishDate, post.title) + '.png';
     }
 
-    console.log('tn img', img);
+    // console.log('tn img', img);
 
     // handle wip
     if (post.visibility == 'wip') {
@@ -42,14 +44,27 @@ export const PostThumbnail1 = ({
     }
     return (
         <>
-            <div className='p-[2vh] m-[2vh] rounded-lg border-[1px] border-borderGrey hover:border-hoverLightPink hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[0.35em_0.35em_0_0_#f2b0ca] transition ease-in-out duration-700' title={title}>
+            <div className='p-[2vh] m-[2vh] rounded-sm border-[1px] border-borderGrey hover:border-hoverLightPink hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[0.35em_0.35em_0_0_#f2b0ca] transition ease-in-out duration-700' title={title}>
                 <Link href={"/" + post.section.toLowerCase() + "/"} className=''>
+                    {/* thumbnail */}
                     <img className='w-full lg:max-w-52 xl:max-w-72' src={img} alt="thumbnail" loading="lazy" />
-                    <div className='py-1 w-full lg:max-w-52 xl:max-ww-72'>
+                    {/* heading */}
+                    <div className='py-1 min-h-[3em] w-full lg:max-w-52 xl:max-ww-72'>
                         <p className="text-lg 2xl:text-2xl text-textGrey">{title}</p>
                     </div>
-                    <div className='post-card-byline'>
+                    {/* author(s) + date */}
+                    <div className='text-textLightGrey text-xs'>
                         <p className="">{authorDate}</p>
+                    </div>
+                    {/* tag(s) */}
+                    <div className=''>
+                        {post.tags.map((t, i) => {
+                            return (
+                                <Badge
+                                    key={i}
+                                    className='text-white font-light bg-buttonGrey hover:bg-buttonGrey rounded-md mr-1 mb-[0.1rem]'
+                                >{t}</Badge>)
+                        })}
                     </div>
                 </Link>
             </div>

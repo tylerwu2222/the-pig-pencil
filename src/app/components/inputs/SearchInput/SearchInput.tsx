@@ -19,7 +19,7 @@ export default function SearchInput({
             placeholder={placeholder}
             value={value}
             onChange={onValueChangeFn}
-            className='placeholder-slate-400 focus:border-hoverDeepPink transition-colors duration-500 ease-in-out'
+            className='placeholder-slate-400 focus:border-hoverDeepPink focus:bg-highlightWhite rounded-sm transition-colors duration-500 ease-in-out'
         />
     )
 }

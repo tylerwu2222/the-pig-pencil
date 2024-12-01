@@ -1,5 +1,7 @@
 // type 
-import { Post, Tag } from "@prisma/client";
+import { Tag } from "@prisma/client";
+import { Post } from "@/types/extendedPrismaTypes";
+import { formatDateToLongDate } from "./dateFormatting";
 
 // const sortDictionary = {
 //     'author': 'Author',
@@ -9,62 +11,51 @@ import { Post, Tag } from "@prisma/client";
 // };
 
 interface filterPostsProps {
-    filterKeyword: string;
-    selectedTags: Tag[];
+    filterKeyword: string | undefined;
+    selectedTags: string[];
     posts: Post[];
-    allColumns: boolean;
 }
 
 // filter for posts that include search keyword AND include selected tags
-const filterPosts = ({ filterKeyword, selectedTags, posts, allColumns = false }: filterPostsProps) => {
-    // console.log('filtering posts');
+const filterPosts = ({
+    filterKeyword,
+    selectedTags,
+    posts }: filterPostsProps): Post[] => {
 
-    const lowerKeyword = filterKeyword.toLowerCase()
-    let postText = '';
+    let filteredPosts = posts;
 
-    // get posts joined with authors and tags
+    if (filterKeyword && filterKeyword.length > 0) {
+        const lowerKeyword = filterKeyword.toLowerCase()
+        let postStrings = [];
 
-    // wider search (all post attributes)
-    if (allColumns == true) {
-        // let columns = Object.keys(posts[0])
-        // postText = posts.map(p => {
-        //     let text = '';
-        //     columns.map(c => {
-        //         text += ' ' + p[c]
-        //     })
-        //     return text.toLowerCase()
-        // })
+        // get posts joined with authors and tags
+
+        postStrings =
+            posts.map(p =>
+                (
+                    p.authors.join(' ') + ' ' +
+                    p.title + ' ' +
+                    p.caption + ' ' +
+                    formatDateToLongDate(p.publishDate) + ' ' +
+                    p.tags.join(' ')
+                ).toLowerCase()
+            );
+
+        console.log('post strings', postStrings);
+
+        // check if keyword in any of posts' attribute text
+        filteredPosts = posts.filter((p, i) => {
+            return postStrings[i].includes(lowerKeyword);
+        })
     }
-    // narrower search
-    else {
-        // postText = 
-        posts.map(p =>
-            (
-                // p.Author + ' ' +
-                p.title + ' ' +
-                p.caption + ' '
-                // p.publishDate + ' ' +
-                // p.Tags.join('')
-            ).toLowerCase()
-        );
-    }
-
-    console.log('post text', postText);
-
-    // check if keyword in any of posts' attribute text
-    let filteredPosts = posts.filter((p, i) => {
-        return postText[i].includes(lowerKeyword);
-    })
-
     // if tags exist: check if any tag in selected tags list
-    // if (selectedTags.length > 0) {
-    //     // console.log('selected tags', selectedTags);
-    //     const postTags = posts.map(p => p.Tags);
-
-    //     filteredPosts = filteredPosts.filter((p, i) => {
-    //         return postTags[i].some(t => selectedTags.includes(t.trim())); // check
-    //     })
-    // }
+    if (selectedTags && selectedTags.length > 0) {
+        const postTags = posts.map(p => p.tags);
+        filteredPosts = filteredPosts.filter((p, i) => {
+            return postTags[i].some(tag => selectedTags.includes(tag)); // check
+        })
+        // }
+    }
 
     return filteredPosts;
 }
@@ -110,26 +101,30 @@ const sortPosts = ({ sortOption, posts, ascending = true, postsType = "article" 
 
 
 interface filterSortProps {
-    content: {}[];
-    filterKeyword: string;
-    selectedTags: Tag[];
+    posts: Post[];
+    filterKeyword: string | undefined;
+    selectedTags: string[];
     sortParameter: string | null;
 }
 
 // a general function that:
-// (1) filters array of objects (AoO) by filter parameter
+// (1) filters array of objects by filter parameter
 // (2) sorts AoO by a object key
-export const filterSort = ({ content = [{}], filterKeyword, selectedTags = [], sortParameter = null }: filterSortProps) => {
-    let FSContent = [...content];
+export const filterSort = ({
+    posts = [],
+    filterKeyword,
+    selectedTags = [],
+    sortParameter = null }: Partial<filterSortProps>) => {
+    let FSContent = [...posts];
 
     // filter array
-    // FSContent = filterPosts({filterKeyword, selectedTags, content});
+    FSContent = filterPosts({ filterKeyword, selectedTags, posts });
 
     // // sort array
     // if (sortParameter) {
     //     FSContent = sortPosts(sortParameter, FSContent);
     // }
-    // console.log('FS',FSContent)
+    console.log('FS',FSContent)
 
     return FSContent;
 }
