@@ -1,4 +1,3 @@
-import React from 'react'
 import SectionTemplate from '../SectionTemplate/SectionTemplate';
 
 const Writing = () => {

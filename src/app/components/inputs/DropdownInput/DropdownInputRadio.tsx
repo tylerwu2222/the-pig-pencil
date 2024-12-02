@@ -33,7 +33,11 @@ export function DropdownInputRadio({
             <DropdownMenuContent className="">
                 <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
                     {options.map((o, i) => {
-                        return <DropdownMenuRadioItem key={i} value={o} className='px-1 mx-0'>{o}</DropdownMenuRadioItem>
+                        return <DropdownMenuRadioItem
+                            key={i}
+                            value={o}
+                            className='px-1 mx-0'
+                        >{o}</DropdownMenuRadioItem>
                     })}
                 </DropdownMenuRadioGroup>
             </DropdownMenuContent>

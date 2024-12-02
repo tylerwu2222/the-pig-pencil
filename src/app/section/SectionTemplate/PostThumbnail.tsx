@@ -1,6 +1,5 @@
 // style
 import { Post } from '@/types/extendedPrismaTypes';
-import './PostThumbnails.css'
 
 // formatting
 import { getSlugTitle } from '@/app/lib/fileNameFormatting';
@@ -29,7 +28,7 @@ export const PostThumbnail1 = ({
         img = '/img/thumbnails/' + post.section.toLowerCase() + '_thumbnails/' + post.thumbnail;
     }
     else {
-        img = '/img/thumbnails/' + post.section.toLowerCase() + '_thumbnails/' + getSlugTitle(post.publishDate, post.title) + '.png';
+        img = '/img/thumbnails/' + post.section.toLowerCase() + '_thumbnails/' + getSlugTitle({ date: post.publishDate, title: post.title }) + '.png';
     }
 
     // console.log('tn img', img);
@@ -44,8 +43,8 @@ export const PostThumbnail1 = ({
     }
     return (
         <>
-            <div className='p-[2vh] m-[2vh] rounded-sm border-[1px] border-borderGrey hover:border-hoverLightPink hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[0.35em_0.35em_0_0_#f2b0ca] transition ease-in-out duration-700' title={title}>
-                <Link href={"/" + post.section.toLowerCase() + "/"} className=''>
+            <div className='p-[2vh] m-[2vh] rounded-sm border-[1px] border-borderGrey hover:border-hoverLightPink hover:bg-highlightWhite hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[0.35em_0.35em_0_0_#f2b0ca] transition ease-in-out duration-700' title={title}>
+                <Link href={"/posts/" + post.section.toLowerCase() + "/" + getSlugTitle({ date: post.publishDate, title: post.title })} className=''>
                     {/* thumbnail */}
                     <img className='w-full lg:max-w-52 xl:max-w-72' src={img} alt="thumbnail" loading="lazy" />
                     {/* heading */}

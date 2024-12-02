@@ -1,3 +1,7 @@
+// export const formatDateToSlugDate = (date: Date): string => {
+
+// }
+
 export const formatDateToShortDate = (date: Date): string => {
     const dateF = new Date(date);
     // console.log('date input', date)
