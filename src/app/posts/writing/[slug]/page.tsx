@@ -35,7 +35,9 @@ export default async function page({
             {/* scrollspy if post has scrollspy */}
 
             {/* post content (queried via mdx) */}
-            <Beef />
+            <article className='prose max-w-none'>
+                <Beef />
+            </article>
         </div>
     )
 }
