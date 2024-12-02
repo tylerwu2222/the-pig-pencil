@@ -6,6 +6,9 @@ import createMDX from '@next/mdx';
 const nextConfig: NextConfig = {
   /* config options here */
   pageExtensions: ['js', 'ts', 'tsx', 'md', 'mdx'], // Include MD and MDX extensions
+  experimental: {
+    mdxRs: true
+  }
 };
 
 const withMDX = createMDX({

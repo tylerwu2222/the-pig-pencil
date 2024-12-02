@@ -1,6 +1,12 @@
 import React, { ReactNode, useEffect } from 'react'
+
+import prisma from '@/db';
+
 // import MDXContent from './[slug].mdx'; // Dynamically import mdx based on slug
 import Beef from '@/app/posts/writing/2023-04-23-beef-everywhere-all-at-once/2023-04-23-beef-everywhere-all-at-once.mdx';
+import PostHeader from '../../PostHeader';
+import { getPostBySlug } from '@/app/lib/prisma';
+import { Post } from '@/types/extendedPrismaTypes';
 
 export default async function page({
     params,
@@ -12,21 +18,24 @@ export default async function page({
 
     console.log('slug', slug);
 
-    // useEffect(() => {
-    //     const headerElements = document.querySelectorAll('.pres-header');
-    //     // console.log('page loaded',headerElements);
-    //     headerElements.forEach((elt, i) => {
-    //         elt.innerText = sectionTitles[i];
-    //         elt.setAttribute('id', 'section' + String(i));
-    //     });
-    // }, [sectionTitles]);
+    // query the mdx from prisma based on the slug
+    const postMetaData = await getPostBySlug(slug) as Post;
+    // const postMetaData = await prisma.post.findFirst({
+    //     where: {
+    //         slug: slug
+    //     }
+    // })
 
-    if (!slug) {
-        return <div>loading...</div>
-    }
+    console.log('post metadata', postMetaData);
 
-    // query the mdx based on the slug
     return (
-        <Beef />
+        <div className='py-5'>
+            {/* header content (tn, caption, date, author) */}
+            <PostHeader post={postMetaData} />
+            {/* scrollspy if post has scrollspy */}
+
+            {/* post content (queried via mdx) */}
+            <Beef />
+        </div>
     )
 }
