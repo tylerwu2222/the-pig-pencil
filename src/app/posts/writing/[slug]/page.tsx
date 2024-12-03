@@ -1,9 +1,13 @@
 import React from 'react'
 
+// dynamic imports
 import dynamic from 'next/dynamic';
-import PostHeader from '../../PostHeader';
 
-// 
+// components
+import PostHeader from '../../PostHeader';
+import Scrollspy from '@/app/components/Scrollspy/Scrollspy';
+
+// helpers
 import { getPostBySlug } from '@/app/lib/prisma/prisma';
 
 // types
@@ -29,12 +33,15 @@ export default async function page({
         <div className='py-5'>
             {/* header content (tn, caption, date, author) */}
             <PostHeader post={postMetaData} />
-            {/* scrollspy if post has scrollspy */}
-
             {/* post content (queried via mdx) */}
             <article className='prose max-w-none'>
                 <PostMarkdown />
             </article>
+            {/* scrollspy if post has scrollspy */}
+            {postMetaData.hasScrollspy ?
+                <Scrollspy />
+                : <></>
+            }
         </div>
     )
 }

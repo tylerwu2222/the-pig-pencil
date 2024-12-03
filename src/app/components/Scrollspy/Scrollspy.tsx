@@ -18,67 +18,66 @@ export function ScrollspyHeader({
     // default h2
     // const Tag = `h${level}`;
     if (isInline) {
-        return <h2 className={`pres-header inline ${include ? "included" : ""}`}>{header}</h2>
+        return <h2 className={`scrollspy-header inline ${include ? "included" : ""}`}>{header}</h2>
     }
     return (
-        <h2 className={`pres-header ${include ? "included" : ""}`}> {header}</h2 >
+        <h2 className={`scrollspy-header ${include ? "included" : ""}`}> {header}</h2 >
         // <Tag className="presHeader">{
         //     nestedImage ? nestedImage : 'Default Text'
         // }</Tag>
     );
 }
 
+export default function Scrollspy() {
+    const [sectionTitles, setSectionTitles] = useState<string[]>([]);
 
-// const scrollToHeader = (headerID) => {
-//     // console.log('scroll to', headerID);
-//     const headerElement = document.querySelector('#section' + headerID);
+    useEffect(() => {
+        // Query the DOM for elements with the specific class after the DOM is rendered
+        const headerElements = Array.from(
+            document.querySelectorAll('.scrollspy-header.included')
+        );
 
-//     if (headerElement) {
-//         // Calculate the desired scroll position with some space above
-//         const scrollPosition = headerElement.offsetTop - 70; // Adjust the value as needed
+        // Extract innerHTML or textContent from the header elements
+        const titles = headerElements.map((e) => e.textContent || '');
+        setSectionTitles(titles);
+    }, []);
 
-//         // Scroll to the calculated position
-//         window.scrollTo({
-//             top: scrollPosition,
-//             //   behavior: 'smooth', // Optional: Add smooth scrolling animation
-//         });
-//     }
-// };
+    // Scroll to the header element based on index
+    const scrollToHeader = (index: string) => {
+        const header = document.querySelectorAll('.scrollspy-header.included')[Number(index)];
+        if (header) {
+            const headerTop = header.getBoundingClientRect().top;
+            const offsetTop = window.pageYOffset + headerTop - 40; // Leave 20px of space above the header
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    };
 
-// export const updateScrollspyHeaders = (sectionTitles) => {
-//     const headerElements = document.querySelectorAll('.presHeader');
-//     // console.log('header elts', headerElements);
-//     headerElements.forEach(function (elt, i) {
-//         elt.innerText = sectionTitles[i];
-//         elt.setAttribute('id', 'section' + String(i));
-//     });
+    console.log('ss titles in ss:', sectionTitles);
 
-// };
+    return (
+        <div className='fixed top-[30vh] left-0'>
+            {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
+            <nav className="bg-transparent text-[14px] w-[18vw] pl-[2vw] flex-col flex-wrap">
+                {
+                    sectionTitles.map((s, i) => {
+                        return (
+                            <div
+                                key={i}
+                                className='p-1 my-2 text-wrap'>
+                                <a
+                                    className="hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"
+                                    onClick={() => { scrollToHeader(String(i)) }}
+                                // href={'#section' + String(i)}
+                                >{s}</a>
+                            </div>
+                        )
+                    })
 
-// export default function Scrollspy({ sectionTitles = ['section1', 'section2'] }) {
-//     // const headerElements = document.querySelectorAll('.presHeader');
-
-//     // MOVED UPDATE HEADER LOGIC TO INDIVIDUAL PAGE TEMPLATES
-//     // update header elements when section titles change
-//     //
-
-//     return (
-//         <div className='containerScrollspy'>
-//             {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
-//             <nav id="articleScrollspy" className="scrollspyNavbar">
-//                 {
-//                     sectionTitles.map((s, i) => {
-//                         return (
-//                             <a key={i}
-//                                 className="scrollspyLink"
-//                                 onClick={() => { scrollToHeader(i) }}
-//                             // href={'#section' + String(i)}
-//                             >{s}</a>
-//                         )
-//                     })
-
-//                 }
-//             </nav >
-//         </div>
-//     )
-// }
+                }
+            </nav >
+        </div>
+    )
+}

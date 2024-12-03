@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { config } from "./config";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
-import data from '../data/tort_data.csv';
+// import data from '../data/tort_data.csv';
 import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
 
 const initialHC = {
@@ -54,7 +54,7 @@ const SVG1 = () => {
     }, []);
 
     tortData.forEach((e, i) => { e.index = i });
-    console.log('tortdata', data);
+    // console.log('tortdata', data);
 
     // console.log('hc', habitat_counts)
     const stats = ['Max Size', 'Max Size vs. Max Age', 'Max Age', 'Habitat vs. Max Size', 'Habitat'];
@@ -270,7 +270,7 @@ const SVG1 = () => {
     // initial render_s1 and when stat changes
     useEffect(() => {
         render_s1();
-        console.log('new stat',stat,'rerendering...')
+        // console.log('new stat',stat,'rerendering...')
     }, [tortData, stat]);
 
     // update tooltip content with stat
