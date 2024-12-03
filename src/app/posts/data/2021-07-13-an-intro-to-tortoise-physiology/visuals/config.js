@@ -1,4 +1,4 @@
-
+'use client'
 const w_width = window.innerWidth, w_height = window.innerHeight;
 const article_width = (w_width <= 1080) ? 0.95 : 0.6;
 // const article_width = (w_width <= 450) ? 0.95 : 0.6;
@@ -23,7 +23,7 @@ export const initialCC = {
     'NT': 0
 };
 // let cs_counts;
-export  const initialHC = {
+export const initialHC = {
     'tropical forest': 0,
     'deciduous forest': 0,
     'savanna': 0,

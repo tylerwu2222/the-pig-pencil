@@ -1,22 +1,18 @@
+import b1 from './basking_1.png'
+import b2 from './basking_2.png'
+
 ---
-Date: "8/29/2023"
-Title: "A Human's Guide to Basking"
-Author:
+publishDate: "8/29/2023"
+title: "A Human's Guide to Basking"
+authors:
   - "Tyler Wu"
-AuthorURL:
-  - "https://thepigpencil.com/collaborators"
-MainTag: "self-care"
-Tags:
+tags:
   - "self-care"
   - "health"
-ReadingTime: "2 min"
-Caption: "it's healthy"
-HasScrollspy: "true"
-SectionTitles:
-  - "How to Bask"
-  - "Potential Risks"
-  - "Why You Should Still Do It"
-Hidden: "false"
+readingTime: "2 min"
+caption: "it's healthy"
+hasScrollspy: "true"
+visibility: "visible"
 ---
 
   So I've been doing the basking thing for a good half-decade now.
@@ -26,11 +22,12 @@ So I just laid myself down on some pavement and felt the sun.
   With your eyes closed and nothing to look at, you begin to focus on other senses and the brain starts to go to work.
 You can reflect on your how your day has been going, or maybe how your whole life has been going.
 Whatever you want really, no one's listening in.
-<ScrollspyHeader />
-  <img 
+<ScrollspyHeader header={"How to Bask"}/>
+  {/* <img 
     src='/img/writing/basking/basking_1.png' 
     className='full-width-img' 
-    alt="basking-1" />
+    alt="basking-1" /> */}
+<Image src={b1} alt='basking-1'/>
 
   The first thing your going to want to do is live in an area with lots of sun.
 If this isn't possible, begin considering a career that lets you end up in a sunny place.
@@ -48,24 +45,25 @@ It's quite the cozy, insulated experience.
   The last question is a question of when. My two favorite times are either (a) after a nice meal, when you're already feeling quite sleepy.
 Or (b) after you've been in an air-conditioned building that is a few degrees too cool. This is one of the best feelings in the world in my opinion.
 It's like being a cold-blooded lizard waking up to the sun prickling each cell on the surface of your scaly skin.
-<ScrollspyHeader />
-
+<ScrollspyHeader header={"Potential Risks"}/>
+{/* 
 <img
     src='/img/writing/basking/basking_2.png'
     className='articleImg left-wrap-img'
     alt='basking-2'
-  />
+  /> */}
+<Image src={b2} className={'float-right w-3/5'} alt='basking-2'/>
 
 The biggest risk is obviously getting sunburned. Easy fix, put on sunscreen.
 
 Other risks include:
 
-  1. Getting stepped on. **solution:** pay attention with your ears, then perform an action roll evasive manuever  
-  2. Falling asleep **solution:**: set an alarm or be naturally anxious such that you don't need an alarm OR just enjoy the extra sleep and deal with consequences later  
-  3. Feeling kind of baked from all the heat **solution:** bring an umbrella, some ice water, or if you're near a major body of water, jump in said body of water  
-  4. Feeling kind of baked from other factors **solution:** go home, or do whatever you enjoy doing when baked
+  1. *Getting stepped on.*<br/>**Solution:** pay attention with your ears, then perform an action roll evasive manuever  
+  2. *Falling asleep*<br/>**Solution:** set an alarm or be naturally anxious such that you don't need an alarm OR just enjoy the extra sleep and deal with consequences later  
+  3. *Feeling kind of baked from all the heat*<br/>**Solution:** bring an umbrella, some ice water, or if you're near a major body of water, jump in said body of water  
+  4. *Feeling kind of baked from other factors*<br/>**Solution:** go home, or do whatever you enjoy doing when baked
 
-<ScrollspyHeader />
+<ScrollspyHeader header={"Why You Should Still Do It"}/>
 OK, let's get down to brass tacks. The reason I prefer basking to just laying on a couch inside is two-fold.
   One, you're outside, in nature (potentially), breathing in air that's not from your room.
   Two, the heat really instills a sense of focus and is conducive to thinking, at least for me.

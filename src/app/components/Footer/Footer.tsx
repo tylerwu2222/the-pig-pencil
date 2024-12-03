@@ -6,7 +6,7 @@ const Footer = () => {
 
     // position absolute on each page
     return (
-        <div className='fixed bottom-1 right-1'>
+        <div className='fixed bottom-1 right-2'>
             <footer className="flex flex-row gap-1">
                 <a className="footer-link" href="http://www.instagram.com/pigpencil/" target="_blank" rel="noreferrer">
                     <FaInstagram size={25} />

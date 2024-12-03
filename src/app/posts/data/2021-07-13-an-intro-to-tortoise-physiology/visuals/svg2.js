@@ -1,12 +1,11 @@
-import * as d3 from "d3";
+'use client'
 
+import * as d3 from "d3";
 import { useEffect, useState } from "react";
 
+import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
+
 import { config, cs_key, cs_mapping } from "./config";
-
-import data from '../data/tort_data.csv';
-
-// const SVG1 = ({ data, view='relative' }) => {
 
 const initialCC = {
     'VU': 0,
@@ -20,33 +19,30 @@ const initialCC = {
 
 
 const SVG2 = () => {
-    // const {
-    //     config,
-    //     cs_counts,
-    //     cs_mapping,
-    //     cs_key,
-    // } = useContext(TTContext);
 
     const [conservationData, setConservationData] = useState([]);
     let cs_counts = initialCC;
 
     // load data
     useEffect(() => {
-        d3.csv(data)
-            .then(dta => {
-                dta.forEach((d, i) => {
-                    d.dist_list = d.dist.split(",");
-                    d.coords = d.coords.split(",").map(x => +x);
-                    d.c_name = eval(d.c_name)[0];
-                    d.s_name = d.sci_name.replace(' ', '');
-                    d.length = +d.length;
-                    d.age = +d.avg_age;
-                    cs_counts[d.cons_status] = cs_counts[d.cons_status] + 1;
-                    d.cs_pos = cs_counts[d.cons_status];
-                    d.img = "/img/data/tortoise_taxonomy/tort_imgs/tort_icons/" + d.s_name + ".jpg";
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2021-07-13-an-intro-to-tortoise-physiology' })
+                .then(dta => {
+                    dta.forEach((d, i) => {
+                        d.dist_list = d.dist.split(",");
+                        d.coords = d.coords.split(",").map(x => +x);
+                        d.c_name = eval(d.c_name)[0];
+                        d.s_name = d.sci_name.replace(' ', '');
+                        d.length = +d.length;
+                        d.age = +d.avg_age;
+                        cs_counts[d.cons_status] = cs_counts[d.cons_status] + 1;
+                        d.cs_pos = cs_counts[d.cons_status];
+                        d.img = "/img/data/tortoise_taxonomy/tort_imgs/tort_icons/" + d.s_name + ".jpg";
+                    });
+                    setConservationData(dta);
                 });
-                setConservationData(dta);
-            });
+        }
+        fetchData();
     }, []);
 
     const render_CS = () => {

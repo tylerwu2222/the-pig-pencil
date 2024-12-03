@@ -1,6 +1,8 @@
 import type { MDXComponents } from 'mdx/types'
 import { ScrollspyHeader } from './app/components/Scrollspy/Scrollspy'
 import { ComponentPropsWithoutRef } from 'react';
+
+import Image from 'next/image';
 import Link from 'next/link';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
@@ -105,6 +107,7 @@ export function useMDXComponents(
   return {
     ...otherComponents,
     ...components,
+    Image,
     // Scrollspy,
     ScrollspyHeader
   }

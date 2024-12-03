@@ -1,48 +1,45 @@
----
-Date: "5/29/2023"
-Title: "A Brief Take on Self-esteem (and Eggs)"
-Author:
-  - "Tyler Wu"
-AuthorURL:
-  - "https://thepigpencil.com/collaborators"
-MainTag: "self-care"
-Tags:
-  - "psychology"
-  - "self-care"
-  - "health"
-  - "opinion"
-  - "self-esteem"
-ReadingTime: "3 min"
-Caption: "it's healthy"
-HasScrollspy: "true"
-SectionTitles:
-  - "What is Self-esteem?"
-  - "High vs. Low Self-esteem"
-  - "Self-esteem & Locus of Control"
-Hidden: "false"
----
+import se1 from './self_esteem1.png'
+import se2 from './self_esteem2.png'
 
-I was recently listening to this psychology podcast called Hidden Brain discussing the concept of self-doubt.
+export const metadata = {
+  publishDate: "5/29/2023",
+  title: "A Brief Take on Self-esteem (and Eggs)",
+  authors:
+    - "Tyler Wu",
+  readingTime: "3 min",
+  caption: "it's healthy",
+  hasScrollspy: "true",
+  visibility: "visible",
+  tags:
+    - "psychology"
+    - "self-care"
+    - "health"
+    - "opinion"
+    - "self-esteem"
+}
+
+I was recently listening to this psychology podcast called [Hidden Brain](https://hiddenbrain.org/) discussing the concept of self-doubt.
 It talked a bit about how everyone experiences moments of self doubt and focused quite a bit on the imposter phenomenon, or imposter syndrome,
 and this inspired me to write more generally about self-esteem. Something I wanted to write about for a while.
-<ScrollspyHeader />
+<ScrollspyHeader header={'What is Self-esteem?'}/>
 
 At it's essence, self-esteem is just how we evaluate our own ability. It can be lower, higher, or just about on par with our actual ability.
 It's like a measuring stick for what we are capable of accomplishing.
 By knowing which tasks we are capable of performing, we can get things done more efficiently,
 and who doesn't like getting things done, right?
-<ScrollspyHeader />
+<ScrollspyHeader header={'High vs. Low Self-esteem'}/>
 
 When self-esteem is high, it can help us push beyond our limits,
 take on challenging tasks, and increase the upper limits of our ability.
 The problem is when the measure of self-esteem gets a bit **toooo** bloated,
 this is when it can become counter-productive, potentially leading to blunders and risky decision making.
 
-<img
+<Image src={se1}  alt={'self-esteem-1'}/>
+{/* <img
   className='articleImg leftWrapImg'
-  src='/img/writing/self_esteem/self_esteem1.png'
+  src='./self_esteem1.png'
   alt='self-esteem-1'
-/>
+/> */}
 
 Low self-esteem, on the other hand, is a useful indicator for situations that we might want to avoid,
 and skills we still need to work on.
@@ -54,19 +51,22 @@ or at least a floor indicator, (this is where you are, right now).
 
 In the end, like most so things, the best approach is usually somewhere in the middle.
 Having a bit of both are necessary to keep that self-improvement mojo moving forward consistently.
-Too much of either is a recipe for an eventual bout of questioning everything in your life and all your past decisions.
-<ScrollspyHeader />
+Too much of either is a recipe for an eventual bout of questioning everything in your life and all your past decisions.  
+
+
+<ScrollspyHeader header={'Self-esteem & Locus of Control'}/>
 
 Something I learned early on in my high school psych class was the idea of external and internal loci of control.
 An external locus is when an individual believes their success is dependent mostly on external factors.
 It would follow then that their sense of self-worth could also be more tied to external indicators,
 like achievements, placements, and praise from others.
 
-<img
+<Image src={se2} className={'float-right w-3/5'} alt={'self-esteem-2'}/>
+{/* <img
   className='articleImg rightWrapImg'
   src='/img/writing/self_esteem/self_esteem2.png'
   alt="self-esteem-2" 
-  />
+  /> */}
   
 And who doesn't like having acknowledgement and physical measures of success?
 We do live in a physical world, so it makes sense to strive for physical mementos and responses.

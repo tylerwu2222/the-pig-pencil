@@ -1,4 +1,4 @@
-import { flattenJoinData } from "@/app/lib/prismaHelpers";
+import { flattenJoinData } from "@/app/lib/prisma/prismaHelpers";
 import prisma from "@/db";
 
 import { NextRequest, NextResponse } from "next/server";

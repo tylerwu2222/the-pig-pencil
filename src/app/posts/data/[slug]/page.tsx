@@ -1,9 +1,12 @@
 import React from 'react'
 
+// dynamic imports
 import dynamic from 'next/dynamic';
+
+// components
 import PostHeader from '../../PostHeader';
 
-// 
+// helpers
 import { getPostBySlug } from '@/app/lib/prisma/prisma';
 
 // types
@@ -23,7 +26,7 @@ export default async function page({
     // console.log('post metadata', postMetaData);
 
     // get the markdown dynamically based on the slug
-    const PostMarkdown = dynamic(() => import(`@/app/posts/writing/${slug}/${slug}.mdx`))
+    const PostMarkdown = dynamic(() => import(`@/app/posts/data/${slug}/${slug}.mdx`))
 
     return (
         <div className='py-5'>

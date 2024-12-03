@@ -1,13 +1,14 @@
+'use client'
+
 import * as d3 from "d3";
-
 import { useEffect, useState } from "react";
-// import TTContext from "./TTContext";
-
 import { config } from "./config";
-import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu";
+// udpate
+// import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu";
+// import DropdownMenu from "@/app/components/inputs/DropdownInput/DropdownMenu";
 
 import data from '../data/tort_data.csv';
-// import ConversionToReactMessage from "../../../../Modules/ConversionToReactMessage.js";
+import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
 
 const initialHC = {
     'tropical forest': 0,
@@ -20,40 +21,43 @@ const initialHC = {
     'island': 0
 };
 
+// type DataRow = {
+//     [key: string]: string | number;
+//   };
+
 const SVG1 = () => {
     const [tortData, setTortData] = useState([]);
+    // const [tortData, setTortData] = useState<DataRow[]|null>(null);
     const [habitatCounts, setHabitatCounts] = useState({});
     // const [xStat, setXStat] = useState([]);
     // const [yStat, setYStat] = useState([]);
 
     useEffect(() => {
-        d3.csv(data)
-            .then(dta => {
-                let habitat_counts = structuredClone(initialHC);
-                // conservation_status_counts = structuredClone(initialCC);
-                dta.forEach((d, i) => {
-                    d.dist_list = d.dist.split(",");
-                    d.coords = d.coords.split(",").map(x => +x);
-                    d.c_name = eval(d.c_name)[0];
-                    d.s_name = d.sci_name.replace(' ', '');
-                    d.length = +d.length;
-                    d.age = +d.avg_age;
-                    d.img = "/img/data/tortoise_taxonomy/tort_imgs/tort_icons/" + d.s_name + ".jpg";
-                    // d.cs = d.cons_status;
-                    // d.conservation_status_pos = conservation_status_counts[d.cs];
-                    // conservation_status_counts[d.cs] = conservation_status_counts[d.cs] + 1;
-                    d.h_pos = habitat_counts[d.habitat];
-                    habitat_counts[d.habitat] = habitat_counts[d.habitat] + 1;
-                    // console.log('HC update', i, d.habitat, habitat_counts[d.habitat]);
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2021-07-13-an-intro-to-tortoise-physiology' })
+                .then(dta => {
+                    let habitat_counts = structuredClone(initialHC);
+                    dta.forEach((d, i) => {
+                        d.dist_list = d.dist.split(",");
+                        d.coords = d.coords.split(",").map(x => +x);
+                        d.c_name = eval(d.c_name)[0];
+                        d.s_name = d.sci_name.replace(' ', '');
+                        d.length = +d.length;
+                        d.age = +d.avg_age;
+                        d.img = "/img/data/tortoise_taxonomy/tort_imgs/tort_icons/" + d.s_name + ".jpg";
+                        d.h_pos = habitat_counts[d.habitat];
+                        habitat_counts[d.habitat] = habitat_counts[d.habitat] + 1;
+                    });
+                    setTortData(dta);
+                    setHabitatCounts(habitat_counts);
                 });
-                setTortData(dta);
-                setHabitatCounts(habitat_counts);
-            });
-
+        }
+        fetchData();
+        console.log('tort data state', tortData);
     }, []);
 
-    // tortData.forEach((e, i) => { e.index = i });
-    // console.log('tortdata', data);
+    tortData.forEach((e, i) => { e.index = i });
+    console.log('tortdata', data);
 
     // console.log('hc', habitat_counts)
     const stats = ['Max Size', 'Max Size vs. Max Age', 'Max Age', 'Habitat vs. Max Size', 'Habitat'];
@@ -279,7 +283,7 @@ const SVG1 = () => {
     return (
         <>
             {/* <ConversionToReactMessage /> */}
-            <DropdownMenu label='Stat' options={stats} initialOption={stat} maxWidth={300} color={config.colors[0]} handleChange={e => { onStatClicked(e.target.value) }} />
+            {/* <DropdownMenu label='Stat' options={stats} initialOption={stat} maxWidth={300} color={config.colors[0]} handleChange={e => { onStatClicked(e.target.value) }} /> */}
             <svg id="stat-svg1">
             </svg>
         </>

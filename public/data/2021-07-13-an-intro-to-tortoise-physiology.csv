@@ -1,0 +1,280 @@
+,sci_name,c_name,dist,reprod,cons_status,length,weight,coords,avg_age,habitat
+0,Aldabrachelys gigantea,"['Aldabra Giant Tortoise [gigantea]', 'Daudin’s Giant Tortoise [daudinii]', 'Seychelles Giant Tortoise [hololissa]', 'Arnold’s Giant Tortoise [arnoldi] ']","Aldabra Atoll (Indian Ocean, Grande Terre, Picard, Malabar), introduced on Curieuse and Fregate (granitic Seychelles). Small groups exist on Cerf, Moyenne, Silhouette, Cousin, Cousine, Bird and Denis in the central Seychelles, on several of the Amirantes, and on Changu Island near Zanzibar (Tanzania).
+
+Type locality: Aldabra [same for Testudo elephantina DUMÉRIL & BIBRON 1835]
+
+gigantea: Aldabra Atoll
+
+arnoldi: Granitic Seychelles (extinct; see GERLACH & CANNING 1998 for a discussion)
+
+daudini: Granitic Seychelles (extinct since ~1850)
+
+hololissa: Granitic Seychelles (but see GERLACH & CANNING 1998 for a discussion).  ",oviparous ,VU,48,550,"-9.421221183581558, 46.342061469573444",150,island
+1,Astrochelys radiata,"['Radiated Tortoise', 'G: Strahlenschildkröte ']","Madagascar (Antandroy Territory in the south between the Mandrare and Menarandra waterways). Endemic.
+
+Type locality: ""Madagascar""; restricted by Bour 1978 to ""Soalara (Baie de Saint-Augustin) sud-ouest de Madagascar"".  ",oviparous ,CR,16,35,"-24.32689093264572, 46.32172099679379",80,island
+2,Astrochelys yniphora,"['Madagascan (Plowshare or Ploughshare) Tortoise', 'G: Madagassische Schnabelbrustschildkröte ']","NW Madagascar (small area about Baly Bay)
+
+Type locality: “...la grande Comore. . ."" (in error); designated by Bour 1978 as ""cap d'Amparafaka (Baie de Baly), nord-ouest de Madagascar"".  ",oviparous ,CR,16,21,"-16.040134586317308, 45.20919110430246",75,island
+3,Centrochelys sulcata,"['Sahel Tortoise, African Spurred Tortoise', 'G: Spornschildkröte ']","Ethiopia, Eritrea, Sudan (Jumhūriyyat), Republic of South Sudan (RSS), Chad, Niger, Mali, S Mauritania, Senegal, Central African Republic (range generally lies along the southern perimeter of the Sahara Desert), Cameroon
+
+Type locality: ""India orientali"" (in error); incorrectly listed as ""Westindien"" by Wermuth and Mertens 1961:224, and Wermuth and Mertens 1977:90.  ",oviparous ,EN,32,216,"16.7602766950953, 14.680403667958894",75,savanna
+4,Chelonoidis abingdonii,"['Abingdon Island Giant Tortoise', 'ephippium: Duncan Island Giant Tortoise, Saddleback giant tortoise ']","Ecuador: Galapagos (Abingdon = Pinta Island)
+
+Type locality: Abingdon Island [= Pinta]
+
+ephippium: Galapagos (Duncan = Pinzon); Type locality: “Chalres Island” (in error, fide Iverson 1992)  ",oviparous ,EX,48,700,"0.5902951227208093, -90.76138300945183",120,island
+5,Chelonoidis becki,"['Volcan Wolf Giant Tortoise, Cape Berkeley Giant Tortoise ']","Ecuador: Galapagos (N Albemarle = Isabela Island)
+
+Type locality: Cape Berkeley, northern point of Albemarle Island [= Isabela].  ",oviparous ,VU,40,NA,"-0.48230782603813643, -91.12047706633965",120,island
+6,Chelonoidis carbonarius,"['Red-footed Tortoise', 'G: Köhlerschildkröte', 'Portuguese: Jaboti, Jabuti, Jabuti-Piranga, Jabuti-Vermelho ']","Nicaragua (Great Corn Island and mainland locations), SE Panama, Colombia (west of the Andes in Choco), east of the Andes in E Colombia, Venezuela, Guyana, French Guiana, Suriname, E Brazil (south to Rio de Janeiro; seems absent from almost all but the eastern parts of the Amazon Basin: Rio Grande do Sul, Goias, Espírito Santo, Ceará, Bahia etc.), Peru, E Bolivia, Paraguay, N Argentina, Trinidad, Virgin Islands (St. Croix); introduced to a number of Carribean Islands (incl. Providencia, Grenadine islands, St. Kitts)
+
+Type locality: ""Habitat sub cognomine ""Capitary"" (?) ad flumen Amazonum,"" South America (cited in KING & BURKE 1989).  ","oviparous C carbonarius exhibits a temperature-dependent sex determination (TSD)mechanism with females produced at, or above, 29°C ",NE,13,20,"-1.2346808223236156, -62.205136578833056",90,tropical forest
+7,Chelonoidis chathamensis,['Chatham Island Giant Tortoise '],"Ecuador: Galapagos (NE Chatham = San Cristobal)
+
+Type locality: Chatham Island [San Cristobál].
+
+wallacei: Galapagos (Jervis)  ",oviparous ,EN,37,NA,"-0.8242357936615471, -89.43225410256771",120,island
+8,Chelonoidis chilensis,"['Argentine tortoise', 'G: Argentinische Landschildkröte ']","SW Bolivia, W Paraguay,
+NW Argentina (Rio Negro, southward to about 40° S in N Patagonia)
+
+Type locality: Mendoza, Argentina
+
+donosobarrosi: Argentina (Río Negro); Type locality: San Antonio, Río Negro, Argentina.
+
+petersi: Argentina (Santiago del Estero, La Rioja), Paraguay (S Chaco); Type locality: Kishka, La Banda, Santiago del Estero, Argentina.  ",oviparous ,VU,10,NA,"-33.00009554039881, -63.13224281754871",20,deciduous forest
+9,Chelonoidis darwini,['James Island Giant Tortoise '],"Ecuador: Galapagos (James = San Salvador Island)
+
+Type locality: James Island [San Salvador, Santiago].  ",oviparous ,CR,40,NA,"-0.2540572453579455, -90.71791123288111",120,island
+10,Chelonoidis denticulatus,"['Yellow-footed Tortoise', 'G: Waldschildkröte', 'Portuguese: Jaboti, Jabuti, Jabuti-Amarelo, Jabuti-Tinga ']","SE Venezuela, Caribbean lowlands of Guyana, French Guiana, and Suriname; Brazil (Amazon Basin, isolated range in E Brazil, Espírito Santo, Pará, Rio de Janeiro), E Ecuador, Colombia, NE Peru (Pasco), N/E Bolivia, Trinidad, Guadeloupe.
+
+Type locality: in error (see comment)  ",oviparous ,VU,16,35,"-3.7050357993645555, -55.33181433455947",60,tropical forest
+11,Chelonoidis donfaustoi,['Eastern Santa Cruz Tortoise'],"Ecuador (Galapagos Islands: E Santa Cruz Island)
+
+Type locality: “Cerro Fatal in Santa Cruz”  ", ,CR,45,NA,"-0.6247186014241797, -90.2369890899702",120,island
+12,Chelonoidis duncanensis,['Duncan Island Giant Tortoise '],"Ecuador (Galapagos: Duncan [= Pinzón])
+
+Type locality: Duncan Island  ",oviparous ,VU,32,NA,"-0.6101382630457763, -90.66773394735336",120,island
+13,Chelonoidis guntheri,['Sierra Negra Giant Tortoise'],"Galapagos (Sierra Negra area of SE Albemarle = Isabela);
+
+Type locality: “Galapagos.” Restricted to “Vilamil, Albemarle” [= Isabela, Galápagos, Ecuador] by Van Denburgh (1914:259).
+
+wallacei: Galápagos (San Cristóbal); Type locality: “Chatham Island” [San Cristóbal, Galápagos, Ecuador] by supposition. Restricted to “Jervis” [Rábida, Galápagos, Ecuador] by Van Denburgh (1914:259).  ",oviparous ,CR,42,NA,"-0.8294421492723052, -91.17042918310342",120,island
+14,Chelonoidis hoodensis,['Hood Island Giant Tortoise '],"Ecuador: Galapagos (Hood = Espanola)
+
+Type locality: Hood Island [= Española].  ",oviparous ,CR,31,NA,"-1.37458951629525, -89.67422056330375",120,island
+15,Chelonoidis microphyes,"['Volcán Darwin Giant Tortoise, Darwin Volcano Giant Tortoise, Tagus Cove Giant Tortoise ']","Ecuador: Galapagos (NC Albemarle = Isabela);
+
+Type locality: originally “Hood’s Island” (GÜNTHER 1875, in error), then “Tagus Cove, northern Albemarle Island” (GÜNTHER 1877).  ",oviparous ,EN,43,NA,"-0.825950984112042, -91.13661323570855",120,island
+16,Chelonoidis niger,"['Charles Island Giant Tortoise', 'G: Elefantenchildkröte; Galapagos-Riesenschildkröte ']","Ecuador (Galapagos: Charles [Floreana]
+
+Type locality: ""Sandwich-Inseln"" (in error).  ",oviparous ,EX,40,NA,"-1.3063854344172834, -90.43293900496704",120,island
+17,Chelonoidis phantasticus,['Narborough Island Giant Tortoise '],"Ecuador: Galapagos (Narborough = Fernandina)
+
+Type locality: Narborough Island [= Fernandina].  ",oviparous ,CR,27,NA,"-0.39541054690512395, -91.50498450798759",120,island
+18,Chelonoidis porteri,['Western Santa Cruz tortoise'],"Ecuador: Galapagos (Indefatigable = Santa Cruz)
+
+Type locality: Indefatigable  ",oviparous ,CR,41,NA,"-0.6319265413793048, -90.36574511409202",120,island
+19,Chelonoidis vandenburghi,"['Volcán Alcedo Giant Tortoise, Alcedo Volcano Giant Tortoise', 'guntheri: Sierra Negra Giant Tortoise ']","Ecuador: Galapagos (Volcan Alcedo on C Albemarle = Isabela);
+
+Type locality: ""Cowley Mountain ... the first mountain north of Villamil Mountain"", Albemarle Island.  ",oviparous ,VU,43,NA,"-0.8149500137231072, -91.19857713560263",120,island
+20,Chelonoidis vicina,['Isabela Island Giant Tortoise '],"Ecuador: Galapagos (S Albemarle = Isabela Island)
+
+Type locality: Iguana Cove, South Albemarle Island [= Isabela].  ",oviparous ,EN,41,NA,"-0.8149500137231072, -91.19857713560263",120,island
+21,Chersina angulata,"['South African Bowsprit Tortoise, Angulate Tortoise', 'G: Schnabelbrustschildkröte ']","Republic of South Africa (along the coastline of Cape Province, from East London westward to the mouth of the Orange River), Namibia (introduced fide LEVER 2003: 22).
+
+Type locality: ""Patria ignota"" (= country unknown).  ",oviparous ,LC,8,1.9,"-30.944477125162727, 18.3385343103808",40,coastal
+22,Chersobius boulengeri,['Donner-weer Tortoise '],"Republic of South Africa (Karroo Plain of Cape Province, South Africa), Namibia ?
+
+Type locality: ""South Africa - Districts of Willowmore, Aberdeen, and Beaufort West"".  ",oviparous ,EN,4,0.3,"-27.404578680036696, 19.655980961725124",90,desert
+23,Chersobius signatus,"['Speckled Cape Tortoise, Speckled Padloper ']","Republic of South Africa (Little Namaqualand, from Kleinzee and Springbok southward to Graafwater and Clanwilliam)
+
+Type locality: unknown (fide WERMUTH & MERTENS 1977); designated as ""vicinity of Springbok. Cape Province, South Africa"" by Bour (1988:3)
+
+cafer: near Clanwilliam and southwestward, Republic of South Africa]; Type locality: ""Cafrerie"" [= Kaffraria, Republic of South Africa], restricted to ""Drainage of the Olifants River, Cape Province, South Africa"" by Bour (1988a:3)  ",oviparous ,EN,3,0.3,"-30.977079132718398, 19.472934469684596",90,desert
+24,Chersobius solus,"['Nama padloper, Berger’s Cape Tortoise ']","S Namibia (escarpment mountains near Aus, but with scattered records from other isolated mountains in the sand and gravel plains of the southern Namib Desert, e.g., the Kowiesberg near Luderitz, low granite hills 4-5 km SW from Tschaukaib siding (2615Da), and 2-3 km SE from Haalenberg siding)
+
+Type locality: vicinity of Aus, Luderitz District, Namibia  ",oviparous ,VU,3,0.3,"-23.497947662114132, 16.693393465206476",90,desert
+25,Geochelone elegans,"['(Indian) Star Tortoise', 'G: Indische Sternschildkröte ']","Pakistan, India (from Orissa in the east and Sind and Kutch in the west southward to the tip of the peninsula, Gujarat, Kerala, Tamil Nadu), Sri Lanka, and on other small offshore islands
+
+Introduced to Florida (USA)
+
+Type locality: ""India orientali"".  ",oviparous ,VU,10,5,"23.397595416173814, 77.38154483177422",80,grassland
+26,Geochelone platynota,['Burmese Star Tortoise '],"Myanmar (= Burma) (from N Myanmar (= Burma) southward to Moulmein)
+
+Type locality: ""Lower Pegu,"" Myanmar (= Burma); by Smith (1931:140), as ""Irrawaddy Valley"".  ",oviparous Temperature Dependent Sex Determination (TSD) ,CR,13,5,"22.195835490555105, 95.86330551746049",90,grassland
+27,Gopherus agassizii,"['Agassiz’s Desert Tortoise, (Californian) Desert Tortoise', 'S: Galápago del Desierto ']","USA (S Nevada, SW California, W Arizona, New Mexico),
+Mexico (N Baja California)
+
+Xerobates lepidocephalus: Sierra San Vincente region, approx. 1.5 km north of the Buena Mujer Dam, 20 km (by air) south of La Paz, Baja California Sur, Mexico.
+
+Type locality: mountains near Fort Mojave, California. Restricted to “California, San Bernardino County; Mountains of California, near Fort Mojave; Soda Valley (very approximately 35° 6' N, 116° 6' W), by MURPHY et al. 2011.  ",Oviparous Gopherus agassizii can hybridize with Gopherus berlandieri (Edwards et al 2010) Exhibits temperature‐dependent sex determination (TSD) fide Cornejo-Páramo et al 2020 (and references therein) ,VU,6,11,"34.19902094017563, -113.26721148677969",80,desert
+28,Gopherus berlandieri,"['Texas (Gopher )Tortoise', 'S: Galápago de Berlandier ']","USA (S Texas south of Del Rio and San Antonio),
+Mexico (E Coahuila, Nuevo Leon, Tamaulipas, Jalisco)
+
+Type locality: Brownsville, Cameron County, Texas.  ",Gopherus agassizii can hybridize with Gopherus berlandieri (Edwards et al 2010) ,LC,8,NA,"28.268599992724884, -99.41753637565412",60,desert
+29,Gopherus evgoodei,['Goode’s Thornscrub Tortoise '],"Mexico (Sonora, Sinaloa)
+
+Type locality: Alamos (approximate location 27°02'N, 108°55'W, elevation 433 m), Sonora, Mexico  ", ,VU,10,NA,"32.0747556356417, -114.96405578933032",60,desert
+30,Gopherus flavomarginatus,"['Mexican Gopher Tortoise, Bolson tortoise', 'G: Mexikanische Gopherschildkröte', 'S: Galápago de Bolsón ']","Mexico (Bolson de Mapimi, which borders on SE Chihuahua, SW Coahuila, and NE Durango)
+
+Type locality: ""30 to 40 miles north from Lerdo, Durango, Mexico"".  ",oviparous ,CR,18,33,"27.4185192598778, -104.02920824268939",60,desert
+31,Gopherus morafkai,['Morafka’s Desert Tortoise '],"USA (Arizona), Mexico (Sonora)
+
+Type locality: Tucson (approximate location 32° 7' N, 110° 56' W, elevation 948 m), Pima County, Arizona  ",oviparous ,VU,15,NA,"32.154088887544695, -110.9634627722327",60,desert
+32,Gopherus polyphemus,"['(Florida) Gopher Tortoise', 'G: Florida Gopherschildkröte ']","USA (along the Atlantic Coastal Plain in S South Carolina, Georgia, S Alabama, Florida, E Louisiana, Mississippi)
+
+Type locality: vicinity of Savannah, Georgia (restricted by K.P. SCHMIDT 1953)  ",oviparous Exhibits temperature‐dependent sex determination (TSD) fide Cornejo-Páramo et al 2020 (and references therein) ,VU,10,13,"30.92133097095355, -82.18498927142295",60,desert
+33,Homopus areolatus,"['Parrot-beaked Tortoise', 'G: Areolen-Flachschildkröte ']","Republic of South Africa (Cape Province, north to 31°S latitude)
+
+Type locality: ""Indien"" (in error).  ",oviparous ,LC,4.3,0.6,"-32.79635459657977, 24.66665930245022",30,coastal
+34,Homopus femoralis,"['Greater padloper, Karroo Tortoise ']","Republic of South Africa (E Cape Province, SW Orange Free State , SW Transvaal ?)
+
+Type locality: ""Cradock,"" Cape Province, Republic of South Africa.  ",oviparous ,LC,4,NA,"-32.17839537960658, 25.65270869214639",80,savanna
+35,Indotestudo elongata,"['Elongated Tortoise, Yellow-headed tortoise', 'G: Gelbkopf-Landschildkröte', 'Chinese: 缅甸陆龟 ']","Nepal, Bangladesh, Bhutan, NE India (Assam, Jalpaiguri, East Bengal, and Singhbhum in Bihar), Myanmar (= Burma), Laos, Thailand (incl. Phuket), Cambodia, Vietnam, W Malaysia, S China
+
+Type locality: Arakan, Tenasserim, Myanmar (= Burma).  ",oviparous ,CR,12,7,"26.19210136530051, 88.24802405644647",50,deciduous forest
+36,Indotestudo forstenii,"['Travancore Tortoise, Forsten’s Tortoise, Celebes Tortoise', 'F: Tortue De Tranvancore, Tortue Des Celèbes', 'S: Tortuga Marrón De La India', 'Indonesian: baning sulawes, kura kura hutan sulawesi ']","SW India (Karnataka, Kerala),
+Indonesia (introduced on Celebes = Sulawesi and Halmahera)
+
+Type locality: ""Gilolo"" (=Halmahera Island), Moluccas, Indonesia.  ",oviparous ,EN,10,6,"12.255104753458323, 76.18211719734711",30,island
+37,Indotestudo travancorica,['Travancore Tortoise '],"SW India (Karnataka, Kerala),
+Indonesia (introduced on Celebes = Sulawesi and Halmahera)
+
+Type locality: near Trivandrum,Travancore Hills.  ",oviparous ,VU,13,9,"12.255104753458323, 76.18211719734711",30,deciduous forest
+38,Kinixys belliana,"[""Bell’s Hingeback Tortoise, Bell's eastern hinged tortoise ""]","Angola, Burundi, Central African Republic, Democratic Republic of the Congo (Zaire: Katanga), Eritrea, Ethiopia, Kenya, Rwanda, Somalia, Republic of South Sudan (RSS), Sudan (Jumhūriyyat), Uganda, N Tanzania
+
+Type locality: Unknown; ""bought at Humphrey's, West Africa"" according to label on type (fide KING & BURKE 1989)  ",oviparous ,LC,11.5,2.4,"-12.320087076892719, 17.415652043675994",20,savanna
+39,Kinixys erosa,"['Serrated hinge-back tortoise, Eroded Hingeback Tortoise ']","Angola, Benin, Cameroon, Central African Republic, Democratic Republic of the Congo (Zaire; except in the north), Cote d'Ivoire (Ivory Coast), Equatorial Guinea, Gabon,
+Gambia, Ghana, Guinea (Conakry), Liberia, Nigeria, Rwanda, Sierra Leone, Togo, Uganda, Zaire
+
+Type locality: “Nord-Amerika”, “America septentrionali"" (in error)  ",oviparous ,NE,16,NA,"5.322278859617038, 11.698238867110108",10,tropical forest
+40,Kinixys homeana,['Home’s Hingeback Tortoise '],"Liberia, Ivory Coast, Ghana, Togo, Benin, Nigeria, Cameroon,
+Equatorial Guinea, N Democratic Republic of the Congo (Zaire) ?, Central African Republic, Republic of South Sudan (RSS)
+
+Type locality: ""Africa occidentali""; Iverson (1986:160) incorrectly reports that the type locality was restricted to ""Cape Coast, Ashantee"" [Ghana] by Boulenger (1889:143).  ",oviparous ,VU,11.5,2.4,"6.730410932434444, -5.4511706811740686",60,tropical forest
+41,Kinixys lobatsiana,['Lobatse Hingeback Tortoise '],"Republic of South Africa, SE Botswana.
+
+Type locality: Lobatsi, South Africa  ", ,VU,6.5,NA,"-23.93372716383296, 26.640626509181267",60,tropical forest
+42,Kinixys natalensis,['Natal Hingeback Tortoise '],"Republic of South Africa (W Zululand to Greytown, Natal)
+
+Type locality: ""Tugela River valley. . .Tugela River. . . Dimane stream near Jameson Drift,"" Natal Prov., Republic of South Africa.  ",oviparous ,VU,6,2.7,"-27.74857826902235, 31.07976440950999",60,savanna
+43,Kinixys spekii,"[""Speke’s Hinged-back tortoise, Speke's Hingeback Tortoise, savanna hingeback ""]","Angola, Botswana, Burundi, Democratic Republic of the Congo (Zaire: Katanga), Kenya, Malawi, Mozambique, Namibia (Caprivi), Rwanda,South Africa, Swaziland, Tanzania, Uganda, Zambia, Zimbabwe
+
+Type locality: Central Africa (probably NW Tanzania fide BROADLEY & HOWELL 1991).  ",oviparous ,NE,7.5,2.4,"-7.167875612788444, 18.448366888659653",60,savanna
+44,Malacochersus tornieri,"['Pancake Tortoise', 'G: Spaltenschildkröte ']","Kenya, Tanzania, Zambia (Chansa & Wagner 2006)
+
+Type locality: ""bei Bussia [=Busisi] am Victoria Nyanza. . .,"" Tanzania.  ",oviparous Exhibits temperature‐dependent sex determination (TSD) fide Cornejo-Páramo et al 2020 (and references therein) ,CR,7,1,"-5.735607720886861, 34.1375515741854",30,desert
+45,Manouria emys,"['Brown Tortoise', 'G: Braune hinterindische Landschildkröte ']","India (Assam), Bangladesh,
+Myanmar (= Burma), Tailand and Malaysia,
+Indonesia (Sumatra, Borneo)
+
+emys: S Tahiland, Malaysia, Sumatra, Borneo; Type locality: Sumatra
+
+phayrei: N/W Thailand to NE India; Type locality: Arakan; Tenasserim Provinces’.  ",oviparous ,CR,21,55,"16.28549272630782, 99.6476140796679",150,tropical forest
+46,Manouria impressa,"['Impressed Tortoise', 'G: Flache Hinterindische Landschildkröte', 'Chinese: 凹甲陆龟 ']","India (Arunachal Pradesh), Myanmar (= Burma) (from the Karenni Hills southward), Laos,
+Malaysia, Cambodia [HR 31: 111], China (Hunan, Hainan, Yunnan Provinces), Thailand, Vietnam
+
+Type locality: Siam [= Thailand]  ",oviparous ,VU,14,7,"30.550096845773943, 97.67007504289826",20,tropical forest
+47,Psammobates geometricus,"['Geometric Tortoise', 'G: Geometrische Landschildkröte ']","Republic of South Africa (Tulbagh, Paarl, and Malmesbury districts of Cape Province)
+
+Type locality: Asia.  ",oviparous ,CR,6,1.1,"-33.28689230434797, 19.1444041968191",35,coastal
+48,Psammobates oculiferus,"['Serrated Tent Tortoise, Kalahari Tent Tortoise, Serrated Tortoise ']","Republic of South Africa (from extreme W Transvaal and the W Orange Free State northwestward), Botswana, Namibia, Zimbabwe
+
+Type locality: ""vom Cap dahin gebracht worden,"" [i.e. Republic of South Africa].  ", ,NT,6,NA,"-21.235808675124883, 22.268067932966648",20,savanna
+49,Psammobates tentorius,['Tent Tortoise '],"Namibia (from the Great Namaqualand southeastward),
+Republic of South Africa (to Cape Province)
+
+Type locality: ""Habitat in Africa?""  ",oviparous ,NT,6,NA,"-27.341945316362, 17.154819238613985",20,savanna
+50,Pyxis arachnoides,"['Madagascan Spider Tortoise', 'G: Madagassische Spinnenschildkröte', 'brygooi: Northern Spider Tortoise ']","Madagascar (along the S coast from the Mahajamba River southward around Cape Sainte-Marie almost to Fort-Dauphin)
+
+Type locality: Unknown; designated as ""Soalara (Baie de Saint-Augustin), sud-ouest de Madagascar"" by Bour 1978:153.
+
+brygooi: SW Madagascar (Mikea Forest). Type locality: “entre Morombe et Tuléar, aux alentours du lac Ihotry, dans la forêt des Mikea”.  ",oviparous ,CR,7,0.8,"-16.10425190382187, 47.194857025575715",70,island
+51,Pyxis planicauda,['Madagascan Flat-tailed Tortoise '],"SW Madagascar (vicinity of Morondava)
+
+Type locality: ""Mouroundava, ouest de Madagascar,"" restricted by Bour 1981:165, to ""Morondava, province de Tulear, Madagascar (puirrait etre restrainte a la foret d'Andranomena).""  ", ,CR,7,NA,"-20.402798830589628, 44.32738780773961",50,island
+52,Stigmochelys pardalis,['Leopard Tortoise '],"S Sudan (Jumhūriyyat), Republic of South Sudan (RSS), Ethiopia, Somalia, Kenya, Uganda, Tanzania,
+Rwanda, Burundi, Zaire, Angola, (Namibia, Mozambique,
+Malawi, Zimbabwe, Botswana ?), Swaziland, Zambia
+
+babcocki: Namibia, Uganda, Somalia; Type locality: Mount Debasien, Karamoja, Uganda;
+
+Type locality: ""Promont. Bonae Spei"" (= Cape of Good Hope), Cape Province, Republic of South Africa.  ",oviparous ,LC,16,29,"1.5751246255860716, 36.536906281495085",100,savanna
+53,Testudo graeca,"['Mediterranean Spur-thighed Tortoise', 'G: Maurische Landschildkröte', 'Russian: Средиземноморская черепаха ']","S Spain (introduced to Mallorca, Formentera)
+Italy incl. Sardinia and Sicily (introduced), France (introduced),
+N Greece (including Aegean islands, e.g. Limnos, Lesbos, Chios, Samos, Samothraki),
+Serbia, Montenegro, Albania, Romania, Bulgaria, Turkey,
+Morocco, Algeria, Tunisia, Libya, Israel, Syria, Jordan, Iran, N Iraq
+Russia (eastwards to Transcaucasus; Dagestan),
+
+acording to the 1994 IUCN Red List of Threatened Animals:
+Albania, Algeria, Armenia, Azerbaijan, Bulgaria, Egypt, France, E Republic of Georgia, Greece, Iran, Iraq, Israel, Italy, Jordan, Lebanon, Libya, Macedonia, Moldova, Morocco, Romania, Russia, Spain, Syria, Tunisia, Turkey, Turkmenistan
+
+armeniaca: Trans-Caucasus, Iran
+
+anamurensis: Cape Anamur and SW coast of Turkey.
+
+antakyensis: S Turkey
+
+cyrenaica: Libya (endemic)
+
+flavominimaralis: Tunisia
+
+floweri: Negev (S arid Israel); type locality: “Negev”.
+
+ibera: S Serbia, Greece (Lesbos, Samos), Romania through Iran.
+
+lamberti: NW Morocco
+
+nabeulensis: Tunisia, NW Libya; Type locality: Nabeul, N Tunisia
+
+nikolskii: Republic of Georgia, Russia (western Caucasus)
+
+pallasi: Russia (Daghestan)
+
+perses: SE Turkey, NE Iraq, SC Iran (Zagros mountains)
+
+soussensis: Souss valley, Morocco; Type locality: Vincity of Agadir, 30°28'N, 9°55'W.
+
+terrestris: Israel, Lebanon, Jordan, Syria, SE Turkey.
+
+zarudnyi: E Iran; Type locality: “Birdschan” [Birjand, South Khorasan Province, Iran, 32.87 N 59.22 E].
+
+Type locality: ""Africa,"" according to Linnaeus 1758:352; however, the caption of the holotype, Plate 204 of Edwards 1751 reads ""Loc. Santa Cruz in West Barbary"" (=old fort Santa Cruz near Oran, Algeria, according to Strauch (1862:67). Mertens and Müller (1928:22), designated it as ""Santa Cruz, in der Westberberei, Nordafrika"" (after KING & BURKE 1989).  ",T graeca has been reported to have temperature-dependent sex determination (TSD) (Pieau 1998) ,VU,8,13,"40.97328469565207, 14.738663294078368",125,coastal
+54,Testudo hermanni,"['Hermann’s Tortoise', 'G: Griechische Landschildkröte', 'Eastern Hermann’s Tortoise [boettgeri]', 'Western Hermann’s Tortoise [hermanni]', 'Croatian: kopnena kornjača ']","E Spain (also introduced to the Balearics: Mallorca, Menorca),
+S France (incl. Corsica),
+Italy (incl. Sardinia, Sicily, Elba, Pianosa, Lampedusa island),
+Albania, Croatia (including some Adriatic islands),
+Bosnia and Hercegovina, Monte Negro, Macedonia, Serbia,
+Bulgaria, Romania,
+Greece (incl. the Ionian Islands, Corfu = Corfou)
+E Turkey
+
+boettgeri: coastal regions of the former Yugoslavia, through Albania, Greece, Bulgaria, to the Black Sea. Type locality: Orsova, Banat.
+
+Type locality: unknown (fide WERMUTH & MERTENS 1977)  ",oviparous ,VU,10,8,"40.6073025198516, 15.222061729639778",90,grassland
+55,Testudo horsfieldii,"['Horsfield’s Tortoise', 'G: Steppenschildkröte', 'Fergana Valley Steppe Tortoise [bogdanovi]', 'Kazakhstan Steppe Tortoise [kazachstanica]', 'Turkmenistan Steppe Tortoise [kuznetzovi]', 'Kopet-Dag Steppe Tortoise [rustamovi]', 'Chinese: 四爪陆龟 ']","Azerbaijan, S Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan, N/E Iran, Afghanistan, N Pakistan, N/W Baluchistan, NW China (Xinjiang); elevations up to 2400 m (in Afghanistan fide WERNING & WOLF 2007).
+
+Type locality: Kabul, Afghanistan
+
+bogdanovi: Kyrgyzstan, Tajikistan, Uzbekistan; Type locality: “Узбекистан (Окрестности городов Бухара, Самарканд, Карши), Восточный Туркменистан (окрестности Чарджоу) и Киргизстан (Чуйская долина и окрестности города Ош)” [Uzbekistan (vicinity of the cities of Bukhara, Samarkand, Karshy), East Turkmenistan (near Chardzhou) and Kyrgyzstan (Chuy valley and vicinity of Osh)]. Restricted to “Ферганская долина” [Ferghana Valley] [Uzbekistan] by Chkhikvadze et al. (2009:49).
+
+kazachstanica: Afghanistan, China (Xinjiang), Kazakhstan, Kyrgyzstan, Tajikistan, Turkmenistan, Uzbekistan; Type locality: “Южное Прибалхашье, поселок Каратал” [south- ern Pribalkhashye (= Balkash), Karatal village]” [Kazakhstan].
+
+kuznetzovi: Turkmenistan, Uzbekistan; Type locality: “впадины Акчакая (Северный Туркменистан, к западу от г. Дашогуз – бывш. Ташауз)” [Akchakai depression (North Turkmenistan, west of the city of Dashoguz – prev. Tashauz)].
+
+rustamovi: Afghanistan, Iran (Golestan, Khorasan Razavi, North Khorasan, Semnan), Turkmenistan; Type locality: “село Мадау (Кизыл-Атрекский район), Юго-Западный Туркменистан” [Madau Village, Kizyl Atrek Region, south-western Turkmenistan].  ","Testudo horsfieldii and Testudo graeca ibera have been reported to produce viable hybrids (KABISCH 2001) T horsfieldii produced also hybrids with T hermanni boettgeri (STEINLE 1977, FRITZ 1995) ",VU,10,3.3,"45.521720499130325, 57.90001573381836",75,grassland
+56,Testudo kleinmanni,"['Egyptian Tortoise (werneri: Negev Tortoise)', 'G: Ägyptische Landschildkröte ']","Libya (Tripolitania & Cyrenaica) and the Western desert in Egypt, up to Alexandria in the east
+
+Type locality: ""dans le sables de la basse Egypt, a surtout dans le environs d'Alexandrie,"" Egypt.
+
+Type locality: Alexandria (Egypt) [lectotype; designated by PERÄLÄ 2001].
+
+werneri: Israel, Egypt (from N Negev southwest along Mediterranean coastal regions on the Sinai peninsula to the Nile delta in Egypt). Type locality: northern Negev desert, Israel. Holotype found in “sand dunes 14 km south of Be’er Sheva (northern Negev desert, Israel).”  ",oviparous ,CR,4,0.5,"26.824041379855714, 25.292593875031997",90,desert
+57,Testudo marginata,"['Marginated Tortoise', 'G: Breitrand-Schildkröte', 'Dwarf marginated tortoise (weissingeri)', 'F: Tortue bordée naine (weissingeri) ']","Italy (introduced to Sardinia; Tuscany [E. RAZZETTI, pers. comm.]), Turkey (introduced fide SINDACO et al. 2000),
+Greece (from Mt. Olympus southward, in the Aegean Sea, Corfu, Skyros, Poros, Paros), Albania
+
+weissingeri: Greece (Peloponnese, on the Western flank of the Taygetos mountain, between Kalamata (Messenia) and Areopoli (Laconia))
+
+Type locality: Unknown; designated by Bour (1987:121), as ""Grèce"" based on repeated reference to Greece in the donor's description, and further restricted to ""la province de l'Attique, d'où provenait vraisemblablement ce lectotype"" [province of Attica, Stereá Eláda].  ","Testudo marginata and Testudo graeca ibera have been reported to produce viable hybrids (STEMMLER-GYGER 1963, 1964, Rogner 2013) ",LC,14,11,"41.11244378185538, 19.44786738143997",120,mountain
