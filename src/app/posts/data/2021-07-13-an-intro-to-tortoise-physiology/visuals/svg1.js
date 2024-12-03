@@ -1,11 +1,15 @@
 'use client'
-
 import * as d3 from "d3";
 import { useEffect, useState } from "react";
-import { config } from "./config";
-import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
-// import data from '../data/tort_data.csv';
+// styles
+import { config } from "./config";
+
+// components
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
+import { createEphemeralD3Tooltip } from "@/app/components/d3/tooltips/EphemeralTooltip";
+
+// data
 import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
 
 const initialHC = {
@@ -19,16 +23,12 @@ const initialHC = {
     'island': 0
 };
 
-// type DataRow = {
-//     [key: string]: string | number;
-//   };
 
 const SVG1 = () => {
     const [tortData, setTortData] = useState([]);
     const [habitatCounts, setHabitatCounts] = useState({});
-    // const [xStat, setXStat] = useState([]);
-    // const [yStat, setYStat] = useState([]);
 
+    // fetch data
     useEffect(() => {
         async function fetchData() {
             loadPublicCSV({ fileName: '2021-07-13-an-intro-to-tortoise-physiology' })
@@ -57,11 +57,12 @@ const SVG1 = () => {
     // console.log('tortdata', data);
 
     // console.log('hc', habitat_counts)
+
+    // stat dropdown options
     const stats = ['Max Size', 'Max Size vs. Max Age', 'Max Age', 'Habitat vs. Max Size', 'Habitat'];
     const [stat, setStat] = useState(stats[3]);
-    // const [showY, setShowY] = useState('hidden');
+
     let showY;
-    // const [tooltipContent, setTooltipContent] = useState('bleh');
     let xStat, yStat, xMeasure, yMeasure, xUnits, yUnits, xLabelValue, yLabelValue;
     let tooltip_content;
 
@@ -134,11 +135,12 @@ const SVG1 = () => {
         }
         yLabelValue = yMeasure + ' (' + yUnits + ')';
 
-        // tooltip
-        const tooltip_s = d3.select("body")
-            .append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+        const tooltip_s = createEphemeralD3Tooltip("tooltip-1", {
+            'background-color': "white",
+            'padding': "2px",
+            'border': "1px solid grey",
+            'border-radius': "4px"
+        });
 
         // scales, axes, labels
         let xScale;
@@ -267,16 +269,10 @@ const SVG1 = () => {
         //     .remove()
     };
 
-    // initial render_s1 and when stat changes
+    // initial render and when stat changes
     useEffect(() => {
         render_s1();
-        // console.log('new stat',stat,'rerendering...')
     }, [tortData, stat]);
-
-    // update tooltip content with stat
-    // const onStatClicked = selection => {
-    //     setStat(selection)
-    // };
 
     return (
         <>
@@ -288,8 +284,8 @@ const SVG1 = () => {
                 setSelectedOption={setStat}
                 maxWidth={300}
                 color={config.colors[0]}
-            // handleChange={e => { onStatClicked(e.target.value) }}
             />
+            {/* vis container */}
             <svg id="stat-svg1">
             </svg>
         </>

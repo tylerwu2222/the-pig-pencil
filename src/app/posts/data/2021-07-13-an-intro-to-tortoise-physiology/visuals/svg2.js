@@ -1,10 +1,14 @@
 'use client'
-
 import * as d3 from "d3";
 import { useEffect, useState } from "react";
 
+// components
+import { createEphemeralD3Tooltip } from "@/app/components/d3/tooltips/EphemeralTooltip";
+
+// data
 import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
 
+// styles
 import { config, cs_key, cs_mapping } from "./config";
 
 const initialCC = {
@@ -73,10 +77,17 @@ const SVG2 = () => {
             .range([config.inner_vh, 0])
 
         // tooltip
-        var tooltip_cs = d3.select("body")
-            .append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+        // var tooltip_cs = d3.select("body")
+        //     .append("div")
+        //     .attr("class", "tooltip")
+        //     .style("opacity", 0);
+        const tooltip_cs = createEphemeralD3Tooltip("tooltip-2", {
+            'background-color': "white",
+            'padding': "2px",
+            'border': "1px solid grey",
+            'border-radius': "4px"
+        });
+
 
         // blocks
         const tort_block = cs_svg.selectAll('image')
