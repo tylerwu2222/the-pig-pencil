@@ -7,11 +7,8 @@
   }
 }
 
-html {
-  overflow-y: scroll; /* Ensures scrollbar is always visible */
-}
-
 body{
+  overflow-y: scroll; /* Ensures scrollbar is always visible */
   margin: 0; /* Removes default margin to avoid layout issues */
   background-color: #FDFBF8;
 }

@@ -3,9 +3,7 @@
 import * as d3 from "d3";
 import { useEffect, useState } from "react";
 import { config } from "./config";
-// udpate
-// import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu";
-// import DropdownMenu from "@/app/components/inputs/DropdownInput/DropdownMenu";
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
 import data from '../data/tort_data.csv';
 import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
@@ -27,7 +25,6 @@ const initialHC = {
 
 const SVG1 = () => {
     const [tortData, setTortData] = useState([]);
-    // const [tortData, setTortData] = useState<DataRow[]|null>(null);
     const [habitatCounts, setHabitatCounts] = useState({});
     // const [xStat, setXStat] = useState([]);
     // const [yStat, setYStat] = useState([]);
@@ -273,17 +270,26 @@ const SVG1 = () => {
     // initial render_s1 and when stat changes
     useEffect(() => {
         render_s1();
+        console.log('new stat',stat,'rerendering...')
     }, [tortData, stat]);
 
     // update tooltip content with stat
-    const onStatClicked = selection => {
-        setStat(selection)
-    };
+    // const onStatClicked = selection => {
+    //     setStat(selection)
+    // };
 
     return (
         <>
-            {/* <ConversionToReactMessage /> */}
-            {/* <DropdownMenu label='Stat' options={stats} initialOption={stat} maxWidth={300} color={config.colors[0]} handleChange={e => { onStatClicked(e.target.value) }} /> */}
+            <DropdownInputSelect
+                label='Stat'
+                options={stats}
+                initialOption={stat}
+                selectedOption={stat}
+                setSelectedOption={setStat}
+                maxWidth={300}
+                color={config.colors[0]}
+            // handleChange={e => { onStatClicked(e.target.value) }}
+            />
             <svg id="stat-svg1">
             </svg>
         </>
