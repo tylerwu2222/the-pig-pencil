@@ -1,7 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import './Scrollspy.css';
+
+// icons
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
 
 interface ScrollspyHeaderProps {
     include: boolean;
@@ -14,22 +17,23 @@ export function ScrollspyHeader({
     include = true,
     level = 2,
     isInline = false,
-    header = 'header' }: ScrollspyHeaderProps) {
-    // default h2
-    // const Tag = `h${level}`;
-    if (isInline) {
-        return <h2 className={`scrollspy-header inline ${include ? "included" : ""}`}>{header}</h2>
-    }
+    header = 'header',
+}: ScrollspyHeaderProps) {
+    const Tag = `h${Math.min(Math.max(level, 1), 6)}` as keyof JSX.IntrinsicElements; // Ensure level is between 1 and 6
+
     return (
-        <h2 className={`scrollspy-header ${include ? "included" : ""}`}> {header}</h2 >
-        // <Tag className="presHeader">{
-        //     nestedImage ? nestedImage : 'Default Text'
-        // }</Tag>
+        <Tag
+            className={`scrollspy-header ${isInline ? "inline" : ""} ${include ? "included" : ""}`}
+        >
+            {header}
+        </Tag>
     );
 }
 
 export default function Scrollspy() {
+    const [isVisible, setIsVisible] = useState(true);
     const [sectionTitles, setSectionTitles] = useState<string[]>([]);
+    const [headerLevels, setHeaderLevels] = useState<number[]>([]);
 
     useEffect(() => {
         // Query the DOM for elements with the specific class after the DOM is rendered
@@ -40,7 +44,18 @@ export default function Scrollspy() {
         // Extract innerHTML or textContent from the header elements
         const titles = headerElements.map((e) => e.textContent || '');
         setSectionTitles(titles);
+
+        // Extract
+        const levels = headerElements.map((e) => {
+            const level = parseInt(e.tagName.replace('H', ''), 10); // Get the header level (1-6)
+            return level;
+        });
+        setHeaderLevels(levels);
     }, []);
+
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    };
 
     // Scroll to the header element based on index
     const scrollToHeader = (index: string) => {
@@ -55,29 +70,45 @@ export default function Scrollspy() {
         }
     };
 
-    console.log('ss titles in ss:', sectionTitles);
+    // console.log('ss titles in ss:', sectionTitles);
 
     return (
-        <div className='fixed top-[30vh] left-0'>
-            {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
-            <nav className="bg-transparent text-[14px] w-[18vw] pl-[2vw] flex-col flex-wrap">
-                {
-                    sectionTitles.map((s, i) => {
-                        return (
-                            <div
-                                key={i}
-                                className='p-1 my-2 text-wrap'>
-                                <a
-                                    className="hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"
-                                    onClick={() => { scrollToHeader(String(i)) }}
-                                // href={'#section' + String(i)}
-                                >{s}</a>
-                            </div>
-                        )
-                    })
+        <div className='relative'>
+            <div className='fixed top-[30vh] left-0'>
+                {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
+                <nav className={`bg-transparent text-[14px] w-[18vw] pl-[1.5vw] flex-col flex-wrap transition-all delay-75 duration-500 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
+                    {
+                        sectionTitles.map((s, i) => {
+                            const headerLevel = headerLevels[i]; // Assuming `headerLevels` is an array with levels (1-6) for each section title
+                            const isIndented = headerLevel >= 3;
+                            const textSize = headerLevel <= 2 ? 'text-[14px]' : 'text-[12px]';
 
-                }
-            </nav >
+                            return (
+                                <div
+                                    key={i}
+                                    className={`p-1 my-2 text-wrap ${isIndented ? 'pl-[2vw]' : 'pl-0'
+                                    } ${textSize}`}>
+                                    <a
+                                        className="hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"
+                                        title={'navigate to: ' + s}
+                                        onClick={() => { scrollToHeader(String(i)) }}
+                                    // href={'#section' + String(i)}
+                                    >{s}</a>
+                                </div>
+                            )
+                        })
+
+                    }
+                </nav >
+                <button
+                    onClick={toggleVisibility}
+                    className={`absolute top-[30vh] left-[16vw] font-bold ml-[1vw] bg-transparent transition-all duration-500 ease-in-out opacity-30 hover:opacity-100 text-textGrey border border-textGrey hover:border-hoverDeepPink hover:text-hoverDeepPink hover:scale-110 rounded-full w-7 h-7 flex items-center justify-center duration-300 ease-in-out ${isVisible ? 'translate-x-0' : '-translate-x-[16vw]'
+                        }`}
+                    title={isVisible ? 'hide scrollspy links' : 'show scrollspy links'}
+                >
+                    {isVisible ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}
+                </button>
+            </div>
         </div>
     )
 }
