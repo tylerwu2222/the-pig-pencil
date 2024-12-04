@@ -82,18 +82,42 @@ import { Button } from "@/components/ui/button"
 // };
 
 const NavBar = () => {
+    // const [currentHoveredTab, setCurrentHoveredTab] = useState('___');
 
-    const [menuVisible, setMenuVisible] = useState(false);
-    const [currentHoveredTab, setCurrentHoveredTab] = useState('___');
-
-    const [userHovered, setUserHovered] = useState(false);
-    const [hoverTabInterval, setHoverTabInterval] = useState(null);
+    // const [userHovered, setUserHovered] = useState(false);
+    // const [hoverTabInterval, setHoverTabInterval] = useState(null);
 
     const [logoFontFamily, setLogoFontFamily] = useState('Gloock');
-    const [randomFontIndex, setRandomFontIndex] = useState(0);
+    // const [randomFontIndex, setRandomFontIndex] = useState(0);
+
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                // Scrolling down
+                setIsVisible(false);
+            } else {
+                // Scrolling up
+                setIsVisible(true);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollY]);
 
     return (
-        <div className='grid grid-cols-3 items-center'>
+        <div className={`grid grid-cols-3 items-center bg-backgroundWhite 
+            sticky top-0 
+            transition-transform duration-700 ease-in-out 
+            ${isVisible ? 'translate-y-0' : '-translate-y-full'
+            }`}>
             {/* TPP logo */}
             <div className='h-10 pl-2 pt-1 justify-self-start'>
                 <Link

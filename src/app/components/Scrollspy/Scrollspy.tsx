@@ -76,7 +76,7 @@ export default function Scrollspy() {
         <div className='relative'>
             <div className='fixed top-[30vh] left-0'>
                 {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
-                <nav className={`bg-transparent text-[14px] w-[18vw] pl-[1.5vw] flex-col flex-wrap transition-all delay-75 duration-500 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
+                <nav className={`bg-transparent text-[14px] w-[18vw] pl-[1.5vw] flex-col flex-wrap transition-all duration-500 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
                     {
                         sectionTitles.map((s, i) => {
                             const headerLevel = headerLevels[i]; // Assuming `headerLevels` is an array with levels (1-6) for each section title
@@ -87,9 +87,9 @@ export default function Scrollspy() {
                                 <div
                                     key={i}
                                     className={`p-1 my-2 text-wrap ${isIndented ? 'pl-[2vw]' : 'pl-0'
-                                    } ${textSize}`}>
+                                        } ${textSize}`}>
                                     <a
-                                        className="hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"
+                                        className="text-textGrey hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"
                                         title={'navigate to: ' + s}
                                         onClick={() => { scrollToHeader(String(i)) }}
                                     // href={'#section' + String(i)}
@@ -102,7 +102,10 @@ export default function Scrollspy() {
                 </nav >
                 <button
                     onClick={toggleVisibility}
-                    className={`absolute top-[30vh] left-[16vw] font-bold ml-[1vw] bg-transparent transition-all duration-500 ease-in-out opacity-30 hover:opacity-100 text-textGrey border border-textGrey hover:border-hoverDeepPink hover:text-hoverDeepPink hover:scale-110 rounded-full w-7 h-7 flex items-center justify-center duration-300 ease-in-out ${isVisible ? 'translate-x-0' : '-translate-x-[16vw]'
+                    className={`fixed top-[33vh] left-[16vw] font-bold ml-[1vw] 
+                        bg-transparent transition-transform duration-500 ease-in-out 
+                        opacity-30 hover:opacity-100 text-textGrey border border-textGrey hover:border-hoverDeepPink hover:text-hoverDeepPink 
+                        rounded-full w-7 h-7 flex items-center justify-center ${isVisible ? 'translate-x-0' : '-translate-x-[16vw]'
                         }`}
                     title={isVisible ? 'hide scrollspy links' : 'show scrollspy links'}
                 >
