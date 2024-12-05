@@ -1,23 +1,29 @@
-import * as d3 from 'd3';
+'use client'
+// import * as d3 from 'd3';
 
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
-import data2 from '../data/mini_scores_c_wide.csv';
+// data
+import { loadPublicCSV } from '@/app/lib/data_section/loadPublicCSV';
 
+// styles
 import { colors } from './config';
-// import { NYTContext } from '../2023-05-23-visualizing-nyt-mini-crossword-completion-times';
 
 export default function Basic1() {
     const [wideData, setWideData] = useState([]);
 
     // load data
     useEffect(() => {
-        d3.csv(data2)
+        // d3.csv(data2)
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2023-05-23-visualizing-nyt-mini-crossword-completion-times_c_wide' })
             .then(dta => {
                 setWideData(dta);
                 // console.log('wide', dta);
             });
+        }
+        fetchData();
     }, []);
 
 

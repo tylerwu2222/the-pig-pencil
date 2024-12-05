@@ -1,34 +1,32 @@
+import Basic1 from './visuals/Basic1';
+import Basic2 from './visuals/Basic2';
+
 ---
-Date: "5/24/2023"
-Title: "Visualizing NYT Mini Crossword Completion Times"
-Author:
+date: "5/24/2023"
+title: "Visualizing NYT Mini Crossword Completion Times"
+authors:
   - "Tyler Wu"
-AuthorURL:
-  - "https://thepigpencil.com/collaborators"
-MainTag: "puzzle"
-Tags:
+tags:
   - "puzzle"
   - "entertainment"
-ReadingTime: "15 min"
-Languages: "D3.js"
-Caption: "In as many ways as possible"
-HasScrollspy: "true"
-HasImageModal: "true"
-SectionTitles:
-- Collecting the Data
-- Preliminary Sketches
-- The Graphs
-- Closing Thoughts
-Hidden: "false"
+readingTime: "10 min"
+caption: "In as many ways as possible"
+hasScrollspy: "true"
+hasImageModal: "true"
+visibility: "visible"
 ---
 
-This past school year, I began playing the <a href='https://www.nytimes.com/crosswords/game/mini' target='_blank'>NYT Mini crossword</a> with some friends.
+This past school year, I began playing the [NYT Mini crossword]('https://www.nytimes.com/crosswords/game/mini') with some friends.
 
 For those unfamiliar, The Mini is a 5x5 daily crossword by NYT that looks like this:
 
-<img className="articleImgTall" src='/img/data/nyt_mini_scores/nyt_mini_scores1.png' alt='example-mini'/>
+<img 
+className="h-[60vh]" 
+src='/img/data/nyt_mini_scores/nyt_mini_scores1.png' 
+alt='example-mini'
+/>
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Collecting the Data'}/>
 
 I thought it would be interesting to collect the time it took everyone to complete
 each daily mini via screenshots and see if I could make some cool visualizations as a result of it.
@@ -42,7 +40,7 @@ Here's a diagram of what an example leaderboard looked like and how I converted 
   title='fig. 2'
 />
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Preliminary Sketches'}/>
 
 A simple visualization exercise I've learned this past year in my info viz class
 is to come up with as many visualizations as you can from one dataset.
@@ -60,25 +58,29 @@ title='fig. 3'
 Starting with simple graphs helped me get familiar with the type of data I had and how they are commonly visualized.
 Once I had this stepping stone, it was easier to think about alterations and alternative ways I could visualize.
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'The Graphs'}/>
 After sketching, I created each viz using D3 (and the basic graphs using recharts):
 
-<h3>Basic Graphs</h3>
+{/* <ScrollspyHeader header={'Basic Graphs'} level={3} include={true}/> */}
+### Basic Graphs
+
+
 I first tried making the most basic linechart using Recharts, and the result looks... messy.
 
-<h4>Daily Completion Time Per User</h4>
+#### Daily Completion Time Per User
 <Basic1 />
 
 Side note: it turns out recharts is actually rendering all missing values as 0.
 
+#### Cumulative Completion Time Per User
 Recharts' linechart does look a bit better with cumulative stats:
 
 <Basic2 />
 
 Many of my friends (including myself) played mini less and less throughout the year as our classes got busier.
-Thus, it could also be interesting to track <i>when</i> we play the mini 
+Thus, it could also be interesting to track **when** we play the mini 
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Closing Thoughts'}/>
 In a perfect world, I would've captured every day and I might've also screenshotted the actual crosswords for each day
 so I could look for relationships between the words/hints and completion time. But I'm human, so I didn't :(
 

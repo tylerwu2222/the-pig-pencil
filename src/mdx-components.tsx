@@ -4,6 +4,7 @@ import { ComponentPropsWithoutRef } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
+import ImageModal from './app/components/modals/ImageModal/ImageModal';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -108,6 +109,7 @@ export function useMDXComponents(
     ...otherComponents,
     ...components,
     Image,
+    ImageModal,
     // Scrollspy,
     ScrollspyHeader
   }

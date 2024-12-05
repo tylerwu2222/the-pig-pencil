@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 // components
 import PostHeader from '../../PostHeader';
 import Scrollspy from '@/app/components/Scrollspy/Scrollspy';
+// import ImageModal from '@/app/components/modals/ImageModal/ImageModal';
 
 // helpers
 import { getPostBySlug } from '@/app/lib/prisma/prisma';

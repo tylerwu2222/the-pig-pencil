@@ -1,12 +1,16 @@
-import * as d3 from 'd3';
+'use client'
+// import * as d3 from 'd3';
 import './recharts.css'
 
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
-import data2 from '../data/mini_scores_c_wide.csv';
+// import data2 from '../data/mini_scores_c_wide.csv';
+import { loadPublicCSV } from '@/app/lib/data_section/loadPublicCSV';
 
-import DropdownMenu from '../../../../components/Modules/DropdownMenu/DropdownMenu';
+// import DropdownMenu from '../../../../components/Modules/DropdownMenu/DropdownMenu';
+import DropdownInputSelect from '@/app/components/inputs/DropdownInput/DropdownInputSelect';
+
 
 import { colors } from './config';
 
@@ -20,24 +24,34 @@ export default function Basic2({ data }) {
 
     // load data
     useEffect(() => {
-        d3.csv(data2)
-            .then(dta => {
-                setWideData(dta);
-                // console.log('wide', dta);
-            });
+        // d3.csv(data2)
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2023-05-23-visualizing-nyt-mini-crossword-completion-times_c_wide' })
+                .then(dta => {
+                    setWideData(dta);
+                    // console.log('wide', dta);
+                });
+        }
+        fetchData();
     }, []);
 
 
 
     useEffect(() => {
         if (currentCumulativeStat == '_mean') {
-            console.log('meameaern');
+            // console.log('meameaern');
             setYDomain([0, 500]);
         }
     }, [currentCumulativeStat]);
 
     return (<>
-        <DropdownMenu label='Cumulative stat' options={cumulative_stats} handleChange={e => { setCurrentCumulativeStat(e.target.value) }} />
+        <DropdownInputSelect
+            label='Cumulative stat'
+            options={cumulative_stats}
+            initialOption={currentCumulativeStat}
+            selectedOption={currentCumulativeStat}
+            setSelectedOption={setCurrentCumulativeStat}
+        />
         <LineChart
             width={800}
             height={400}
