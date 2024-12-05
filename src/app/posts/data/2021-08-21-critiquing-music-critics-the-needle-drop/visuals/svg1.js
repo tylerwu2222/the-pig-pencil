@@ -1,10 +1,15 @@
+'use client'
 import * as d3 from "d3";
 import { useState, useEffect } from "react";
 
-import data from '../data/fantano_7_15_21_albums.csv';
+// components
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
+// data
+import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV.ts";
+
+// styles
 import config from "./config.js";
-import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu";
 
 const parseTime = d3.timeParse("%d-%b-%y");
 
@@ -13,32 +18,33 @@ const SVG1 = ({ view = 'absolute' }) => {
     // console.log('svg1 init data', data);
 
     const [albumData, setAlbumData] = useState([]);
-
     const stats1 = ['All years'].concat([...Array(10).keys()].map(yr => yr + 2012));
+    const [stat, setStat] = useState(stats1[0]);
 
     // load data on load
     useEffect(() => {
-        d3.csv(data)
-            .then(dta => {
-                dta.forEach(d => {
-                    d.Year = +d.Year; // year to numeric
-                    d.Score = +d.Score; // year to numeric
-                    d.Date = parseTime(d.Date); // format to date
-                    d.Artists = d.Artists.split('<,>');
-                    d.Genres = d.Genres.split(',');
-                });
-                // init album datas
-                setAlbumData(dta);
-            })
-            .catch(error => {
-                console.error('Error loading or parsing CSV data:', error);
-            })
+        // d3.csv(data)
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2021-08-21-critiquing-music-critics-the-needle-drop' })
+                .then(dta => {
+                    dta.forEach(d => {
+                        d.Year = +d.Year; // year to numeric
+                        d.Score = +d.Score; // year to numeric
+                        d.Date = parseTime(d.Date); // format to date
+                        d.Artists = d.Artists.split('<,>');
+                        d.Genres = d.Genres.split(',');
+                    });
+                    // init album datas
+                    setAlbumData(dta);
+                })
+                .catch(error => {
+                    console.error('Error loading or parsing CSV data:', error);
+                })
+        }
+        fetchData();
     }, []);
 
-    // render s1 whenever album data changes (i.e. after data loaded)
-    useEffect(() => {
-        render_s1(stats1[0]);
-    }, [albumData]);
+
 
     // render svg1 based on year
     const render_s1 = (stat) => {
@@ -170,14 +176,26 @@ const SVG1 = ({ view = 'absolute' }) => {
     };
 
     // render svg1 when dropdown clicked
-    const onStat1Clicked = (event, child) => {
-        render_s1(event.target.value);
-    };
+    // const onStat1Clicked = (event, child) => {
+    //     render_s1(event.target.value);
+    // };
+
+    // render s1 whenever album data or stat changes (i.e. after data loaded)
+    useEffect(() => {
+        render_s1(stat);
+    }, [albumData, stat]);
 
     return (
         <>
             {/* <DropdownMenu label='Year' options={stats1} maxWidth={300} color = {config.stroke1}/> */}
-            <DropdownMenu label='Year' options={stats1} maxWidth={300} color={config.color1} handleChange={e => { onStat1Clicked(e) }} />
+            <DropdownInputSelect
+                label='Year'
+                options={stats1}
+                initialOption={stat}
+                selectedOption={stat}
+                setSelectedOption={setStat}
+                color={config.color1}
+            />
             <svg id="stat-svg1">
             </svg>
         </>

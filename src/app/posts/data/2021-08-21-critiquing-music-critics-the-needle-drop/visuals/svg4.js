@@ -1,16 +1,17 @@
+'use client'
 import { useState, useEffect } from "react";
-// import TNDContext from "./TNDContext.js";
 import * as d3 from "d3";
 
-import data from '../data/fantano_7_15_21_albums.csv';
+// data
+import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
 
-import { CustomTextField } from "../../../../components/Modules/FormInput/CustomTextField/CustomTextField.js";
-
+// styles
 import config from "./config.js";
-import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu.js";
-import NumberInput from "../../../../components/Modules/NumberInput/NumberInput.js";
 
-import ConversionToReactMessage from "../../../../components/Modules/ConversionToReactMessage.js";
+// components
+import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
+import NumberInput from "@/app/components/inputs/NumberInput/NumberInput";
 
 const parseTime = d3.timeParse("%d-%b-%y");
 
@@ -37,62 +38,66 @@ export default function SVG4() {
 
     // initial load data
     useEffect(() => {
-        d3.csv(data)
-            .then(dta => {
-                dta.forEach(d => {
-                    d.Year = +d.Year; // year to numeric
-                    d.Score = +d.Score; // year to numeric
-                    d.Date = parseTime(d.Date); // format to date
-                    d.Artists = d.Artists.split('<,>');
-                    d.Genres = d.Genres.split(',');
-                });
-
-                // // group albums by artist: 
-                let albums_by_artist = [];
-                dta.forEach((album, i) => {
-                    album.Artists.forEach((artist) => {
-                        let row = { ...dta[i] }; // deep copy
-                        row.Artist = artist;
-                        albums_by_artist.push(row);
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2021-08-21-critiquing-music-critics-the-needle-drop' })
+                .then(dta => {
+                    dta.forEach(d => {
+                        d.Year = +d.Year; // year to numeric
+                        d.Score = +d.Score; // year to numeric
+                        d.Date = parseTime(d.Date); // format to date
+                        d.Artists = d.Artists.split('<,>');
+                        d.Genres = d.Genres.split(',');
                     });
-                });
-                // let max_reviews = 0;
-                let grouped_by_artist = d3.group(albums_by_artist, d => d.Artist);
-                // console.log('gba',grouped_by_artist, typeof(grouped_by_artist));
-                // convert InternMap to object of arrays
-                let artist_albums_dict = Array.from(grouped_by_artist, ([name, value]) => [name, value]);
-                artist_albums_dict = Object.fromEntries(artist_albums_dict);
-                // console.log('gba, aad', grouped_by_artist, artist_albums_dict);
-                setArtistAlbums(artist_albums_dict);
 
-                // calculate stats to sort artist by
-                let gba_stats = d3.rollup(albums_by_artist, v => {
-                    let scores = v.map(g => g.Score);
-                    let Q1 = d3.quantile(v.map(g => { return g.Score; }).sort(d3.ascending), .25);
-                    let median = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .5);
-                    let Q3 = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .75);
-                    let IQR = Q3 - Q1;
-                    let min0 = d3.min(v.map(g => g.Score));
-                    let max0 = d3.max(v.map(g => g.Score));
-                    let min = Math.max(Q1 - 1.5 * IQR, d3.min(v.map(g => g.Score)));
-                    let max = Math.min(Q3 + 1.5 * IQR, d3.max(v.map(g => g.Score)));
-                    let mean = d3.mean(v.map(g => g.Score));
-                    let variance = d3.variance(v.map(g => g.Score))
-                    let n = v.length;
-                    // if (n > max_reviews) {
-                    //     max_reviews = n;
-                    // }
-                    let artist = v.map(g => g.Artist)[0];
-                    return ({ scores: scores, Q1: Q1, median: median, Q3: Q3, IQR: IQR, mean: mean, var: variance, min0: min0, max0: max0, min: min, max: max, n: n, artist: artist })
-                }, d => d.Artist)
-                gba_stats = Array.from(gba_stats, ([name, value]) => ({ value })).map(g => g.value);
-                setAllArtistStats(gba_stats);
-                // setDisplayedArtistQuantiles(gba_stats.slice(0, 10))
-                // console.log('artist album stats', gba_stats);
-                // console.log('artist albums', artist_albums_dict);
-            }
-            );
-        return undefined;
+                    // // group albums by artist: 
+                    let albums_by_artist = [];
+                    dta.forEach((album, i) => {
+                        album.Artists.forEach((artist) => {
+                            let row = { ...dta[i] }; // deep copy
+                            row.Artist = artist;
+                            albums_by_artist.push(row);
+                        });
+                    });
+                    // let max_reviews = 0;
+                    let grouped_by_artist = d3.group(albums_by_artist, d => d.Artist);
+                    // console.log('gba',grouped_by_artist, typeof(grouped_by_artist));
+                    // convert InternMap to object of arrays
+                    let artist_albums_dict = Array.from(grouped_by_artist, ([name, value]) => [name, value]);
+                    artist_albums_dict = Object.fromEntries(artist_albums_dict);
+                    // console.log('gba, aad', grouped_by_artist, artist_albums_dict);
+                    setArtistAlbums(artist_albums_dict);
+
+                    // calculate stats to sort artist by
+                    let gba_stats = d3.rollup(albums_by_artist, v => {
+                        let scores = v.map(g => g.Score);
+                        let Q1 = d3.quantile(v.map(g => { return g.Score; }).sort(d3.ascending), .25);
+                        let median = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .5);
+                        let Q3 = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .75);
+                        let IQR = Q3 - Q1;
+                        let min0 = d3.min(v.map(g => g.Score));
+                        let max0 = d3.max(v.map(g => g.Score));
+                        let min = Math.max(Q1 - 1.5 * IQR, d3.min(v.map(g => g.Score)));
+                        let max = Math.min(Q3 + 1.5 * IQR, d3.max(v.map(g => g.Score)));
+                        let mean = d3.mean(v.map(g => g.Score));
+                        let variance = d3.variance(v.map(g => g.Score))
+                        let n = v.length;
+                        // if (n > max_reviews) {
+                        //     max_reviews = n;
+                        // }
+                        let artist = v.map(g => g.Artist)[0];
+                        return ({ scores: scores, Q1: Q1, median: median, Q3: Q3, IQR: IQR, mean: mean, var: variance, min0: min0, max0: max0, min: min, max: max, n: n, artist: artist })
+                    }, d => d.Artist)
+                    gba_stats = Array.from(gba_stats, ([name, value]) => ({ value })).map(g => g.value);
+                    setAllArtistStats(gba_stats);
+                    // setDisplayedArtistQuantiles(gba_stats.slice(0, 10))
+                    // console.log('artist album stats', gba_stats);
+                    // console.log('artist albums', artist_albums_dict);
+                }
+
+                );
+        }
+        fetchData();
+
     }, []);
 
     // flatten artist data
@@ -285,15 +290,14 @@ export default function SVG4() {
 
     return (
         <>
-
             <div id="stats-menu4a">
-                <CustomTextField
-                    contentType=' artists'
-                    onChangeFn={setDataSearchKeyword}
+                <SearchInput
+                    value={dataSearchKeyword}
+                    onValueChangeFn={(e) => { setDataSearchKeyword(e.target.value) }}
+                    placeholder='search artists'
                 />
             </div>
             <div id="stats-menu4b" style={{ display: 'flex' }}>
-
                 <NumberInput
                     label="minimum number of reviews"
                     min={1}
@@ -309,10 +313,12 @@ export default function SVG4() {
                     value={numberDisplayedArtists}
                     setValue={setNumberDisplayedArtists}
                 />
-                <DropdownMenu
-                    handleChange={e => { setSelectedStat(e.target.value) }}
+                <DropdownInputSelect
                     label={'Sort by'}
                     options={stats4}
+                    initialOption={selectedStat}
+                    selectedOption={selectedStat}
+                    setSelectedOption={setSelectedStat}
                 />
             </div >
 

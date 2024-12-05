@@ -282,7 +282,6 @@ const SVG1 = () => {
                 initialOption={stat}
                 selectedOption={stat}
                 setSelectedOption={setStat}
-                maxWidth={300}
                 color={config.colors[0]}
             />
             {/* vis container */}

@@ -9,7 +9,7 @@ const config = {
     "inner_vw": article_width * w_width - padding_h,
     "inner_vh": article_height * w_height - padding_v,
     "small_inner_vh": article_height * w_height * 0.8 - padding_v,
-    "anim_speed": 3000,
+    "anim_speed": 1000,
     "color1": "#FCF281",
     "stroke1": "#262626"
 }

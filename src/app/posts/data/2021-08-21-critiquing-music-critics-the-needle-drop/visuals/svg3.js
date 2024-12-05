@@ -1,12 +1,14 @@
+'use client'
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-import data from '../data/fantano_7_15_21_albums.csv';
+import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV.ts";
 
-// modules
+// components
 import config from "./config.js";
-import CheckboxGroup from "../../../../components/Modules/CheckboxGroup/CheckboxGroup.js";
-import DropdownMenu from "../../../../components/Modules/DropdownMenu/DropdownMenu.js";
+import CheckboxGroup from "@/app/components/inputs/CheckboxGroup/CheckboxGroup.tsx";
+// import CheckboxGroup from "../../../../components/Modules/CheckboxGroup/CheckboxGroup.js";
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect.tsx";
 
 // Things I need to modularize
 const parseTime = d3.timeParse("%d-%b-%y");
@@ -48,54 +50,58 @@ const SVG3 = () => {
 
     // load data
     useEffect(() => {
-        d3.csv(data)
-            .then(dta => {
-                dta.forEach(d => {
-                    d.Year = +d.Year; // year to numeric
-                    d.Score = +d.Score; // year to numeric
-                    d.Date = parseTime(d.Date); // format to date
-                    d.Artists = d.Artists.split('<,>');
-                    d.Genres = d.Genres.split(',');
-                });
-                // group albums by genre (1 row per genre)
-                let albums_by_genre = [];
-                dta.forEach((album, i) => {
-                    album.Genres.forEach((genre) => {
-                        let row = { ...dta[i] }; // deep copy
-                        row.Genre = genre;
-                        albums_by_genre.push(row);
+        // d3.csv(data)
+        async function fetchData() {
+            loadPublicCSV({ fileName: '2021-08-21-critiquing-music-critics-the-needle-drop' })
+                .then(dta => {
+                    dta.forEach(d => {
+                        d.Year = +d.Year; // year to numeric
+                        d.Score = +d.Score; // year to numeric
+                        d.Date = parseTime(d.Date); // format to date
+                        d.Artists = d.Artists.split('<,>');
+                        d.Genres = d.Genres.split(',');
                     });
-                });
-                let grouped_by_genre = d3.group(albums_by_genre, d => d.Genre);
-                // convert InternMap to object of arrays
-                let genre_albums_dict = Array.from(grouped_by_genre, ([name, value]) => [name, value]);
-                genre_albums_dict = Object.fromEntries(genre_albums_dict);
-                delete genre_albums_dict[''];
-                setAlbumsByGenre(genre_albums_dict);
+                    // group albums by genre (1 row per genre)
+                    let albums_by_genre = [];
+                    dta.forEach((album, i) => {
+                        album.Genres.forEach((genre) => {
+                            let row = { ...dta[i] }; // deep copy
+                            row.Genre = genre;
+                            albums_by_genre.push(row);
+                        });
+                    });
+                    let grouped_by_genre = d3.group(albums_by_genre, d => d.Genre);
+                    // convert InternMap to object of arrays
+                    let genre_albums_dict = Array.from(grouped_by_genre, ([name, value]) => [name, value]);
+                    genre_albums_dict = Object.fromEntries(genre_albums_dict);
+                    delete genre_albums_dict[''];
+                    setAlbumsByGenre(genre_albums_dict);
 
-                let gbg_quantiles = d3.rollup(albums_by_genre, v => {
-                    let Q1 = d3.quantile(v.map(g => { return g.Score; }).sort(d3.ascending), .25);
-                    let median = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .5);
-                    let Q3 = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .75);
-                    let IQR = Q3 - Q1;
-                    let min0 = d3.min(v.map(g => g.Score));
-                    let max0 = d3.max(v.map(g => g.Score));
-                    let min = Math.max(Q1 - 1.5 * IQR, d3.min(v.map(g => g.Score)));
-                    let max = Math.min(Q3 + 1.5 * IQR, d3.max(v.map(g => g.Score)));
-                    let mean = d3.mean(v.map(g => g.Score));
-                    let variance = d3.variance(v.map(g => g.Score))
-                    let n = v.length;
-                    let genre = v.map(g => g.Genre)[0];
-                    return ({ Q1: Q1, median: median, Q3: Q3, IQR: IQR, mean: mean, var: variance, min0: min0, max0: max0, min: min, max: max, n: n, genre: genre })
-                }, d => d.Genre);
-                gbg_quantiles.delete('');
-                gbg_quantiles = Array.from(gbg_quantiles, ([name, value]) => ({ value })).map(g => g.value);
-                // console.log('TNDGBG',typeof gbg_quantiles,gbg_quantiles);
-                setAllQuantiles(gbg_quantiles)
-                // setSelectedQuantiles(gbg_quantiles);
-                console.log('all quantiles', gbg_quantiles)
-            }
-            );
+                    let gbg_quantiles = d3.rollup(albums_by_genre, v => {
+                        let Q1 = d3.quantile(v.map(g => { return g.Score; }).sort(d3.ascending), .25);
+                        let median = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .5);
+                        let Q3 = d3.quantile(v.map(function (g) { return g.Score; }).sort(d3.ascending), .75);
+                        let IQR = Q3 - Q1;
+                        let min0 = d3.min(v.map(g => g.Score));
+                        let max0 = d3.max(v.map(g => g.Score));
+                        let min = Math.max(Q1 - 1.5 * IQR, d3.min(v.map(g => g.Score)));
+                        let max = Math.min(Q3 + 1.5 * IQR, d3.max(v.map(g => g.Score)));
+                        let mean = d3.mean(v.map(g => g.Score));
+                        let variance = d3.variance(v.map(g => g.Score))
+                        let n = v.length;
+                        let genre = v.map(g => g.Genre)[0];
+                        return ({ Q1: Q1, median: median, Q3: Q3, IQR: IQR, mean: mean, var: variance, min0: min0, max0: max0, min: min, max: max, n: n, genre: genre })
+                    }, d => d.Genre);
+                    gbg_quantiles.delete('');
+                    gbg_quantiles = Array.from(gbg_quantiles, ([name, value]) => ({ value })).map(g => g.value);
+                    // console.log('TNDGBG',typeof gbg_quantiles,gbg_quantiles);
+                    setAllQuantiles(gbg_quantiles)
+                    // setSelectedQuantiles(gbg_quantiles);
+                    console.log('all quantiles', gbg_quantiles)
+                }
+                );
+        }
+        fetchData();
         return undefined;
     }, []);
 
@@ -302,45 +308,45 @@ const SVG3 = () => {
         }
 
         // indiv points
-        svg3
-            .selectAll("circle")
-            .data(filteredData, d => {
-                return (d.Artists[0] + d.Album + d.Genre)
-            })
-            .join(
-                enter => enter.append("circle")
-                    .style('opacity', 0)
-                    .attr("class", "boxplot-points-genre")
-                    .attr("id", d => d.Artists[0] + d.Album)
-                    .attr("r", 0)
-                    .attr("cx", d => { return (xScale(d.Genre) - jitterWidth / 2 + Math.random() * jitterWidth) })
-                    .attr("cy", d => { return (yScale(d.Score) - jitterWidth / 2 + Math.random() * jitterWidth) })
-                    .attr("stroke", "black")
-                    .attr("stroke-width", 0.5)
-                    .call(enter => enter.transition(t)
-                        .attr("r", 3)
-                        .style("fill", config.color1)
-                        .style("opacity", 0.2)
-                    )
-                ,
-                update => update
-                    .call(update => update.transition(t)
-                        .attr("r", 3)
-                        .style("fill", config.color1)
-                        .style("opacity", 0.2)
-                        .attr("cx", d => { return (xScale(d.Genre) - jitterWidth / 2 + Math.random() * jitterWidth) })
-                        .attr("cy", d => { return (yScale(d.Score) - jitterWidth / 2 + Math.random() * jitterWidth) })
-                        .attr("stroke", "black")
-                        .attr("stroke-width", 0.5)
-                    )
-                ,
-                exit => exit
-                    .call(exit => exit.transition(t)
-                        .attr('r', 0)
-                        .style('opacity', 0)
-                        .remove()
-                    )
-            )
+        // svg3
+        //     .selectAll("circle")
+        //     .data(filteredData, d => {
+        //         return (d.Artists[0] + d.Album + d.Genre)
+        //     })
+        //     .join(
+        //         enter => enter.append("circle")
+        //             .style('opacity', 0)
+        //             .attr("class", "boxplot-points-genre")
+        //             .attr("id", d => d.Artists[0] + d.Album)
+        //             .attr("r", 0)
+        //             .attr("cx", d => { return (xScale(d.Genre) - jitterWidth / 2 + Math.random() * jitterWidth) })
+        //             .attr("cy", d => { return (yScale(d.Score) - jitterWidth / 2 + Math.random() * jitterWidth) })
+        //             .attr("stroke", "black")
+        //             .attr("stroke-width", 0.5)
+        //             .call(enter => enter.transition(t)
+        //                 .attr("r", 3)
+        //                 .style("fill", config.color1)
+        //                 .style("opacity", 0.2)
+        //             )
+        //         ,
+        //         update => update
+        //             .call(update => update.transition(t)
+        //                 .attr("r", 3)
+        //                 .style("fill", config.color1)
+        //                 .style("opacity", 0.2)
+        //                 .attr("cx", d => { return (xScale(d.Genre) - jitterWidth / 2 + Math.random() * jitterWidth) })
+        //                 .attr("cy", d => { return (yScale(d.Score) - jitterWidth / 2 + Math.random() * jitterWidth) })
+        //                 .attr("stroke", "black")
+        //                 .attr("stroke-width", 0.5)
+        //             )
+        //         ,
+        //         exit => exit
+        //             .call(exit => exit.transition(t)
+        //                 .attr('r', 0)
+        //                 .style('opacity', 0)
+        //                 .remove()
+        //             )
+        //     )
         // if (!checkedGraphs.includes('individual points')) {
         //     svg3.selectAll(".boxplot-points-genre")
         //         .style("visibility", "hidden");
@@ -444,7 +450,12 @@ const SVG3 = () => {
         <>
             <h4 className="sub-header">Selected Genres:</h4>
             <div id="stats-menu3a" style={{ display: 'inline' }}>
-                <CheckboxGroup labels={cb_genres} checked={checkedCheckboxes} updateChecked={setCheckedCheckBoxes} />
+                <CheckboxGroup
+                    labels={cb_genres}
+                    checked={checkedCheckboxes}
+                    updateChecked={setCheckedCheckBoxes}
+                    fillColor={`bg-yellow-200`}
+                />
                 <input
                     id="select-all-btn"
                     className="btn-type1"
@@ -461,8 +472,20 @@ const SVG3 = () => {
             </div>
             <h4 className="sub-header">Graph Components:</h4>
             <div id="stats-menu3b" >
-                <CheckboxGroup labels={cb_graphs} checked={checkedGraphCheckboxes} updateChecked={setCheckedGraphCheckBoxes} style={{ display: 'inline' }} />
-                <DropdownMenu handleChange={e => { setSelectedStat(e.target.value) }} label={'Sort by'} options={stats3} style={{ display: 'inline' }} />
+                <CheckboxGroup
+                    labels={cb_graphs}
+                    checked={checkedGraphCheckboxes}
+                    updateChecked={setCheckedGraphCheckBoxes}
+                    fillColor={`bg-yellow-200`}
+                />
+                <DropdownInputSelect
+                    // handleChange={e => { setSelectedStat(e.target.value) }} 
+                    label={'Sort by'}
+                    options={stats3}
+                    initialOption={selectedStat}
+                    selectedOption={selectedStat}
+                    setSelectedOption={setSelectedStat}
+                />
             </div>
             <svg ref={svg3Ref}>
             </svg>

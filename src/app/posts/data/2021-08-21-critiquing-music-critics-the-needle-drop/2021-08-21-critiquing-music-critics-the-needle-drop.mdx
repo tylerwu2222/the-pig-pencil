@@ -1,34 +1,28 @@
+import SVG1 from './visuals/svg1';
+import SVG3 from './visuals/svg3';
+import SVG4 from './visuals/svg4';
+
 ---
-Date: "8/2/2021"
-Title: "Critiquing Music Critics: The Needle Drop"
-Author:
+date: "8/2/2021"
+title: "Critiquing Music Critics: The Needle Drop"
+authors:
   - "Tyler Wu"
-AuthorURL:
-  - "https://thepigpencil.com/collaborators"
-MainTag: "music"
-Tags:
+tags:
   - "music"
   - "entertainment"
   - "long post"
-ReadingTime: "15 min"
-Languages: "D3.js"
-Caption: "Anthony Fantano (a.k.a the Needledrop, a.k.a Melon,\n a.k.a. the Best Teeth in the Game, a.k.a. Cal Chuchesta's Roomate, a.k.a Ridge Wallet Salesman)"
-HasScrollspy: "true"
-SectionTitles:
-- 'Who is Anthony Fantano?'
-- 'Annual Review Statistics'
-- 'Scores by Genre'
-- "Anthony's Favorite Artists?"
-- 'Closing the Case on this Cantaloupe'
-Hidden: "false"
+readingTime: "15 min"
+caption: "Anthony Fantano (a.k.a the Needledrop, a.k.a Melon,\n a.k.a. the Best Teeth in the Game, a.k.a. Cal Chuchesta's Roomate, a.k.a Ridge Wallet Salesman)"
+hasScrollspy: "true"
+visibility: "visible"
 ---
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Who is Anthony Fantano?'}/>
 For those of you who recognize this man above, but not from music reviews, it might be from this infamous audio clip:
 
 
 <iframe 
-className="articleVid" 
+className="w-full aspect-video" 
 src="https://www.youtube.com/embed/HMKUlsJpov8"
 ></iframe>
 
@@ -54,7 +48,7 @@ and this is mostly just a for-fun look at any trends in how that man chooses tho
 
 [1] Not all his reviews are still posted, so my dataset only goes as far back as October 2012.
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Annual Review Statistics'}/>
 One of the most immediate questions we might have is, what is his average rating?
 And has it changed over the years?
 
@@ -63,7 +57,7 @@ And has it changed over the years?
 Anthony seems pretty consistent in sticking with an average score of about 6 year-to-year.
 In fact, the slight downward trend might just be due to an increased number of "Not Good" reviews (which I very arbitrarily deemed as -1).
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Scores by Genre'}/>
 Let's see if this consistency holds across genres:
 
 <SVG3/>
@@ -74,13 +68,13 @@ we can see experimental, jazz, singer-songwriter, and folk album reviews are Ant
 However, when sorted by <input type="button" className="btn-link" id="interactive-link-2" value="mean score" />,
 they take <b>1st through 4th</b>, with a mean score of <b>6.89</b> compared to the other genres with a mean score of <b>6.17</b>.
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={"Anthony's Favorite Artists?"}/>
 Can we paint a caricature of Fantano's favorite and least favorite artists based on his ratings? Who he deems most inconsistent?
 Let's look at the stats (with min. n reviews):
 
 <SVG4/>
 
-<ScrollspyHeader/>
+<ScrollspyHeader header={'Closing the Case on this Cantaloupe'}/>
 OK, closing thoughts:
                                         
 Suprisingly, Anthony has been able to maintain his sanity reviewing music for years and continues to give out consistent ratings on the whole.
