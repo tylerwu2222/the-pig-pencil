@@ -23,3 +23,9 @@ export const getSlugTitle = ({ date, title }: getSlugTitle): string => {
     // Return the combined filename
     return `${formattedDate}${slugifiedTitle}`;
 }
+
+
+export const getSnakeCase = (nonSnakeString: string): string => {
+    const snake_string = nonSnakeString.replace(/\s+/g, '_').toLowerCase();
+    return snake_string
+}

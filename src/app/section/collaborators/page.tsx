@@ -1,8 +1,9 @@
+import SectionTemplate from '../SectionTemplate/SectionTemplate';
 import React from 'react'
 
 const Collaborators = () => {
   return (
-    <div>Collaborators</div>
+    <SectionTemplate section='collaborators'/>
   )
 }
 

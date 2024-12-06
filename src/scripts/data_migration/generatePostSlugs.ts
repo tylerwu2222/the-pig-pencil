@@ -1,5 +1,5 @@
 import prisma from '@/db';
-import { getSlugTitle } from '@/app/lib/fileNameFormatting'; // Adjust path to where your function is
+import { getSlugTitle } from '@/app/lib/stringFormatting'; // Adjust path to where your function is
 
 
 async function createAndPopulateSlugs(): Promise<void> {

@@ -45,9 +45,7 @@ export async function GET(
     // const formattedSectionPosts = sectionPosts.map((post) => ({
     //     ...post,
     //     // authors: post.AuthorsOnPosts.map((a) => a.author.name), // Extract author names
-    //     authors: flattenAoE(post.AuthorsOnPosts), // Extract author names
     //     // tags: post.TagsOnPosts.map((t) => t.tag.tagName), // Extract tag names
-    //     tags: flattenAoE(post.TagsOnPosts), // Extract tag names
     // }));
 
     const formattedSectionPosts = flattenJoinData(sectionPosts, {

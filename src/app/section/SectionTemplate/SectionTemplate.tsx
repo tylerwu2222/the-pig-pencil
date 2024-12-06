@@ -16,14 +16,17 @@ import { useEffect, useState } from 'react';
 import { filterSort } from '@/app/lib/FilterSort';
 
 // types
-import { Post } from '@/types/extendedPrismaTypes';
+import { Post, Author } from '@/types/extendedPrismaTypes';
+import CollaboratorThumbnail from './CollaboratorThumbnail';
+import ArtThumbnail from './ArtThumbnail';
 
 
 const searchKeywordMap: Record<string, string> = {
     'data': 'data stories',
-    'cheatsheet': 'cheatsheets',
+    'cheatsheets': 'cheatsheets',
     'tutorial': 'tutorials',
-    'project': 'projects'
+    'project': 'projects',
+    'collaborators': 'collaborators'
 }
 
 interface SectionTemplateProps {
@@ -46,10 +49,10 @@ export default function SectionTemplate(
     }: Partial<SectionTemplateProps>
 ) {
 
+    // update tab title
     const pathname = usePathname();
     const pathnameSegments = pathname.split('/')
     const pathNameLast = pathnameSegments[pathnameSegments.length - 1]
-    console.log('path name last', pathNameLast);
     const baseTitle = 'The Pig Pencil';
 
     const [loaded, setLoaded] = useState<boolean>(false);
@@ -58,27 +61,44 @@ export default function SectionTemplate(
     const [allTags, setAllTags] = useState<string[]>([]);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [sortOption, setSortOption] = useState('date');
-
     // posts
-    const [allPosts, setAllPosts] = useState<Post[]>([])
-    const [FSPosts, setFSPosts] = useState<Post[]>([]);
+    const [allContent, setAllContent] = useState<(Post | Author)[]>([])
+    const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
+
+    // update parameters depending on section
+    let sortOptions = ['alphabetical', 'date - oldest', 'date - newest', 'author', 'views', 'oinks']
+    if (section == 'collaborators') {
+        sortOptions = ['alphabetical', 'newest post', 'total posts', 'total views', 'total oinks']
+    }
+    else if (section == 'art') {
+        sortOptions = ['alphabetical', 'recently updated', 'views', 'oinks']
+    }
+
 
     // update displayed posts when any search/filter parameter changes
     useEffect(() => {
-        const subsetPosts = filterSort({ posts: allPosts, filterKeyword: searchValue, selectedTags: selectedTags })
-        setFSPosts(subsetPosts);
+        const subsetContent = filterSort({ content: allContent, filterKeyword: searchValue, selectedTags: selectedTags })
+        setFSContent(subsetContent);
         // console.log(Filter)
     }, [searchValue, sortOption, selectedTags]);
 
-    // initialize posts for section
+    // initialize content for section
     useEffect(() => {
         const getSectionPosts = async () => {
-            const res = await fetch(`/api/${section}/posts`);
+            let res;
+            if (section == 'collaborators') {
+                res = await fetch('/api/authors');
+            }
+            // else if (section == 'art'){
 
+            // }
+            else {
+                res = await fetch(`/api/${section}/posts`);
+            }
             const posts = await res.json();
             console.log('FE: posts', posts);
-            setAllPosts(posts);
-            setFSPosts(posts);
+            setAllContent(posts);
+            setFSContent(posts);
             setLoaded(true);
         }
         getSectionPosts();
@@ -90,6 +110,54 @@ export default function SectionTemplate(
 
     const handleSortOptionChange = (newSortOption: string) => {
         setSortOption(newSortOption)
+    }
+
+    let contentSection;
+    if (section == 'collaborators') {
+        contentSection = <div className='grid grid-cols-3 justify-items-center'>
+            {loaded ? (FSContent.length > 0 ?
+                (FSContent as Author[]).map((author: Author) => {
+                    // generic section page
+                    return <CollaboratorThumbnail
+                        key={author.name}
+                        collaborator={author}
+                    />
+                })
+                : <p style={{ display: FSContent.length === 0 ? 'block' : 'none' }}>No collaborators matched these filters 😔</p>
+            ) :
+                <></>
+            }
+        </div>
+    }
+    // else if (section == 'art') {
+    //     contentSection = <div className='grid grid-cols-3 justify-items-center'>
+    //         {loaded ? (FSContent.length > 0 ?
+    //             FSContent.map((post: Post) => {
+    //                 // generic section page
+    //                 return <ArtThumbnail />
+    //             })
+    //             : <p style={{ display: FSContent.length === 0 ? 'block' : 'none' }}>No art series matched these filters 😔</p>
+    //         ) :
+    //             <></>
+    //         }
+    //     </div>
+    // }
+    else {
+        contentSection = <div className='grid grid-cols-3 justify-items-center'>
+            {loaded ? (FSContent.length > 0 ?
+                (FSContent as Post[]).map((post: Post) => {
+                    // generic section page
+                    return <PostThumbnail1
+                        key={post.title + post.publishDate}
+                        post={post}
+                    // img={'/img/thumbnails/' + section.toLowerCase() + '_thumbnails/' + post.thumbnail}
+                    />
+                })
+                : <p style={{ display: FSContent.length === 0 ? 'block' : 'none' }}>No posts matched these filters 😔</p>
+            ) :
+                <></>
+            }
+        </div>
     }
 
     return (
@@ -106,7 +174,7 @@ export default function SectionTemplate(
                                 placeholder={'search ' + searchKeywordMap[section]}
                             />
                             <div className='px-3 pt-2'>
-                                <i className='text-gray-500 min-h-[1em]'>{searchValue.length > 0 ? FSPosts.length + " results for '" + searchValue + "'" : '\u00A0'}</i>
+                                <i className='text-gray-500 min-h-[1em]'>{searchValue.length > 0 ? FSContent.length + " results for '" + searchValue + "'" : '\u00A0'}</i>
                             </div>
                         </div>
                         : <></>}
@@ -115,27 +183,12 @@ export default function SectionTemplate(
                             <DropdownInputRadio
                                 value={sortOption}
                                 onValueChangeFn={(e) => { handleSortOptionChange(e.target.value) }}
-                                options={['date - oldest', 'date - newest', 'author', 'views', 'oinks']}
+                                options={sortOptions}
                             />
                         </div>
                         : <></>}
                 </div>
-                {/* content div */}
-                <div className='grid grid-cols-3 justify-items-center'>
-                    {loaded ? (FSPosts.length > 0 ?
-                        FSPosts.map((post: Post) => {
-                            // generic section page
-                            return <PostThumbnail1
-                                key={post.title + post.publishDate}
-                                post={post}
-                            // img={'/img/thumbnails/' + section.toLowerCase() + '_thumbnails/' + post.thumbnail}
-                            />
-                        })
-                        : <p style={{ display: FSPosts.length === 0 ? 'block' : 'none' }}>No posts matched these filters 😔</p>
-                    ) :
-                        <></>
-                    }
-                </div>
+                {contentSection}
                 {/* tag box div */}
                 {/* {tagBoxIncluded ? <div className='tags-div'>
                         <TagsBox posts={postData} onChangeFn={setSelectedTags} />

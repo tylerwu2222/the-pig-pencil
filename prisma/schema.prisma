@@ -25,6 +25,7 @@ model Author {
   email                String?                @unique
   quote                String?
   joinDate             DateTime               @default(now())
+  isVisible           Boolean                @default(true)
   AuthorsOnPosts       AuthorsOnPosts[]
   TagsOnAuthors        TagsOnAuthors[]
   AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]

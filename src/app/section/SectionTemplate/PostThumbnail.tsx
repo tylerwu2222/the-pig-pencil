@@ -2,7 +2,7 @@
 import { Post } from '@/types/extendedPrismaTypes';
 
 // formatting
-import { getSlugTitle } from '@/app/lib/fileNameFormatting';
+import { getSlugTitle } from '@/app/lib/stringFormatting';
 import { formatDateToShortDate } from '@/app/lib/dateFormatting';
 
 // react
