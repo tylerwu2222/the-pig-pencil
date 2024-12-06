@@ -81,40 +81,31 @@ const filterContent = ({
 
 interface sortContentProps {
     sortOption: string;
-    posts: (Post | Author)[];
+    content: (Post | Author)[];
     ascending: boolean;
-    postsType: string;
 }
 
 // sort posts by an attribute
-const sortContent = ({ sortOption, posts, ascending = true, postsType = "article" }: sortContentProps) => {
-    let sortedPosts = [...posts];
-    let internalSortOption = '';
+const sortContent = ({ sortOption, content, ascending = true }: sortContentProps) => {
+    let sortedContent;
+    // let internalSortOption = '';
 
     console.log('sorting by', sortOption);
-    if (postsType == "article") {
-        // format date data
-        if (sortOption == 'date') {
-            sortedPosts = sortedPosts.map(post => (
-                { ...post, numericDate: post.publishDate }
-            ));
-        }
-        // map sortOption using dictionary
-        // internalSortOption = sortDictionary[sortOption];
-    }
-
-    // console.log('sorted before', sortedPosts);
-    // sort ascending
-    // if (ascending == true) {
-    //     sortedPosts.sort((a, b) => (a[sortOption] > b[sortOption]) ? 1 : ((b[sortOption] > a[sortOption]) ? -1 : 0));
-    // }
-    // // descending
-    // else {
-    //     sortedPosts.sort((b, a) => (a[sortOption] > b[sortOption]) ? 1 : ((b[sortOption] > a[sortOption]) ? -1 : 0));
+    // if (isPost(content)) {
+    //     sortedContent = [...content] as Post[];
+    //     // format date data
+    //     if (sortOption == 'date - oldest') {
+    //         sortedContent = sortedContent.map((p) => (
+    //             { ...p, numericDate: p.publishDate }
+    //         ));
+    //         sortedContent.sort((a, b) => (a[sortOption] > b[sortOption]) ? 1 : ((b[sortOption] > a[sortOption]) ? -1 : 0));
+    //     }
+    //     // map sortOption using dictionary
+    //     // internalSortOption = sortDictionary[sortOption];
     // }
 
     // console.log('sorted after', sortedPosts);
-    return sortedPosts;
+    return sortedContent;
 };
 
 

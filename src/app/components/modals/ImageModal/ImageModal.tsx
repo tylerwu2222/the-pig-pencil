@@ -27,7 +27,7 @@ const ImageModal = ({ imgTN, img, desc, title }: ImageModalProps) => {
                 </DialogTrigger>
 
                 {/* Modal Content */}
-                <DialogContent className="max-w-[90vw] p-6">
+                <DialogContent className="w-fit h-fit max-w-[80vw] max-h-[80vh] p-6 z-50">
                     <DialogHeader>
                         <DialogTitle className="text-lg font-bold">{title}</DialogTitle>
                     </DialogHeader>

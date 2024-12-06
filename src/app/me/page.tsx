@@ -92,10 +92,10 @@ const Me = () => {
             <div id="me-container-div">
                 {/* return to blog */}
                 <Link href='/' title='go to blog'>
-                    <div className='z-20 opacity-80 hover:opacity-100 transition transform hover:translate-x-1'>
-                        <img className='fixed md:w-[20vw] lg:w-[5vw] lg:max-w-[80px] h-auto rounded-md ml-[-20px] top-1 ' src='img/pigpencil.png' loading='lazy' />
+                    <div className='fixed top-2 left-0 z-20 lg:w-[4vw] lg:max-w-[80px] opacity-80 hover:opacity-100 hover:scale-110 transition transform hover:translate-x-1 ease-in-out'>
+                        <img className='h-auto rounded-md ml-[-10px]' src='img/pigpencil.png' loading='lazy' />
                         {/* <img className='' src={portfolio_image_folder + 'icons/go_to_blog.png'}> */}
-                        <p className='fixed md:w-[20vw] lg:w-[5vw] h-auto top-1 left-10 text-sm'>go to blog</p>
+                        <p className=' h-auto text-xs'>go to blog</p>
                     </div>
                 </Link>
                 {/* <img id='hover-reminder-icon' src={portfolio_image_folder + 'icons/hover_reminder.png'}></img> */}
@@ -128,7 +128,7 @@ const Me = () => {
                 <ScrollDynamicStickyHeader
                     content={<p className='text-[#313030] my-2'>part 1: BIRTH</p>}
                     // content={<p className='text-[#313030] my-2'>part 1: BIRTH (<img className="portfolio-icon" src={portfolio_image_folder + "icons/faucet.png"}></img>)</p>}
-                    topPosition={75}
+                    topPosition={105}
                 />
                 <div className='min-h-[100vh] px-[20%]'>
                     <div className='intro-graf'>
@@ -165,7 +165,7 @@ const Me = () => {
                             <p className='text-[#313030] my-2'>part 2: I LIKE DRAWING</p>
                         </>
                     }
-                    topPosition={105}
+                    topPosition={135}
                 />
                 <div className='min-h-[100vh] px-[20%]' style={{ paddingBottom: '40vh' }}>
                     <div className='grid grid-cols-2 gap-4'>
@@ -219,7 +219,7 @@ const Me = () => {
                 {/* DATA */}
                 <ScrollDynamicStickyHeader
                     content={<p className='text-[#313030] my-2'>part 3: I DO CODE STUFF INSTEAD</p>}
-                    topPosition={135}
+                    topPosition={165}
                 />
                 <div className='min-h-[100vh] px-[20%]'>
                     <p>I go to UCLA and major in Data Theory and Cognitive Science.</p>
@@ -234,7 +234,7 @@ const Me = () => {
                 {/* QUESTIONING (PROJECTS) */}
                 <ScrollDynamicStickyHeader
                     content={<p className='text-[#313030] my-2'>part 4: I QUESTION EVERYTHING</p>}
-                    topPosition={165}
+                    topPosition={195}
                 />
                 <div className='min-h-[100vh] px-[20%]'>
                     <p>Mid-undergrad, the pandemic happens and I start to reevaluate what I want to do.</p>
@@ -256,21 +256,22 @@ const Me = () => {
                                             and I've been too lazy to migrate them to other free services like Vercel. But maybe one day ;)</p>
                                     </div>
                                 </div>
-                                <div className='grid items-end grid-cols-3 gap-[1vw]'>
+                                <div className='grid grid-cols-3 items-start gap-[1vw]'>
                                     {portfolioData.projects.map((project, i) => {
                                         if (project.type == "web app") {
                                             return (
-                                                <div key={i} className='hover:bg-slate-300'>
+                                                <div key={i} className='hover:bg-slate-300 m-3 aspect-square'>
                                                     <p className='font-bold'>{project.title}</p>
                                                     <ImageModal
                                                         imgTN={<img
-                                                            className="h-[25vh]"
+                                                            className="w-fit h-auto"
                                                             src={portfolio_image_folder + project.thumbnail}
                                                             title={'click me! ' + project.title}
                                                             alt={project.thumbnail}
                                                             loading='lazy'
                                                         ></img>}
                                                         img={<img
+                                                            className='max-h-[70vh] w-auto'
                                                             src={portfolio_image_folder + project.thumbnail}
                                                             title={project.title}
                                                             alt={project.thumbnail}
@@ -351,7 +352,7 @@ const Me = () => {
                 {/* DATA VIS */}
                 <ScrollDynamicStickyHeader
                     content={<p className='text-[#313030] my-2'>part 5: I MAKE A LOT OF GRAPHS</p>}
-                    topPosition={195}
+                    topPosition={225}
                 />
                 <div className='min-h-[100vh] px-[20%]'>
                     <div className='floating-graf'>
@@ -452,7 +453,7 @@ const Me = () => {
                 {/* FUTURE NOW */}
                 <ScrollDynamicStickyHeader
                     content={<p className='text-[#313030] my-2'>part 6: I FIND PURPOSE?</p>}
-                    topPosition={225}
+                    topPosition={255}
                 />
                 <div className='min-h-[100vh] px-[20%]'>
                     <div className='floating-graf'>
