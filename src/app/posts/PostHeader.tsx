@@ -4,9 +4,10 @@ import { formatDateToLongDate } from '../lib/dateFormatting';
 
 interface PostHeaderProps {
     post: Post;
+    showThumbnail?: boolean;
 }
 
-export default function PostHeader({ post }: PostHeaderProps) {
+export default function PostHeader({ post, showThumbnail = true }: PostHeaderProps) {
 
     return (
         <div className='justify-items-center pb-8'>
@@ -19,12 +20,12 @@ export default function PostHeader({ post }: PostHeaderProps) {
                     <p className="text-sm text-textGrey">{formatDateToLongDate(post.publishDate)}</p>
                 </div>
                 {/* thumbnail */}
-                <div className='justify-items-center pb-1'>
+                {showThumbnail && <div className='justify-items-center pb-1'>
                     <img
                         className='border-[1px] border-borderGrey w-[60vh] h-[60vh]'
                         src={post.thumbnail ? post.thumbnail : `/img/thumbnails/${post.section}_thumbnails/${post.slug}.png`}
                     ></img>
-                </div>
+                </div>}
                 {/* author(s) */}
                 <div className='justify-items-start'>
                     <p className="text-sm flex justify-center items-center">{post.authors.join(', ')}</p>
@@ -33,7 +34,7 @@ export default function PostHeader({ post }: PostHeaderProps) {
                     {/* read-aloud if available */}
                     <div></div>
                     {/* read time */}
-                    <p className='text-xs'>Reading time: {post.readingTime}</p>
+                    {post.readingTime ? <p className='text-xs'>Reading time: {post.readingTime}</p> : <></>}
                 </div>
             </div>
         </div>

@@ -1,18 +1,12 @@
 'use client'
-// import NewsletterForm from '../NewsletterForm/NewsletterForm';
-// import './Me.css';
-// import './Portfolio.css';
-
 import { useEffect, useState } from 'react';
 
-// import portfolioData from '../../../site_data/portfolio_data.json';
 import portfolioData from '../../site_data/portfolio_data.json'
-// import PortfolioSection from './PortfolioModules/PortfolioSection';
 import PortfolioSection from './PortfolioSection';
 
 // scrolling shenanigans
-import ScrollMoveElement from '../components/animate/scroll_animate/ScrollMoveElement';
-import ScrollGrowShrinkElement from '../components/animate/scroll_animate/ScrollGrowShrinkElement';
+// import ScrollMoveElement from '../components/animate/scroll_animate/ScrollMoveElement';
+// import ScrollGrowShrinkElement from '../components/animate/scroll_animate/ScrollGrowShrinkElement';
 import ScrollDynamicStickyHeader from '../components/animate/scroll_animate/ScrollDynamicStickyHeader';
 import DraggableImage from '../components/draggables/DraggableImage';
 import InteractiveDragBox from '../components/animate/scroll_animate/InteractiveDragBox';
@@ -23,7 +17,7 @@ import ImageModal from '../components/modals/ImageModal/ImageModal';
 
 import { useWindowSize } from '../lib/useWindowSize';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 const image_folder = "/img/people/"
 const portfolio_image_folder = "/img/people/portfolio/"

@@ -20,7 +20,13 @@ export const PostThumbnail1 = ({
     // section, title, img, author, date, subPage, comingSoon
 }: PostThumbnailProps) => {
 
-    let authorDate = post.authors[0] + ' ∙ ' + formatDateToShortDate(post.publishDate);
+    let authorDate = ''
+    if (post.publishDate) {
+        authorDate = formatDateToShortDate(post.publishDate);
+    }
+    if (post.authors.length > 0) {
+        authorDate = post.authors[0] + ' ∙ ' + authorDate;
+    }
     let title = post.title;
 
     let img;

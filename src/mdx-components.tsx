@@ -5,6 +5,7 @@ import { ComponentPropsWithoutRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ImageModal from './app/components/modals/ImageModal/ImageModal';
+import PDFIframe from './app/components/pdf/PDFViewer/PDFIframe/PDFIframe';
 
 type HeadingProps = ComponentPropsWithoutRef<'h1'>;
 type ParagraphProps = ComponentPropsWithoutRef<'p'>;
@@ -110,6 +111,7 @@ export function useMDXComponents(
     ...components,
     Image,
     ImageModal,
+    PDFIframe,
     // Scrollspy,
     ScrollspyHeader
   }

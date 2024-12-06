@@ -19,7 +19,7 @@ const ImageModal = ({ imgTN, img, desc, title }: ImageModalProps) => {
                 {/* Thumbnail Trigger */}
                 <DialogTrigger asChild>
                     <div
-                        className="cursor-pointer inline-block"
+                        className="cursor-pointer inline-block hover:scale-105 transition ease-in-out duration-700"
                         onClick={() => setOpen(true)}
                     >
                         {imgTN}
@@ -27,7 +27,7 @@ const ImageModal = ({ imgTN, img, desc, title }: ImageModalProps) => {
                 </DialogTrigger>
 
                 {/* Modal Content */}
-                <DialogContent className="max-w-fit p-6">
+                <DialogContent className="max-w-[90vw] p-6">
                     <DialogHeader>
                         <DialogTitle className="text-lg font-bold">{title}</DialogTitle>
                     </DialogHeader>

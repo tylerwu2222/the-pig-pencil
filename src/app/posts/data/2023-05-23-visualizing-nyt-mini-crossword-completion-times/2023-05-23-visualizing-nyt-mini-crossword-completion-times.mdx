@@ -1,30 +1,27 @@
 import Basic1 from './visuals/Basic1';
 import Basic2 from './visuals/Basic2';
 
----
-date: "5/24/2023"
-title: "Visualizing NYT Mini Crossword Completion Times"
-authors:
-  - "Tyler Wu"
-tags:
-  - "puzzle"
-  - "entertainment"
-readingTime: "10 min"
-caption: "In as many ways as possible"
-hasScrollspy: "true"
-hasImageModal: "true"
-visibility: "visible"
----
+import n1 from './images/nyt_mini_scores1.png';
+import n2 from './images/nyt_mini_scores2.png';
+import n3 from './images/nyt_mini_scores3.png';
+
+export const metadata = {
+  date: "5/24/2023",
+  title: "Visualizing NYT Mini Crossword Completion Times",
+  authors: ["Tyler Wu"],
+  tags: ["puzzle", "entertainment"],
+  readingTime: "10 min",
+  caption: "In as many ways as possible",
+  hasScrollspy: "true",
+  hasImageModal: "true",
+  visibility: "visible"
+}
 
 This past school year, I began playing the [NYT Mini crossword]('https://www.nytimes.com/crosswords/game/mini') with some friends.
 
 For those unfamiliar, The Mini is a 5x5 daily crossword by NYT that looks like this:
 
-<img 
-className="h-[60vh]" 
-src='/img/data/nyt_mini_scores/nyt_mini_scores1.png' 
-alt='example-mini'
-/>
+<Image src={n1} className="h-[60vh] w-auto" alt='example-mini'/>
 
 <ScrollspyHeader header={'Collecting the Data'}/>
 
@@ -34,10 +31,12 @@ each daily mini via screenshots and see if I could make some cool visualizations
 Here's a diagram of what an example leaderboard looked like and how I converted it to data:
 
 <ImageModal
-  imgTN={<img className="articleImgWide modalImgThumbnail" src='/img/data/nyt_mini_scores/nyt_mini_scores2.png' alt='mini-process'/>}
-  img={<img className="modalImgWide" src='/img/data/nyt_mini_scores/nyt_mini_scores2.png' alt='mini-process'/>}
-  desc='NYT Mini data conversion process'
-  title='fig. 2'
+imgTN={
+    <Image src={n2} className="" alt='mini-process'/>
+  }
+img={<Image src={n2} className="h-[80vh] w-auto" alt='mini-process'/>}
+desc='NYT Mini data scraping process'
+title='fig. 2'
 />
 
 <ScrollspyHeader header={'Preliminary Sketches'}/>
@@ -49,8 +48,10 @@ This can be a great exercise for thinking outside the box for creating innovativ
 To start, I begin with some rough sketches:
 
 <ImageModal
-imgTN={<img className="articleImgWide modalImgThumbnail" src='/img/data/nyt_mini_scores/nyt_mini_scores3.png' alt='mini-sketches'/>}
-img={<img className="modalImgWide" src='/img/data/nyt_mini_scores/nyt_mini_scores3.png' alt='mini-sketches'/>}
+imgTN={
+    <Image src={n3} className="" alt='mini-sketches'/>
+  }
+img={<Image src={n3} className="h-[80vh] w-auto" alt='mini-sketches'/>}
 desc='NYT Mini early viz drafts'
 title='fig. 3'
 />
@@ -63,7 +64,6 @@ After sketching, I created each viz using D3 (and the basic graphs using rechart
 
 {/* <ScrollspyHeader header={'Basic Graphs'} level={3} include={true}/> */}
 ### Basic Graphs
-
 
 I first tried making the most basic linechart using Recharts, and the result looks... messy.
 

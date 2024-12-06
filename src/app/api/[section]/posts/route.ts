@@ -13,6 +13,7 @@ export async function GET(
     const sectionPosts = await prisma.post.findMany({
         where: {
             section: params.section,
+            // section: 'project',
             visibility: 'visible'
         },
         include: {
@@ -38,6 +39,8 @@ export async function GET(
 
     });
 
+    // console.log('BE section posts for', params.section, sectionPosts);
+
     // Flatten the nested join data
     // const formattedSectionPosts = sectionPosts.map((post) => ({
     //     ...post,
@@ -47,7 +50,7 @@ export async function GET(
     //     tags: flattenAoE(post.TagsOnPosts), // Extract tag names
     // }));
 
-    const formattedSectionPosts = flattenJoinData(sectionPosts,{
+    const formattedSectionPosts = flattenJoinData(sectionPosts, {
         AuthorsOnPosts: 'authors',
         TagsOnPosts: 'tags'
     })
