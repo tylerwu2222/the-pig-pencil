@@ -47,6 +47,24 @@ model Post {
   TagsOnPosts    TagsOnPosts[]
 }
 
+model Art {
+  id           String         @id @default(cuid())
+  title        String
+  series       String?
+  slug         String?
+  thumbnail    String?
+  publishDate  DateTime       @default(now())
+  updateDate   DateTime?      @default(now())
+  visibility   String         @default("hidden")
+  ArtTagsOnArt ArtTagsOnArt[]
+}
+
+model ArtTag {
+  id           String         @id @default(cuid())
+  artTagName   String
+  ArtTagsOnArt ArtTagsOnArt[]
+}
+
 model Tag {
   id            String          @id @default(cuid())
   tagName       String
@@ -95,4 +113,15 @@ model TagsOnAuthors {
   assignedAt DateTime @default(now())
 
   @@id([tagId, authorId])
+}
+
+model ArtTagsOnArt {
+  art      Art    @relation(fields: [artId], references: [id])
+  artId    String
+  artTag   ArtTag @relation(fields: [artTagId], references: [id])
+  artTagId String
+
+  assignedAt DateTime @default(now())
+
+  @@id([artTagId, artId])
 }

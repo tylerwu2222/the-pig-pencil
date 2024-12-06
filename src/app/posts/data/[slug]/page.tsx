@@ -24,20 +24,13 @@ export default async function page({
 
     // query the mdx from prisma based on the slug
     const postMetaData = await getPostBySlug(slug) as Post;
-
     // console.log('post metadata', postMetaData);
 
     // get the markdown dynamically based on the slug
-    // const PostMarkdown = dynamic(() => import(`@/app/posts/data/${slug}/${slug}.mdx`))
-    // const PostMarkdown = (await import(
-    //     `@/app/posts/data/${slug}/${slug}.mdx`
-    // )).default;
-
     const { default: PostMarkdown, metadata } = await import(
         `@/app/posts/data/${slug}/${slug}.mdx`
     );
-
-    console.log('post metadata', metadata);
+    // console.log('post metadata', metadata);
 
     return (
         <div className='py-5'>

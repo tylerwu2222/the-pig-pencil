@@ -1,5 +1,8 @@
 'use client'
 
+// import Head from 'next/head';
+import { usePathname } from 'next/navigation';
+
 // modules
 import SearchInput from '@/app/components/inputs/SearchInput/SearchInput';
 import { DropdownInputRadio } from '@/app/components/inputs/DropdownInput/DropdownInputRadio';
@@ -13,11 +16,17 @@ import { useEffect, useState } from 'react';
 import { filterSort } from '@/app/lib/FilterSort';
 
 // types
-import { Tag } from '@prisma/client';
 import { Post } from '@/types/extendedPrismaTypes';
 
+
+const searchKeywordMap: Record<string, string> = {
+    'data': 'data stories',
+    'cheatsheet': 'cheatsheets',
+    'tutorial': 'tutorials',
+    'project': 'projects'
+}
+
 interface SectionTemplateProps {
-    // postData: Post[];
     section: string;
     contentType: string;
     searchBarIncluded: boolean;
@@ -28,7 +37,6 @@ interface SectionTemplateProps {
 
 export default function SectionTemplate(
     {
-        // postData,
         section = '',
         contentType = '',
         searchBarIncluded = true,
@@ -37,19 +45,12 @@ export default function SectionTemplate(
         // postTemplateType = 1
     }: Partial<SectionTemplateProps>
 ) {
-    // const location = useLocation();
 
-    // // set section title
-    // useEffect(() => {
-    //     const route = location.pathname;
-    //     console.log('route', route, 'section', section.toLowerCase());
-    //     // Set the title based on the route
-    //     if (route.includes(section.toLowerCase())) {
-    //         // console.log(route, section);
-    //         document.title = 'The Pig Pencil | ' + section;
-    //     };
-    // }, [])
-
+    const pathname = usePathname();
+    const pathnameSegments = pathname.split('/')
+    const pathNameLast = pathnameSegments[pathnameSegments.length - 1]
+    console.log('path name last', pathNameLast);
+    const baseTitle = 'The Pig Pencil';
 
     const [loaded, setLoaded] = useState<boolean>(false);
     // search, filter, sort
@@ -93,7 +94,7 @@ export default function SectionTemplate(
 
     return (
         <>
-
+            <title>{baseTitle + ' | ' + pathNameLast.charAt(0).toUpperCase() + pathNameLast.slice(1)}</title>
             <div className='py-3 px-[3%] xl:px-[20%]'>
                 {/* search + sort div */}
                 <div className='grid grid-cols-6 gap-2 p-[2vh]'>
@@ -102,7 +103,7 @@ export default function SectionTemplate(
                             <SearchInput
                                 value={searchValue}
                                 onValueChangeFn={(e) => { handleSearchKeywordChange(e.target.value) }}
-                                placeholder={'search ' + section}
+                                placeholder={'search ' + searchKeywordMap[section]}
                             />
                             <div className='px-3 pt-2'>
                                 <i className='text-gray-500 min-h-[1em]'>{searchValue.length > 0 ? FSPosts.length + " results for '" + searchValue + "'" : '\u00A0'}</i>

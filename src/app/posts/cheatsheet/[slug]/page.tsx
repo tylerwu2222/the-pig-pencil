@@ -26,14 +26,17 @@ export default async function page({
 
     // query the mdx from prisma based on the slug
     const postMetaData = await getPostBySlug(slug) as Post;
+    console.log('pmd', postMetaData)
 
     // get the markdown dynamically based on the slug + include route group based on first tag
     let PostMarkdown;
     if (!cheatsheetCategories.includes(postMetaData.tags[0])) {
-        PostMarkdown = dynamic(() => import(`@/app/posts/cheatsheet/${slug}/${slug}.mdx`))
+        let { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/${slug}/${slug}.mdx`);
+        PostMarkdown = markdown;
     }
     else {
-        PostMarkdown = dynamic(() => import(`@/app/posts/cheatsheet/(${postMetaData.tags[0]})/${slug}/${slug}.mdx`));
+        let { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/(${postMetaData.tags[0]})/${slug}/${slug}.mdx`);
+        PostMarkdown = markdown;
     }
 
     return (
