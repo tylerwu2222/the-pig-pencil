@@ -1,6 +1,6 @@
-import { ThemeOptions, createTheme } from '@mui/material/styles';
+// import { ThemeOptions, createTheme } from '@mui/material/styles';
 
-const customTheme: ThemeOptions = {
+const customTheme = {
   palette: {
     mode: 'light',
     primary: {
@@ -15,4 +15,4 @@ const customTheme: ThemeOptions = {
   },
 };
 
-export const TPP_site_theme = createTheme(customTheme);
+// export const TPP_site_theme = createTheme(customTheme);

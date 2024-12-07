@@ -5,19 +5,15 @@
 import './NavBar.css';
 // import '../../Fonts.css'
 
-// google analytics - change to next 3rd party
+// google analytics - change to next analytics?
+
 
 // react
-import React, { useEffect, useState, createContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 
-// context
-// import { appContext } from "../../App";
-
-// navbar components & data
-// import menuItems from "../../../site_data/navbar_menu_items.json";
-// import randomFontFamilies from '../../site_data/logo_font_names.json';
+import { HomeContext } from '@/app/page';
 
 import { cn } from "@/lib/utils"
 import {
@@ -32,60 +28,12 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Button } from "@/components/ui/button"
 
-
-// sections
-// import Home from "../Sections/Home/Home.js";
-// import Data from "../Sections/Data/Data.js";
-// import Writing from "../Sections/Writing/Writing.js";
-// import Art from "../Sections/Art/Art.js";
-// import Cheatsheets from "../Sections/Learning/Cheatsheets.js";
-// import Tutorials from "../Sections/Learning/Tutorials.js";
-// import Projects from '../Sections/Projects/Projects.js';
-// import Me from "../Sections/People/Me.js";
-// import Collaborators from '../Sections/People/Collaborators.js';
-// import Subscribe from "../Sections/Subscribe/Subscribe.js";
-
-// // post templates
-// import ArtPage from "../PostTemplates/ArtPostTemplates/ArtPage.js";
-// import DataPage from "../PostTemplates/DataPostTemplates/DataPage.js";
-// import CheatsheetPage from "../PostTemplates/LearningPostTemplates/CheatsheetPage.js";
-// import TutorialPage from "../PostTemplates/LearningPostTemplates/TutorialPage.js";
-// import ProjectsPage from '../PostTemplates/ProjectsPostTemplates/ProjectsPage.js';
-// import WritingPage from '../PostTemplates/WritingPostTemplates/WritingPage.js';
-
-// import MDXtoJSTemplate from '../PostTemplates/WritingPostTemplates/MDXtoJSTemplate.js';
-// import PhotoEssay from "../PostTemplates/WritingPostTemplates/PhotoEssay/PhotoEssay.js";
-
-// post data (+ individual posts)
-// import artPosts from '../../post_data/art_sections.json';
-// import dataPosts from '../../post_data/data_articles.json';
-// import writingPosts from '../../post_data/writing_articles.json';
-// import cheatSheetPosts from '../../post_data/cheatsheet_articles.json';
-// import tutorialPosts from '../../post_data/tutorial_articles.json';
-// import projectsPosts from '../../post_data/projects_articles.json';
-
 // mobile
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 
-// import { useWindowSize } from '../Functions/useWindowSize.js';
-// import DataPageJS from '../PostTemplates/DataPostTemplates/DataPageJS.js';
-
-
-
-
-// export const hideNavbarFooter = () => {
-//     const navbar = document.getElementsByClassName('navbar')[0];
-//     navbar.style.display = "none";
-//     const footer = document.getElementsByClassName('footer')[0];
-//     footer.style.display = "none";
-// };
-
 const NavBar = () => {
-    // const [currentHoveredTab, setCurrentHoveredTab] = useState('___');
-
-    // const [userHovered, setUserHovered] = useState(false);
-    // const [hoverTabInterval, setHoverTabInterval] = useState(null);
+    const { hoveredTab, setHoveredTab } = useContext(HomeContext);
 
     const [logoFontFamily, setLogoFontFamily] = useState('Gloock');
     // const [randomFontIndex, setRandomFontIndex] = useState(0);
@@ -93,6 +41,7 @@ const NavBar = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
+    // adds scroll hide/show listeners
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
@@ -112,6 +61,10 @@ const NavBar = () => {
         };
     }, [lastScrollY]);
 
+    const handleHoveredTab = (tab: string) => {
+        setHoveredTab(tab);
+    }
+
     return (
         <div className={`grid grid-cols-3 items-center bg-backgroundWhite 
             sticky top-0 
@@ -124,7 +77,10 @@ const NavBar = () => {
                     className='flex flex-row gap-2 align-bottom'
                     href="/"
                 >
-                    <div className="flex flex-row items-end">
+                    <div className="flex flex-row items-end"
+                        onMouseEnter={() => { handleHoveredTab('pigs!') }}
+                        onMouseLeave={() => { handleHoveredTab('___') }}
+                    >
                         <p
                             className="text-2xl text-end hover:text-hoverDeepPink transition-colors duration-1000 ease-in-out"
                             style={{ fontFamily: logoFontFamily }}
@@ -144,21 +100,14 @@ const NavBar = () => {
                 </Link>
             </div>
             {/* desktop menu items */}
-            {/* <hoveredTabContext.Provider
-                    value={{
-                        currentHoveredTab,
-                        setCurrentHoveredTab,
-                        setUserHovered,
-                        location,
-                        menuVisible,
-                        setMenuVisible
-                    }}> */}
             <div className='justify-self-center'>
                 <NavigationMenu>
                     <NavigationMenuList className='gap-3'>
                         {/* items */}
                         <NavigationMenuItem
                             className={"md:min-w-[40px] lg:min-w-[60px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('art') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <Link href="/section/art" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -170,6 +119,8 @@ const NavBar = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem
                             className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('data') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <Link href="/section/data" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -181,6 +132,8 @@ const NavBar = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem
                             className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('learning') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <NavigationMenuTrigger
                                 className='appearance-none font-normal text-[17px] bg-transparent hover:text-pink-600'
@@ -202,6 +155,8 @@ const NavBar = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem
                             className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('projects') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <Link href="/section/projects" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -213,6 +168,8 @@ const NavBar = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem
                             className={"md:min-w-[40px] flex justify-center hover:text-pink-600 p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('writing') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <Link href="/section/writing" legacyBehavior passHref>
                                 <NavigationMenuLink
@@ -224,6 +181,8 @@ const NavBar = () => {
                         </NavigationMenuItem>
                         <NavigationMenuItem
                             className={"md:min-w-[40px] flex justify-center p-1 rounded-md"}
+                            onMouseEnter={() => { handleHoveredTab('people') }}
+                            onMouseLeave={() => { handleHoveredTab('___') }}
                         >
                             <NavigationMenuTrigger
                                 className='appearance-none font-normal text-[17px] bg-transparent focus:bg-transparent hover:bg-transparent active:bg-transparent hover:text-pink-600'

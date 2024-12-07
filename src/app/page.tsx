@@ -1,33 +1,83 @@
+'use client'
 // import Image from "next/image";
+
+// react
+import { useState, useEffect, createContext, Dispatch, SetStateAction } from "react";
+
+// components
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
+import images_json from '@/site_data/home_mosaic_images.json';
+
+// helpers
+import { getRandomNumber, getRandomNumberAvoiding } from "./lib/randomNumbers";
+
+interface homeContextProps {
+  hoveredTab: string;
+  setHoveredTab: Dispatch<SetStateAction<string>>;
+}
+
+export const HomeContext = createContext({} as homeContextProps);
+
 export default function Home() {
+
+  const minSize = 10;
+  const maxSize = 17;
+  const home_mosaic_images: Record<string, any> = images_json;
+  const [hoveredTab, setHoveredTab] = useState<string>('___');
+  const [displayedImages, setDisplayedImages] = useState<string[]>([]);
+  const [imageGeneratingProcess, setImageGeneratingProcess] = useState(0);
+
+  // update home mosaic images based on hoveredTab
+  useEffect(() => {
+    if (hoveredTab == 'pigs!') {
+      setDisplayedImages(Array.from({ length: 20 }, () => home_mosaic_images['pig']).flat());
+    }
+    else {
+      setDisplayedImages(home_mosaic_images[hoveredTab]);
+    }
+    // setCurrentImageGeneratingProcess(get_random_int(0, 5)); // 0 to 4
+
+  }, [hoveredTab]);
+
   return (
-    <>
+    <HomeContext.Provider
+      value={{
+        hoveredTab,
+        setHoveredTab
+      }}
+    >
       {/* navbar navigation */}
       <NavBar />
       {/* dynamic text/images */}
-      <div className='w-full h-full justify-center items-center'>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">I'll be honest, building and updating this site has felt a little like iteratively fitting a square peg into a round hole.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">At it's early stages, it was me trying to make a website to sell art.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">I followed a YouTube tutorial and built it with mostly with HTML and PHP, something called Apache for local testing, and hosting it on Heroku for free.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">I wanted it to be from scratch so I could "fully customize" it.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">Then I went to school for data science.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">And I decided why not make some data visualizations and share some of my writings on this site.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">So I learned Javascript and D3.js (and many other plotting packages).</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">Then I go to more school to learn web development and learn about React!</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">So I convert my humble vanilla JS blog to a React-based site.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">Then, as I look for work in data/software development I learn about Next.js</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">It seems like it's the next big thing. (I mean it's in the name.) And it does have pretty cool features, like its file-based routing and other server/client stuff.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">So that's where we are today.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">Anyways, if you're reading this, I've successfully converted my site 3 whole times. From HTML + PHP to JS, from JS to React, and finally from React to Next.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">It's been a good 5 years, on and off, working on this thing.</p>
-        <p className="hover:text-hoverDeepPink transition duration-200 ease-in-out">But finally, the groundwork is set, so stay tuned for some writing/data/art work that will (hopefully) knock your socks off 💥🧦</p>
+      <div className="relative h-[90vh]">
+        <p className="absolute top-1/2 left-1/2 w-[30vw] -translate-x-[5vw] text-left">
+          A blog about <span className="font-semibold text-hoverDeepPink transition-all duration-200">{hoveredTab}</span>
+        </p>
       </div>
+      {displayedImages && displayedImages.sort((a, b) => 0.5 - Math.random()).map((img, index) => {
+        return (
+          <img
+            key={index}
+            src={hoveredTab == 'pigs!' ? '/img/home_mosaic/pig/' + img : '/img/home_mosaic/' + hoveredTab + '/' + img}
+            className='home-img'
+            alt={img}
+            style={{
+              position: 'absolute',
+              top: getRandomNumberAvoiding() + 'vh',
+              left: getRandomNumberAvoiding(5, 81, 30, 60) + 'vw',
+              maxHeight: getRandomNumber(minSize, maxSize) + 'vh',
+              maxWidth: getRandomNumber(minSize, maxSize) + 'vw'
+            }}>
+
+          </img>
+        );
+      })}
+
       {/* footer links */}
       <Footer />
       {/* buy me a coffee */}
 
-    </>
+    </HomeContext.Provider>
   );
 }
