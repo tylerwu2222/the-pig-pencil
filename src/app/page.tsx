@@ -39,6 +39,7 @@ export default function Home() {
     // setCurrentImageGeneratingProcess(get_random_int(0, 5)); // 0 to 4
 
   }, [hoveredTab]);
+  
 
   return (
     <HomeContext.Provider
@@ -50,7 +51,7 @@ export default function Home() {
       {/* navbar navigation */}
       <NavBar />
       {/* dynamic text/images */}
-      <div className="relative h-[90vh]">
+      <div className="relative h-[90vh] pointer-events-none">
         <p className="absolute top-1/2 left-1/2 w-[30vw] -translate-x-[5vw] text-left">
           A blog about <span className="font-semibold text-hoverDeepPink transition-all duration-200">{hoveredTab}</span>
         </p>

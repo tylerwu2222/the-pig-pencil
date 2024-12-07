@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Art",
+        "url": "art"
+    },
+    {
+        "title": "Data",
+        "url": "data"
+    },
+    {
+        "title": "Learning",
+        "url": "learning",
+        "submenu": [
+            {
+                "title": "Tutorials",
+                "url": "tutorials",
+                "description": "for lots of stuff."
+            },
+            {
+                "title": "Cheatsheets",
+                "url": "cheatsheets",
+                "description": "for data science, web scraping, and web dev."
+            }
+        ]
+    },
+    {
+        "title": "Projects",
+        "url": "projects"
+    },
+    {
+        "title": "Writing",
+        "url": "writing"
+    },
+    {
+        "title": "People",
+        "url": "people",
+        "submenu": [
+            {
+                "title": "Collaborators",
+                "url": "collaborators",
+                "description": "the people that contribute to this thing."
+            },
+            {
+                "title": "Me",
+                "url": "me",
+                "description": "a portfolio by tyler wu for tyler wu."
+            }
+        ]
+    }
+]
