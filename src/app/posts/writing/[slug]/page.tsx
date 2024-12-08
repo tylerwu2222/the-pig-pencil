@@ -27,7 +27,10 @@ export default async function page({
     // console.log('post metadata', postMetaData);
 
     // get the markdown dynamically based on the slug
-    const PostMarkdown = dynamic(() => import(`@/app/posts/writing/${slug}/${slug}.mdx`))
+    const { default: PostMarkdown, metadata } = await import(
+        `@/app/posts/writing/${slug}/${slug}.mdx`
+    );
+    // const PostMarkdown = dynamic(() => import(`@/app/posts/writing/${slug}/${slug}.mdx`))
 
     return (
         <div className='py-5'>

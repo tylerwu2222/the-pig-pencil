@@ -169,3 +169,14 @@ export const createTagsAuthorConnection = async (
     data: newTagAuthorData,
   });
 };
+
+// UPDATE/UPSERT
+export const upsertPost = async (slug: string, metadata: Post) => {
+  await prisma.post.upsert({
+    where: {
+      slug: slug,
+    },
+    create: metadata,
+    update: metadata,
+  });
+};
