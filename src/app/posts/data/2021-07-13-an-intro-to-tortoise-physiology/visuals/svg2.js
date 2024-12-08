@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { createEphemeralD3Tooltip } from "@/app/components/d3/tooltips/EphemeralTooltip";
 
 // data
-import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV";
 
 // styles
 import { config, cs_key, cs_mapping } from "./config";

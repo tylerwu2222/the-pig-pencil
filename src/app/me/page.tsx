@@ -15,7 +15,7 @@ import InteractiveDragBox from '../components/animate/scroll_animate/Interactive
 // import ImageModal from '../../Modules/ImageModal/ImageModal';
 import ImageModal from '../components/modals/ImageModal/ImageModal';
 
-import { useWindowSize } from '../lib/useWindowSize';
+import { useWindowSize } from '../../lib/useWindowSize';
 import Link from 'next/link';
 // import Image from 'next/image';
 

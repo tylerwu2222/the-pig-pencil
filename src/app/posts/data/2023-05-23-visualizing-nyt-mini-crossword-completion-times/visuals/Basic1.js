@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 // data
-import { loadPublicCSV } from '@/app/lib/data_section/loadPublicCSV';
+import { loadPublicCSV } from '@/lib/data_section/loadPublicCSV';
 
 // styles
 import { colors } from './config';

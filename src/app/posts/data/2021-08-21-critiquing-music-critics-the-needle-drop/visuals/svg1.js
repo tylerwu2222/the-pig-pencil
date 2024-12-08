@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
 // data
-import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV.ts";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.js";
 
 // styles
 import config from "./config.js";

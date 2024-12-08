@@ -13,7 +13,7 @@ import { PostThumbnail1 } from './PostThumbnail';
 import { useEffect, useState } from 'react';
 
 // filter sort
-import { filterSort } from '@/app/lib/FilterSort';
+import { filterSort } from '@/lib/FilterSort';
 
 // types
 import { Post, Author } from '@/types/extendedPrismaTypes';

@@ -10,7 +10,7 @@ import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownI
 import { createEphemeralD3Tooltip } from "@/app/components/d3/tooltips/EphemeralTooltip";
 
 // data
-import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV";
 
 const initialHC = {
     'tropical forest': 0,

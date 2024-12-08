@@ -9,7 +9,7 @@ import PostHeader from '../../PostHeader';
 // import ImageModal from '@/app/components/modals/ImageModal/ImageModal';
 
 // helpers
-import { getPostBySlug } from '@/app/lib/prisma/prisma';
+import { getPostBySlug } from '@/lib/prisma/prisma';
 
 // types
 import { Post } from '@/types/extendedPrismaTypes';

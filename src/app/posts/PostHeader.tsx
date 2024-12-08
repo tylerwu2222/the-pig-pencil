@@ -1,6 +1,6 @@
 import React from 'react'
 import { Post } from '@/types/extendedPrismaTypes'
-import { formatDateToLongDate } from '../lib/dateFormatting';
+import { formatDateToLongDate } from '../../lib/dateFormatting';
 
 interface PostHeaderProps {
     post: Post;

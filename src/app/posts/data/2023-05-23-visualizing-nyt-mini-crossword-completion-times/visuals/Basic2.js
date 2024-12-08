@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 import { LineChart, Line, Label, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 // import data2 from '../data/mini_scores_c_wide.csv';
-import { loadPublicCSV } from '@/app/lib/data_section/loadPublicCSV';
+import { loadPublicCSV } from '@/lib/data_section/loadPublicCSV';
 
 // import DropdownMenu from '../../../../components/Modules/DropdownMenu/DropdownMenu';
 import DropdownInputSelect from '@/app/components/inputs/DropdownInput/DropdownInputSelect';

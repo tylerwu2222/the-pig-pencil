@@ -2,8 +2,8 @@
 import { Post } from '@/types/extendedPrismaTypes';
 
 // formatting
-import { getSlugTitle } from '@/app/lib/stringFormatting';
-import { formatDateToShortDate } from '@/app/lib/dateFormatting';
+import { getSlugTitle } from '@/lib/stringFormatting';
+import { formatDateToShortDate } from '@/lib/dateFormatting';
 
 // react
 import Link from 'next/link';

@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-import { loadPublicCSV } from "@/app/lib/data_section/loadPublicCSV.ts";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.js";
 
 // components
 import config from "./config.js";

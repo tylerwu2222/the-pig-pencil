@@ -8,7 +8,7 @@ import PostHeader from '../../PostHeader';
 import Scrollspy from '@/app/components/Scrollspy/Scrollspy';
 
 // helpers
-import { getPostBySlug } from '@/app/lib/prisma/prisma';
+import { getPostBySlug } from '@/lib/prisma/prisma';
 
 // types
 import { Post } from '@/types/extendedPrismaTypes';

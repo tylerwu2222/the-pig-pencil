@@ -1,6 +1,6 @@
 import React from 'react'
 import { Author } from '@/types/extendedPrismaTypes'
-import { getSnakeCase } from '@/app/lib/stringFormatting'
+import { getSnakeCase } from '@/lib/stringFormatting'
 
 
 interface CollaboratorThumbnailProps {

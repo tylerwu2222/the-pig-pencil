@@ -25,7 +25,7 @@ model Author {
   email                String?                @unique
   quote                String?
   joinDate             DateTime               @default(now())
-  isVisible           Boolean                @default(true)
+  isVisible            Boolean                @default(true)
   AuthorsOnPosts       AuthorsOnPosts[]
   TagsOnAuthors        TagsOnAuthors[]
   AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
@@ -34,8 +34,8 @@ model Author {
 // file name, same for thumbnail is derived from concatenating date (yyyy-mm-dd) to lower, hyphenated title
 model Post {
   id             String           @id @default(cuid())
-  title          String
-  slug           String?
+  title          String           @unique
+  slug           String?          @unique
   section        String
   thumbnail      String?
   caption        String?
@@ -50,7 +50,7 @@ model Post {
 
 model Art {
   id           String         @id @default(cuid())
-  title        String
+  title        String      
   series       String?
   slug         String?
   thumbnail    String?

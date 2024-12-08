@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "**/*.mdx"
-, "src/app/components/Scrollspy/Scrollspy.tsx"  ],
+, "src/app/components/Scrollspy/Scrollspy.tsx", "src/scripts/site_automation/createNewPost.mjs", "src/scripts/site_automation/updatePostsPrisma.mjs"  ],
   "exclude": [
     "node_modules"
   ]
