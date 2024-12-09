@@ -14,12 +14,12 @@ export async function GET(
         include: {
             AuthorsOnPosts: {
                 select: {
-                    post: true
+                    Post: true
                 }
             },
-            TagsOnAuthors: {
+            AuthorsOnTags: {
                 select: {
-                    tag: {
+                    Tag: {
                         select: {
                             tagName: true
                         }
