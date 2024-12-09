@@ -303,13 +303,13 @@ export default Post;`,
       {
         name: `${getDashedString(slug)}.mdx`,
         content: `export const metadata = {
-    publishDate: "${dash_date}"
-    title: "${post_name}"
-    authors: [${quoteCommaSepString(authors)}]
-    tags:  [${quoteCommaSepString(tags)}]
-    readingTime: "${reading_time}"
-    caption: "${caption}"
-    hasScrollspy: "${scrollspy}"
+    publishDate: "${dash_date}",
+    title: "${post_name}",
+    authors: [${quoteCommaSepString(authors)}],
+    tags:  [${quoteCommaSepString(tags)}],
+    readingTime: "${reading_time}",
+    caption: "${caption}",
+    hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
 }
 

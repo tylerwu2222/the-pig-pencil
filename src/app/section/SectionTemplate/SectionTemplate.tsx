@@ -23,6 +23,7 @@ import ArtThumbnail from './ArtThumbnail';
 
 const searchKeywordMap: Record<string, string> = {
     'data': 'data stories',
+    'writing': 'writing',
     'cheatsheets': 'cheatsheets',
     'tutorial': 'tutorials',
     'project': 'projects',

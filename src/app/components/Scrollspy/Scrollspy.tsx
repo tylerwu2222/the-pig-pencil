@@ -81,12 +81,12 @@ export default function Scrollspy() {
                         sectionTitles.map((s, i) => {
                             const headerLevel = headerLevels[i]; // Assuming `headerLevels` is an array with levels (1-6) for each section title
                             const isIndented = headerLevel >= 3;
-                            const textSize = headerLevel <= 2 ? 'text-[14px]' : 'text-[12px]';
+                            const textSize = headerLevel <= 2 ? 'text-[14px]' : 'text-[13px]';
 
                             return (
                                 <div
                                     key={i}
-                                    className={`p-1 my-2 text-wrap ${isIndented ? 'pl-[2vw]' : 'pl-0'
+                                    className={`p-1 my-2 text-wrap ${isIndented ? 'pl-3' : 'pl-0'
                                         } ${textSize}`}>
                                     <a
                                         className="text-textGrey hover:text-hoverDeepPink hover:cursor-pointer transition duration-500 ease-in-out"

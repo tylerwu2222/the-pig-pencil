@@ -1,57 +1,58 @@
-import type { MDXComponents } from 'mdx/types'
-import { ScrollspyHeader } from './app/components/Scrollspy/Scrollspy'
-import { ComponentPropsWithoutRef } from 'react';
+import type { MDXComponents } from "mdx/types";
+import { ScrollspyHeader } from "./app/components/Scrollspy/Scrollspy";
+import { ComponentPropsWithoutRef } from "react";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import ImageModal from './app/components/modals/ImageModal/ImageModal';
-import PDFIframe from './app/components/pdf/PDFViewer/PDFIframe/PDFIframe';
+import Image from "next/image";
+import Link from "next/link";
+import ImageModal from "./app/components/modals/ImageModal/ImageModal";
+import PDFIframe from "./app/components/pdf/PDFViewer/PDFIframe/PDFIframe";
 
-type HeadingProps = ComponentPropsWithoutRef<'h1'>;
-type ParagraphProps = ComponentPropsWithoutRef<'p'>;
-type ListProps = ComponentPropsWithoutRef<'ul'>;
-type ListItemProps = ComponentPropsWithoutRef<'li'>;
-type AnchorProps = ComponentPropsWithoutRef<'a'>;
-type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
+import GithubIcon from "./app/components/buttons/iconButtons/GithubIcon";
+import WebsiteIcon from "./app/components/buttons/iconButtons/WebsiteIcon";
+
+type HeadingProps = ComponentPropsWithoutRef<"h1">;
+type ParagraphProps = ComponentPropsWithoutRef<"p">;
+type ListProps = ComponentPropsWithoutRef<"ul">;
+type ListItemProps = ComponentPropsWithoutRef<"li">;
+type AnchorProps = ComponentPropsWithoutRef<"a">;
+type BlockquoteProps = ComponentPropsWithoutRef<"blockquote">;
 
 // define topography styling tags...
 const components: MDXComponents = {
-  h1: (props: HeadingProps) => (
-    <h1 className='font-large fade-in' {...props} />
-  ),
+  h1: (props: HeadingProps) => <h1 className="font-large fade-in" {...props} />,
   h2: (props: HeadingProps) => (
-    <h2 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
+    <h2 className="mb-3 mt-8 font-medium text-gray-800" {...props} />
   ),
   h3: (props: HeadingProps) => (
-    <h3 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
+    <h3 className="mb-3 mt-8 font-medium text-gray-800" {...props} />
   ),
   h4: (props: HeadingProps) => <h4 className="font-medium" {...props} />,
   p: (props: ParagraphProps) => (
-    <p className="text-gray-800 leading-snug" {...props} />
+    <p className="leading-snug text-gray-800" {...props} />
   ),
   ol: (props: ListProps) => (
-    <ol className="text-gray-800 list-decimal pl-5 space-y-2" {...props} />
+    <ol className="list-decimal space-y-2 pl-5 text-gray-800" {...props} />
   ),
   ul: (props: ListProps) => (
-    <ul className="text-gray-800 list-disc pl-5 space-y-1" {...props} />
+    <ul className="list-disc space-y-1 pl-5 text-gray-800" {...props} />
   ),
   li: (props: ListItemProps) => <li className="pl-1" {...props} />,
-  em: (props: ComponentPropsWithoutRef<'em'>) => (
+  em: (props: ComponentPropsWithoutRef<"em">) => (
     <em className="font-medium" {...props} />
   ),
-  strong: (props: ComponentPropsWithoutRef<'strong'>) => (
+  strong: (props: ComponentPropsWithoutRef<"strong">) => (
     <strong className="font-medium" {...props} />
   ),
   a: ({ href, children, ...props }: AnchorProps) => {
-    const className = 'text-blue-500 hover:text-blue-700';
-    if (href?.startsWith('/')) {
+    const className = "text-blue-500 hover:text-blue-700";
+    if (href?.startsWith("/")) {
       return (
         <Link href={href} className={className} {...props}>
           {children}
         </Link>
       );
     }
-    if (href?.startsWith('#')) {
+    if (href?.startsWith("#")) {
       return (
         <a href={href} className={className} {...props}>
           {children}
@@ -96,7 +97,7 @@ const components: MDXComponents = {
   ),
   blockquote: (props: BlockquoteProps) => (
     <blockquote
-      className="ml-[0.075em] border-l-3 border-gray-300 pl-4 text-gray-700"
+      className="border-l-3 ml-[0.075em] border-gray-300 pl-4 text-gray-700"
       {...props}
     />
   ),
@@ -104,7 +105,7 @@ const components: MDXComponents = {
 
 // including components here will make components available to all MDX files throughout app
 export function useMDXComponents(
-  otherComponents: MDXComponents
+  otherComponents: MDXComponents,
 ): MDXComponents {
   return {
     ...otherComponents,
@@ -113,6 +114,8 @@ export function useMDXComponents(
     ImageModal,
     PDFIframe,
     // Scrollspy,
-    ScrollspyHeader
-  }
+    ScrollspyHeader,
+    WebsiteIcon,
+    GithubIcon
+  };
 }

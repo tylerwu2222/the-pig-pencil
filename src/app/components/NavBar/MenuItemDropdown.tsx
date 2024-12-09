@@ -14,7 +14,7 @@ export default function MenuItemDropdown({ item }: MenuItemDropdownProps) {
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
 
-    console.log('item', item);
+    // console.log('item', item);
 
     return (
         <div className='relative'>

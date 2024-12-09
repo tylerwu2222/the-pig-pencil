@@ -1,11 +1,110 @@
+import flows from './flows.png';
+import hz_block from './hanziblock.png';
+import yt_iframe from './yt_iframe.png';
+
 export const metadata = {
-    publishDate: "2024-02-10"
-    title: "Youzi: a Social Mandarin Learning App"
-    authors: ["Tyler Wu"]
-    tags:  ["mobile dev", "react-native", "education", "game", "mandarin"]
-    readingTime: "8 min"
-    caption: "made for Berkeley MIMS capstone project"
-    hasScrollspy: "true"
+    publishDate: "2024-02-10",
+    title: "Youzi: a Social Mandarin Learning App",
+    authors: ["Tyler Wu"],
+    tags: ["mobile dev", "react-native", "education", "game", "mandarin"],
+    readingTime: "8 min",
+    caption: "made for Berkeley MIMS capstone project",
+    hasScrollspy: "true",
     visibility: "visible"
 }
 
+<div className="flex gap-3">
+<WebsiteIcon link={'https://midkuan.github.io/youzi/steller/public_html/index.html#home'} text={'website (by my friend Victor)'} size={20} position='right'/>
+<GithubIcon link={'https://github.com/tylerwu2222/youzi-mobile/tree/main'} text={'repo'} size={20}/>
+</div>
+<ScrollspyHeader header={'Background'}/>
+This project was completed for the [capstone project](https://www.ischool.berkeley.edu/programs/mims/projects/2024) of Berkeley's Master's in Information Management and Systems program. 
+Since our team was made up of two Chinese Americans, two native Chinese students, and one Korean American, 
+we agreed we wanted to create an educational tool that helped Chinese Americans become more fluent in speaking Chinese.
+
+We decided the best tool we could create for this was a **mobile-app** for practicing conversational Chinese using conversational prompts in various topics like (pop culture, ice breakers, spicy talk...)
+
+The issue was none of us were familiar with mobile-development, (outside of my friend Victor being the Product Manager for a mobile-app startup).
+At this point, I thought since I had just learned React the last year and wanted to challenge myself to also learn React Native, 
+I decided I could take on the challenge of being the mobile developer. 
+
+<ScrollspyHeader header={'Tech Stack'}/>
+<span className="underline">Front-end:</span>
+- React Native
+- Expo
+
+<span className="underline">Data/back-end:</span>
+- prompt data, auto-generated from OpenAI API
+- stored in JSON files
+
+<ScrollspyHeader header={'Features'}/>
+
+Here, I'll briefly document the packages/processes I went through for building different features for any curious devs.
+
+<ScrollspyHeader header={'Translation'} level={3}/>
+Since our application involved conversing in Mandarin Chinese, targeting Chinese American users,
+ we needed the ability to translate between English and Chinese, as well as between Pinyin (phonetic) and Hanzi (character) Chinese. The relevant packages we used were:
+
+- [pinyin](https://www.npmjs.com/package/pinyin) to add pinyin above the hanzi characters.
+- [chinese-conv](https://www.npmjs.com/package/chinese-conv) to convert between simplified and traditional hanzi.
+
+These were pieced together to create a "hanzi block" component:
+<Image src={hz_block} className={'w-[30%]'} alt={'hanzi-block'} />
+*an array of the hanzi-block components*
+
+- [cedict](https://www.mdbg.net/chinese/dictionary?page=cedict) (an english Chinese-English dictionary) to translate words from hanzi to English.
+There are quite a few funny slangs I learned scrolling through the json file. 
+For example 虾男 (xiā nán) means a guy who looks very good looking neck-down, but has a shrimp-like (not so good looking) head.
+
+<ScrollspyHeader header={'Navigation'} level={3}/>
+In the time frame for completing the project, I had built out two main user flows, conversation and review.
+<Image src={flows} className={'w-[50%] self-center'} alt={'home-page-flow'} />
+*the home screen and topic selection screens*
+
+- conversation flow: 
+<iframe src={'https://youtube.com/embed/4U3XJJ_WGyU'} className="w-full aspect-video" allowFullScreen={true}/>
+- review flow:
+<iframe src={'https://youtube.com/embed/-MQkZS9cg58'} className="w-full aspect-video" allowFullScreen={true}/>
+
+Navigation was handled with [react-navigation/native](https://www.npmjs.com/package/@react-navigation/native). 
+
+This was done before I had discovered Expo's App Router, (analagous to Next's file-based routing).
+If I were to redo this process today, I would likely use file-based routing for its intuitiveness.
+
+<ScrollspyHeader header={'Persistence'} level={3}/>
+While our project did not involve a "back-end" outside of a few JSON files, some data did need to persist. 
+
+Namely, auser's favorited vocab, completed prompts, and settings (such as pinyin on/off), these needed to be saved across sessions for the user.
+
+To handle this, I made use of Expo's [AsyncStorage](https://docs.expo.dev/versions/latest/sdk/async-storage/), story these variables in a JSON format in the app storage.
+
+<ScrollspyHeader header={'Text-to-speech and Audio'} level={3}/>
+Storing audio recordings from the user was done using Expo's [av (audio video)](https://docs.expo.dev/versions/latest/sdk/av/) module to record and AsyncStorage to store and retrieve.
+
+Similarly, to handle text-to-speech capabilities, I used [expo-speech](https://docs.expo.dev/versions/latest/sdk/speech/) to read prompts out loud.
+
+
+<ScrollspyHeader header={'Video'} level={3}/>
+One of the final nice-to-have features we wanted to have was having a relevant YouTube video for the pop culture prompt topic.
+
+I implemented this by using YouTube's API through the [react-native-youtube-iframe](https://lonelycpp.github.io/react-native-youtube-iframe/) 
+package. Specifically, I extracted the first video that appeared when searching for a keyword from the prompt and embedded it in the prompt response screen:
+<Image src={yt_iframe} className={''} alt={'yt-iframe-example'} />
+
+
+<ScrollspyHeader header={'Learnings & Challenges'}/>
+One of the biggest challenges we dealt with was defining the scope of our project. 
+
+On the one hand our team wanted so many cool features, and in an ideal world, I would've been able to make them all.
+But since it was just me making the app, we had to learn to compromise and prioritize what we thought was most important.
+
+Thus, it was definitely a big time-crunch that left little time for me to style and make the app as accessible as I liked, 
+(usually I love obsessing over styles), but it was still a good exercise of working within constraints.
+
+<ScrollspyHeader header={'Reflection'}/>
+Overall, it was still a great process to go through as I still learned quite a bit, 
+not just about mobile dev, but communicating with a team, and working with deadlines.
+
+In hindsight, I could've tried making more use of AI tools to generate a lot of the
+But at the same time, I think doing a lot of the basic-component work "by hand" was also great for my learning, 
+as I learned quite a bit from making lots of mistakes, reading docs, and planning things out on paper.
