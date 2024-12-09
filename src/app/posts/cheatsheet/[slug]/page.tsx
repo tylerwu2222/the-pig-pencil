@@ -26,7 +26,7 @@ export default async function page({
 
     // query the mdx from prisma based on the slug
     const postMetaData = await getPostBySlug(slug) as Post;
-    console.log('pmd', postMetaData)
+    // console.log('pmd', postMetaData)
 
     // get the markdown dynamically based on the slug + include route group based on first tag
     let PostMarkdown;
@@ -40,7 +40,7 @@ export default async function page({
     }
 
     return (
-        <div className='py-5'>
+        <div className='py-5 pb-20'>
             {/* header content (tn, caption, date, author) */}
             <PostHeader post={postMetaData} showThumbnail={false} />
             {/* post content (queried via mdx) */}

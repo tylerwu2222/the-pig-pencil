@@ -30,7 +30,7 @@ export default async function page({
     // console.log('post metadata', metadata);
 
     return (
-        <div className='py-5'>
+        <div className='py-5 pb-20'>
             {/* header content (tn, caption, date, author) */}
             <PostHeader post={postMetaData} />
             {/* post content (queried via mdx) */}
