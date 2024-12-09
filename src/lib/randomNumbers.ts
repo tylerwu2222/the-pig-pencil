@@ -9,7 +9,7 @@ export const getRandomNumber = (min: number, max: number) => {
 }
 
 export const getRandomNumberAvoiding = (min = 20, max = 81, minAvoid = 40, maxAvoid = 60) => {
-    let position = getRandomNumber(min, max);
+    const position = getRandomNumber(min, max);
     const midPoint = (minAvoid + maxAvoid) / 2;
     if (position < midPoint && position >= minAvoid) {
         return minAvoid - 1

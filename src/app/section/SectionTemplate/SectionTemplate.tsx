@@ -18,7 +18,6 @@ import { filterSort } from '@/lib/FilterSort';
 // types
 import { Post, Author } from '@/types/extendedPrismaTypes';
 import CollaboratorThumbnail from './CollaboratorThumbnail';
-import ArtThumbnail from './ArtThumbnail';
 
 
 const searchKeywordMap: Record<string, string> = {

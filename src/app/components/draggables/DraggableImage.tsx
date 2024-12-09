@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
+import Draggable from 'react-draggable'; // Both at the same time
 
 
 interface DraggableImageProps{

@@ -6,13 +6,13 @@ import { NextRequest, NextResponse } from "next/server";
 // get posts to display for section
 export async function GET(
     req: NextRequest,
-    { params }: { params: { section: string } }
+    { params }: { params: Promise<{ section: string }> }
 ) {
-    await params
+    const section = (await params).section;
 
     const sectionPosts = await prisma.post.findMany({
         where: {
-            section: params.section,
+            section: section,
             // section: 'project',
             visibility: 'visible'
         },

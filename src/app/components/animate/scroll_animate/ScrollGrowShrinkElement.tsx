@@ -27,9 +27,9 @@ const ScrollGrowShrinkElement = ({
   minScale = 0.1,
   maxScale = 1,
   startHorizontal = 0, // in vw?
-  endHorizontal = 100, // in vw?
+  // endHorizontal = 100, // in vw?
   startVertical = 0, // padding in vh
-  endVertical = 80, // in vh
+  // endVertical = 80, // in vh
   minScroll = 0, // in pixels
   maxScroll = window.innerHeight / 2, // in pixels
   iconZIndex = 1, // appear in front by default
@@ -38,7 +38,8 @@ const ScrollGrowShrinkElement = ({
 }:ScrollGrowShrinkElementProps) => {
 
   const [iconPaddingTop, setIconPaddingTop] = useState(startVertical); // padding
-  const [iconMarginLeft, setIconMarginLeft] = useState(startHorizontal); // padding
+  // const [iconMarginLeft, setIconMarginLeft] = useState(startHorizontal); // padding
+  const iconMarginLeft = startHorizontal;
   const [iconSize, setIconSize] = useState(startSize); // Initial size of the icon in vh
 
   useEffect(() => {

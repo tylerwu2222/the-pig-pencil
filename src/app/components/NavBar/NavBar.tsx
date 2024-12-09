@@ -24,7 +24,8 @@ const NavBar = () => {
   const pathname = usePathname();
 
   const { setHoveredTab } = useContext(HomeContext);
-  const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
+  // const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
+  const logoFontFamily = 'Gloock';
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 

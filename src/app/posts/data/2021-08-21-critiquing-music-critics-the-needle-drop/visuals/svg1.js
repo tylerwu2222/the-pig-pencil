@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 
 // data
-import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.js";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.ts";
 
 // styles
 import config from "./config.js";
@@ -81,7 +81,7 @@ const SVG1 = ({ view = 'absolute' }) => {
         let xScale = d3.scaleLinear()
             .domain(domain)
             .range([(config.vw - config.inner_vw * 0.95), config.inner_vw]);
-        let score_labels = new Set(scores);
+        // let score_labels = new Set(scores);
         // let n_bin = score_labels.size;
 
         let bin1 = d3.bin();

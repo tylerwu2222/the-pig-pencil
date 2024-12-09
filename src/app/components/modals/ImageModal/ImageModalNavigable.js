@@ -13,18 +13,18 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 
 
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    // width: 800,
-    width: "fit-content",
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+// const style = {
+//     position: 'absolute',
+//     top: '50%',
+//     left: '50%',
+//     transform: 'translate(-50%, -50%)',
+//     // width: 800,
+//     width: "fit-content",
+//     bgcolor: 'background.paper',
+//     border: '2px solid #000',
+//     boxShadow: 24,
+//     p: 4,
+// };
 
 const ImageModalNavigable = ({ imgKey, imgTN }) => {
     const [imageIncrementCount, setImageIncrementCount] = useState(0);
@@ -41,7 +41,7 @@ const ImageModalNavigable = ({ imgKey, imgTN }) => {
     const {
         data,
         pageFolder,
-        hoveredPiece,
+        // hoveredPiece,
         setHoveredPiece,
         displayedPiece,
         setDisplayedPiece,

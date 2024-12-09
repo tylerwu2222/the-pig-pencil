@@ -4,7 +4,7 @@ import ArtImages from '../../../post_data/art_image_data/art_images.json';
 import '../styles/art.css';
 
 import ImageModalNavigable from '../../modals/ImageModal/ImageModalNavigable';
-import SlideOutText, { handle_elt_hover } from '../../typography/SlideOutText/SlideOutText';
+import SlideOutText from '../../typography/SlideOutText/SlideOutText';
 
 export const ArtHoverContext = createContext();
 
@@ -50,7 +50,7 @@ const ArtPage = ({ folder }) => {
                                     imgTN={imageTN}
                                 />;
                                 return (
-                                    <div className="artDiv">
+                                    <div key={i} className="artDiv">
                                         {slideOutText}
                                         {imageModal}
                                     </div>

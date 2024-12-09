@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.js";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.ts";
 
 // components
 import config from "./config.js";
@@ -22,7 +22,7 @@ const cb_genres = [
 ]
 const cb_graphs = ['boxplots', 'individual points'];
 const boxWidth = 20; // width of boxplots
-const jitterWidth = 10; // jitter of individual points
+// const jitterWidth = 10; // jitter of individual points
 
 const SVG3 = () => {
     // console.log('SVG3 data',data);
@@ -160,7 +160,7 @@ const SVG3 = () => {
             .text('Score');
         // change label size
         d3.selectAll(".xaxis>.tick>text")
-            .each(function (d, i) {
+            .each(function () {
                 d3.select(this).style("font-size", "13px");
             });
 

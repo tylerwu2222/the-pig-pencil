@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 
 import './CodeDiv.css'
 
-import * as d3 from 'd3';
+// import * as d3 from 'd3';
 
 
 export default function CodeDiv({starterCode = 'console.log(c)', outputElt = <></>, language = 'language-javascript' }) {

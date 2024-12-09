@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 // get all authors
 export async function GET(
-    req: NextRequest
 ) {
 
     const allAuthors = await prisma.author.findMany({

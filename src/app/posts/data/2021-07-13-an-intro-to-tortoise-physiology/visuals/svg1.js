@@ -34,7 +34,7 @@ const SVG1 = () => {
             loadPublicCSV({ fileName: '2021-07-13-an-intro-to-tortoise-physiology' })
                 .then(dta => {
                     let habitat_counts = structuredClone(initialHC);
-                    dta.forEach((d, i) => {
+                    dta.forEach((d) => {
                         d.dist_list = d.dist.split(",");
                         d.coords = d.coords.split(",").map(x => +x);
                         d.c_name = eval(d.c_name)[0];
@@ -238,7 +238,7 @@ const SVG1 = () => {
                     .style("left", (event.pageX + 10) + "px")
                     .style("top", (event.pageY) + "px");
             })
-            .on("mouseout", function (d) {
+            .on("mouseout", function () {
                 tooltip_s.transition()
                     .duration(500)
                     .style("opacity", 0);

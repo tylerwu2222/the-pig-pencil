@@ -1,8 +1,5 @@
 import React from 'react'
 
-// dynamic imports
-import dynamic from 'next/dynamic';
-
 // components
 import PostHeader from '../../PostHeader';
 import Scrollspy from '@/app/components/Scrollspy/Scrollspy';

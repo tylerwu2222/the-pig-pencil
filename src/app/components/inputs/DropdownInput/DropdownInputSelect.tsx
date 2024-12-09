@@ -1,6 +1,6 @@
 'use client';
 
-import { SetStateAction, Dispatch, useState } from 'react';
+import { SetStateAction, Dispatch } from 'react';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -8,7 +8,7 @@ type DropdownInputSelectProps = {
     handleChange?: (value: string | number) => void;
     label?: string;
     options?: (string | number)[];
-    initialOption?: string | number;
+    // initialOption?: string | number;
     selectedOption: string | number;
     setSelectedOption: Dispatch<SetStateAction<string | number>>;
     color?: string; // Hex or tailwind color
@@ -19,7 +19,7 @@ const DropdownInputSelect = ({
     // handleChange = () => { },
     label = 'Label',
     options = [1, 2, 3],
-    initialOption = 0,
+    // initialOption = 0,
     selectedOption,
     setSelectedOption,
     color = 'text-gray-500',

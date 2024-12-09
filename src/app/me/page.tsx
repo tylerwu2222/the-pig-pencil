@@ -8,7 +8,7 @@ import PortfolioSection from './PortfolioSection';
 // import ScrollMoveElement from '../components/animate/scroll_animate/ScrollMoveElement';
 // import ScrollGrowShrinkElement from '../components/animate/scroll_animate/ScrollGrowShrinkElement';
 import ScrollDynamicStickyHeader from '../components/animate/scroll_animate/ScrollDynamicStickyHeader';
-import DraggableImage from '../components/draggables/DraggableImage';
+// import DraggableImage from '../components/draggables/DraggableImage';
 import InteractiveDragBox from '../components/animate/scroll_animate/InteractiveDragBox';
 
 // images
@@ -27,17 +27,17 @@ const Me = () => {
     // hide navbar on Portfolio, just keep icon returning to main site.
 
     const { width } = useWindowSize();
-    const isMobile = width <= 1024;
+    // const isMobile = width <= 1024;
 
-    const [scrollHeight, setScrollHeight] = useState(0);
-    const [innerHeight, setInnerHeight] = useState(0);
+    // const [scrollHeight, setScrollHeight] = useState(0);
+    // const [innerHeight, setInnerHeight] = useState(0);
 
     // update documentHeight
     useEffect(() => {
         const handleResize = () => {
             // Update maxScroll when the body height changes (e.g., after page load)
-            setScrollHeight(document.body.scrollHeight);
-            setInnerHeight(window.innerHeight);
+            // setScrollHeight(document.body.scrollHeight);
+            // setInnerHeight(window.innerHeight);
         };
 
         // Initial setup
@@ -53,7 +53,7 @@ const Me = () => {
     }, []);
 
 
-    const [artTNs, setArtTNs] = useState([]);
+    // const [artTNs, setArtTNs] = useState([]);
 
     // get art TNs from json 
     // useEffect(() => {

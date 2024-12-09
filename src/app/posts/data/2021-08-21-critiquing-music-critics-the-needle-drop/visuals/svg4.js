@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import * as d3 from "d3";
 
 // data
-import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.js";
+import { loadPublicCSV } from "@/lib/data_section/loadPublicCSV.ts";
 
 // styles
 import config from "./config.js";
@@ -245,7 +245,7 @@ export default function SVG4() {
             .text('Score');
         // change label size
         d3.selectAll(".xaxis>.tick>text")
-            .each(function (d, i) {
+            .each(function () {
                 d3.select(this).style("font-size", "13px");
             });
 

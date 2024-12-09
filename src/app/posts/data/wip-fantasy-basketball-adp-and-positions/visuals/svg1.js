@@ -1,7 +1,6 @@
 import * as d3 from "d3";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-import ConversionToReactMessage from "../../../../components/Modules/ConversionToReactMessage";
 import Slider from '@mui/material/Slider';
 import { Box } from "@mui/material";
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 // dynamic imports
-import dynamic from 'next/dynamic';
+// import dynamic from 'next/dynamic';
 
 // components
 import PostHeader from '../../PostHeader';
@@ -31,11 +31,11 @@ export default async function page({
     // get the markdown dynamically based on the slug + include route group based on first tag
     let PostMarkdown;
     if (!cheatsheetCategories.includes(postMetaData.tags[0])) {
-        let { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/${slug}/${slug}.mdx`);
+        const { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/${slug}/${slug}.mdx`);
         PostMarkdown = markdown;
     }
     else {
-        let { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/(${postMetaData.tags[0]})/${slug}/${slug}.mdx`);
+        const { default: markdown, metadata } = await import(`@/app/posts/cheatsheet/(${postMetaData.tags[0]})/${slug}/${slug}.mdx`);
         PostMarkdown = markdown;
     }
 

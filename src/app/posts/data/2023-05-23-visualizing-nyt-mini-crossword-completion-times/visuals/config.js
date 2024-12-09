@@ -1,4 +1,4 @@
-const config = 0;
+// const config = 0;
 export const colors = {
     'userA': '#6A8BAF',
     'userB': '#AF6A75',

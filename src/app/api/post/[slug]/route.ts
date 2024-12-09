@@ -6,13 +6,12 @@ import { NextRequest, NextResponse } from "next/server";
 // get single post by slug, joined w tags and authors
 export async function GET(
     req: NextRequest,
-    { params }: { params: { slug: string } }
+    { params }: { params: Promise<{ slug: string }> }
 ) {
-    await params;
-
+    const slug = (await params).slug;
     const slugPost = await prisma.post.findFirst({
         where: {
-            slug: params.slug
+            slug: slug
         },
         include: {
             AuthorsOnPosts: {
@@ -39,7 +38,7 @@ export async function GET(
 
     // error handling
     if (!slugPost) {
-        return NextResponse.json({ error: 'No post found with slug ' + params.slug }, { status: 204 })
+        return NextResponse.json({ error: 'No post found with slug ' + slug }, { status: 204 })
     }
     
     const formattedSectionPosts = flattenJoinData(slugPost, {
