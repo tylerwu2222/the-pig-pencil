@@ -1,3 +1,7 @@
+import card_modes from './card_modes.png';
+import home_page from './home_page.png';
+import aging_notes from './aging_notes.png';
+
 export const metadata = {
     publishDate: "2024-07-20",
     title: "Magpie: a Notetaking App",
@@ -10,16 +14,112 @@ export const metadata = {
 }
 
 <div className="flex gap-3">
-<WebsiteIcon link={'https://midkuan.github.io/youzi/steller/public_html/index.html#home'} text={'website (by Victor)'} size={20} position='right'/>
-<GithubIcon link={'https://github.com/tylerwu2222/youzi-mobile/tree/main'} text={'repo'} size={20}/>
+<GithubIcon link={'https://github.com/tylerwu2222/magpie/tree/main'} text={'repo'} size={20}/>
 </div>
 
 <ScrollspyHeader header={'Motivations'}/>
+Everyone seems to have their favorite notetaking/productivity app, and I'm no different. 
+
+For me, I've been using a combination of [Google Keep](https://keep.google.com/) on my phone for daily planning and small notes, 
+and [Microsoft OneNote](https://en.wikipedia.org/wiki/Microsoft_OneNote) (the desktop app) on my laptop for planning larger projects, (usually coding projects), 
+or taking notes for when I'm learning something new, (usually a coding language).
+
+Anyway, when I made this app, it was a time where I was interviewing for a lot of startups for full-stack positions, and the more I interviewed, 
+the more I realized I needed more experience building back-ends.
+
+I also really wanted to try making a note-taking app, so 2 birds 1 stone. 
+
 
 <ScrollspyHeader header={'Tech Stack'}/>
+<span className="underline">Front-end:</span>
+- React Native
+- Expo
 
-<ScrollspyHeader header={'Features'}/>
+<span className="underline">Data/back-end:</span>
+- Express (for creating API routes)
+- Supabase (for hosting PostgreSQL database and handling authentication)
+
+<ScrollspyHeader header={'Database Schema'}/>
+(will add a nice drawing here in the future)
+
+<ScrollspyHeader header={'Design'}/>
+Here are a couple of my sketches designing core screens/components:
+
+<div className="grid grid-cols-2">
+    <div>
+    *home page layout*
+    <Image  className="h-[70vh] w-auto" src={home_page} alt="home page sketch" />
+    </div>
+    <div>
+    *fun note ideas*
+    <Image  className="h-[70vh] w-auto" src={card_modes} alt="note ideas sketch" />
+    </div>
+</div>
+
+<ScrollspyHeader header={'Core Features'}/>
+Initially, I wanted to create some revolutionary collection management app that rethought how information is organized, but then I came back to Earth and decided I needed to walk before I could run.
+
+So, I started by telling myself I would try to recreate Google Keep's mobile app the best I could. Then add some features I wanted after.
+
+<ScrollspyHeader header={'Create Note'} level={3}/>
+This feature involved a few steps:
+1. Pressing the create note button would render the `<NewNote/>` component which was essentially a blank note interface for the user to define data for the note.
+2. When a user makes changes to the title/description, I track these changes in state variables in React.
+3. When the user closes/saves the `<NewNote/>` I would make a POST request to my backend to create a new, row with the state variable data that the user entered.
+Additionally, when the user closes the note, I also trigger a callback function that refetches all the notes, so the new note the user created would show up in the interface for showing all notes.
+
+*create new note*
+<img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHJiOW4ybHIwejFmNXFiYjgzczcwYzF2NGs3bXN0ZXNmdnliOHBlYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/iLpGRmVUz70NPU4mei/giphy.gif" alt="create note"/>
+
+<ScrollspyHeader header={'Edit Note'} level={3}/>
+This is similar to the Create Note flow, but instead of opening a `<NewNote/>` component, I render a `Note` component that fetches the data for that note ID.
+1. User presses a note, with an associated noteID. This triggers a GET request to fetch data for that note, and render the `Note` with that data.
+2. Any changes the user makes to the `Note` will be again sent to the database, this time with a PATCH request (partial update of existing entry) instead of a POST request (create new entry).
+
+<ScrollspyHeader header={'Authentication'} level={3}/>
+Done with Supabase authentication. This was a lot of following guides and tutorials...
+(expand on this later)
+
+<ScrollspyHeader header={'Fun Features'}/>
+<ScrollspyHeader header={'Long-press Action Menu'} level={3}/>
+This feature was probably the one I enjoyed making the most. It was done using the [GestureHandler]() package, (super fun) and also an animation package,.
+
+Essentially, the GestureHandler package adds a listener for "long press" on my notes, and when that triggers, I trigger the following UI changes:
+
+<div className="grid grid-cols-2 gap-4">
+    <div>
+    *deleting a note*
+    <img className="h-[70vh]" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3VydWx0bzR3ZjZ3djF3dDZsM3cyZDI4a3hwOXpxZ3EybGJnNWtmdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Gk6Gegz2zr2Nk2cLfp/giphy.gif" alt="delete note"/>
+    </div>
+    <div>
+    *duplicating a note*
+    <img className="h-[70vh]" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExajUzaXBreGpneDFkbWEwZzQ2b212Y3h2ZG14NTdqaTZraHJubWQ1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/DusPcUthzowZPJGRBG/giphy.gif" alt="duplicate note"/>
+    </div>
+</div>
+
+
+<ScrollspyHeader header={'Aging Notes'} level={3}/>
+This idea came about when I was thinking about how as information grows in size, it inevitably becomes harder and harder to manage and parse.
+
+After some brainstorming, I came up with the idea of using color, specifically luminosity, to provide information on all your notes "at a glance".
+
+The idea is essentially to correlate the age of a note with how "dull" the background is, that way frequently visited notes remain fresh and vibrant, 
+and old notes that may need to be archived have a subtle, visual indicator. 
+
+<Image className={"h-[70vh] w-auto"} src={aging_notes} alt="aging_notes"/>
+
+This idea was one that I was pretty proud of, showing that some ideas don't require complex code, but rather a clean design.
+
+<ScrollspyHeader header={'Changing View'} level={3}/>
+This feature also made use of the GestureHandler and animation package. Long pressing the view button would slide open the view toolbar, and releasing above a view icon would rerender the notes in that format.
+
+<img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2VmanJ3ejRucWJvb2dueGxzdHZ4bGd1dDN3eG8ydWhubGNoMnppbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/47o1CWpxUl5Wo1rg9t/giphy.gif" alt="note view" />
+
 
 <ScrollspyHeader header={'Learnings & Challenges'}/>
+One of the biggest things I learned from this project is it's important to set up the "boring" stuff first, before diving into more "fun" front-end features and interactions.
+
+For this project, the most glaring features I should have build out first was authentication. Because in the MVP of the app, each user only accesses *their own* notes.
 
 <ScrollspyHeader header={'Reflection'}/>
+This project taught me a lot about building my own backend as well as how to setup Authentication .
