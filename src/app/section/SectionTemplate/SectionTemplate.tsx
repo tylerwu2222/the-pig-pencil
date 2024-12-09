@@ -181,8 +181,8 @@ export default function SectionTemplate(
                     {sortPostsIncluded ?
                         <div className='col-span-1'>
                             <DropdownInputRadio
-                                value={sortOption}
-                                onValueChangeFn={(e) => { handleSortOptionChange(e.target.value) }}
+                                // value={sortOption}
+                                // onValueChangeFn={(e) => { handleSortOptionChange(e.target.value) }}
                                 options={sortOptions}
                             />
                         </div>

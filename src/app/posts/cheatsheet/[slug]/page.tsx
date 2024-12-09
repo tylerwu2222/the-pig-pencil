@@ -19,8 +19,8 @@ const cheatsheetCategories = ['d3', 'python', 'react', 'javascript'];
 export default async function page({
     params,
 }: {
-    // params: Promise<{ slug: string }>
-    params: { slug: string }
+    params: Promise<{ slug: string }>
+    // params: { slug: string }
 }) {
     const slug = (await params).slug;
 

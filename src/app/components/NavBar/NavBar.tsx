@@ -3,7 +3,7 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-import { HomeContext } from "@/app/page";
+// import { HomeContext } from "@/app/page";
 
 // components
 import Link from "next/link";
@@ -23,7 +23,7 @@ import navbar_items from "@/site_data/navbar_menu_items.json";
 const NavBar = () => {
   const pathname = usePathname();
 
-  const { setHoveredTab } = useContext(HomeContext);
+  // const { setHoveredTab } = useContext(HomeContext);
   // const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
   const logoFontFamily = 'Gloock';
   const [isVisible, setIsVisible] = useState(true);
@@ -50,7 +50,7 @@ const NavBar = () => {
   }, [lastScrollY]);
 
   const handleHoveredTab = (tab: string) => {
-    setHoveredTab(tab);
+    // setHoveredTab(tab);
   };
 
   return (

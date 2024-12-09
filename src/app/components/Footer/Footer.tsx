@@ -2,8 +2,8 @@
 
 import EmailIcon from "../buttons/iconButtons/EmailIcon";
 import GithubIcon from "../buttons/iconButtons/GithubIcon";
-import YoutubeIcon from "../buttons/iconButtons/youtubeIcon";
-import InstagramIcon from "../buttons/iconButtons/instagramIcon";
+import YoutubeIcon from "../buttons/iconButtons/YoutubeIcon";
+import InstagramIcon from "../buttons/iconButtons/InstagramIcon";
 
 const Footer = () => {
   // position absolute on each page

@@ -13,14 +13,14 @@ import {
 
 interface DropdownInputRadioProps {
   //   value: string;
-  options: string[];
   //   onValueChangeFn: (e: ChangeEvent<HTMLInputElement>) => void;
+  options: string[];
 }
 
 export function DropdownInputRadio({
   // value,
-  options = ["1", "2"],
   //   onValueChangeFn = () => {},
+  options = ["1", "2"],
 }: Partial<DropdownInputRadioProps>) {
   const [position, setPosition] = useState("bottom");
 

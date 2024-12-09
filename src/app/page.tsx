@@ -18,12 +18,12 @@ import images_json from "@/site_data/home_mosaic_images.json";
 // helpers
 import { getRandomNumber, getRandomNumberAvoiding } from "../lib/randomNumbers";
 
-interface homeContextProps {
-  hoveredTab: string;
-  setHoveredTab: Dispatch<SetStateAction<string>>;
-}
+// interface HomeContextProps {
+//   hoveredTab: string;
+//   setHoveredTab: Dispatch<SetStateAction<string>>;
+// }
 
-export const HomeContext = createContext({} as homeContextProps);
+// export const HomeContext = createContext<HomeContextProps | null>(null);
 
 export default function Home() {
   const minSize = 10;
@@ -45,13 +45,15 @@ export default function Home() {
     // setCurrentImageGeneratingProcess(get_random_int(0, 5)); // 0 to 4
   }, [hoveredTab]);
 
+  // <HomeContext.Provider
+  //   value={{
+  //     hoveredTab,
+  //     setHoveredTab,
+  //   }}
+  // >
+
   return (
-    <HomeContext.Provider
-      value={{
-        hoveredTab,
-        setHoveredTab,
-      }}
-    >
+    <>
       {/* navbar navigation */}
       <NavBar />
       {/* dynamic text/images */}
@@ -91,7 +93,6 @@ export default function Home() {
 
       {/* footer links */}
       <Footer />
-      {/* buy me a coffee */}
-    </HomeContext.Provider>
+    </>
   );
 }
