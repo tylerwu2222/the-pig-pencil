@@ -12,16 +12,16 @@ export const getPostBySlug = async (slug: string) => {
     include: {
       AuthorsOnPosts: {
         select: {
-          author: {
+          Author: {
             select: {
               name: true,
             },
           },
         },
       },
-      TagsOnPosts: {
+      PostsOnTags: {
         select: {
-          tag: {
+          Tag: {
             select: {
               tagName: true,
             },
@@ -38,7 +38,7 @@ export const getPostBySlug = async (slug: string) => {
 
   const formattedSectionPosts = flattenJoinData(slugPost, {
     AuthorsOnPosts: "authors",
-    TagsOnPosts: "tags",
+    PostsOnTags: "tags",
   });
 
   return formattedSectionPosts;
@@ -119,7 +119,7 @@ export const createTagsPostConnection = async (
   });
 
   // console.log('tag post', TagPostData);
-  await prisma.tagsOnPosts.createMany({
+  await prisma.postsOnTags.createMany({
     data: TagPostData,
   });
 };
@@ -142,14 +142,14 @@ export const createTagsAuthorConnection = async (
   authorIds: string[],
 ) => {
   // each combination of tags-authors
-  const TagAuthorData = tagIds.flatMap((tag) =>
+  const AuthorTagData = tagIds.flatMap((tag) =>
     authorIds.map((author) => ({ tagId: tag, authorId: author })),
   );
 
   // get existing tag-authors for all tags/authors
-  const existingTagAuthors = await prisma.tagsOnAuthors.findMany({
+  const existingTagAuthors = await prisma.authorsOnTags.findMany({
     where: {
-      OR: TagAuthorData.map((combo) => ({
+      OR: AuthorTagData.map((combo) => ({
         tagId: combo.tagId,
         authorId: combo.authorId,
       })),
@@ -160,13 +160,13 @@ export const createTagsAuthorConnection = async (
     (record) => `${record.tagId}-${record.authorId}`,
   );
 
-  const newTagAuthorData = TagAuthorData.filter(
+  const newAuthorTagData = AuthorTagData.filter(
     (combo) =>
       !existingTagAuthorsData.includes(`${combo.tagId}-${combo.authorId}`),
   );
   // create Tag-Author connection
-  await prisma.tagsOnAuthors.createMany({
-    data: newTagAuthorData,
+  await prisma.authorsOnTags.createMany({
+    data: newAuthorTagData,
   });
 };
 

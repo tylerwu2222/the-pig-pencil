@@ -13,22 +13,21 @@ export async function GET(
     const sectionPosts = await prisma.post.findMany({
         where: {
             section: section,
-            // section: 'project',
             visibility: 'visible'
         },
         include: {
             AuthorsOnPosts: {
                 select: {
-                    author: {
+                    Author: {
                         select: {
                             name: true
                         }
                     }
                 }
             },
-            TagsOnPosts: {
+            PostsOnTags: {
                 select: {
-                    tag: {
+                    Tag: {
                         select: {
                             tagName: true
                         },
@@ -42,21 +41,14 @@ export async function GET(
 
     });
 
-    // console.log('BE section posts for', params.section, sectionPosts);
-
-    // Flatten the nested join data
-    // const formattedSectionPosts = sectionPosts.map((post) => ({
-    //     ...post,
-    //     // authors: post.AuthorsOnPosts.map((a) => a.author.name), // Extract author names
-    //     // tags: post.TagsOnPosts.map((t) => t.tag.tagName), // Extract tag names
-    // }));
+    console.log('BE section posts', section, sectionPosts);
 
     const formattedSectionPosts = flattenJoinData(sectionPosts, {
         AuthorsOnPosts: 'authors',
-        TagsOnPosts: 'tags'
+        PostsOnTags: 'tags'
     })
 
-    // console.log('BE: section posts', formattedSectionPosts)
+    console.log('BE: section posts flattened', formattedSectionPosts)
 
     return NextResponse.json(formattedSectionPosts)
 }

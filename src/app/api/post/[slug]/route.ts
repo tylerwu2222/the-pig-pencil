@@ -16,16 +16,16 @@ export async function GET(
         include: {
             AuthorsOnPosts: {
                 select: {
-                    author: {
+                    Author: {
                         select: {
                             name: true
                         }
                     }
                 }
             },
-            TagsOnPosts: {
+            PostsOnTags: {
                 select: {
-                    tag: {
+                    Tag: {
                         select: {
                             tagName: true
                         },
@@ -43,7 +43,7 @@ export async function GET(
     
     const formattedSectionPosts = flattenJoinData(slugPost, {
         AuthorsOnPosts: 'authors',
-        TagsOnPosts: 'tags'
+        PostsOnTags: 'tags'
     })
 
     // console.log('BE: section posts', formattedSectionPosts)

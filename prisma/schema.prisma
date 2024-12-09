@@ -1,19 +1,40 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model AuthorLink {
-  id                   String                 @id @default(cuid())
-  url                  String
-  AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
+model Art {
+  id           String         @id @default(cuid())
+  title        String
+  description  String?        @default("it's art")
+  series       String?
+  slug         String?
+  thumbnail    String?
+  publishDate  DateTime       @default(now())
+  updateDate   DateTime?      @default(now())
+  visibility   String         @default("hidden")
+  ArtTagsOnArt ArtTagsOnArt[]
+}
+
+model ArtTag {
+  id           String         @id
+  artTagName   String
+  ArtTagsOnArt ArtTagsOnArt[]
+}
+
+model ArtTagsOnArt {
+  artId      String
+  artTagId   String
+  assignedAt DateTime @default(now())
+  Art        Art      @relation(fields: [artId], references: [id])
+  ArtTag     ArtTag   @relation(fields: [artTagId], references: [id])
+
+  @@id([artTagId, artId])
 }
 
 model Author {
@@ -21,17 +42,52 @@ model Author {
   name                 String
   role                 String?
   pigThoughts          String?
-  internalLink         String // author link on TPP
+  internalLink         String
   email                String?                @unique
   quote                String?
   joinDate             DateTime               @default(now())
   isVisible            Boolean                @default(true)
+  AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
   AuthorsOnPosts       AuthorsOnPosts[]
-  TagsOnAuthors        TagsOnAuthors[]
+  AuthorsOnTags        AuthorsOnTags[]
+}
+
+model AuthorLink {
+  id                   String                 @id
+  url                  String
   AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
 }
 
-// file name, same for thumbnail is derived from concatenating date (yyyy-mm-dd) to lower, hyphenated title
+model AuthorsOnAuthorLinks {
+  authorId     String
+  authorLinkId String
+  assignedAt   DateTime   @default(now())
+  Author       Author     @relation(fields: [authorId], references: [id])
+  AuthorLink   AuthorLink @relation(fields: [authorLinkId], references: [id])
+
+  @@id([authorId, authorLinkId])
+}
+
+model AuthorsOnPosts {
+  authorId   String
+  postId     String
+  assignedAt DateTime @default(now())
+  Author     Author   @relation(fields: [authorId], references: [id])
+  Post       Post     @relation(fields: [postId], references: [id])
+
+  @@id([authorId, postId])
+}
+
+model AuthorsOnTags {
+  authorId   String
+  tagId      String
+  assignedAt DateTime @default(now())
+  Author     Author   @relation(fields: [authorId], references: [id], map: "TagsOnAuthors_authorId_fkey")
+  Tag        Tag      @relation(fields: [tagId], references: [id], map: "TagsOnAuthors_tagId_fkey")
+
+  @@id([tagId, authorId], map: "TagsOnAuthors_pkey")
+}
+
 model Post {
   id             String           @id @default(cuid())
   title          String           @unique
@@ -45,84 +101,22 @@ model Post {
   updateDate     DateTime?        @default(now())
   visibility     String           @default("hidden")
   AuthorsOnPosts AuthorsOnPosts[]
-  TagsOnPosts    TagsOnPosts[]
+  PostsOnTags    PostsOnTags[]
 }
 
-model Art {
-  id           String         @id @default(cuid())
-  title        String      
-  series       String?
-  slug         String?
-  thumbnail    String?
-  publishDate  DateTime       @default(now())
-  updateDate   DateTime?      @default(now())
-  visibility   String         @default("hidden")
-  ArtTagsOnArt ArtTagsOnArt[]
-}
+model PostsOnTags {
+  postId     String
+  tagId      String
+  assignedAt DateTime @default(now())
+  Post       Post     @relation(fields: [postId], references: [id], map: "TagsOnPosts_postId_fkey")
+  Tag        Tag      @relation(fields: [tagId], references: [id], map: "TagsOnPosts_tagId_fkey")
 
-model ArtTag {
-  id           String         @id @default(cuid())
-  artTagName   String
-  ArtTagsOnArt ArtTagsOnArt[]
+  @@id([tagId, postId], map: "TagsOnPosts_pkey")
 }
 
 model Tag {
   id            String          @id @default(cuid())
   tagName       String
-  TagsOnPosts   TagsOnPosts[]
-  TagsOnAuthors TagsOnAuthors[]
-}
-
-// JOIN TABLES
-model AuthorsOnAuthorLinks {
-  author       Author     @relation(fields: [authorId], references: [id])
-  authorId     String
-  authorLink   AuthorLink @relation(fields: [authorLinkId], references: [id])
-  authorLinkId String
-  assignedAt   DateTime   @default(now())
-
-  @@id([authorId, authorLinkId])
-}
-
-model AuthorsOnPosts {
-  author     Author   @relation(fields: [authorId], references: [id])
-  authorId   String
-  post       Post     @relation(fields: [postId], references: [id])
-  postId     String
-  assignedAt DateTime @default(now())
-
-  @@id([authorId, postId])
-}
-
-model TagsOnPosts {
-  post   Post   @relation(fields: [postId], references: [id])
-  postId String
-  tag    Tag    @relation(fields: [tagId], references: [id])
-  tagId  String
-
-  assignedAt DateTime @default(now())
-
-  @@id([tagId, postId])
-}
-
-model TagsOnAuthors {
-  author   Author @relation(fields: [authorId], references: [id])
-  authorId String
-  tag      Tag    @relation(fields: [tagId], references: [id])
-  tagId    String
-
-  assignedAt DateTime @default(now())
-
-  @@id([tagId, authorId])
-}
-
-model ArtTagsOnArt {
-  art      Art    @relation(fields: [artId], references: [id])
-  artId    String
-  artTag   ArtTag @relation(fields: [artTagId], references: [id])
-  artTagId String
-
-  assignedAt DateTime @default(now())
-
-  @@id([artTagId, artId])
+  AuthorsOnTags AuthorsOnTags[]
+  PostsOnTags   PostsOnTags[]
 }
