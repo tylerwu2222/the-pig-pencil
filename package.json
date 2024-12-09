@@ -15,7 +15,8 @@
     "dependencies": {
         "@mailchimp/mailchimp_marketing": "^3.0.80",
         "@mdx-js/loader": "^3.1.0",
-        "@next/mdx": "^15.0.3",
+        "@mdx-js/react": "^3.1.0",
+        "@next/mdx": "^15.0.4",
         "@prisma/client": "^6.0.1",
         "@radix-ui/react-checkbox": "^1.1.2",
         "@radix-ui/react-dialog": "^1.1.2",
