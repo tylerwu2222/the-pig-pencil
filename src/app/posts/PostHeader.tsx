@@ -11,7 +11,7 @@ interface PostHeaderProps {
 
 export default function PostHeader({
   post,
-  showThumbnail = true,
+  // showThumbnail = true,
 }: PostHeaderProps) {
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
@@ -35,7 +35,7 @@ export default function PostHeader({
           </p>
         </div>
         {/* thumbnail */}
-        {showThumbnail && (
+        {post.showHeaderImage && (
           <div className="justify-items-center pb-1">
             {imgSrc && (
               <img

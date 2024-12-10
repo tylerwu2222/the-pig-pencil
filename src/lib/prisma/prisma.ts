@@ -226,7 +226,7 @@ export const updatePost = async (slug: string, metadata: PostExtended) => {
   // update post authors
   if (authors && authors.length > 0) {
     // first create any new authors
-    createAuthors(authors);
+    await createAuthors(authors);
     if (validAuthorIds.length > 0) {
       await createAuthorsPostConnection(validAuthorIds, postId);
       console.log("updated author-post");
@@ -236,7 +236,7 @@ export const updatePost = async (slug: string, metadata: PostExtended) => {
   // update post tags
   if (tags && tags.length > 0) {
     // first create any new tags
-    createManyTags(tags);
+    await createManyTags(tags);
     if (validTagIds.length > 0) {
       await createPostTagsConnection(validTagIds, postId);
       console.log("updated post-tags");

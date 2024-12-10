@@ -11,13 +11,13 @@ datasource db {
 model Art {
   id           String         @id @default(cuid())
   title        String
-  description  String?        @default("it's art")
   series       String?
   slug         String?
   thumbnail    String?
   publishDate  DateTime       @default(now())
   updateDate   DateTime?      @default(now())
   visibility   String         @default("hidden")
+  description  String?        @default("it's art")
   ArtTagsOnArt ArtTagsOnArt[]
 }
 
@@ -82,36 +82,37 @@ model AuthorsOnTags {
   authorId   String
   tagId      String
   assignedAt DateTime @default(now())
-  Author     Author   @relation(fields: [authorId], references: [id], map: "TagsOnAuthors_authorId_fkey")
-  Tag        Tag      @relation(fields: [tagId], references: [id], map: "TagsOnAuthors_tagId_fkey")
+  Author     Author   @relation(fields: [authorId], references: [id], onDelete: Cascade, map: "AuthorsOnTags_authorId_fkey")
+  Tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "AuthorsOnTags_tagId_fkey")
 
-  @@id([tagId, authorId], map: "TagsOnAuthors_pkey")
+  @@id([tagId, authorId], map: "AuthorsOnTags_pkey")
 }
 
 model Post {
-  id             String           @id @default(cuid())
-  title          String           @unique
-  slug           String?          @unique
-  section        String
-  thumbnail      String?
-  caption        String?
-  readingTime    String?
-  hasScrollspy   Boolean?         @default(true)
-  publishDate    DateTime         @default(now())
-  updateDate     DateTime?        @default(now())
-  visibility     String           @default("hidden")
-  AuthorsOnPosts AuthorsOnPosts[]
-  PostsOnTags    PostsOnTags[]
+  id              String           @id @default(cuid())
+  title           String           @unique
+  slug            String?          @unique
+  section         String
+  thumbnail       String?
+  caption         String?
+  readingTime     String?
+  hasScrollspy    Boolean?         @default(true)
+  showHeaderImage Boolean?         @default(true)
+  publishDate     DateTime         @default(now())
+  updateDate      DateTime?        @default(now())
+  visibility      String           @default("hidden")
+  AuthorsOnPosts  AuthorsOnPosts[]
+  PostsOnTags     PostsOnTags[]
 }
 
 model PostsOnTags {
   postId     String
   tagId      String
   assignedAt DateTime @default(now())
-  Post       Post     @relation(fields: [postId], references: [id], map: "TagsOnPosts_postId_fkey")
-  Tag        Tag      @relation(fields: [tagId], references: [id], map: "TagsOnPosts_tagId_fkey")
+  Post       Post     @relation(fields: [postId], references: [id], onDelete: Cascade, map: "PostsOnTags_postId_fkey")
+  Tag        Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade, map: "PostsOnTags_tagId_fkey")
 
-  @@id([tagId, postId], map: "TagsOnPosts_pkey")
+  @@id([tagId, postId], map: "PostsOnTags_pkey")
 }
 
 model Tag {
