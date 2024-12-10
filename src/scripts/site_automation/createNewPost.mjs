@@ -172,6 +172,7 @@ function createPostFiles(
   caption,
   reading_time,
   scrollspy,
+  headerImage,
   visible,
   post_folder_path,
 ) {
@@ -195,6 +196,7 @@ function createPostFiles(
     caption: "${caption}",
     templateType: "${template_type}",
     hasScrollspy: "${scrollspy}",
+    showHeaderImage: "${headerImage}",
     visibility: "${visible}"
 };
 
@@ -214,6 +216,7 @@ function createPostFiles(
     caption: "${caption}",
     templateType: "${template_type}",
     hasScrollspy: "${scrollspy}",
+    showHeaderImage: "${headerImage}",
     visibility: "${visible}"
 };
 
@@ -255,6 +258,7 @@ export default Post;`,
     readingTime: "${reading_time}",
     caption: "${caption}",
     hasScrollspy: "${scrollspy}",
+    showHeaderImage: "${headerImage}",
     visibility: "${visible}"
 };
 
@@ -278,6 +282,7 @@ export default Post;`,
     readingTime: "${reading_time}",
     caption: "${caption}",
     hasScrollspy: "${scrollspy}",
+    showHeaderImage: "${headerImage}",
     visibility: "${visible}"
 };
 
@@ -298,7 +303,8 @@ export default Post;`,
     title: "${post_name}",
     authors: [${quoteCommaSepString(authors)}],
     tags:  [${quoteCommaSepString(tags)}],
-    visibility: "${visible}"
+    visibility: "${visible}",
+    showHeaderImage: "${headerImage}"
 };
 
 `,
@@ -319,6 +325,7 @@ export default Post;`,
     readingTime: "${reading_time}",
     caption: "${caption}",
     hasScrollspy: "${scrollspy}",
+    showHeaderImage: "${headerImage}",
     visibility: "${visible}"
 };
 
@@ -376,6 +383,7 @@ const createNewPost = () => {
   const caption = process.env.npm_config_caption || "caption";
   const reading_time = process.env.npm_config_readingTime || "8 min";
   const scrollspy = process.env.npm_config_scrollspy || true;
+  const headerImage = process.env.npm_config_headerImage || true;
   const visibility = "visible";
 
   // create folders
@@ -399,6 +407,7 @@ const createNewPost = () => {
     caption,
     reading_time,
     scrollspy,
+    headerImage,
     visibility,
     post_folder_path,
   );
@@ -411,6 +420,7 @@ const createNewPost = () => {
     caption,
     readingTime: reading_time,
     hasScrollspy: scrollspy,
+    showHeaderImage: headerImage,
     publishDate: new Date(dash_date).toISOString(), // publish date formatted to ISO
     updateDate: new Date(dash_date).toISOString(), // update date formatted to ISO
     visibility,

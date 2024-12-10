@@ -281,7 +281,8 @@ const SVG1 = () => {
                 options={stats}
                 initialOption={stat}
                 selectedOption={stat}
-                setSelectedOption={setStat}
+                // setSelectedOption={setStat}
+                onChange={(s)=>{setStat(s)}}
                 color={config.colors[0]}
             />
             {/* vis container */}

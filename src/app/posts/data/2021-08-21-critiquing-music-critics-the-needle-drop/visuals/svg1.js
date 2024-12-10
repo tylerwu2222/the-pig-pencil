@@ -191,9 +191,10 @@ const SVG1 = ({ view = 'absolute' }) => {
             <DropdownInputSelect
                 label='Year'
                 options={stats1}
-                initialOption={stat}
-                selectedOption={stat}
-                setSelectedOption={setStat}
+                // initialOption={stat}
+                value={stat}
+                // setSelectedOption={setStat}
+                onChange={(s)=>{setStat(s)}}
                 color={config.color1}
             />
             <svg id="stat-svg1">

@@ -57,9 +57,10 @@ export default function Basic2() {
       <DropdownInputSelect
         label="Cumulative stat"
         options={cumulative_stats}
-        initialOption={currentCumulativeStat}
-        selectedOption={currentCumulativeStat}
-        setSelectedOption={setCurrentCumulativeStat}
+        // initialOption={currentCumulativeStat}
+        value={currentCumulativeStat}
+        // setSelectedOption={setCurrentCumulativeStat}
+        onChange={(s)=>{setCurrentCumulativeStat(s)}}
       />
       <LineChart
         width={800}

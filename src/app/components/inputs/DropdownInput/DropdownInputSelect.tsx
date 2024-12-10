@@ -9,8 +9,9 @@ type DropdownInputSelectProps = {
     label?: string;
     options?: (string | number)[];
     // initialOption?: string | number;
-    selectedOption: string | number;
-    setSelectedOption: Dispatch<SetStateAction<string | number>>;
+    value: string | number;
+    onChange: (value: string) => void;
+    // setSelectedOption: Dispatch<SetStateAction<string | number>>;
     color?: string; // Hex or tailwind color
     width?: number | string | undefined;
 };
@@ -20,26 +21,26 @@ const DropdownInputSelect = ({
     label = 'Label',
     options = [1, 2, 3],
     // initialOption = 0,
-    selectedOption,
-    setSelectedOption,
+    value,
+    // setSelectedOption,
+    onChange,
     color = 'text-gray-500',
     width = 'w-[300px]',
 }: DropdownInputSelectProps) => {
     // const [selectedValue, setSelectedValue] = useState(initialOption || options[0]);
 
-    // const handleSelectChange = (value: string) => {
-    //     setSelectedOption(value);
-    //     handleChange(value);
-    // };
+    const handleChange = (newValue: string) => {
+        // setSelectedOption(value);
+        // handleChange(value);
+        onChange(newValue);
+    };
 
     return (
         <div className={`${width}`} >
             <Label className={`${color} mb-2 block text-sm font-medium`}>{label}</Label>
             <Select
-                value={String(selectedOption)}
-                onValueChange={(e) => {
-                    setSelectedOption(e);
-                }}
+                value={String(value)}
+                onValueChange={handleChange}
             >
                 <div className='group'>
                     <SelectTrigger className="w-full border border-gray-300 text-sm bg-transparent group-hover:border-hoverDeepPink group-hover:bg-highlightWhite data-[state=open]:border-hoverLightPink data-[state=open]:bg-highlightWhite rounded-sm transition-colors duration-500 ease-in-out">

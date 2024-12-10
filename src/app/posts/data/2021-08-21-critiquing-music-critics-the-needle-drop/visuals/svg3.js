@@ -482,9 +482,10 @@ const SVG3 = () => {
                     // handleChange={e => { setSelectedStat(e.target.value) }} 
                     label={'Sort by'}
                     options={stats3}
-                    initialOption={selectedStat}
-                    selectedOption={selectedStat}
-                    setSelectedOption={setSelectedStat}
+                    // initialOption={selectedStat}
+                    value={selectedStat}
+                    onChange={(s)=>{setSelectedStat(s)}}
+                    // setSelectedOption={setSelectedStat}
                 />
             </div>
             <svg ref={svg3Ref}>

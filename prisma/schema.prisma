@@ -39,7 +39,7 @@ model ArtTagsOnArt {
 
 model Author {
   id                   String                 @id @default(cuid())
-  name                 String
+  name                 String                 @unique()
   role                 String?
   pigThoughts          String?
   internalLink         String
@@ -117,7 +117,7 @@ model PostsOnTags {
 
 model Tag {
   id            String          @id @default(cuid())
-  tagName       String
+  tagName       String          @unique()
   AuthorsOnTags AuthorsOnTags[]
   PostsOnTags   PostsOnTags[]
 }

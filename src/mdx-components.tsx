@@ -2,11 +2,14 @@ import type { MDXComponents } from "mdx/types";
 import { ScrollspyHeader } from "./app/components/Scrollspy/Scrollspy";
 import { ComponentPropsWithoutRef } from "react";
 
+// components
 import Image from "next/image";
 import Link from "next/link";
 import ImageModal from "./app/components/modals/ImageModal/ImageModal";
 import PDFIframe from "./app/components/pdf/PDFViewer/PDFIframe/PDFIframe";
+import SearchInput from "./app/components/inputs/SearchInput/SearchInput";
 
+// links
 import GithubIcon from "./app/components/buttons/iconButtons/GithubIcon";
 import WebsiteIcon from "./app/components/buttons/iconButtons/WebsiteIcon";
 
@@ -113,6 +116,7 @@ export function useMDXComponents(
     Image,
     ImageModal,
     PDFIframe,
+    SearchInput,
     // Scrollspy, // included in individual [slug].tsx templates
     ScrollspyHeader,
     WebsiteIcon,
