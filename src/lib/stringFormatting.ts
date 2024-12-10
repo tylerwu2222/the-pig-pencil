@@ -1,3 +1,5 @@
+import { formateDateToShortISODate } from "./dateFormatting";
+
 // string manipulation helper functions
 
 interface getSlugTitle {
@@ -9,7 +11,7 @@ export const getSlugTitle = ({ date, title }: getSlugTitle): string => {
   if (date) {
     formattedDate =
       typeof date === "string"
-        ? new Date(date).toISOString().split("T")[0]
+        ? formateDateToShortISODate(date)
         : date.toISOString().split("T")[0];
     formattedDate = formattedDate + "-";
   }

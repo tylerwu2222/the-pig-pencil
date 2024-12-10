@@ -113,7 +113,7 @@ export function useMDXComponents(
     Image,
     ImageModal,
     PDFIframe,
-    // Scrollspy,
+    // Scrollspy, // included in individual [slug].tsx templates
     ScrollspyHeader,
     WebsiteIcon,
     GithubIcon

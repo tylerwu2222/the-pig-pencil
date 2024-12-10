@@ -39,5 +39,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# api keys
-src/scripts/api_keys.json
+# scripts
+src\scripts

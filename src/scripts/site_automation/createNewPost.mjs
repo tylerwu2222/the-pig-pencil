@@ -1,11 +1,17 @@
 // example commands:
 // for authors and tags (lists), simply enter as csv string: "tag1, tag2"
+
 // WRITING
 // npm run create-post -- --section="writing" --postName="Title: type it out naturally!" --tags="tag1,tag2" --caption="this"
+
 // DATA
 // npm run create-post -- --postName="data piece" --tags="tag1,tag2" --caption="this"
+
 // PROJECT
 // npm run create-post -- --section="project" --postName="" --postDate="2023-05-10" --tags="dev,full-stack,"
+
+// TUTORIAL 
+// npm run create-post -- --section="tutorial" --postName="" --postDate="2024-12-10" --tags="dev,front-end,tailwind,css"
 
 // check createNewArticle() fn for params, paramName is : process.env.npm_config_paramName
 
@@ -13,7 +19,7 @@
 import {
   sanitizeFileName,
   getDashedString,
-  quoteCommaSepString
+  quoteCommaSepString,
   // snakeToCamel,
 } from "../../lib/stringFormatting.ts";
 
@@ -27,15 +33,15 @@ import {
   createAuthorsPostConnection,
   createManyTags,
   createPost,
-  createTagsAuthorConnection,
-  createTagsPostConnection,
+  createAuthorsTagsConnection,
+  createPostTagsConnection,
   getAuthorIDByName,
   getTagIDByName,
 } from "../../lib/prisma/prisma.js";
 
 // create folder to hold content of new post
 function createPostFolder(section_name, post_name, post_date, worktime_days) {
-  console.log('creating post folder...')
+  console.log("creating post folder...");
   // if post date given, use that
   let postDate;
   if (post_date) {
@@ -84,8 +90,8 @@ function createPostFolder(section_name, post_name, post_date, worktime_days) {
 
 // adds files to folder
 function addContent(files, folders, folderPath) {
-  console.log('adding files to folder...')
-  console.log('files',files);
+  console.log("adding files to folder...");
+  console.log("files", files);
   // create files and write content
   files.forEach((file) => {
     const filePath = path.join(folderPath, file.name);
@@ -169,7 +175,7 @@ function createPostFiles(
   visible,
   post_folder_path,
 ) {
-  console.log('adding post files...')
+  console.log("adding post files...");
   // console.log('tags in CPF', typeof tags, tags);
 
   // defined content based on section
@@ -190,7 +196,7 @@ function createPostFiles(
     templateType: "${template_type}",
     hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
-}
+};
 
 `,
         },
@@ -209,7 +215,7 @@ function createPostFiles(
     templateType: "${template_type}",
     hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
-}
+};
 
 `,
         },
@@ -229,7 +235,7 @@ const Post = () => {
             </div>
         </PostContext.Provider>
     )
-}
+};
 export default Post;`,
         },
       ];
@@ -250,7 +256,7 @@ export default Post;`,
     caption: "${caption}",
     hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
-}
+};
 
 `,
       },
@@ -269,8 +275,11 @@ export default Post;`,
     title: "${post_name}",
     authors: [${quoteCommaSepString(authors)}],
     tags:  [${quoteCommaSepString(tags)}],
+    readingTime: "${reading_time}",
+    caption: "${caption}",
+    hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
-}
+};
 
 `,
       },
@@ -290,7 +299,7 @@ export default Post;`,
     authors: [${quoteCommaSepString(authors)}],
     tags:  [${quoteCommaSepString(tags)}],
     visibility: "${visible}"
-}
+};
 
 `,
       },
@@ -311,7 +320,7 @@ export default Post;`,
     caption: "${caption}",
     hasScrollspy: "${scrollspy}",
     visibility: "${visible}"
-}
+};
 
 `,
       },
@@ -320,7 +329,7 @@ export default Post;`,
   }
   // then add content to folders
   addContent(files, folders, post_folder_path);
-}
+};
 
 // adds new article as entry to prisma (Post, Author, Tags)
 async function addToPrisma(metadata, authors, tags) {
@@ -346,11 +355,11 @@ async function addToPrisma(metadata, authors, tags) {
   const tagIds = await Promise.all(
     tags.map(async (t) => await getTagIDByName(t)),
   );
-  await createTagsPostConnection(tagIds, postId);
+  await createPostTagsConnection(tagIds, postId);
 
   // 4) create Tag-Author connection
   console.log("adding tag-author connections...");
-  await createTagsAuthorConnection(tagIds, authorIds);
+  await createAuthorsTagsConnection(tagIds, authorIds);
   console.log("created new post and connections in prisma.");
 }
 

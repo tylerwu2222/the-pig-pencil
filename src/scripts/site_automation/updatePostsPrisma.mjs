@@ -1,6 +1,12 @@
+// npm run update-post -- --section="project" --slug="2024-07-20-magpie-a-notetaking-app"
+
+// updates metadata in prisma based on metadata exported from MDX for specified post (section + slug)
+
+
 // helpers
+import { formateDateToISODate } from "@/lib/dateFormatting.js";
 import { getPostMetadata } from "../../lib/getPostMetaData.ts";
-import { upsertPost } from "../../lib/prisma/prisma.ts";
+import { updatePost } from "../../lib/prisma/prisma.ts";
 
 // fs
 import fs from "fs-extra";
@@ -21,14 +27,20 @@ const updatePostsPrisma = async () => {
       return;
     } else {
       // get metadata from that file
-
       const metadata = await getPostMetadata(slug, section);
-      console.log("got metadata", metadata);
+      // console.log("MDX metadata", metadata);
 
-      // upsert into post
-    //   console.log("updating post...");
-    //   await upsertPost(slug, metadata);
-    //   console.log("updated post in prisma.");
+      // add updateDate
+
+      // clean dates to ISOstring 
+      metadata['publishDate'] = formateDateToISODate(metadata.publishDate);
+      metadata['updateDate'] = new Date().toISOString();
+      console.log('formatted MDX metadata', metadata);
+
+      // update post
+      console.log("updating post...");
+      await updatePost(slug, metadata);
+      console.log("updated post in prisma.");
     }
   }
 };
