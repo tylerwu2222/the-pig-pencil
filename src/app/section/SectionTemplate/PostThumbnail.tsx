@@ -1,15 +1,19 @@
-// style
-import { Post } from "@/types/extendedPrismaTypes";
+"use client";
 
-// formatting
+import React, { useState, useEffect } from "react";
+
+// helpers
 import { getSlugTitle } from "@/lib/stringFormatting";
 import { formatDateToShortDate } from "@/lib/dateFormatting";
 
-// react
+// next
 import Link from "next/link";
 
 // components
 import { Badge } from "@/components/ui/badge";
+
+// types
+import { Post } from "@/types/extendedPrismaTypes";
 
 interface PostThumbnailProps {
   post: Post;
@@ -27,33 +31,20 @@ export const PostThumbnail1 = ({
     authorDate = post.authors[0] + " ∙ " + authorDate;
   }
   let title = post.title;
+  const [imgSrc, setImgSrc] = useState<string | null>(null);
 
-  let img;
-  if (post.thumbnail) {
-    img =
-      "/img/thumbnails/" +
-      post.section.toLowerCase() +
-      "_thumbnails/" +
-      post.thumbnail;
-  } else {
-    img =
-      "/img/thumbnails/" +
-      post.section.toLowerCase() +
-      "_thumbnails/" +
-      getSlugTitle({ date: post.publishDate, title: post.title }) +
-      ".png";
-  }
-
-  // console.log('tn img', img);
+  useEffect(() => {
+    const dynamicThumbnail = post.thumbnail
+      ? `/img/thumbnails/${post.section.toLowerCase()}_thumbnails/${post.thumbnail}`
+      : `/img/thumbnails/${post.section}_thumbnails/${post.slug}.png`;
+    setImgSrc(dynamicThumbnail);
+  }, []);
 
   // handle wip
   if (post.visibility == "wip") {
     title = title + " (Coming Soon!)";
-    // clickableLink = ' unclickable-link';
-    // hoverableDiv = ' unhoverable-div';
-    // unclickableTN = ' unclickable-tn';
-    // authorDate = author;
   }
+
   return (
     <>
       <div
@@ -71,12 +62,17 @@ export const PostThumbnail1 = ({
         >
           {/* thumbnail */}
           <div>
-            <img
-              className="w-full object-cover xl:max-w-72"
-              src={img}
-              alt="thumbnail"
-              loading="lazy"
-            />
+            {imgSrc && (
+              <img
+                className="w-full object-cover xl:max-w-72"
+                src={imgSrc}
+                alt="post-thumbnail"
+                loading="lazy"
+                onError={() => {
+                  setImgSrc("/img/thumbnails/coming_soon.png");
+                }}
+              />
+            )}
           </div>
           {/* heading */}
           <div className="xl:max-ww-72 min-h-[3em] w-full py-1 lg:max-w-52">

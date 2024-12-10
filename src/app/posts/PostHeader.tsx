@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import { Post } from "@/types/extendedPrismaTypes";
 import { formatDateToLongDate } from "../../lib/dateFormatting";
 
@@ -11,6 +13,15 @@ export default function PostHeader({
   post,
   showThumbnail = true,
 }: PostHeaderProps) {
+  const [imgSrc, setImgSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    const dynamicThumbnail = post.thumbnail
+      ? `/img/thumbnails/${post.section.toLowerCase()}_thumbnails/${post.thumbnail}`
+      : `/img/thumbnails/${post.section}_thumbnails/${post.slug}.png`;
+    setImgSrc(dynamicThumbnail);
+  }, []);
+
   return (
     <div className="justify-items-center pb-8">
       {/* define with to be half of screen width */}
@@ -26,14 +37,17 @@ export default function PostHeader({
         {/* thumbnail */}
         {showThumbnail && (
           <div className="justify-items-center pb-1">
-            <img
-              className="h-[60vh] w-[60vh] border-[1px] border-borderGrey object-contain"
-              src={
-                post.thumbnail
-                  ? post.thumbnail
-                  : `/img/thumbnails/${post.section}_thumbnails/${post.slug}.png`
-              }
-            ></img>
+            {imgSrc && (
+              <img
+                className="h-[60vh] w-[60vh] border-[1px] border-borderGrey object-contain"
+                src={imgSrc}
+                alt="post-header-img"
+                loading="lazy"
+                onError={() => {
+                  setImgSrc("/img/thumbnails/coming_soon.png");
+                }}
+              ></img>
+            )}
           </div>
         )}
         {/* author(s) */}
