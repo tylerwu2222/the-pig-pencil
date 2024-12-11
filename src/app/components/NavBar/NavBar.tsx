@@ -3,7 +3,7 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-import { HomeContext } from "@/app/page";
+import { useHome } from "@/app/HomeContextProvider";
 
 // components
 import Link from "next/link";
@@ -23,7 +23,7 @@ import navbar_items from "@/site_data/navbar_menu_items.json";
 const NavBar = () => {
   const pathname = usePathname();
 
-  const { setHoveredTab } = useContext(HomeContext);
+  const { setHoveredTab } = useHome();
   // const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
   const logoFontFamily = "Gloock";
   const [isVisible, setIsVisible] = useState(true);
@@ -69,13 +69,13 @@ const NavBar = () => {
                   }
                 : () => {}
             }
-            onMouseLeave={
-              pathname == "/"
-                ? () => {
-                    handleHoveredTab("___");
-                  }
-                : () => {}
-            }
+            // onMouseLeave={
+            //   pathname == "/"
+            //     ? () => {
+            //         handleHoveredTab("___");
+            //       }
+            //     : () => {}
+            // }
           >
             <p
               className="text-end text-2xl transition-colors duration-1000 ease-in-out hover:text-hoverDeepPink"
@@ -106,14 +106,14 @@ const NavBar = () => {
                 <MenuItem
                   key={index}
                   item={item}
-                  // onMouseEnterFn={
-                  //   pathname == "/"
-                  //     ? (e) => {
-                  //         handleHoveredTab(item.url);
-                  //         e.stopPropagation();
-                  //       }
-                  //     : () => {}
-                  // }
+                  onMouseEnterFn={
+                    pathname == "/"
+                      ? (e) => {
+                          handleHoveredTab(item.url);
+                          e.stopPropagation();
+                        }
+                      : () => {}
+                  }
                   // onMouseLeaveFn={
                   //   pathname == "/"
                   //     ? (e) => {

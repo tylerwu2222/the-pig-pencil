@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Analytics } from "@vercel/analytics/next";
 // import { DndContext } from "@dnd-kit/core";
+import { HomeProvider } from "./HomeContextProvider";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -35,7 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* <DndContext> */}
-        {children}
+        <HomeProvider>{children}</HomeProvider>
         {/* </DndContext> */}
         <Analytics />
       </body>
