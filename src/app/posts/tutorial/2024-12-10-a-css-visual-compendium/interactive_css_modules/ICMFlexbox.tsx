@@ -19,7 +19,7 @@ export default function ICMFlexbox() {
         <div className="flex-1 bg-gray-500 p-4 text-gray-200">from</div>,
         <div className="flex-1 bg-gray-600 p-4 text-gray-300">
           any other guy
-        </div>,
+        </div>
       ]}
       styleInputs={[
         {

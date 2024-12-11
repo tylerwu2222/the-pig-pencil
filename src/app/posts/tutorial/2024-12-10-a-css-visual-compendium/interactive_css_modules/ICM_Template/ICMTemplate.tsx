@@ -32,9 +32,9 @@ export type StyledElementContainerProps = {
 };
 
 interface ICMTemplateProps {
-  styledElement: ReactNode;
+  styledElement: ReactElement;
   styledElementContainer?: FC<StyledElementContainerProps>;
-  additionalElements?: ReactNode[];
+  additionalElements?: ReactElement[];
   styleInputs: styleInputType[]; // list of properties to toggle for as well as whether the toggle should be
   inputPosition?: "absolute" | "static"; // Option for positioning input div
   styledElementBackground?: boolean;
@@ -134,7 +134,8 @@ export default function ICMTemplate({
         {StyledElementWithStyles}
         {additionalElements
           ? additionalElements.map((el, index) => {
-              return el;
+              return React.cloneElement(el, { key: index }); // cloning elements, lets you add props, styles, keys, etc.
+              // el;
             })
           : null}
       </StyledElementContainer>
@@ -153,6 +154,7 @@ export default function ICMTemplate({
             // state value is the property value in styles object
             styleInput = (
               <SliderInput
+                key={index}
                 label={i.property}
                 value={
                   i.property
@@ -172,6 +174,7 @@ export default function ICMTemplate({
             // number input
             styleInput = (
               <NumberInput
+                key={index}
                 label={i.property}
                 value={
                   i.property
@@ -187,6 +190,7 @@ export default function ICMTemplate({
             // dropdown input
             styleInput = (
               <DropdownInputSelect
+                key={index}
                 label={i.property}
                 value={
                   i.property // property is defined
@@ -204,6 +208,7 @@ export default function ICMTemplate({
           } else if (i.inputType == "sliderUnits") {
             styleInput = (
               <SliderInputWithUnits
+                key={index}
                 label={i.property}
                 value={
                   i.property
