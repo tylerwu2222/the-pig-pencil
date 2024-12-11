@@ -13,17 +13,22 @@ type styleInputType = {
   options?: string[];
   min?: number;
   max?: number;
-  isWholeNumber?: boolean;
+  // isWholeNumber?: boolean;
+
 };
 
 interface ICMTemplateProps {
   styledElement: ReactNode;
   styleInputs: styleInputType[]; // list of properties to toggle for as well as whether the toggle should be
+  inputPosition?: "absolute" | "static"; // Option for positioning input div
+  containerStyle?: React.CSSProperties; // Custom style for the outermost div
 }
 
 export default function ICMTemplate({
   styledElement,
   styleInputs,
+  inputPosition,
+  containerStyle
 }: ICMTemplateProps) {
   // Initialize state for each style property w/ empty string
   const initialState = styleInputs.reduce(
@@ -52,18 +57,18 @@ export default function ICMTemplate({
 
   // Clone styledElement and apply styles dynamically
   const StyledElementWithStyles = React.cloneElement(
-    styledElement as React.ReactElement,
+    styledElement as React.ReactElement, // element
     {
-      style: { ...styles },
-    },
+      style: { ...styles, 'border':'1px black solid' },
+    }, // props/styles, passed as object
   );
 
   return (
-    <div>
+    <div className="border border-2 border-hoverLightPink shadow-sm rounded-sm p-3">
       {/* styled element */}
       {StyledElementWithStyles}
       {/* styleInput */}
-      <div>
+      <div className={inputPosition === "absolute" ? "absolute bottom-0 left-0" : ""}>
         {styleInputs.map((i, index) => {
           let styleInput;
           if (i.inputType == "slider") {
