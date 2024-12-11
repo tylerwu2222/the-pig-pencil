@@ -90,7 +90,7 @@ export default function ICMTemplate({
   );
 
   return (
-    <div className="rounded-sm border border-2 border-hoverLightPink p-3 shadow-sm">
+    <div className="rounded-sm border-2 border-hoverLightPink p-3 shadow-sm">
       {/* styled element */}
       <StyledElementContainer>
         {StyledElementWithStyles}

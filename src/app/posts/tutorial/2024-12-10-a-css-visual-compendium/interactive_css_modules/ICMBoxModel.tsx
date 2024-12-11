@@ -4,13 +4,6 @@ import ICMTemplate from "./ICM_Template/ICMTemplate";
 export default function ICMBoxModel() {
   return (
     <div>
-      <p>
-        The interactive element here is the{" "}
-        <span className="border-[1px] border-black bg-[#D3D3D3]">
-          gray bordered box
-        </span>, all styles are applied to it
-        :
-      </p>
       <ICMTemplate
         styledElement={
           <div>

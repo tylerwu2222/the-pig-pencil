@@ -1,4 +1,5 @@
 import ICMBoxModel from './interactive_css_modules/ICMBoxModel';
+import ICMPositionDisplay from './interactive_css_modules/ICMPositionDisplay';
 
 export const metadata = {
     publishDate: "2024-12-10",
@@ -40,14 +41,15 @@ A core concept in CSS is whether styles are applied using *modules* (internal or
 {/*  */}
 <ScrollspyHeader header={'Layout and Positioning'} />
 
-This section is about how big/small/tall/short an element is and where it is on the screen.
+This section is about how big/small/tall/short an element is and where it is on the screen. 
+
+The interactive element for this section is the <span className="border-[1px] border-black bg-[#D3D3D3]"> gray bordered box </span>, all styles are applied to it:
 
 <ScrollspyHeader header={'Sizing, Box Model'} level={3} />
 <ICMBoxModel />
 
-<ScrollspyHeader header={'Positioning'} level={3} />
-
-<ScrollspyHeader header={'Display'} level={3} />
+<ScrollspyHeader header={'Positioning and Display'} level={3} />
+<ICMPositionDisplay />
 
 <ScrollspyHeader header={'Flexbox'} level={3} />
 
