@@ -6,13 +6,13 @@ export default function ICMBoxModel() {
   return (
     <ICMTemplate
       styledElement={
-        <div style={{ top: "5px" }}>
+        <div key={1} style={{ top: "5px" }}>
           <p className="m-0 bg-white">You know</p>
         </div>
       }
       additionalElements={[
-        <div className="bg-gray-100 p-4">the rules</div>,
-        <div className="bg-gray-200 p-4">and so do I</div>,
+        <div key={2} className="bg-gray-100 p-4">the rules</div>,
+        <div key={3} className="bg-gray-200 p-4">and so do I</div>,
       ]}
       styledElementContainer={ShortScrollContainer}
       styleInputs={[

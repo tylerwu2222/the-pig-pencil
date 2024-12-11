@@ -8,17 +8,17 @@ export default function ICMFlexbox() {
   return (
     <ICMTemplate
       styledElement={
-        <div>
+        <div key={1} >
           <p className="m-0">I just wanna</p>
         </div>
       }
       styledElementContainer={GridContainer}
       additionalElements={[
-        <div className="col-span-1 bg-gray-100 p-4">tell you</div>,
-        <div className="col-span-1 bg-gray-200 p-4">what I'm</div>,
-        <div className="col-span-1 bg-gray-300 p-4">feeling</div>,
-        <div className="col-span-1 bg-gray-400 p-4 text-gray-50">Gotta make you</div>,
-        <div className="col-span-1 bg-gray-500 p-4 text-gray-200">understand</div>
+        <div  key={2} className="col-span-1 bg-gray-100 p-4">tell you</div>,
+        <div  key={3} className="col-span-1 bg-gray-200 p-4">what I'm</div>,
+        <div  key={4} className="col-span-1 bg-gray-300 p-4">feeling</div>,
+        <div  key={5} className="col-span-1 bg-gray-400 p-4 text-gray-50">Gotta make you</div>,
+        <div  key={6} className="col-span-1 bg-gray-500 p-4 text-gray-200">understand</div>
       ]}
       styleInputs={[
         {

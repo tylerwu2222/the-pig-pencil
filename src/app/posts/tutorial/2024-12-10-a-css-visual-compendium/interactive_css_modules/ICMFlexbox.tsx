@@ -6,20 +6,30 @@ export default function ICMFlexbox() {
   return (
     <ICMTemplate
       styledElement={
-        <div>
+        <div key={1}>
           <p className="m-0 bg-white">A full commitment's</p>
         </div>
       }
       styledElementContainer={FlexContainer}
       additionalElements={[
-        <div className="flex-1 bg-gray-100 p-4">what I'm</div>,
-        <div className="flex-1 bg-gray-200 p-4">thinking of</div>,
-        <div className="flex-1 bg-gray-300 p-4">You wouldn't</div>,
-        <div className="flex-1 bg-gray-400 p-4 text-gray-50">get this</div>,
-        <div className="flex-1 bg-gray-500 p-4 text-gray-200">from</div>,
-        <div className="flex-1 bg-gray-600 p-4 text-gray-300">
+        <div key={2} className="flex-1 bg-gray-100 p-4">
+          what I'm
+        </div>,
+        <div key={3} className="flex-1 bg-gray-200 p-4">
+          thinking of
+        </div>,
+        <div key={4} className="flex-1 bg-gray-300 p-4">
+          You wouldn't
+        </div>,
+        <div key={5} className="flex-1 bg-gray-400 p-4 text-gray-50">
+          get this
+        </div>,
+        <div key={6} className="flex-1 bg-gray-500 p-4 text-gray-200">
+          from
+        </div>,
+        <div key={7} className="flex-1 bg-gray-600 p-4 text-gray-300">
           any other guy
-        </div>
+        </div>,
       ]}
       styleInputs={[
         {
