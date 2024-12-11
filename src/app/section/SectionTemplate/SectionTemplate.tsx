@@ -80,7 +80,7 @@ export default function SectionTemplate(
         const subsetContent = filterSort({ content: allContent, filterKeyword: searchValue, selectedTags: selectedTags })
         setFSContent(subsetContent);
         // console.log(Filter)
-    }, [searchValue, sortOption, selectedTags]);
+    }, [searchValue, sortOption, selectedTags, allContent]);
 
     // initialize content for section
     useEffect(() => {
@@ -102,7 +102,7 @@ export default function SectionTemplate(
             setLoaded(true);
         }
         getSectionPosts();
-    }, []);
+    }, [section]);
 
     const handleSearchKeywordChange = (newSearchValue: string) => {
         setSearchValue(newSearchValue);

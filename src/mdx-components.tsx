@@ -8,6 +8,7 @@ import Link from "next/link";
 import ImageModal from "./app/components/modals/ImageModal/ImageModal";
 import PDFIframe from "./app/components/pdf/PDFViewer/PDFIframe/PDFIframe";
 import SearchInput from "./app/components/inputs/SearchInput/SearchInput";
+import UnderConstruction from "./app/posts/UnderConstruction";
 
 // links
 import GithubIcon from "./app/components/buttons/iconButtons/GithubIcon";
@@ -120,6 +121,7 @@ export function useMDXComponents(
     // Scrollspy, // included in individual [slug].tsx templates
     ScrollspyHeader,
     WebsiteIcon,
-    GithubIcon
+    GithubIcon,
+    UnderConstruction
   };
 }
