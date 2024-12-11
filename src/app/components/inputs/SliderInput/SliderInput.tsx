@@ -27,6 +27,8 @@ export default function SliderInput({
   percentWidth = "60",
   marginH = 10,
 }: SliderInputProps) {
+  console.log("slider input value", value);
+
   // Handle the change event from the slider component
   const handleChange = (newValue: number[]) => {
     onChange(newValue[0]); // Only take the first value, as Slider provides an array

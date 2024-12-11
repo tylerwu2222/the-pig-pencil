@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState, FC } from "react";
 
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import NumberInput from "@/app/components/inputs/NumberInput/NumberInput";
@@ -11,29 +11,37 @@ type styleInputType = {
   // type: "numberInput" | "stringInput";
   inputType: "slider" | "number" | "dropdown";
   options?: string[];
+  startingValue?: string | number;
   min?: number;
   max?: number;
   // isWholeNumber?: boolean;
-
 };
 
 interface ICMTemplateProps {
   styledElement: ReactNode;
+  styledElementContainer?: FC<{ children: React.ReactNode }>;
+  additionalElements?: ReactNode[];
   styleInputs: styleInputType[]; // list of properties to toggle for as well as whether the toggle should be
   inputPosition?: "absolute" | "static"; // Option for positioning input div
+  styledElementBackgroundBorder?: boolean;
   containerStyle?: React.CSSProperties; // Custom style for the outermost div
 }
 
 export default function ICMTemplate({
   styledElement,
+  styledElementContainer: StyledElementContainer = ({ children }) => (
+    <div>{children}</div>
+  ), // defaults to a div
+  additionalElements,
   styleInputs,
   inputPosition,
-  containerStyle
+  styledElementBackgroundBorder = true,
+  containerStyle,
 }: ICMTemplateProps) {
-  // Initialize state for each style property w/ empty string
+  // Initialize state for each style property w/ starting value
   const initialState = styleInputs.reduce(
-    (acc, { property }) => {
-      acc[property] = ""; // Or default values
+    (acc, { property, startingValue }) => {
+      acc[property] = startingValue ?? ""; // Or default values
       return acc;
     },
     {} as Record<string, string | number>,
@@ -59,24 +67,42 @@ export default function ICMTemplate({
   const StyledElementWithStyles = React.cloneElement(
     styledElement as React.ReactElement, // element
     {
-      style: { ...styles, 'border':'1px black solid' },
+      style: {
+        ...styles,
+        ...(styledElementBackgroundBorder && {
+          border: "1px solid black",
+          background: "lightgray", // Example background color
+        }),
+      },
     }, // props/styles, passed as object
   );
 
   return (
-    <div className="border border-2 border-hoverLightPink shadow-sm rounded-sm p-3">
+    <div className="rounded-sm border border-2 border-hoverLightPink p-3 shadow-sm">
       {/* styled element */}
-      {StyledElementWithStyles}
+      <StyledElementContainer>
+        {StyledElementWithStyles}
+        {additionalElements
+          ? additionalElements.map((el, index) => <div key={index}>{el}</div>)
+          : null}
+      </StyledElementContainer>
       {/* styleInput */}
-      <div className={inputPosition === "absolute" ? "absolute bottom-0 left-0" : ""}>
+      <div
+        className={
+          inputPosition === "absolute" ? "absolute bottom-0 left-0" : ""
+        }
+      >
         {styleInputs.map((i, index) => {
+          console.log("input props", i);
           let styleInput;
+
           if (i.inputType == "slider") {
             // slider input
+            // state value is the property value in styles object
             styleInput = (
               <SliderInput
                 label={i.property}
-                value={(styles[i.property] as number) || 0}
+                value={i.property ? (styles[i.property] as number) : 0}
                 min={i.min}
                 max={i.max}
                 onChange={(n) => handleStyleChange(i.property, n)}
@@ -87,16 +113,22 @@ export default function ICMTemplate({
             styleInput = (
               <NumberInput
                 label={i.property}
-                value={(styles[i.property] as number) || 0}
+                value={i.property ? (styles[i.property] as number) : 0}
                 onChange={(n) => handleStyleChange(i.property, n)}
               />
             );
           } else if (i.inputType == "dropdown") {
-            // number input
+            // dropdown input
             styleInput = (
               <DropdownInputSelect
                 label={i.property}
-                value={(styles[i.property] as number) || 0}
+                value={
+                  i.property
+                    ? (styles[i.property] as string)
+                    : i.options
+                      ? (i.options[0] as string)
+                      : ""
+                }
                 options={i.options}
                 onChange={(n) => handleStyleChange(i.property, n)}
               />
