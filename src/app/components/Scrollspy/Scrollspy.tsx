@@ -74,7 +74,7 @@ export default function Scrollspy() {
 
     return (
         <div className='relative'>
-            <div className='fixed top-[30vh] left-0'>
+            <div className={`fixed top-[20vh] left-0 max-h-[70vh] ${isVisible? 'overflow-y-scroll':'overflow-hidden'}`}>
                 {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
                 <nav className={`bg-transparent text-[14px] w-[18vw] pl-[1.5vw] flex-col flex-wrap transition-all duration-500 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
                     {
@@ -102,10 +102,10 @@ export default function Scrollspy() {
                 </nav >
                 <button
                     onClick={toggleVisibility}
-                    className={`fixed top-[33vh] left-[16vw] font-bold ml-[1vw] 
+                    className={`fixed top-[18vh] left-[8vw] font-bold ml-[1vw] 
                         bg-transparent transition-transform duration-500 ease-in-out 
                         opacity-30 hover:opacity-100 text-textGrey border border-textGrey hover:border-hoverDeepPink hover:text-hoverDeepPink 
-                        rounded-full w-7 h-7 flex items-center justify-center ${isVisible ? 'translate-x-0' : '-translate-x-[16vw]'
+                        rounded-full w-7 h-7 flex items-center justify-center ${isVisible ? 'translate-x-0' : '-translate-x-[7vw]'
                         }`}
                     title={isVisible ? 'hide scrollspy links' : 'show scrollspy links'}
                 >
