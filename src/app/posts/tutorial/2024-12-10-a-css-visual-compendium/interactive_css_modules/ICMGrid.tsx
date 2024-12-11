@@ -25,13 +25,25 @@ export default function ICMFlexbox() {
           property: "gridColumnStart",
           inputType: "dropdown",
           startingValue: '1',
-          options:['1','2','3',]
+          options:['1','2','3','-1']
         },
         {
           property: "gridColumnEnd",
           inputType: "dropdown",
           startingValue: '2',
-          options:['2','3','4']
+          options:['2','3','4','-1']
+        },
+        {
+          property: "gridRowStart",
+          inputType: "dropdown",
+          startingValue: '1',
+          options:['1','2','-1']
+        },
+        {
+          property: "gridRowEnd",
+          inputType: "dropdown",
+          startingValue: '2',
+          options:['2','3','-1']
         },
       ]}
     />

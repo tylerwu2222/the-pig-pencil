@@ -12,11 +12,13 @@ import React, {
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import NumberInput from "@/app/components/inputs/NumberInput/NumberInput";
 import SliderInput from "@/app/components/inputs/SliderInput/SliderInput";
+import SliderInputWithUnits from "@/app/components/inputs/SliderInput/SliderInputWithUnits";
 
 type styleInputType = {
   property: string; // also used as label
   level?: "self" | "container"; // whether the style is applied to self or parent container
-  inputType: "slider" | "number" | "dropdown";
+  inputType: "slider" | "number" | "dropdown" | "sliderUnits";
+  unit?: string;
   options?: string[];
   startingValue?: string | number;
   min?: number;
@@ -35,7 +37,8 @@ interface ICMTemplateProps {
   additionalElements?: ReactNode[];
   styleInputs: styleInputType[]; // list of properties to toggle for as well as whether the toggle should be
   inputPosition?: "absolute" | "static"; // Option for positioning input div
-  styledElementBackgroundBorder?: boolean;
+  styledElementBackground?: boolean;
+  styledElementBorder?: boolean;
   containerStyle?: React.CSSProperties; // Custom style for the outermost div
 }
 
@@ -53,7 +56,8 @@ export default function ICMTemplate({
   additionalElements,
   styleInputs,
   inputPosition,
-  styledElementBackgroundBorder = true,
+  styledElementBackground = true,
+  styledElementBorder = true,
   containerStyle,
 }: ICMTemplateProps) {
   // Initialize state for each style property w/ starting value
@@ -76,8 +80,8 @@ export default function ICMTemplate({
       {} as Record<string, string | number>,
     );
 
-  console.log("initialState", initialState);
-  console.log("initialStateContainer", initialStateContainer);
+  // console.log("initialState", initialState);
+  // console.log("initialStateContainer", initialStateContainer);
 
   const [styles, setStyles] = useState(initialState);
   const [stylesContainer, setStylesContainer] = useState(initialStateContainer);
@@ -93,6 +97,7 @@ export default function ICMTemplate({
     value: string | number,
   ) => {
     if (!level || level == "self") {
+      console.log("percent slider prop, value", property, value);
       setStyles((prevStyles) => ({
         ...prevStyles,
         [property]: value,
@@ -110,10 +115,12 @@ export default function ICMTemplate({
     styledElement as ReactElement, // element
     {
       style: {
-        ...(styledElement as ReactElement).props.style,
-        ...styles,
-        ...(styledElementBackgroundBorder && {
+        ...(styledElement as ReactElement).props.style, // pre-existing styles
+        ...styles, // dynamic styles
+        ...(styledElementBorder && {
           border: "1px solid black",
+        }),
+        ...(styledElementBackground && {
           background: "lightgray", // Example background color
         }),
       },
@@ -127,7 +134,7 @@ export default function ICMTemplate({
         {StyledElementWithStyles}
         {additionalElements
           ? additionalElements.map((el, index) => {
-              return el
+              return el;
             })
           : null}
       </StyledElementContainer>
@@ -138,7 +145,7 @@ export default function ICMTemplate({
         }
       >
         {styleInputs.map((i, index) => {
-          console.log("input props", i);
+          // console.log("input props", i);
           let styleInput;
 
           if (i.inputType == "slider") {
@@ -194,7 +201,27 @@ export default function ICMTemplate({
                 onChange={(n) => handleStyleChange(i.property, i.level, n)}
               />
             );
+          } else if (i.inputType == "sliderUnits") {
+            styleInput = (
+              <SliderInputWithUnits
+                label={i.property}
+                value={
+                  i.property
+                    ? i.level == "container"
+                      ? (stylesContainer[i.property] as number)
+                      : (styles[i.property] as number)
+                    : 0
+                }
+                min={i.min}
+                max={i.max}
+                onChange={(n) => {
+                  handleStyleChange(i.property, i.level, n);
+                }}
+                unit={i.unit}
+              />
+            );
           }
+
           return <div key={index}>{styleInput}</div>;
         })}
       </div>

@@ -4,6 +4,7 @@ import ICMBoxModelPercent from './interactive_css_modules/ICMBoxModelPercent';
 import ICMPositionDisplay from './interactive_css_modules/ICMPositionDisplay';
 import ICMFlexbox from './interactive_css_modules/ICMFlexbox';
 import ICMGrid from './interactive_css_modules/ICMGrid';
+import ICMFloat from './interactive_css_modules/ICMFloat';
 
 export const metadata = {
     publishDate: "2024-12-10",
@@ -47,9 +48,9 @@ A core concept in CSS is whether styles are applied using *modules* (internal or
 
 This section is about how big/small/tall/short an element is and where it is on the screen. 
 
-Try dragging some sliders/changing some dropdown values to see how the <span className="border-[1px] border-black bg-[#D3D3D3]">interactive element</span> changes.
+Try dragging some sliders and changing some dropdown values to see how the <span className="border-[1px] border-black bg-[#D3D3D3]">interactive element</span> changes.
 
-<ScrollspyHeader header={'width, height, padding, margin'} level={3} />
+<ScrollspyHeader header={'Box Model'} level={3} />
 When you give height and width a number, these are in pixels (count em if you don't believe me!).
 
 When I first started learning CSS, I'd always mix up `margin` and `padding`.
@@ -71,29 +72,52 @@ Just as % size is relative to the parent, you'll learn that position is also rel
 (A common mistake I've made in the past is having an extra div around your sticky element and wondering why the CSS seemed to not work... 
 make sure you're applying the style to the right element!)
 
-Also note: for sticky and fixed, you need to specify one of (top, left, right, bottom) so CSS knows where to stick your element.
-
 <ICMPositionDisplay />
+
+For `absolute` and `fixed`, you'll notice the interactive element "leaves" the container to the top of the page.  
+Also, for `absolute`, `fixed`, and `sticky`, you need to specify one of (top, left, right, bottom) so CSS knows where to stick your element.
 
 <ScrollspyHeader header={'Flexbox'} level={3} />
 
-Now, honestly, flexbox, or `display: flex` has and is still one of the more confusing topics in css, (at least for me).
+Now, honestly, flexbox, or `display: flex` has been and still is one of the more confusing topics in css for me.
 
-The general idea is that rather than specifying exact sizes or percentages, you give each item a relative number.
-
-The default for a flex item (a child of a flexbox div), is flex: 1 (shorthand for). 
-If all items are 1, they take up equal space, but if you set one item to flex 2, it will take up double it's default space.
+The general idea is that rather than specifying exact sizes or percentages, you give each item a relative number. And then, the elements kinda... 
+work out how spacing goes. Try it out yourself:
 
 <ICMFlexbox />
 
+You'll notice past flex:4 the interactive element stops growing, that's because I've set the <span className='border-[1px] border-red-400'>red container</span> to a fixed size, and there's no space left for the interactive element to grow.
+
+The default for a flex item (a child of a flexbox div), is flex: 1 (shorthand for flex-grow, flex-shrink, and flex-basis, but I think most of the time you can use the shorthand). 
+If all items are 1, they take up equal space, but if you set one item to flex 2, it will take up double it's default space.
 
 <ScrollspyHeader header={'Grid'} level={3} />
 Grid is a lot more straightforward to understand imo.
+With each child element, you define where it starts (gridColumnStart/gridRowStart), and where it ends (gridColumnEnd/gridRowEnd). 
 
 <ICMGrid />
 
+Note that grids are indexed from 1 to n. You can also use -1 to indicate the last edge in the column/row.
+
+[IMAGE]
+
+
+<ScrollspyHeader header={'Centering Elements'} level={3} />
+Now this is a huge styling need you'll likely run into. Because, for most interfaces, content needs to be front and center, not in the upper-left corner.
+
+#### Centering a Div
+
+#### Centering Text
+
+
+
 <ScrollspyHeader header={'Float & Clear'} level={3} />
 
+<ICMFloat />
+
+I don't really use float willy-nilly, but The one case I do use it with is I have an image that I want to have text wrap around like so:
+
+[IMAGE]
 
 {/*  */}
 <ScrollspyHeader header={'Typography'} />
@@ -106,8 +130,6 @@ Grid is a lot more straightforward to understand imo.
 
 <ScrollspyHeader header={'Line Height and Spacing'} level={3} />
 
-<ScrollspyHeader header={'White Space Handling'} level={3} />
-
 {/*  */}
 <ScrollspyHeader header={'Backgrounds and Colors'} />
 
@@ -117,9 +139,9 @@ Grid is a lot more straightforward to understand imo.
 
 <ScrollspyHeader header={'Color'} level={3} />
 
-<ScrollspyHeader header={'Borders and Shadows'} />
+{/*  */}
+<ScrollspyHeader header={'Shadows'} />
 
-<ScrollspyHeader header={'Borders'} level={3} />
 
 <ScrollspyHeader header={'Box Shadow'} level={3} />
 
@@ -148,16 +170,14 @@ Grid is a lot more straightforward to understand imo.
 
 <ScrollspyHeader header={'Viewport Units'} level={3} />
 
-<ScrollspyHeader header={'CSS Grid and Flexbox for Responsiveness'} level={3} />
-
 <ScrollspyHeader header={'Breakpoints'} level={3} />
 
 {/*  */}
 <ScrollspyHeader header={'User Interface (UI) Styling'} />
 
-<ScrollspyHeader header={'Forms'} level={3} />
+{/* <ScrollspyHeader header={'Forms'} level={3} /> */}
 
-<ScrollspyHeader header={'Buttons and Links'} level={3} />
+{/* <ScrollspyHeader header={'Buttons and Links'} level={3} /> */}
 
 <ScrollspyHeader header={'Custom Cursors'} level={3} />
 
@@ -172,7 +192,7 @@ Grid is a lot more straightforward to understand imo.
 {/*  */}
 <ScrollspyHeader header={'Miscellaneous'} />
 
-<ScrollspyHeader header={'Clipping and Masking'} level={3} />
+<ScrollspyHeader header={'Image Clipping and Masking'} level={3} />
 
 <ScrollspyHeader header={'Filters'} level={3} />
 

@@ -14,15 +14,19 @@ export default function ICMBoxModelPercent() {
       styleInputs={[
         {
           property: "height",
-          inputType: "dropdown",
+          inputType: "sliderUnits",
+          unit: "%",
           startingValue: "50%",
-          options: ["0%", "25%", "50%", "75%", "100%"],
+          min: 0,
+          max: 100,
         },
         {
           property: "width",
-          inputType: "dropdown",
+          inputType: "sliderUnits",
+          unit: "%",
           startingValue: "50%",
-          options: ["0%", "25%", "50%", "75%", "100%"],
+          min: 0,
+          max: 100,
         },
       ]}
     />

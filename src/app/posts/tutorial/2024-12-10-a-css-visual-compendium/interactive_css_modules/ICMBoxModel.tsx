@@ -5,7 +5,7 @@ export default function ICMBoxModel() {
   return (
     <ICMTemplate
       styledElement={
-        <div>
+        <div className="border-blue-400 outline-red-400 outline">
           <p className="m-0 bg-white">We're no</p>
         </div>
       }
@@ -38,7 +38,24 @@ export default function ICMBoxModel() {
           min: 0,
           max: 20,
         },
+        {
+          property: "borderWidth",
+          inputType: "sliderUnits",
+          unit: "px",
+          startingValue: "1px",
+          min: 0,
+          max: 8,
+        },
+        {
+          property: "outlineWidth",
+          inputType: "sliderUnits",
+          unit: "px",
+          startingValue: "1px",
+          min: 0,
+          max: 8,
+        },
       ]}
+      styledElementBorder={false}
     />
   );
 }
