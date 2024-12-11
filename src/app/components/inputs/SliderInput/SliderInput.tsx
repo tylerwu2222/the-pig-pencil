@@ -36,28 +36,41 @@ export default function SliderInput({
 
   return (
     <div
+      className="relative mb-4 flex w-full items-center pt-2"
       style={{
         width: `${percentWidth}%`,
         // marginRight: `${marginH / 2}px`,
         // marginLeft: `${marginH / 2}px`,
       }}
     >
-      {label && (
-        <Label
-          htmlFor="number-input"
-          className="mb-1 block text-sm font-medium text-gray-700"
-        >
-          {label}
-        </Label>
-      )}
-      <Slider
-        value={[value]} // Pass the controlled value as an array
-        onValueChange={handleChange} // Handle value change
-        min={min} // Set the minimum value
-        max={max} // Set the maximum value
-        step={step} // Set the step value
-        className={cn("w-[60%]", className)} // Apply custom className
-      />
+      <div className="w-full">
+        {label && (
+          <Label
+            htmlFor="number-input"
+            className="mb-1 block text-sm font-medium text-gray-700"
+          >
+            {label}
+          </Label>
+        )}
+        <Slider
+          value={[value]} // Pass the controlled value as an array
+          onValueChange={handleChange} // Handle value change
+          min={min} // Set the minimum value
+          max={max} // Set the maximum value
+          step={step} // Set the step value
+          // className={cn("w-[60%]", className)} // Apply custom className
+          className={className} // Apply custom className
+        />
+      </div>
+      {/* Display Min and Max values */}
+      <div className="absolute bottom-[-20px] left-0 text-xs leading-3 text-gray-500">
+        {min}
+      </div>
+      <div className="absolute bottom-[-20px] right-0 text-xs leading-3 text-gray-500">
+        {max}
+      </div>
+      {/* Display Current Value */}
+      {/* <div className="absolute top-[-25px] text-sm">{value}</div> */}
     </div>
   );
 }

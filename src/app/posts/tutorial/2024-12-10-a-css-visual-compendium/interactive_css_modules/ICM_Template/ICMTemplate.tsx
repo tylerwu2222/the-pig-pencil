@@ -17,9 +17,14 @@ type styleInputType = {
   // isWholeNumber?: boolean;
 };
 
+
+export type StyledElementContainerProps = {
+  children: ReactNode;
+};
+
 interface ICMTemplateProps {
   styledElement: ReactNode;
-  styledElementContainer?: FC<{ children: React.ReactNode }>;
+  styledElementContainer?: FC<StyledElementContainerProps>;
   additionalElements?: ReactNode[];
   styleInputs: styleInputType[]; // list of properties to toggle for as well as whether the toggle should be
   inputPosition?: "absolute" | "static"; // Option for positioning input div
@@ -27,11 +32,18 @@ interface ICMTemplateProps {
   containerStyle?: React.CSSProperties; // Custom style for the outermost div
 }
 
+
+
+// default styled element container
+const DefaultContainer: React.FC<StyledElementContainerProps> = ({
+  children,
+}) => (
+  <div>{children}</div> // Default layout with flexbox
+);
+
 export default function ICMTemplate({
   styledElement,
-  styledElementContainer: StyledElementContainer = ({ children }) => (
-    <div>{children}</div>
-  ), // defaults to a div
+  styledElementContainer: StyledElementContainer =  DefaultContainer, // defaults to a div
   additionalElements,
   styleInputs,
   inputPosition,
