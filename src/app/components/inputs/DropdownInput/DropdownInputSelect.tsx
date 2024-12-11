@@ -37,7 +37,7 @@ const DropdownInputSelect = ({
 
     return (
         <div className={`${width}`} >
-            <Label className={`${color} mb-2 block text-sm font-medium`}>{label}</Label>
+            <Label className={`${color} mb-[0.15rem] mt-2 block text-sm font-medium`}>{label}</Label>
             <Select
                 value={String(value)}
                 onValueChange={handleChange}

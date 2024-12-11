@@ -44,7 +44,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
       {label && (
         <Label
           htmlFor="number-input"
-          className="mb-1 block text-sm font-medium text-gray-700"
+          className="mb-[0.15rem] mt-2 block text-sm font-medium text-gray-700"
         >
           {label}
         </Label>

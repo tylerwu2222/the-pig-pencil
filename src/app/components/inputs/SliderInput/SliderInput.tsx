@@ -36,7 +36,7 @@ export default function SliderInput({
 
   return (
     <div
-      className="relative mb-4 flex w-full items-center pt-2"
+      className="relative mb-8 flex w-full items-center pt-2"
       style={{
         width: `${percentWidth}%`,
         // marginRight: `${marginH / 2}px`,
@@ -47,7 +47,7 @@ export default function SliderInput({
         {label && (
           <Label
             htmlFor="number-input"
-            className="mb-1 block text-sm font-medium text-gray-700"
+            className="mb-[0.15rem] mt-2 block text-sm font-medium text-gray-700"
           >
             {label}
           </Label>

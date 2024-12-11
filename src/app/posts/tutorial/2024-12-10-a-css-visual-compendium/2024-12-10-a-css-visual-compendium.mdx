@@ -1,5 +1,9 @@
 import ICMBoxModel from './interactive_css_modules/ICMBoxModel';
+import ICMBoxModelPercent from './interactive_css_modules/ICMBoxModelPercent';
+
 import ICMPositionDisplay from './interactive_css_modules/ICMPositionDisplay';
+import ICMFlexbox from './interactive_css_modules/ICMFlexbox';
+import ICMGrid from './interactive_css_modules/ICMGrid';
 
 export const metadata = {
     publishDate: "2024-12-10",
@@ -20,7 +24,7 @@ What is this, you ask? It's a way for me to review CSS silly.
 No, but actually, it's a tool to see how different CSS properties work in real-time
 using an <span className="bg-[#D3D3D3] border-[1px] border-black">interactive element</span> that can be styled with sliders, inputs, etc.
 
-So you can really see how changing the CSS properties' values affects the element.
+I've always wanted to make something like this so you can really clearly how changing the CSS properties' values affects the element.
 
 There are many CSS frameworks and component libraries out their in the age of React, (for example, I'm using Taliwind and shad/cn for this blog),
 but I've found as I work on my projects that I'm lacking in some fundamental knowledge about CSS. Thus,
@@ -39,21 +43,54 @@ A core concept in CSS is whether styles are applied using *modules* (internal or
 - inline styles are defined in the body of an element: e.g. `<div styles="padding: 2px">`
 
 {/*  */}
-<ScrollspyHeader header={'Layout and Positioning'} />
+<ScrollspyHeader header={'Sizing and Positioning'} />
 
 This section is about how big/small/tall/short an element is and where it is on the screen. 
 
-The interactive element for this section is the <span className="border-[1px] border-black bg-[#D3D3D3]"> gray bordered box </span>, all styles are applied to it:
+Try dragging some sliders/changing some dropdown values to see how the <span className="border-[1px] border-black bg-[#D3D3D3]">interactive element</span> changes.
 
-<ScrollspyHeader header={'Sizing, Box Model'} level={3} />
+<ScrollspyHeader header={'width, height, padding, margin'} level={3} />
+When you give height and width a number, these are in pixels (count em if you don't believe me!).
+
+When I first started learning CSS, I'd always mix up `margin` and `padding`.
+Padding is added *inside* the container and margin is *outside*. One way to remember, is if you think of the element as a box (shipping box if you will), you add padding (foam peanuts) on the inside.
+
 <ICMBoxModel />
 
+You can also adjust width and height with other units besides numbers as well as some in other units (em, rem, vh).
+
+Try changing the %'s below. The percent is always relevant to the *parent* element.
+
+<ICMBoxModelPercent />
+
 <ScrollspyHeader header={'Positioning and Display'} level={3} />
+
+Try setting position to `sticky` and scrolling. Pretty useful for things like nav menus and things that you want to stick on the screen. 
+Just as % size is relative to the parent, you'll learn that position is also relative to the parent. 
+
+(A common mistake I've made in the past is having an extra div around your sticky element and wondering why the CSS seemed to not work... 
+make sure you're applying the style to the right element!)
+
+Also note: for sticky and fixed, you need to specify one of (top, left, right, bottom) so CSS knows where to stick your element.
+
 <ICMPositionDisplay />
 
 <ScrollspyHeader header={'Flexbox'} level={3} />
 
+Now, honestly, flexbox, or `display: flex` has and is still one of the more confusing topics in css, (at least for me).
+
+The general idea is that rather than specifying exact sizes or percentages, you give each item a relative number.
+
+The default for a flex item (a child of a flexbox div), is flex: 1 (shorthand for). 
+If all items are 1, they take up equal space, but if you set one item to flex 2, it will take up double it's default space.
+
+<ICMFlexbox />
+
+
 <ScrollspyHeader header={'Grid'} level={3} />
+Grid is a lot more straightforward to understand imo.
+
+<ICMGrid />
 
 <ScrollspyHeader header={'Float & Clear'} level={3} />
 

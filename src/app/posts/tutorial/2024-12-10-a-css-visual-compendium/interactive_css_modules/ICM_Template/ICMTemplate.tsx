@@ -1,14 +1,21 @@
 "use client";
 
-import React, { ReactNode, useState, FC } from "react";
+import React, {
+  ReactNode,
+  ReactElement,
+  CSSProperties,
+  useState,
+  FC,
+} from "react";
 
+// input components
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import NumberInput from "@/app/components/inputs/NumberInput/NumberInput";
 import SliderInput from "@/app/components/inputs/SliderInput/SliderInput";
 
 type styleInputType = {
   property: string; // also used as label
-  // type: "numberInput" | "stringInput";
+  level?: "self" | "container"; // whether the style is applied to self or parent container
   inputType: "slider" | "number" | "dropdown";
   options?: string[];
   startingValue?: string | number;
@@ -17,9 +24,9 @@ type styleInputType = {
   // isWholeNumber?: boolean;
 };
 
-
 export type StyledElementContainerProps = {
   children: ReactNode;
+  style?: CSSProperties; // Add style prop for container-level styles
 };
 
 interface ICMTemplateProps {
@@ -32,18 +39,17 @@ interface ICMTemplateProps {
   containerStyle?: React.CSSProperties; // Custom style for the outermost div
 }
 
-
-
 // default styled element container
 const DefaultContainer: React.FC<StyledElementContainerProps> = ({
   children,
+  style,
 }) => (
-  <div>{children}</div> // Default layout with flexbox
+  <div style={style}>{children}</div> // Default layout with flexbox
 );
 
 export default function ICMTemplate({
   styledElement,
-  styledElementContainer: StyledElementContainer =  DefaultContainer, // defaults to a div
+  styledElementContainer: StyledElementContainer = DefaultContainer, // defaults to a div
   additionalElements,
   styleInputs,
   inputPosition,
@@ -51,35 +57,60 @@ export default function ICMTemplate({
   containerStyle,
 }: ICMTemplateProps) {
   // Initialize state for each style property w/ starting value
-  const initialState = styleInputs.reduce(
-    (acc, { property, startingValue }) => {
-      acc[property] = startingValue ?? ""; // Or default values
-      return acc;
-    },
-    {} as Record<string, string | number>,
-  );
-  // console.log("initialState", initialState);
+  const initialState = styleInputs
+    .filter((s) => s.level === undefined || s.level == "self")
+    .reduce(
+      (acc, { property, startingValue }) => {
+        acc[property] = startingValue ?? "";
+        return acc;
+      },
+      {} as Record<string, string | number>,
+    );
+  const initialStateContainer = styleInputs
+    .filter((s) => s.level == "container")
+    .reduce(
+      (acc, { property, startingValue }) => {
+        acc[property] = startingValue ?? "";
+        return acc;
+      },
+      {} as Record<string, string | number>,
+    );
+
+  console.log("initialState", initialState);
+  console.log("initialStateContainer", initialStateContainer);
 
   const [styles, setStyles] = useState(initialState);
+  const [stylesContainer, setStylesContainer] = useState(initialStateContainer);
   // e.g. {
   // color: 'red',
   // padding: 20
   // }
 
   // Handle style changes
-  const handleStyleChange = (property: string, value: string | number) => {
-    // for given property
-    setStyles((prevStyles) => ({
-      ...prevStyles,
-      [property]: value,
-    }));
+  const handleStyleChange = (
+    property: string,
+    level: "self" | "container" | undefined,
+    value: string | number,
+  ) => {
+    if (!level || level == "self") {
+      setStyles((prevStyles) => ({
+        ...prevStyles,
+        [property]: value,
+      }));
+    } else {
+      setStylesContainer((prevStyles) => ({
+        ...prevStyles,
+        [property]: value,
+      }));
+    }
   };
 
   // Clone styledElement and apply styles dynamically
   const StyledElementWithStyles = React.cloneElement(
-    styledElement as React.ReactElement, // element
+    styledElement as ReactElement, // element
     {
       style: {
+        ...(styledElement as ReactElement).props.style,
         ...styles,
         ...(styledElementBackgroundBorder && {
           border: "1px solid black",
@@ -92,10 +123,12 @@ export default function ICMTemplate({
   return (
     <div className="rounded-sm border-2 border-hoverLightPink p-3 shadow-sm">
       {/* styled element */}
-      <StyledElementContainer>
+      <StyledElementContainer style={stylesContainer}>
         {StyledElementWithStyles}
         {additionalElements
-          ? additionalElements.map((el, index) => <div key={index}>{el}</div>)
+          ? additionalElements.map((el, index) => {
+              return el
+            })
           : null}
       </StyledElementContainer>
       {/* styleInput */}
@@ -114,10 +147,18 @@ export default function ICMTemplate({
             styleInput = (
               <SliderInput
                 label={i.property}
-                value={i.property ? (styles[i.property] as number) : 0}
+                value={
+                  i.property
+                    ? i.level == "container"
+                      ? (stylesContainer[i.property] as number)
+                      : (styles[i.property] as number)
+                    : 0
+                }
                 min={i.min}
                 max={i.max}
-                onChange={(n) => handleStyleChange(i.property, n)}
+                onChange={(n) => {
+                  handleStyleChange(i.property, i.level, n);
+                }}
               />
             );
           } else if (i.inputType == "number") {
@@ -125,8 +166,14 @@ export default function ICMTemplate({
             styleInput = (
               <NumberInput
                 label={i.property}
-                value={i.property ? (styles[i.property] as number) : 0}
-                onChange={(n) => handleStyleChange(i.property, n)}
+                value={
+                  i.property
+                    ? i.level == "container"
+                      ? (stylesContainer[i.property] as number)
+                      : (styles[i.property] as number)
+                    : 0
+                }
+                onChange={(n) => handleStyleChange(i.property, i.level, n)}
               />
             );
           } else if (i.inputType == "dropdown") {
@@ -135,14 +182,16 @@ export default function ICMTemplate({
               <DropdownInputSelect
                 label={i.property}
                 value={
-                  i.property
-                    ? (styles[i.property] as string)
-                    : i.options
-                      ? (i.options[0] as string)
-                      : ""
+                  i.property // property is defined
+                    ? i.level == "container"
+                      ? (stylesContainer[i.property] as string) // container
+                      : (styles[i.property] as string) // self
+                    : i.options // fallback
+                      ? (i.options[0] as string) // 1. first option
+                      : "" // 2. empty string
                 }
                 options={i.options}
-                onChange={(n) => handleStyleChange(i.property, n)}
+                onChange={(n) => handleStyleChange(i.property, i.level, n)}
               />
             );
           }
