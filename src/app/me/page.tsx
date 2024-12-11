@@ -8,7 +8,6 @@ import PortfolioSection from "./PortfolioSection";
 // import ScrollMoveElement from '../components/animate/scroll_animate/ScrollMoveElement';
 // import ScrollGrowShrinkElement from '../components/animate/scroll_animate/ScrollGrowShrinkElement';
 import ScrollDynamicStickyHeader from "../components/animate/scroll_animate/ScrollDynamicStickyHeader";
-// import DraggableImage from '../components/draggables/DraggableImage';
 import InteractiveDragBox from "../components/animate/scroll_animate/InteractiveDragBox";
 
 // images

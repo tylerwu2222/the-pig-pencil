@@ -3,7 +3,7 @@
 
 // react
 import React, { useEffect, useState, useContext } from "react";
-// import { HomeContext } from "@/app/page";
+import { HomeContext } from "@/app/page";
 
 // components
 import Link from "next/link";
@@ -23,9 +23,9 @@ import navbar_items from "@/site_data/navbar_menu_items.json";
 const NavBar = () => {
   const pathname = usePathname();
 
-  // const { setHoveredTab } = useContext(HomeContext);
+  const { setHoveredTab } = useContext(HomeContext);
   // const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
-  const logoFontFamily = 'Gloock';
+  const logoFontFamily = "Gloock";
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -50,7 +50,7 @@ const NavBar = () => {
   }, [lastScrollY]);
 
   const handleHoveredTab = (tab: string) => {
-    // setHoveredTab(tab);
+    setHoveredTab(tab);
   };
 
   return (
@@ -106,22 +106,22 @@ const NavBar = () => {
                 <MenuItem
                   key={index}
                   item={item}
-                  onMouseEnterFn={
-                    pathname == "/"
-                      ? (e) => {
-                          handleHoveredTab(item.url);
-                          e.stopPropagation();
-                        }
-                      : () => {}
-                  }
-                  onMouseLeaveFn={
-                    pathname == "/"
-                      ? (e) => {
-                          handleHoveredTab("___");
-                          e.stopPropagation();
-                        }
-                      : () => {}
-                  }
+                  // onMouseEnterFn={
+                  //   pathname == "/"
+                  //     ? (e) => {
+                  //         handleHoveredTab(item.url);
+                  //         e.stopPropagation();
+                  //       }
+                  //     : () => {}
+                  // }
+                  // onMouseLeaveFn={
+                  //   pathname == "/"
+                  //     ? (e) => {
+                  //         handleHoveredTab("___");
+                  //         e.stopPropagation();
+                  //       }
+                  //     : () => {}
+                  // }
                 />
               );
             })}
