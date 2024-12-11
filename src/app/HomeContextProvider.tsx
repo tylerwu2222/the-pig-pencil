@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   createContext,
@@ -16,7 +16,8 @@ interface HomeContextProps {
   setHoveredTab: Dispatch<SetStateAction<string>>;
 }
 
-const HomeContext = createContext<HomeContextProps>({} as HomeContextProps);
+// const HomeContext = createContext<HomeContextProps | null>({} as HomeContextProps);
+const HomeContext = createContext<HomeContextProps | null>(null);
 
 interface HomeProviderProps extends PropsWithChildren {}
 
@@ -30,4 +31,10 @@ export const HomeProvider: FC<HomeProviderProps> = ({ children }) => {
   );
 };
 
-export const useHome = () => useContext(HomeContext);
+export const useHome = () => {
+  const context = useContext(HomeContext);
+  if (!context) {
+    throw new Error('useHomeContext must be used within a HomeProvider');
+  }
+  return context;
+};
