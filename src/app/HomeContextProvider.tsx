@@ -19,7 +19,7 @@ interface HomeContextProps {
 // const HomeContext = createContext<HomeContextProps | null>({} as HomeContextProps);
 const HomeContext = createContext<HomeContextProps | null>(null);
 
-interface HomeProviderProps extends PropsWithChildren {}
+type HomeProviderProps = PropsWithChildren;
 
 export const HomeProvider: FC<HomeProviderProps> = ({ children }) => {
   const [hoveredTab, setHoveredTab] = useState<string>("___");
@@ -34,7 +34,7 @@ export const HomeProvider: FC<HomeProviderProps> = ({ children }) => {
 export const useHome = () => {
   const context = useContext(HomeContext);
   if (!context) {
-    throw new Error('useHomeContext must be used within a HomeProvider');
+    throw new Error("useHomeContext must be used within a HomeProvider");
   }
   return context;
 };
