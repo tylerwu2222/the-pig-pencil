@@ -19,7 +19,7 @@ export default function PortfolioSection({
 
   return (
     <>
-      <section className="m-[1vh] bg-slate-300 px-[1vh] py-[2vh]" id={titleID}>
+      <section className="m-[1vh] bg-slate-300 px-[1vh] pt-[2vh]" id={titleID}>
         {/* {title ? <h2>{title}</h2>:<></>} */}
         {summary}
         {content}

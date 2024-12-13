@@ -71,7 +71,7 @@ export default function ScrollDynamicStickyHeader({
 
     return (
         <h2
-            className='sticky-header px-1 font-semibold z-10'
+            className='sticky-header px-1 font-semibold opacity-95 z-10'
             ref={headerRef}
             onClick={clickBack ? handleClick : undefined}
             style={{

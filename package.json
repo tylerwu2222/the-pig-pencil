@@ -13,7 +13,6 @@
         "update-post": "tsx src/scripts/site_automation/updatePostsPrisma.mjs"
     },
     "dependencies": {
-        "@dnd-kit/core": "^6.3.1",
         "@mailchimp/mailchimp_marketing": "^3.0.80",
         "@mdx-js/loader": "^3.1.0",
         "@mdx-js/mdx": "^3.1.0",

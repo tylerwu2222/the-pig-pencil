@@ -6,9 +6,7 @@ import {
   useContext,
   useState,
   SetStateAction,
-  FC,
   PropsWithChildren,
-  ReactNode,
 } from "react";
 
 interface HomeContextProps {
@@ -19,9 +17,9 @@ interface HomeContextProps {
 // const HomeContext = createContext<HomeContextProps | null>({} as HomeContextProps);
 const HomeContext = createContext<HomeContextProps | null>(null);
 
-type HomeProviderProps = PropsWithChildren;
+// PropsWithChildren; // same as {children?: ReactNode}
 
-export const HomeProvider: FC<HomeProviderProps> = ({ children }) => {
+export const HomeProvider = ({ children }: PropsWithChildren) => {
   const [hoveredTab, setHoveredTab] = useState<string>("___");
 
   return (
