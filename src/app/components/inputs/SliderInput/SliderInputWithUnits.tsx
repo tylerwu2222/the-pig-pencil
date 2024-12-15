@@ -4,12 +4,12 @@ import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 
 // extension of slider input to display with units
-// NOTE: value and onChange must preserve the value as number for the slider to visually update
+// NOTE: value and onChangeFn must preserve the value as number for the slider to visually update
 type SliderInputWithUnitsProps = {
   label: string | undefined;
   value: number;
-  //   onChange: (value: number) => void;
-  onChange: (value: string) => void;
+  //   onChangeFn: (value: number) => void;
+  onChangeFn: (value: string) => void;
   unit: string | undefined;
   min?: number;
   max?: number;
@@ -22,7 +22,7 @@ type SliderInputWithUnitsProps = {
 export default function SliderInputWithUnits({
   label,
   value,
-  onChange,
+  onChangeFn,
   unit = "",
   min = 0,
   max = 100,
@@ -37,8 +37,8 @@ export default function SliderInputWithUnits({
   // Handle the change event from the slider component
   const handleChange = (newValue: number[]) => {
     // console.log("new value in %", newValue);
-    // onChange(newValue[0]); // Only take the first value, as Slider provides an array
-    onChange(`${newValue[0]}${unit}`);
+    // onChangeFn(newValue[0]); // Only take the first value, as Slider provides an array
+    onChangeFn(`${newValue[0]}${unit}`);
   };
 
   return (

@@ -183,7 +183,7 @@ export default function ICMTemplate({
                       : (styles[i.property] as number)
                     : 0
                 }
-                onChange={(n) => handleStyleChange(i.property, i.level, n)}
+                onChangeFn={(n) => handleStyleChange(i.property, i.level, n)}
               />
             );
           } else if (i.inputType == "dropdown") {
@@ -202,7 +202,7 @@ export default function ICMTemplate({
                       : "" // 2. empty string
                 }
                 options={i.options}
-                onChange={(n) => handleStyleChange(i.property, i.level, n)}
+                onChangeFn={(n) => handleStyleChange(i.property, i.level, n)}
               />
             );
           } else if (i.inputType == "sliderUnits") {
@@ -219,7 +219,7 @@ export default function ICMTemplate({
                 }
                 min={i.min}
                 max={i.max}
-                onChange={(n) => {
+                onChangeFn={(n) => {
                   handleStyleChange(i.property, i.level, n);
                 }}
                 unit={i.unit}

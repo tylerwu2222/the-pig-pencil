@@ -8,7 +8,7 @@ type NumberInputProps = {
   max?: number | null;
   stepSize?: number;
   value: number;
-  onChange: (value: number) => void;
+  onChangeFn: (value: number) => void;
   // setValue: (value: number) => void;
   percentWidth?: string;
   marginH?: number;
@@ -20,7 +20,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   max = null,
   stepSize = 1,
   value = 0,
-  onChange = () => {},
+  onChangeFn = () => {},
   // setValue = () => { },
   percentWidth = "30",
   marginH = 10,
@@ -29,7 +29,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
     if (!isNaN(newValue)) {
-      onChange(newValue);  // Calls the parent handler with the new value
+      onChangeFn(newValue);  // Calls the parent handler with the new value
     }
   };
 
