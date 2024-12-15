@@ -8,6 +8,9 @@ import Link from "next/link";
 import ImageModal from "./app/components/modals/ImageModal/ImageModal";
 import PDFIframe from "./app/components/pdf/PDFViewer/PDFIframe/PDFIframe";
 import SearchInput from "./app/components/inputs/SearchInput/SearchInput";
+
+// markdown
+import LightCallout from "./app/components/markdown/callouts/LightCallout";
 import UnderConstruction from "./app/posts/UnderConstruction";
 
 // links
@@ -122,6 +125,7 @@ export function useMDXComponents(
     ScrollspyHeader,
     WebsiteIcon,
     GithubIcon,
+    LightCallout,
     UnderConstruction
   };
 }

@@ -195,8 +195,8 @@ function createPostFiles(
     readingTime: "${reading_time}",
     caption: "${caption}",
     templateType: "${template_type}",
-    hasScrollspy: "${scrollspy}",
-    showHeaderImage: "${headerImage}",
+    hasScrollspy: ${scrollspy},
+    showHeaderImage: ${headerImage},
     visibility: "${visible}"
 };
 
@@ -215,8 +215,8 @@ function createPostFiles(
     readingTime: "${reading_time}",
     caption: "${caption}",
     templateType: "${template_type}",
-    hasScrollspy: "${scrollspy}",
-    showHeaderImage: "${headerImage}",
+    hasScrollspy: ${scrollspy},
+    showHeaderImage: ${headerImage},
     visibility: "${visible}"
 };
 
@@ -257,8 +257,8 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
-    hasScrollspy: "${scrollspy}",
-    showHeaderImage: "${headerImage}",
+    hasScrollspy: ${scrollspy},
+    showHeaderImage: ${headerImage},
     visibility: "${visible}"
 };
 
@@ -281,8 +281,8 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
-    hasScrollspy: "${scrollspy}",
-    showHeaderImage: "${headerImage}",
+    hasScrollspy: ${scrollspy},
+    showHeaderImage: ${headerImage},
     visibility: "${visible}"
 };
 
@@ -304,7 +304,7 @@ export default Post;`,
     authors: [${quoteCommaSepString(authors)}],
     tags:  [${quoteCommaSepString(tags)}],
     visibility: "${visible}",
-    showHeaderImage: "${headerImage}"
+    showHeaderImage: ${headerImage}
 };
 
 `,
@@ -324,8 +324,8 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
-    hasScrollspy: "${scrollspy}",
-    showHeaderImage: "${headerImage}",
+    hasScrollspy: ${scrollspy},
+    showHeaderImage: ${headerImage},
     visibility: "${visible}"
 };
 
@@ -375,7 +375,7 @@ const createNewPost = () => {
   // get params from
   const section = process.env.npm_config_section || "data";
   const post_name = process.env.npm_config_postName || "new_post";
-  const post_date = process.env.npm_config_postDate || undefined; //yyyy-mm-dd
+  const post_date = process.env.npm_config_postDate || undefined; //yyyy-mm-dd (make sure to use dashes!)
   const work_time = process.env.npm_config_workTime || 14;
   let authors = process.env.npm_config_authors || "Tyler Wu";
   const template_type = process.env.npm_config_templateType || "mdx";
