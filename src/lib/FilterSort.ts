@@ -66,9 +66,9 @@ const filterContent = ({
           " " +
           a.email +
           " " +
-          a.quote +
-          " " +
-          a.tags.join(" ")
+          a.quote
+          // " " +
+          // a.tags.join(" ")
         ).toLowerCase(),
       );
     }
@@ -140,11 +140,11 @@ const sortContent = ({
   let sortedContent = content;
   // let internalSortOption = '';
 
-  console.log(
-    "before sorting",
-    sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
-  );
-  console.log("sorting by", sortKeyword);
+  // console.log(
+  //   "before sorting",
+  //   sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
+  // );
+  // console.log("sorting by", sortKeyword);
   if (isPost(content)) {
     console.log("sorting posts");
     sortedContent = sortedContent as Post[];
@@ -157,10 +157,10 @@ const sortContent = ({
     sortedContent = sortedContent as Author[];
   }
 
-  console.log(
-    "after sorting",
-    sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
-  );
+  // console.log(
+  //   "after sorting",
+  //   sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
+  // );
   // console.log('sorted after', sortedPosts);
   return sortedContent;
 };

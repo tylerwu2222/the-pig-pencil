@@ -20,7 +20,7 @@ export default function AscDescToggle({
     <Button
       onClick={handleToggle}
       variant="outline"
-      className="bg-transparent hover:border-hoverDeepPink hover:bg-highlightWhite"
+      className="bg-transparent hover:bg-highlightWhite active:border-hoverDeepPink"
       title={value == "asc" ? "change to descending" : "change to ascending"}
     >
       {value == "asc" ? <ArrowUpNarrowWideIcon /> : <ArrowDownWideNarrowIcon />}

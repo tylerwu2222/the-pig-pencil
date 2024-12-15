@@ -6,6 +6,49 @@ import { Post as PostExtended } from "@/types/extendedPrismaTypes";
 import { getDashedString } from "../stringFormatting";
 
 // GETTERS
+
+// export const getPostById = async (id:string): Promise<PostExtended> => {
+export const getPostById = async (id:string): Promise<Post> => {
+  const idPost = await prisma.post.findFirst({
+    where: {
+      id: id,
+    }
+    // include: {
+    //   AuthorsOnPosts: {
+    //     select: {
+    //       Author: {
+    //         select: {
+    //           name: true,
+    //         },
+    //       },
+    //     },
+    //   },
+    //   PostsOnTags: {
+    //     select: {
+    //       Tag: {
+    //         select: {
+    //           tagName: true,
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
+  });
+
+  // error handling
+  if (!idPost) {
+    console.log("No post found with id " + id);
+  }
+
+  // const formattedSectionPosts = flattenJoinData(idPost as any, {
+  //   AuthorsOnPosts: "authors",
+  //   PostsOnTags: "tags",
+  // }) as PostExtended;
+
+  return idPost as Post;
+  // return formattedSectionPosts;
+};
+
 export const getPostBySlug = async (slug: string): Promise<PostExtended> => {
   const slugPost = await prisma.post.findFirst({
     where: {

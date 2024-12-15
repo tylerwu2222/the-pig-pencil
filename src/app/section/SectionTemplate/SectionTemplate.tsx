@@ -47,6 +47,12 @@ export default function SectionTemplate({
   tagBoxIncluded = true,
   // postTemplateType = 1
 }: Partial<SectionTemplateProps>) {
+  let initialSortKeyword;
+  if (section == "collaborators" || section == "art") {
+    initialSortKeyword = "name";
+  } else {
+    initialSortKeyword = "date";
+  }
   // update tab title
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/");
@@ -58,7 +64,7 @@ export default function SectionTemplate({
   const [searchValue, setSearchValue] = useState<string>("");
   //   const [allTags, setAllTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [sortKeyword, setSortKeyword] = useState("date");
+  const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // desc dates = newest first
   // posts
   const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
