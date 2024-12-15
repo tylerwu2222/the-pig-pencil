@@ -99,27 +99,38 @@ const sortMap: Record<string, string> = {
   oinks: "oinks",
   author: "authors",
 };
+const visibilityOrder = { visible: 0, wip: 1, hidden: 2 };
 
 const sortByKey = (
   // const sortByKey = <T, K extends keyof typeof sortMap>(
   content: Content[],
   key: keyof Content,
   order: SortOrder = "asc",
+  sortVisibility: boolean = true
 ): Content[] => {
+  
   return [...content].sort((a, b) => {
+    // Sort by visibility first if enabled
+    if (sortVisibility && isPost(content)) {
+      const visibilityCompare =
+        visibilityOrder[(a as Post)['visibility'] as keyof typeof visibilityOrder] -
+        visibilityOrder[(b as Post)['visibility'] as keyof typeof visibilityOrder];
+      if (visibilityCompare !== 0) {
+        // return order === "asc" ? visibilityCompare : -visibilityCompare;
+        return visibilityCompare;
+      }
+    }
+
+    // Sort by the specified key
     const valA = a[key];
     const valB = b[key];
 
-    if (valA === valB) return 0; // 0 = keep order
-
     const compare =
       typeof valA === "string" && typeof valB === "string"
-        ? valA.localeCompare(valB) // sorts based on local language
+        ? valA.localeCompare(valB)
         : valA > valB
-          ? 1
-          : -1; // 1 = swap order
-
-    console.log("vals", valA, valB, "result", compare);
+        ? 1
+        : -1;
 
     return order === "asc" ? compare : -compare;
   });
@@ -153,6 +164,7 @@ const sortContent = ({
       sortMap[sortKeyword] as keyof Content,
       sortDirection,
     );
+
   } else if (isAuthor(content)) {
     sortedContent = sortedContent as Author[];
   }
@@ -190,7 +202,7 @@ export const filterSort = ({
     FSContent = filterContent({ filterKeyword, selectedTags, content });
   }
 
-  // sort array
+  // sort array (always add wip to end)
   if (sortKeyword) {
     FSContent = sortContent({ sortKeyword, sortDirection, content: FSContent });
   }

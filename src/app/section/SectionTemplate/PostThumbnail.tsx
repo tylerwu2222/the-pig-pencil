@@ -10,7 +10,7 @@ import { formatDateToShortDate } from "@/lib/dateFormatting";
 import Link from "next/link";
 
 // motions
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
 
 // components
 import { Badge } from "@/components/ui/badge";
@@ -22,10 +22,10 @@ interface PostThumbnailProps {
   post: Post;
 }
 
-export const PostThumbnail1 = ({
+export default function PostThumbnail({
   post,
   // section, title, img, author, date, subPage, comingSoon
-}: PostThumbnailProps) => {
+}: PostThumbnailProps) {
   // author date line
   let authorDate = "";
   if (post.publishDate) {
@@ -118,7 +118,7 @@ export const PostThumbnail1 = ({
       {/* </motion.div> */}
     </>
   );
-};
+}
 
 // export const PostThumbnailPeople = ({ img, author, role, date, quote, lastPost }) => {
 //     return (

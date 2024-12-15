@@ -5,9 +5,15 @@ import { usePathname } from "next/navigation";
 
 // modules
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
-import { DropdownInputRadio } from "@/app/components/inputs/DropdownInput/DropdownInputRadio";
+import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
+import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
+// import { DropdownInputRadio } from "@/app/components/inputs/DropdownInput/DropdownInputRadio";
 // import TagsBox from '../../Modules/FormInput/TagsBox/TagsBox.js';
-import { PostThumbnail1 } from "./PostThumbnail";
+
+// thumbnails
+import PostThumbnail from "./PostThumbnail";
+import PostThumbnailWIP from "./PostThumbnailWIP";
+import CollaboratorThumbnail from "./CollaboratorThumbnail";
 
 // react
 import { useEffect, useState } from "react";
@@ -17,9 +23,6 @@ import { filterSort } from "@/lib/FilterSort";
 
 // types
 import { Post, Author } from "@/types/extendedPrismaTypes";
-import CollaboratorThumbnail from "./CollaboratorThumbnail";
-import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
-import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
 
 const searchKeywordMap: Record<string, string> = {
   data: "data stories",
@@ -182,14 +185,11 @@ export default function SectionTemplate({
         {loaded ? (
           FSContent.length > 0 ? (
             (FSContent as Post[]).map((post: Post) => {
-              // generic section page
-              return (
-                <PostThumbnail1
-                  key={post.title + post.publishDate}
-                  post={post}
-                  // img={'/img/thumbnails/' + section.toLowerCase() + '_thumbnails/' + post.thumbnail}
-                />
-              );
+              if (post.visibility === "wip") {
+                return <PostThumbnailWIP key={post.slug} post={post} />;
+              } else if (post.visibility === "visible") {
+                return <PostThumbnail key={post.slug} post={post} />;
+              }
             })
           ) : (
             <p style={{ display: FSContent.length === 0 ? "block" : "none" }}>
