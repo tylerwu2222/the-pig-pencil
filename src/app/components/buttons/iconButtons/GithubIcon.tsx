@@ -19,7 +19,6 @@ export default function GithubIcon({
   text,
   position = "right",
 }: Partial<GithubIconProps>) {
-  console.log("text", text, "position", position);
 
   return (
     <ExternalIconButton

@@ -19,7 +19,7 @@ export default function SearchInput({
       placeholder={placeholder}
       value={value}
       onChange={onValueChangeFn}
-      className="rounded-sm placeholder-slate-400 transition-colors duration-500 ease-in-out focus:border-hoverDeepPink focus:bg-highlightWhite"
+      className="rounded-sm placeholder-slate-400 transition-colors duration-500 ease-in-out hover:bg-highlightWhite focus:border-hoverDeepPink focus:bg-highlightWhite"
     />
   );
 }

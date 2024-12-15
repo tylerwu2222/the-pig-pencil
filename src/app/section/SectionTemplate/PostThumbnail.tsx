@@ -9,6 +9,9 @@ import { formatDateToShortDate } from "@/lib/dateFormatting";
 // next
 import Link from "next/link";
 
+// motions
+import { motion, AnimatePresence } from "framer-motion";
+
 // components
 import { Badge } from "@/components/ui/badge";
 
@@ -23,16 +26,19 @@ export const PostThumbnail1 = ({
   post,
   // section, title, img, author, date, subPage, comingSoon
 }: PostThumbnailProps) => {
+  // author date line
   let authorDate = "";
   if (post.publishDate) {
     authorDate = formatDateToShortDate(post.publishDate);
   }
+  // display first author only
   if (post.authors.length > 0) {
     authorDate = post.authors[0] + " ∙ " + authorDate;
   }
   let title = post.title;
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
+  // define post thumbnail path
   useEffect(() => {
     const dynamicThumbnail = post.thumbnail
       ? `/img/thumbnails/${post.section.toLowerCase()}_thumbnails/${post.thumbnail}`
@@ -40,13 +46,23 @@ export const PostThumbnail1 = ({
     setImgSrc(dynamicThumbnail);
   }, []);
 
-  // handle wip
+  // handle wip post
   if (post.visibility == "wip") {
     title = title + " (Coming Soon!)";
   }
 
   return (
     <>
+      {/* <motion.div
+        key={post.id}
+        layout
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+        className="m-[2vh] rounded-sm border-[1px] border-borderGrey p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]"
+        title={title}
+      > */}
       <div
         className="m-[2vh] rounded-sm border-[1px] border-borderGrey p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]"
         title={title}
@@ -62,7 +78,7 @@ export const PostThumbnail1 = ({
         >
           {/* thumbnail */}
           <div>
-            {imgSrc && (
+            {imgSrc ? (
               <img
                 className="w-full object-cover xl:max-w-72"
                 src={imgSrc}
@@ -72,6 +88,8 @@ export const PostThumbnail1 = ({
                   setImgSrc("/img/thumbnails/coming_soon.png");
                 }}
               />
+            ) : (
+              <div className="w-full xl:max-w-72"></div>
             )}
           </div>
           {/* heading */}
@@ -97,6 +115,7 @@ export const PostThumbnail1 = ({
           </div>
         </Link>
       </div>
+      {/* </motion.div> */}
     </>
   );
 };

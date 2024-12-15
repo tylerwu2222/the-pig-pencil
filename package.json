@@ -39,6 +39,7 @@
         "gray-matter": "^4.0.3",
         "lucide-react": "^0.460.0",
         "markdown-to-jsx": "^7.6.2",
+        "motion": "^11.14.4",
         "next": "^15.0.3",
         "next-mdx-remote": "^5.0.0",
         "papaparse": "^5.4.1",
