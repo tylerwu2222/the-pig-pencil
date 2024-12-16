@@ -14,6 +14,8 @@ model Art {
   series       String?
   slug         String?
   thumbnail    String?
+  views        Int            @default(0)
+  oinks        Int            @default(0)
   publishDate  DateTime       @default(now())
   updateDate   DateTime?      @default(now())
   visibility   String         @default("hidden")
@@ -96,6 +98,10 @@ model Post {
   thumbnail       String?
   caption         String?
   readingTime     String?
+  views           Int              @default(0)
+  oinks           Int              @default(0)
+  isSharable      Boolean?         @default(true)
+  showViews       Boolean?         @default(true)
   hasScrollspy    Boolean?         @default(true)
   showHeaderImage Boolean?         @default(true)
   publishDate     DateTime         @default(now())

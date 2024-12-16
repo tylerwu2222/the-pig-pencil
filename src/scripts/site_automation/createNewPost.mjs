@@ -10,7 +10,7 @@
 // PROJECT
 // npm run create-post -- --section="project" --postName="" --postDate="2023-05-10" --tags="dev,full-stack,"
 
-// TUTORIAL 
+// TUTORIAL
 // npm run create-post -- --section="tutorial" --postName="" --postDate="2024-12-10" --tags="dev,front-end,tailwind,css"
 
 // check createNewArticle() fn for params, paramName is : process.env.npm_config_paramName
@@ -171,8 +171,10 @@ function createPostFiles(
   tags,
   caption,
   reading_time,
+  sharable,
+  show_views,
   scrollspy,
-  headerImage,
+  header_image,
   visible,
   post_folder_path,
 ) {
@@ -196,7 +198,7 @@ function createPostFiles(
     caption: "${caption}",
     templateType: "${template_type}",
     hasScrollspy: ${scrollspy},
-    showHeaderImage: ${headerImage},
+    showHeaderImage: ${header_image},
     visibility: "${visible}"
 };
 
@@ -216,7 +218,7 @@ function createPostFiles(
     caption: "${caption}",
     templateType: "${template_type}",
     hasScrollspy: ${scrollspy},
-    showHeaderImage: ${headerImage},
+    showHeaderImage: ${header_image},
     visibility: "${visible}"
 };
 
@@ -257,8 +259,10 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
+    isSharable: ${sharable},
+    showViews: ${show_views},
     hasScrollspy: ${scrollspy},
-    showHeaderImage: ${headerImage},
+    showHeaderImage: ${header_image},
     visibility: "${visible}"
 };
 
@@ -281,8 +285,10 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
+    isSharable: ${sharable},
+    showViews: ${show_views},
     hasScrollspy: ${scrollspy},
-    showHeaderImage: ${headerImage},
+    showHeaderImage: ${header_image},
     visibility: "${visible}"
 };
 
@@ -303,8 +309,10 @@ export default Post;`,
     title: "${post_name}",
     authors: [${quoteCommaSepString(authors)}],
     tags:  [${quoteCommaSepString(tags)}],
+    isSharable: ${sharable},
+    showViews: ${show_views},
     visibility: "${visible}",
-    showHeaderImage: ${headerImage}
+    showHeaderImage: ${header_image}
 };
 
 `,
@@ -324,8 +332,10 @@ export default Post;`,
     tags:  [${quoteCommaSepString(tags)}],
     readingTime: "${reading_time}",
     caption: "${caption}",
+    isSharable: ${sharable},
+    showViews: ${show_views},
     hasScrollspy: ${scrollspy},
-    showHeaderImage: ${headerImage},
+    showHeaderImage: ${header_image},
     visibility: "${visible}"
 };
 
@@ -336,7 +346,7 @@ export default Post;`,
   }
   // then add content to folders
   addContent(files, folders, post_folder_path);
-};
+}
 
 // adds new article as entry to prisma (Post, Author, Tags)
 async function addToPrisma(metadata, authors, tags) {
@@ -382,8 +392,10 @@ const createNewPost = () => {
   let tags = process.env.npm_config_tags || "tag";
   const caption = process.env.npm_config_caption || "caption";
   const reading_time = process.env.npm_config_readingTime || "8 min";
+  const sharable = process.env.npm_config_sharable || true;
+  const show_views = process.env.npm_config_showViews || true;
   const scrollspy = process.env.npm_config_scrollspy || true;
-  const headerImage = process.env.npm_config_headerImage || true;
+  const header_image = process.env.npm_config_headerImage || true;
   const visibility = "visible";
 
   // create folders
@@ -406,8 +418,10 @@ const createNewPost = () => {
     tags,
     caption,
     reading_time,
+    sharable,
+    show_views,
     scrollspy,
-    headerImage,
+    header_image,
     visibility,
     post_folder_path,
   );
@@ -419,8 +433,10 @@ const createNewPost = () => {
     section,
     caption,
     readingTime: reading_time,
+    isSharable: sharable,
+    showViews: show_views,
     hasScrollspy: scrollspy,
-    showHeaderImage: headerImage,
+    showHeaderImage: header_image,
     publishDate: new Date(dash_date).toISOString(), // publish date formatted to ISO
     updateDate: new Date(dash_date).toISOString(), // update date formatted to ISO
     visibility,
