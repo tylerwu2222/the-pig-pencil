@@ -21,7 +21,7 @@ export default function PageViewTracker({
   const registerView = async () => {
     // only call
     if (!hasViewed) {
-    //   console.log("adding view for", postId);
+      //   console.log("adding view for", postId);
       setHasViewed(true);
       await fetch(`/api/post/id/${postId}/views`, {
         method: "POST",
@@ -32,10 +32,11 @@ export default function PageViewTracker({
   };
 
   useEffect(() => {
-    // Start tracking the time when the page is loaded
-    const timerId = setTimeout(registerView, minViewTime);
-    setTimer(timerId);
-
+    if (!hasViewed) {
+      // Start tracking the time when the page is loaded
+      const timerId = setTimeout(registerView, minViewTime);
+      setTimer(timerId);
+    }
     // Clean up timer on component unmount or route change
     return () => {
       if (timer) clearTimeout(timer);

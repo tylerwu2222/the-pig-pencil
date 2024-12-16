@@ -197,7 +197,7 @@ export default function SectionTemplate({
             if (post.visibility === "wip") {
               return <PostThumbnailWIP key={post.slug} post={post} />;
             } else if (post.visibility === "visible") {
-              return <PostThumbnail key={post.slug} post={post} />;
+              return <PostThumbnail key={post.slug} post={post} sortBadge={sortKeyword}/>;
             }
           })}
         </div>

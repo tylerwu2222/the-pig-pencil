@@ -14,16 +14,23 @@ import Link from "next/link";
 
 // components
 import { Badge } from "@/components/ui/badge";
+import IconWithText from "@/app/components/icons/IconWithText";
+import { Eye } from "lucide-react";
+import { PiggyBank } from "lucide-react";
 
 // types
 import { Post } from "@/types/extendedPrismaTypes";
 
 interface PostThumbnailProps {
   post: Post;
+  sortBadge?: string | undefined;
 }
+
+const validSortOptions = ["new", "views", "oinks"];
 
 export default function PostThumbnail({
   post,
+  sortBadge,
   // section, title, img, author, date, subPage, comingSoon
 }: PostThumbnailProps) {
   // author date line
@@ -64,9 +71,21 @@ export default function PostThumbnail({
         title={title}
       > */}
       <div
-        className="m-[2vh] rounded-sm border-[1px] border-borderGrey p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]"
+        className="group relative m-[2vh] rounded-sm border-[1px] border-borderGrey p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]"
         title={title}
       >
+        {typeof sortBadge === "string" &&
+          validSortOptions.includes(sortBadge) && (
+            <Badge className="absolute left-0 top-0 m-[1vh] rounded-full bg-borderGrey text-xs text-white transition duration-700 ease-in-out group-hover:bg-hoverLightPink">
+              <div className="flex">
+                {sortBadge === "views" && (
+                  <IconWithText icon={<Eye size={18}/>} text={String(post.views)} />
+                )}
+                {sortBadge === "oinks" && <IconWithText icon={<PiggyBank size={18}/>} text={String(post.oinks)} />}
+                {sortBadge === "new" && "🔥 New post!"}
+              </div>
+            </Badge>
+          )}
         <Link
           href={
             "/posts/" +
