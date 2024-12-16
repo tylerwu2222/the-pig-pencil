@@ -454,7 +454,7 @@ const SVG3 = () => {
                     labels={cb_genres}
                     checked={checkedCheckboxes}
                     updateChecked={setCheckedCheckBoxes}
-                    fillColor={`bg-yellow-200`}
+                    fillColor={`yellow-200`}
                 />
                 <input
                     id="select-all-btn"
@@ -476,7 +476,7 @@ const SVG3 = () => {
                     labels={cb_graphs}
                     checked={checkedGraphCheckboxes}
                     updateChecked={setCheckedGraphCheckBoxes}
-                    fillColor={`bg-yellow-200`}
+                    fillColor={`yellow-200`}
                 />
                 <DropdownInputSelect
                     // handleChange={e => { setSelectedStat(e.target.value) }} 

@@ -360,7 +360,7 @@ export default function SVG4() {
           max={12}
           value={minNumberReviews}
           // setValue={setMinNumberReviews}
-          onChange={(n) => {
+          onChangeFn={(n) => {
             setMinNumberReviews(n);
           }}
         />
@@ -371,7 +371,7 @@ export default function SVG4() {
           stepSize={5}
           value={numberDisplayedArtists}
           // setValue={setNumberDisplayedArtists}
-          onChange={(n) => {
+          onChangeFn={(n) => {
             setNumberDisplayedArtists(n);
           }}
         />
@@ -381,7 +381,7 @@ export default function SVG4() {
           // initialOption={selectedStat}
           value={selectedStat}
           // setSelectedOption={setSelectedStat}
-          onChange={(s)=>{setSelectedStat(s)}}
+          onChangeFn={(s)=>{setSelectedStat(s)}}
         />
       </div>
 

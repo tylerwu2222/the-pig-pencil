@@ -1,20 +1,26 @@
+"use client";
 // import { usePathname } from "next/navigation";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar/NavBar";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 export default function Layout({ children }: { children: React.ReactNode }) {
+  // const pathname = usePathname();
+  // const hideNavbarRoutes = ['/me', '/multimedia/specific-article'];
 
-    // const pathname = usePathname();
-    // const hideNavbarRoutes = ['/me', '/multimedia/specific-article'];
+  // console.log('section pn', pathname)
 
-    // console.log('section pn', pathname)
-
-    return (
-        <div>
-            {/* {hideNavbarRoutes.includes(pathname) ? <></> : <NavBar />} */}
-            <NavBar />
-            {children}
-            <Footer />
-        </div>
-    );
+  return (
+    <QueryClientProvider client={queryClient}>
+      <div>
+        {/* {hideNavbarRoutes.includes(pathname) ? <></> : <NavBar />} */}
+        <NavBar />
+        {children}
+        <Footer />
+      </div>
+    </QueryClientProvider>
+  );
 }

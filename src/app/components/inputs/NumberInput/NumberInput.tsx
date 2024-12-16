@@ -25,11 +25,10 @@ const NumberInput: React.FC<NumberInputProps> = ({
   percentWidth = "30",
   marginH = 10,
 }) => {
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = Number(e.target.value);
     if (!isNaN(newValue)) {
-      onChangeFn(newValue);  // Calls the parent handler with the new value
+      onChangeFn(newValue); // Calls the parent handler with the new value
     }
   };
 
@@ -44,7 +43,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
       {label && (
         <Label
           htmlFor="number-input"
-          className="mb-[0.15rem] mt-2 block text-sm font-medium text-gray-700"
+          className="mb-[0.15rem] mt-2 block text-sm font-medium text-stone-700"
         >
           {label}
         </Label>
@@ -57,7 +56,7 @@ const NumberInput: React.FC<NumberInputProps> = ({
         min={min}
         max={max ?? undefined}
         step={stepSize}
-        className="w-full"
+        className="w-full text-stone-700 transition-colors duration-500 ease-in-out hover:bg-highlightWhite focus:border-hoverDeepPink focus:bg-highlightWhite"
       />
     </div>
   );

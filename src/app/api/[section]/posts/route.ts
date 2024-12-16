@@ -42,14 +42,14 @@ export async function GET(
     },
   });
 
-  console.log("BE section posts", section, sectionPosts);
+//   console.log("BE section posts", section, sectionPosts);
 
   const formattedSectionPosts = flattenJoinData(sectionPosts, {
     AuthorsOnPosts: "authors",
     PostsOnTags: "tags",
   });
 
-  console.log("BE: section posts flattened", formattedSectionPosts);
+//   console.log("BE: section posts flattened", formattedSectionPosts);
 
   return NextResponse.json(formattedSectionPosts);
 }

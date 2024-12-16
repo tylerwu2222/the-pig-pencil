@@ -17,6 +17,7 @@ import CollaboratorThumbnail from "./CollaboratorThumbnail";
 
 // react
 import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 // filter sort
 import { filterSort } from "@/lib/FilterSort";
@@ -27,7 +28,7 @@ import { Post, Author } from "@/types/extendedPrismaTypes";
 const searchKeywordMap: Record<string, string> = {
   data: "data stories",
   writing: "writing",
-  cheatsheets: "cheatsheets",
+  cheatsheet: "cheatsheets",
   tutorial: "tutorials",
   project: "projects",
   collaborators: "collaborators",
@@ -62,7 +63,6 @@ export default function SectionTemplate({
   const pathNameLast = pathnameSegments[pathnameSegments.length - 1];
   const baseTitle = "The Pig Pencil";
 
-  const [loaded, setLoaded] = useState<boolean>(false);
   // search, filter, sort
   const [searchValue, setSearchValue] = useState<string>("");
   //   const [allTags, setAllTags] = useState<string[]>([]);
@@ -72,8 +72,7 @@ export default function SectionTemplate({
   // posts
   const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
   const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
-
-  // update parameters depending on section
+  // different sort keywords based on section
   let sortKeywords = ["date", "title", "views", "oinks", "author"];
   if (section == "collaborators") {
     sortKeywords = [
@@ -88,6 +87,42 @@ export default function SectionTemplate({
     sortKeywords = ["date", "name", "views", "oinks", "artist"];
   }
 
+  // initialize content for section
+  const getSectionPosts = async () => {
+    let res;
+    if (section == "collaborators") {
+      res = await fetch("/api/authors");
+    }
+    // else if (section == 'art'){
+
+    // }
+    else {
+      res = await fetch(`/api/${section}/posts`);
+    }
+    const posts = await res.json();
+    console.log("FE: posts", posts);
+    return posts;
+  };
+
+  // fetch initial data
+  const {
+    data: posts,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["sectionContent", section],
+    queryFn: () => getSectionPosts(),
+    enabled: !!section,
+  });
+
+  // Set your local state when necessary
+  useEffect(() => {
+    if (posts) {
+      setAllContent(posts);
+      setFSContent(posts);
+    }
+  }, [posts]);
+
   // update displayed posts when any search/filter parameter changes
   useEffect(() => {
     const subsetContent = filterSort({
@@ -100,28 +135,6 @@ export default function SectionTemplate({
     setFSContent(subsetContent);
     // console.log(Filter)
   }, [searchValue, sortKeyword, sortDirection, selectedTags, allContent]);
-
-  // initialize content for section
-  useEffect(() => {
-    const getSectionPosts = async () => {
-      let res;
-      if (section == "collaborators") {
-        res = await fetch("/api/authors");
-      }
-      // else if (section == 'art'){
-
-      // }
-      else {
-        res = await fetch(`/api/${section}/posts`);
-      }
-      const posts = await res.json();
-      console.log("FE: posts", posts);
-      setAllContent(posts);
-      setFSContent(posts);
-      setLoaded(true);
-    };
-    getSectionPosts();
-  }, [section]);
 
   //  update filter/sort parameters
   const handleSearchKeywordChange = (newSearchValue: string) => {
@@ -142,28 +155,25 @@ export default function SectionTemplate({
 
   let contentSection;
   if (section == "collaborators") {
-    contentSection = (
-      <div className="grid grid-cols-3 justify-items-center">
-        {loaded ? (
-          FSContent.length > 0 ? (
-            (FSContent as Author[]).map((author: Author) => {
-              // generic section page
-              return (
-                <CollaboratorThumbnail
-                  key={author.name}
-                  collaborator={author}
-                />
-              );
-            })
-          ) : (
-            <p style={{ display: FSContent.length === 0 ? "block" : "none" }}>
-              No collaborators matched these filters 😔
-            </p>
-          )
-        ) : (
-          <></>
-        )}
-      </div>
+    contentSection = !isLoading ? (
+      FSContent.length > 0 ? (
+        <div className="grid grid-cols-3 justify-items-center">
+          {(FSContent as Author[]).map((author: Author) => {
+            // generic section page
+            return (
+              <CollaboratorThumbnail key={author.name} collaborator={author} />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center">
+          <p className="text-stone-400">
+            No collaborators matched these filters 😔
+          </p>
+        </div>
+      )
+    ) : (
+      <></>
     );
   }
   // else if (section == 'art') {
@@ -180,26 +190,26 @@ export default function SectionTemplate({
   //     </div>
   // }
   else {
-    contentSection = (
-      <div className="grid grid-cols-3 justify-items-center">
-        {loaded ? (
-          FSContent.length > 0 ? (
-            (FSContent as Post[]).map((post: Post) => {
-              if (post.visibility === "wip") {
-                return <PostThumbnailWIP key={post.slug} post={post} />;
-              } else if (post.visibility === "visible") {
-                return <PostThumbnail key={post.slug} post={post} />;
-              }
-            })
-          ) : (
-            <p style={{ display: FSContent.length === 0 ? "block" : "none" }}>
-              No posts matched these filters 😔
-            </p>
-          )
-        ) : (
-          <></>
-        )}
-      </div>
+    contentSection = !isLoading ? (
+      FSContent.length > 0 ? (
+        <div className="grid grid-cols-3 justify-items-center">
+          {(FSContent as Post[]).map((post: Post) => {
+            if (post.visibility === "wip") {
+              return <PostThumbnailWIP key={post.slug} post={post} />;
+            } else if (post.visibility === "visible") {
+              return <PostThumbnail key={post.slug} post={post} />;
+            }
+          })}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center">
+          <p className="text-stone-400">
+            No {searchKeywordMap[section]} matched these filters 😔
+          </p>
+        </div>
+      )
+    ) : (
+      <></>
     );
   }
 
@@ -254,7 +264,21 @@ export default function SectionTemplate({
             </i>
           </div>
         </div>
-        {contentSection}
+        {isLoading ? (
+          <div className="flex items-center justify-center">
+            <p className="text-stone-700 bg-slate-200 px-3 rounded-2xl shadow-md">
+              loading {searchKeywordMap[section]} 🐖...
+            </p>
+          </div>
+        ) : isError ? (
+          <div className="flex items-center justify-center">
+            <p className="text-stone-400">
+              error loading posts, please contact tyler 🐷
+            </p>
+          </div>
+        ) : (
+          contentSection
+        )}
         {/* tag box div */}
         {/* {tagBoxIncluded ? <div className='tags-div'>
                         <TagsBox posts={postData} onChangeFn={setSelectedTags} />
