@@ -1,9 +1,9 @@
-import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
+// import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
 import prisma from "@/db";
 
 import { NextRequest, NextResponse } from "next/server";
 
-// get oinks for post by id
+// get views for post by id
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
@@ -14,22 +14,24 @@ export async function GET(
       id: id,
     },
     select: {
-      oinks: true,
+      views: true,
     },
   });
 
   if (!res) {
     return NextResponse.json(
-      { error: "No oinks found for id " + id },
+      { error: "No views found for id " + id },
       { status: 204 },
     );
   }
 
-  const postOinks = res["oinks"];
+  const postViews = res["views"];
 
-  return NextResponse.json(postOinks);
+  return NextResponse.json(postViews);
 }
 
+
+// update views for id
 export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
@@ -47,16 +49,16 @@ export async function POST(
     // Update the oinks count using Prisma's atomic increment
     const updated = await prisma.post.update({
       where: { id: id },
-      data: { oinks: { increment: increment } }, // Atomic increment to avoid race conditions
+      data: { views: { increment: increment } }, // Atomic increment to avoid race conditions
     });
 
-    console.log("BE incremented oink", updated);
+    // console.log("BE incremented views", updated);
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Error updating oinks:", error);
+    console.error("Error updating views:", error);
     return NextResponse.json(
-      { error: "Failed to update oinks" },
+      { error: "Failed to update views" },
       { status: 500 },
     );
   }

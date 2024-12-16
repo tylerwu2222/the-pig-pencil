@@ -3,6 +3,7 @@ import React from 'react'
 // components
 import PostHeader from '../../PostHeader';
 import Scrollspy from '@/app/components/Scrollspy/Scrollspy';
+import PageViewTracker from '../../PageViewTracker';
 
 // helpers
 import { getPostBySlug } from '@/lib/prisma/prisma';
@@ -19,25 +20,26 @@ export default async function page({
     const slug = (await params).slug;
 
     // query the mdx from prisma based on the slug
-    const postMetaData = await getPostBySlug(slug) as Post;
+    const post = await getPostBySlug(slug) as Post;
 
-    // console.log('post metadata', postMetaData);
+    // console.log('post metadata', post);
 
     // get the markdown dynamically based on the slug
-    const { default: PostMarkdown, metadata } = await import(
+    const { default: PostMarkdown } = await import(
         `@/app/posts/tutorial/${slug}/${slug}.mdx`
     );
 
     return (
         <div className='py-5 pb-20'>
+            <PageViewTracker postId={post.id}/>
             {/* header content (tn, caption, date, author) */}
-            <PostHeader post={postMetaData} />
+            <PostHeader post={post} />
             {/* post content (queried via mdx) */}
             <article className='prose max-w-none'>
                 <PostMarkdown />
             </article>
             {/* scrollspy if post has scrollspy */}
-            {postMetaData.hasScrollspy ?
+            {post.hasScrollspy ?
                 <Scrollspy />
                 : <></>
             }

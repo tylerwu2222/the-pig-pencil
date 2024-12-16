@@ -1,13 +1,19 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+
+// types
 import { Post } from "@/types/extendedPrismaTypes";
+
+// helpers
 import { formatDateToLongDate } from "../../lib/dateFormatting";
 
+// components
 import { Button } from "@/components/ui/button";
 import ShareIcon from "../components/buttons/iconButtons/ShareIcon";
 import ShareModal from "../components/modals/ShareModal/ShareModal";
 import OinkButton from "../components/buttons/iconButtons/OinkButton";
+import { Eye } from "lucide-react";
 
 interface PostHeaderProps {
   post: Post;
@@ -42,24 +48,55 @@ export default function PostHeader({
 
   // FE update for oinks
   const handleOink = () => {
-    setOinks((prev) => prev + 1);
-    setPendingOinks((prev) => prev + 1);
+    setOinks((prev) => prev + 1); // total oinks
+    setPendingOinks((prev) => prev + 1); // user-contributed oinks for this session
   };
 
-  // Sync oinks on page exit
-  // useEffect(() => {
-  //   const handleUnload = async () => {
-  //     if (pendingOinks > 0) {
-  //       navigator.sendBeacon(
-  //         `/api/oinks`,
-  //         JSON.stringify({ id: post.id, increment: pendingOinks }),
-  //       );
-  //     }
-  //   };
+  // Sync oinks on 5 second debounce
+  const syncOinks = async () => {
+    console.log("debounced sycning oinks", pendingOinks);
+    await fetch(`/api/post/id/${post.id}/oinks`, {
+      method: "POST",
+      body: JSON.stringify({ increment: pendingOinks }),
+      headers: { "Content-Type": "application/json" },
+    });
+    setPendingOinks(0); // Reset pending oinks after successful sync
+  };
 
-  //   window.addEventListener("beforeunload", handleUnload);
-  //   return () => window.removeEventListener("beforeunload", handleUnload);
-  // }, [pendingOinks, post.id]);
+  useEffect(() => {
+    if (pendingOinks > 0) {
+      const timer = setTimeout(() => {
+        syncOinks();
+      }, 5000);
+
+      return () => clearTimeout(timer); // Cleanup on re-render
+    }
+  }, [pendingOinks, post.id]);
+
+  // Sync oinks on navigation away or tab/browser close
+  const syncOinksBeforeUnload = () => {
+    if (pendingOinks > 0) {
+      fetch(`/api/post/id/${post.id}/oinks`, {
+        method: "POST",
+        body: JSON.stringify({ increment: pendingOinks }),
+        headers: { "Content-Type": "application/json" },
+        keepalive: true,
+      });
+    }
+  };
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      alert("Are you sure you want to leave?");
+    };
+    // Attach the beforeunload event listener
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // return () => {
+    //   // Cleanup the beforeunload event listener
+    //   window.removeEventListener("beforeunload", handleBeforeUnload);
+    // };
+  }, [pendingOinks, post.id]);
 
   return (
     <div className="justify-items-center pb-8">
@@ -110,11 +147,14 @@ export default function PostHeader({
         {/* interactive buttons (oink, share, read aloud) */}
         <div className="flex flex-row items-center justify-between gap-2">
           {/* metrics */}
-          <div className="flex flex-row">
+          <div className="flex flex-row gap-3">
             {/* views */}
             {post.showViews ? (
               <div className="flex flex-row items-center text-sm italic text-stone-400">
-                <p>views: {post.views}</p>
+                <div title="views">
+                  <Eye size={25} className="p-1" />
+                </div>
+                <p>{post.views}</p>
               </div>
             ) : (
               <></>

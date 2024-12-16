@@ -16,7 +16,7 @@ interface ShareModalProps {
 }
 
 const ShareModal = ({ shareTrigger, link }: ShareModalProps) => {
-  console.log("share modal trigger", shareTrigger);
+  // console.log("share modal trigger", shareTrigger);
 
   return (
     <Dialog>
