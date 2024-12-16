@@ -22,7 +22,7 @@ export default function PageViewTracker({
     // only call
     if (!hasViewed) {
       //   console.log("adding view for", postId);
-      setHasViewed(true);
+      // setHasViewed(true);
       await fetch(`/api/post/id/${postId}/views`, {
         method: "POST",
         body: JSON.stringify({ increment: 1 }),
@@ -34,6 +34,7 @@ export default function PageViewTracker({
   useEffect(() => {
     if (!hasViewed) {
       // Start tracking the time when the page is loaded
+      setHasViewed(true);
       const timerId = setTimeout(registerView, minViewTime);
       setTimer(timerId);
     }
@@ -41,7 +42,7 @@ export default function PageViewTracker({
     return () => {
       if (timer) clearTimeout(timer);
     };
-  }, [postId]);
+  }, [postId, hasViewed]);
 
   return null;
 }

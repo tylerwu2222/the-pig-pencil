@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 // types
 import { Post } from "@/types/extendedPrismaTypes";
@@ -27,6 +28,7 @@ export default function PostHeader({
   const [imgSrc, setImgSrc] = useState<string | null>(null);
   const [oinks, setOinks] = useState<number>(0);
   const [pendingOinks, setPendingOinks] = useState<number>(0);
+  const pathname = usePathname();
 
   useEffect(() => {
     const dynamicThumbnail = post.thumbnail
@@ -161,9 +163,13 @@ export default function PostHeader({
             )}
             {/* oinks */}
             {oinks !== undefined && (
-              <div className="flex flex-row items-center text-sm italic text-stone-400">
-                <OinkButton size={25} onClickFn={handleOink} />
-                <p>{oinks}</p>
+              <div className="group flex flex-row items-center text-sm italic text-stone-400">
+                <OinkButton
+                  className="text-stone-400 transition-all duration-300 ease-in-out hover:scale-[1.25] active:scale-[1.4] group-active:text-hoverLightPink"
+                  size={25}
+                  onClickFn={handleOink}
+                />
+                <p className="group-active:text-hoverLightPink">{oinks}</p>
               </div>
             )}
           </div>
@@ -183,7 +189,7 @@ export default function PostHeader({
                         <ShareIcon size={15} />
                       </Button>
                     }
-                    link={post.slug}
+                    link={pathname}
                   />
                 </div>
               )

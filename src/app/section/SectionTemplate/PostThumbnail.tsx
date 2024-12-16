@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 // helpers
 import { getSlugTitle } from "@/lib/stringFormatting";
 import { formatDateToShortDate } from "@/lib/dateFormatting";
+import { differenceInDays, parseISO } from "date-fns";
 
 // next
 import Link from "next/link";
@@ -26,7 +27,7 @@ interface PostThumbnailProps {
   sortBadge?: string | undefined;
 }
 
-const validSortOptions = ["new", "views", "oinks"];
+const validSortOptions = ["views", "oinks"];
 
 export default function PostThumbnail({
   post,
@@ -53,10 +54,7 @@ export default function PostThumbnail({
     setImgSrc(dynamicThumbnail);
   }, []);
 
-  // handle wip post
-  if (post.visibility == "wip") {
-    title = title + " (Coming Soon!)";
-  }
+  const isNew = differenceInDays(new Date(), post.publishDate) <= 7;
 
   return (
     <>
@@ -71,18 +69,30 @@ export default function PostThumbnail({
         title={title}
       > */}
       <div
-        className="group relative m-[2vh] rounded-sm border-[1px] border-borderGrey p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]"
+        className={`group relative m-[2vh] rounded-sm border-[1px] ${isNew ? "border-orange-400" : "border-borderGrey"} p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]`}
         title={title}
       >
+        {typeof sortBadge === "string" && sortBadge === "date" && isNew && (
+          <Badge className="absolute left-0 top-0 m-[1vh] rounded-full bg-orange-400 text-xs text-white transition duration-700 ease-in-out group-hover:bg-hoverLightPink">
+            <p>new!</p>
+          </Badge>
+        )}
         {typeof sortBadge === "string" &&
           validSortOptions.includes(sortBadge) && (
             <Badge className="absolute left-0 top-0 m-[1vh] rounded-full bg-borderGrey text-xs text-white transition duration-700 ease-in-out group-hover:bg-hoverLightPink">
               <div className="flex">
                 {sortBadge === "views" && (
-                  <IconWithText icon={<Eye size={18}/>} text={String(post.views)} />
+                  <IconWithText
+                    icon={<Eye size={18} />}
+                    text={String(post.views)}
+                  />
                 )}
-                {sortBadge === "oinks" && <IconWithText icon={<PiggyBank size={18}/>} text={String(post.oinks)} />}
-                {sortBadge === "new" && "🔥 New post!"}
+                {sortBadge === "oinks" && (
+                  <IconWithText
+                    icon={<PiggyBank size={18} />}
+                    text={String(post.oinks)}
+                  />
+                )}
               </div>
             </Badge>
           )}
