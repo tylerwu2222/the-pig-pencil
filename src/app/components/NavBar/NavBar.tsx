@@ -10,7 +10,7 @@ import MobileNavbar from "./MobileNavbar";
 import DesktopNavbar from "./DesktopNavbar";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 
 import { usePathname } from "next/navigation";
 
@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
 // import IconButton from '@mui/material/IconButton';
 // import MenuIcon from '@mui/icons-material/Menu';
 
-const NavBar = () => {
+const Navbar = () => {
   const pathname = usePathname();
 
   const { setHoveredTab } = useHome();
@@ -101,4 +101,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

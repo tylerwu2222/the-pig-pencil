@@ -102,22 +102,18 @@ export default function PostHeader({
 
   return (
     <div className="justify-items-center pb-8">
-      {/* define with to be half of screen width */}
-      <div className="w-[60vh]">
+      <div className="w-full md:w-[60vh]">
         {/* title, caption */}
         <div className="justify-items-center pb-2">
           <h1 className="text-2xl">{post.title}</h1>
           <h2 className="text-lg italic">{post.caption}</h2>
-          <p className="text-sm text-textGrey">
-            {formatDateToLongDate(post.publishDate)}
-          </p>
         </div>
         {/* thumbnail */}
         {post.showHeaderImage && (
           <div className="justify-items-center pb-1">
             {imgSrc && (
               <img
-                className="h-[60vh] w-[60vh] border-[1px] border-borderGrey object-contain"
+                className="h-auto w-full border-[1px] border-borderGrey object-contain md:h-[60vh] md:w-[60vh]"
                 src={imgSrc}
                 alt="post-header-img"
                 loading="lazy"
@@ -128,12 +124,16 @@ export default function PostHeader({
             )}
           </div>
         )}
-        {/* author(s)  + reading time*/}
+        {/* below image, static content*/}
         <div>
-          <div className="justify-items-start">
+          {/* author + date */}
+          <div className="flex justify-between">
             <p className="flex items-center justify-center text-sm">
               {post.authors.join(", ")}
             </p>
+            <p className="text-sm text-textGrey">
+            {formatDateToLongDate(post.publishDate)}
+          </p>
           </div>
           <div className="justify-between text-textLightGrey">
             {/* read-aloud if available */}
@@ -189,7 +189,7 @@ export default function PostHeader({
                         <ShareIcon size={15} />
                       </Button>
                     }
-                    link={'thepigpencil.com/' + pathname}
+                    link={"thepigpencil.com/" + pathname}
                   />
                 </div>
               )

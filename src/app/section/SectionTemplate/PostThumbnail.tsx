@@ -122,10 +122,10 @@ export default function PostThumbnail({
           </div>
           {/* heading */}
           <div className="min-h-[3em] w-full py-1 lg:max-w-52">
-            <p className="text-2xl text-textGrey sm:text-lg">{post.title}</p>
+            <p className="text-2xl text-textGrey md:text-lg">{post.title}</p>
           </div>
           {/* author(s) + date */}
-          <div className="text-sm sm:text-xs text-textGrey sm:text-textLightGrey">
+          <div className="text-sm md:text-xs text-textGrey md:text-textLightGrey">
             <p className="">{authorDate}</p>
           </div>
           {/* tag(s) */}

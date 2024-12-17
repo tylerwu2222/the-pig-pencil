@@ -30,7 +30,7 @@ export default function MenuItemDropdown({ item }: MenuItemDropdownProps) {
         {isVisible ? <ChevronDown size={14} /> : <ChevronUp size={14} />}
       </div>
       {isVisible && (
-        <div className="absolute left-1/2 top-8 z-[100] w-[60vw] -translate-x-[50vw] rounded-md bg-white p-3 shadow-lg sm:top-2 sm:top-full sm:w-[20vw] sm:-translate-x-1/2 xl:w-[20vw]">
+        <div className="absolute left-1/2 top-8 z-[100] w-[60vw] -translate-x-[50vw] rounded-md bg-white p-3 shadow-lg md:top-2 md:top-full md:w-[20vw] md:-translate-x-1/2 xl:w-[20vw]">
           {item.submenu.map((subitem, index) => {
             let submenu_href = "/" + subitem.url;
             if (subitem.url !== "me") {

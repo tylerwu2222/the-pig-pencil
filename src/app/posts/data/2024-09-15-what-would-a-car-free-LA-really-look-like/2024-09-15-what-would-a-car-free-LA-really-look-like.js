@@ -11,7 +11,7 @@ import video from './la-olympics-transit.mp4';
 import SVG1 from "./visuals/svg1";
 
 import Scrollspy, { ScrollspyHeader, updateScrollspyHeaders } from "../../../components/Modules/Scrollspy/Scrollspy";
-import { hideNavbarFooter } from "../../../components/NavBar/NavBar";
+import { hideNavbarFooter } from "../../../components/Navbar/Navbar";
 
 import './2024-09-15-what-would-a-car-free-LA-really-look-like.css';
 

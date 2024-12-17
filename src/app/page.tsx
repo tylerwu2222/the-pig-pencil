@@ -9,7 +9,7 @@ import { useHome } from "./HomeContextProvider";
 
 // components
 import Footer from "./components/Footer/Footer";
-import NavBar from "./components/NavBar/NavBar";
+import NavBar from "./components/Navbar/Navbar";
 import images_json from "@/site_data/home_mosaic_images.json";
 
 // helpers

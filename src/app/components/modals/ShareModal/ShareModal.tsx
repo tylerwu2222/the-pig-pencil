@@ -20,7 +20,7 @@ const ShareModal = ({ shareTrigger, link }: ShareModalProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>{shareTrigger}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Share this article</DialogTitle>
         </DialogHeader>

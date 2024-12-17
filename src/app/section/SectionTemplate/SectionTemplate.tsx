@@ -157,7 +157,7 @@ export default function SectionTemplate({
   if (section == "collaborators") {
     contentSection = !isLoading ? (
       FSContent.length > 0 ? (
-        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-3">
+        <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
           {(FSContent as Author[]).map((author: Author) => {
             // generic section page
             return (
@@ -192,7 +192,7 @@ export default function SectionTemplate({
   else {
     contentSection = !isLoading ? (
       FSContent.length > 0 ? (
-        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-3">
+        <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
           {(FSContent as Post[]).map((post: Post) => {
             if (post.visibility === "wip") {
               return <PostThumbnailWIP key={post.slug} post={post} />;
@@ -230,7 +230,7 @@ export default function SectionTemplate({
       <div className="px-[3%] py-3 xl:px-[20%]">
         {/* search + sort div */}
         <div className="z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">
-        {/* <div className="sticky top-0 pt-[5vh] md:pt-[2vh] z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2"> */}
+          {/* <div className="sticky top-0 pt-[5vh] md:pt-[2vh] z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2"> */}
           {/* <div className="flex gap-2 p-[2vh] items-center"> */}
           {searchBarIncluded ? (
             <div className="col-span-full row-start-1 flex items-end md:col-span-5">
