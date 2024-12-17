@@ -25,7 +25,7 @@ const MenuItem = ({ item, onMouseEnterFn = () => { }, onMouseLeaveFn = () => { }
 
     return (
         <li
-            className="md:min-w-[40px] lg:min-w-[60px] flex justify-center"
+            className="min-w-[40px] md:min-w-[60px] flex justify-center"
             //  ${currentHoveredTab == items.title.toLowerCase() ? 'menu-item-hovered': ''}`}
             onMouseEnter={onMouseEnterFn}
             onMouseLeave={onMouseLeaveFn}

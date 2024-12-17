@@ -11,7 +11,7 @@ import { formatDateToLongDate } from "../../lib/dateFormatting";
 
 // components
 import { Button } from "@/components/ui/button";
-import ShareIcon from "../components/buttons/iconButtons/ShareIcon";
+import ShareIcon from "../components/icons/ShareIcon";
 import ShareModal from "../components/modals/ShareModal/ShareModal";
 import OinkButton from "../components/buttons/iconButtons/OinkButton";
 import { Eye } from "lucide-react";
@@ -189,7 +189,7 @@ export default function PostHeader({
                         <ShareIcon size={15} />
                       </Button>
                     }
-                    link={pathname}
+                    link={'thepigpencil.com/' + pathname}
                   />
                 </div>
               )

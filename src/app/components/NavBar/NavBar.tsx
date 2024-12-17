@@ -2,19 +2,17 @@
 // google analytics - change to next analytics?
 
 // react
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import { useHome } from "@/app/HomeContextProvider";
 
 // components
+import MobileNavbar from "./MobileNavbar";
+import DesktopNavbar from "./DesktopNavbar";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import MenuItem from "./MenuItem";
 
 import { usePathname } from "next/navigation";
-
-// data
-import navbar_items from "@/site_data/navbar_menu_items.json";
 
 // mobile
 // import IconButton from '@mui/material/IconButton';
@@ -24,6 +22,7 @@ const NavBar = () => {
   const pathname = usePathname();
 
   const { setHoveredTab } = useHome();
+
   // const [logoFontFamily, setLogoFontFamily] = useState("Gloock");
   const logoFontFamily = "Gloock";
   const [isVisible, setIsVisible] = useState(true);
@@ -55,10 +54,10 @@ const NavBar = () => {
 
   return (
     <div
-      className={`sticky top-0 grid grid-cols-3 items-center bg-backgroundWhite transition-transform duration-700 ease-in-out ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`sticky top-0 bg-backgroundWhite pt-2 transition-transform duration-700 ease-in-out md:grid md:grid-cols-3 md:pt-0 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* TPP logo */}
-      <div className="h-10 justify-self-start pl-2 pt-1">
+      <div className="h-10 justify-self-center pl-2 pt-1 md:justify-self-start">
         <Link className="flex flex-row gap-2 align-bottom" href="/">
           <div
             className="flex flex-row items-end"
@@ -69,16 +68,9 @@ const NavBar = () => {
                   }
                 : () => {}
             }
-            // onMouseLeave={
-            //   pathname == "/"
-            //     ? () => {
-            //         handleHoveredTab("___");
-            //       }
-            //     : () => {}
-            // }
           >
             <p
-              className="text-end text-2xl transition-colors duration-1000 ease-in-out hover:text-hoverDeepPink"
+              className="text-end text-3xl transition-colors duration-700 ease-in-out hover:text-hoverDeepPink md:text-2xl"
               style={{ fontFamily: logoFontFamily }}
               // onMouseOver={handleHover}
               // onMouseLeave={handleLeave}
@@ -97,42 +89,13 @@ const NavBar = () => {
           </div>
         </Link>
       </div>
-      {/* desktop menu items */}
-      <div className="justify-self-center">
-        <nav>
-          <ul className="flex gap-3">
-            {navbar_items.map((item, index) => {
-              return (
-                <MenuItem
-                  key={index}
-                  item={item}
-                  onMouseEnterFn={
-                    pathname == "/"
-                      ? (e) => {
-                          handleHoveredTab(item.url);
-                          e.stopPropagation();
-                        }
-                      : () => {}
-                  }
-                  // onMouseLeaveFn={
-                  //   pathname == "/"
-                  //     ? (e) => {
-                  //         handleHoveredTab("___");
-                  //         e.stopPropagation();
-                  //       }
-                  //     : () => {}
-                  // }
-                />
-              );
-            })}
-          </ul>
-        </nav>
+      {/* mobile menu items */}
+      <div className="block md:hidden">
+        <MobileNavbar />
       </div>
-      {/* subscribe button */}
-      <div className="justify-self-end pr-2 pt-1">
-        <Button className="bg-pink-200 px-2 py-1 text-sm leading-3 hover:bg-pink-300">
-          Subscribe
-        </Button>
+      {/* desktop menu items */}
+      <div className="hidden md:block">
+        <DesktopNavbar tabHoverFn={handleHoveredTab} />
       </div>
     </div>
   );

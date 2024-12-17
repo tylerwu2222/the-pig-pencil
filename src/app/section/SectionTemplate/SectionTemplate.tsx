@@ -192,7 +192,7 @@ export default function SectionTemplate({
   else {
     contentSection = !isLoading ? (
       FSContent.length > 0 ? (
-        <div className="grid grid-cols-3 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 justify-items-center">
           {(FSContent as Post[]).map((post: Post) => {
             if (post.visibility === "wip") {
               return <PostThumbnailWIP key={post.slug} post={post} />;

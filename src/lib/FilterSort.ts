@@ -73,7 +73,7 @@ const filterContent = ({
       );
     }
 
-    console.log("metastrings", contentMetaStrings);
+    // console.log("metastrings", contentMetaStrings);
 
     // check if keyword in any of contents' metastrings
     filteredContent = content.filter((p, i) => {

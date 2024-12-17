@@ -63,11 +63,11 @@ export default function PostThumbnailWIP({
           )}
         </div>
         {/* heading */}
-        <div className="xl:max-ww-72 min-h-[3em] w-full py-1 lg:max-w-52">
-          <p className="text-lg text-textGrey 2xl:text-2xl">{title}</p>
+        <div className="min-h-[3em] w-full py-1 lg:max-w-52">
+          <p className="text-2xl text-textGrey sm:text-lg">{title}</p>
         </div>
         {/* author(s) + date */}
-        <div className="text-xs text-textLightGrey">
+        <div className="text-sm sm:text-xs text-textGrey sm:text-textLightGrey">
           <p className="">{authorDate}</p>
         </div>
         {/* tag(s) */}
