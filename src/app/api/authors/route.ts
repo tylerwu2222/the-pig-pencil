@@ -35,7 +35,7 @@ export async function GET() {
     ...author,
     viewCount: author.AuthorsOnPosts.reduce((acc,p) => acc + p.Post.views, 0),
     oinkCount: author.AuthorsOnPosts.reduce((acc,p) => acc + p.Post.oinks, 0),
-    postCount: author.AuthorsOnPosts.length
+    postCount: author.AuthorsOnPosts.filter((p) => p.Post.visibility === "visible").length // only get published posts
   }
   ));
 

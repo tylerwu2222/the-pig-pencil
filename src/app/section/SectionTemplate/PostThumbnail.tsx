@@ -53,7 +53,9 @@ export default function PostThumbnail({
     setImgSrc(dynamicThumbnail);
   }, []);
 
-  const isNew = differenceInDays(new Date(), post.publishDate) <= 7;
+  const isNew =
+    differenceInDays(new Date(), post.publishDate) <= 7 &&
+    differenceInDays(new Date(), post.publishDate) > 0;
 
   return (
     <>
@@ -68,7 +70,7 @@ export default function PostThumbnail({
         title={title}
       > */}
       <div
-        className={`group relative m-[2vh] rounded-sm border-[1px] ${isNew ? "border-orange-400" : "border-borderGrey"} p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]`}
+        className={`group relative m-[2vh] rounded-sm border-[1px] ${isNew ? "border-orange-400" : ""} p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]`}
         title={post.title}
       >
         {typeof sortBadge === "string" && sortBadge === "date" && isNew && (
@@ -125,7 +127,7 @@ export default function PostThumbnail({
             <p className="text-2xl text-textGrey md:text-lg">{post.title}</p>
           </div>
           {/* author(s) + date */}
-          <div className="text-sm md:text-xs text-textGrey md:text-textLightGrey">
+          <div className="text-sm text-textGrey md:text-xs md:text-textLightGrey">
             <p className="">{authorDate}</p>
           </div>
           {/* tag(s) */}

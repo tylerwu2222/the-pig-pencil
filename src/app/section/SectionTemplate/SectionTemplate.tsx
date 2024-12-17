@@ -161,7 +161,11 @@ export default function SectionTemplate({
           {(FSContent as Author[]).map((author: Author) => {
             // generic section page
             return (
-              <CollaboratorThumbnail key={author.name} collaborator={author} />
+              <CollaboratorThumbnail
+                key={author.name}
+                collaborator={author}
+                sortBadge={sortKeyword}
+              />
             );
           })}
         </div>
