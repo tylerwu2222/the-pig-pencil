@@ -1,7 +1,7 @@
 "use client";
 // import { usePathname } from "next/navigation";
 import Footer from "../components/Footer/Footer";
-import NavBar from "../components/Navbar/Navbar";
+import Navbar from "../components/Navbar/Navbar";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -16,8 +16,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
       <div>
-        {/* {hideNavbarRoutes.includes(pathname) ? <></> : <NavBar />} */}
-        <NavBar />
+        {/* {hideNavbarRoutes.includes(pathname) ? <></> : <Navbar />} */}
+        <Navbar />
         {children}
         <Footer />
       </div>
