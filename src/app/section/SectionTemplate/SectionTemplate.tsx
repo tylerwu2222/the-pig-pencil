@@ -88,7 +88,7 @@ export default function SectionTemplate({
   }
 
   // initialize content for section
-  const getSectionPosts = async () => {
+  const getSectionContent = async () => {
     let res;
     if (section == "collaborators") {
       res = await fetch("/api/authors");
@@ -99,31 +99,31 @@ export default function SectionTemplate({
     else {
       res = await fetch(`/api/${section}/posts`);
     }
-    const posts = await res.json();
-    console.log("FE: posts", posts);
-    return posts;
+    const content = await res.json();
+    console.log("FE: content", content);
+    return content;
   };
 
   // fetch initial data
   const {
-    data: posts,
+    data: content,
     isLoading,
     isError,
   } = useQuery({
     queryKey: ["sectionContent", section],
-    queryFn: () => getSectionPosts(),
+    queryFn: () => getSectionContent(),
     enabled: !!section,
   });
 
   // Set your local state when necessary
   useEffect(() => {
-    if (posts) {
-      setAllContent(posts);
-      setFSContent(posts);
+    if (content) {
+      setAllContent(content);
+      setFSContent(content);
     }
-  }, [posts]);
+  }, [content]);
 
-  // update displayed posts when any search/filter parameter changes
+  // update displayed content when any search/filter parameter changes
   useEffect(() => {
     const subsetContent = filterSort({
       content: allContent,
@@ -283,7 +283,7 @@ export default function SectionTemplate({
         ) : isError ? (
           <div className="flex items-center justify-center">
             <p className="text-stone-400">
-              error loading posts, please contact tyler 🐷
+              error loading content, please contact tyler 🐷
             </p>
           </div>
         ) : (

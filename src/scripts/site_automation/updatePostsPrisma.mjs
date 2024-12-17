@@ -8,11 +8,6 @@ import { formateDateToISODate } from "@/lib/dateFormatting.js";
 import { getPostMetadata } from "../../lib/getPostMetaData.ts";
 import { updatePost } from "../../lib/prisma/prisma.ts";
 
-// fs
-import fs from "fs-extra";
-import path from "path";
-import { fileURLToPath } from "url";
-
 // update prisma based on metadata from mdx for post(s)
 const updatePostsPrisma = async () => {
   const section = process.env.npm_config_section || undefined;

@@ -1,6 +1,8 @@
 import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
 import prisma from "@/db";
 
+import { Author } from "@/types/extendedPrismaTypes";
+
 import { NextRequest, NextResponse } from "next/server";
 
 // get all authors
@@ -28,13 +30,22 @@ export async function GET() {
 
   // console.log('BE author before flatten', allAuthors);
 
-  const formatedAllAuthors = flattenJoinData(allAuthors, {
-    AuthorsOnPosts: "posts",
-    TagsOnAuthors: "tags",
+  // get total views and oinks on posts
+  let countedAuthors = allAuthors.map((author) => ({
+    ...author,
+    viewCount: author.AuthorsOnPosts.reduce((acc,p) => acc + p.Post.views, 0),
+    oinkCount: author.AuthorsOnPosts.reduce((acc,p) => acc + p.Post.oinks, 0),
+    postCount: author.AuthorsOnPosts.length
+  }
+  ));
+
+  let formattedAllAuthors = flattenJoinData(countedAuthors, {
+    AuthorsOnPosts: "posts", // post ids
+    AuthorsOnTags: "tags", // tag names
   });
 
-  console.log("BE author after flatten", formatedAllAuthors);
+  // console.log("BE author after format", formattedAllAuthors);
 
-  return NextResponse.json(formatedAllAuthors);
+  return NextResponse.json(formattedAllAuthors);
   // return NextResponse.json(allAuthors);
 }

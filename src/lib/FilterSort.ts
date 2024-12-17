@@ -67,9 +67,10 @@ const filterContent = ({
           a.email +
           " " +
           a.quote
+        )
           // " " +
           // a.tags.join(" ")
-        ).toLowerCase(),
+          .toLowerCase(),
       );
     }
 
@@ -92,29 +93,42 @@ const filterContent = ({
   return filteredContent;
 };
 
-const sortMap: Record<string, string> = {
+const postsSortMap: Record<string, string> = {
   date: "publishDate",
   title: "title",
   views: "views",
   oinks: "oinks",
   author: "authors",
 };
+
+const collaboratorsSortMap: Record<string, string> = {
+  "date joined": "joinDate",
+  name: "name",
+  role: "role",
+  "total posts": "postCount",
+  "total views": "viewCount",
+  "total oinks": "oinkCount",
+};
+
 const visibilityOrder = { visible: 0, wip: 1, hidden: 2 };
 
 const sortByKey = (
-  // const sortByKey = <T, K extends keyof typeof sortMap>(
+  // const sortByKey = <T, K extends keyof typeof postsSortMap>(
   content: Content[],
   key: keyof Content,
   order: SortOrder = "asc",
-  sortVisibility: boolean = true
+  sortVisibility: boolean = true,
 ): Content[] => {
-  
   return [...content].sort((a, b) => {
     // Sort by visibility first if enabled
     if (sortVisibility && isPost(content)) {
       const visibilityCompare =
-        visibilityOrder[(a as Post)['visibility'] as keyof typeof visibilityOrder] -
-        visibilityOrder[(b as Post)['visibility'] as keyof typeof visibilityOrder];
+        visibilityOrder[
+          (a as Post)["visibility"] as keyof typeof visibilityOrder
+        ] -
+        visibilityOrder[
+          (b as Post)["visibility"] as keyof typeof visibilityOrder
+        ];
       if (visibilityCompare !== 0) {
         // return order === "asc" ? visibilityCompare : -visibilityCompare;
         return visibilityCompare;
@@ -129,8 +143,8 @@ const sortByKey = (
       typeof valA === "string" && typeof valB === "string"
         ? valA.localeCompare(valB)
         : valA > valB
-        ? 1
-        : -1;
+          ? 1
+          : -1;
 
     return order === "asc" ? compare : -compare;
   });
@@ -153,25 +167,30 @@ const sortContent = ({
 
   // console.log(
   //   "before sorting",
-  //   sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
+  //   sortedContent.map((c) => c[postsSortMap[sortKeyword] as keyof Content]),
   // );
   // console.log("sorting by", sortKeyword);
   if (isPost(content)) {
-    console.log("sorting posts");
+    // console.log("sorting posts");
     sortedContent = sortedContent as Post[];
     sortedContent = sortByKey(
       sortedContent,
-      sortMap[sortKeyword] as keyof Content,
+      postsSortMap[sortKeyword] as keyof Content,
       sortDirection,
     );
-
   } else if (isAuthor(content)) {
+    // console.log("sorting authors");
     sortedContent = sortedContent as Author[];
+    sortedContent = sortByKey(
+      sortedContent,
+      collaboratorsSortMap[sortKeyword] as keyof Content,
+      sortDirection,
+    );
   }
 
   // console.log(
   //   "after sorting",
-  //   sortedContent.map((c) => c[sortMap[sortKeyword] as keyof Content]),
+  //   sortedContent.map((c) => c[postsSortMap[sortKeyword] as keyof Content]),
   // );
   // console.log('sorted after', sortedPosts);
   return sortedContent;
@@ -206,7 +225,7 @@ export const filterSort = ({
   if (sortKeyword) {
     FSContent = sortContent({ sortKeyword, sortDirection, content: FSContent });
   }
-//   console.log("FS", FSContent);
+  //   console.log("FS", FSContent);
 
   return FSContent;
 };
