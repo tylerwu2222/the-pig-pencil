@@ -13,7 +13,6 @@ import Image from "next/image";
 
 import { usePathname } from "next/navigation";
 
-
 const Navbar = () => {
   const pathname = usePathname();
 
@@ -50,7 +49,8 @@ const Navbar = () => {
 
   return (
     <div
-      className={`sticky top-0 bg-backgroundWhite pt-2 transition-transform duration-700 ease-in-out md:grid md:grid-cols-3 md:pt-0 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      // className={`sticky top-0 bg-backgroundWhite pt-2 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`sticky h-10 z-50 top-0 bg-backgroundWhite pt-2 transition-transform duration-700 ease-in-out md:grid md:grid-cols-3 md:pt-0 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* TPP logo */}
       <div className="h-10 justify-self-center pl-2 pt-1 md:justify-self-start">
@@ -86,11 +86,11 @@ const Navbar = () => {
         </Link>
       </div>
       {/* mobile menu items */}
-      <div className="block md:hidden bg-backgroundWhite">
+      <div className="block bg-backgroundWhite md:hidden">
         <MobileNavbar />
       </div>
       {/* desktop menu items */}
-      <div className="hidden md:block bg-backgroundWhite">
+      <div className="hidden bg-backgroundWhite md:block">
         <DesktopNavbar tabHoverFn={handleHoveredTab} />
       </div>
     </div>

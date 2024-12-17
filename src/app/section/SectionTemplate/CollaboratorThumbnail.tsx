@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Author } from "@/types/extendedPrismaTypes";
 import { getSnakeCase } from "@/lib/stringFormatting";
 import { Post } from "@prisma/client";
+import { formatDateToShortDate } from "@/lib/dateFormatting";
 
 interface CollaboratorThumbnailProps {
   collaborator: Author;
@@ -58,26 +59,23 @@ export default function CollaboratorThumbnail({
           alt="thumbnail"
           loading="lazy"
         />
-        {/* name */}
-        <div className="xl:max-ww-72 w-full py-1 lg:max-w-52">
-          <p className="text-lg text-textGrey transition duration-700 ease-in-out group-hover:text-hoverDeepPink 2xl:text-2xl">
-            {collaborator.name}
-          </p>
-        </div>
-        {/* role */}
-        <div className="xl:max-ww-72 w-full py-1 lg:max-w-52">
-          <p className="text-md italic text-textGrey transition duration-700 ease-in-out group-hover:text-hoverDeepPink 2xl:text-2xl">
+        {/* name, role, join date */}
+        <div className="xl:max-ww-72 w-full py-1 transition duration-700 ease-in-out group-hover:text-hoverDeepPink lg:max-w-52">
+          <p className="text-lg text-textGrey">{collaborator.name}</p>
+          <p className="text-sm italic text-textLightGrey">
             {collaborator.role}
+          </p>
+          <p className="text-xs text-textLightGrey">
+            Joined: {formatDateToShortDate(collaborator.joinDate)}
           </p>
         </div>
         {/* link to most recent post */}
-
-        <div className="text-xs text-textLightGrey">
+        <div className="pt-2 text-sm">
           {newestPost ? (
             <p className="">
               <span className="font-semibold">Newest post: </span>
               <a
-                className="hover:text-hoverDeepPink hover:underline"
+                className="underline hover:text-hoverDeepPink"
                 href={`/posts/${newestPost.section}/${newestPost.slug}`}
                 title={newestPost.title}
               >

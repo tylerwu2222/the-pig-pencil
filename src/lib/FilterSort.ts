@@ -66,11 +66,10 @@ const filterContent = ({
           " " +
           a.email +
           " " +
-          a.quote
-        )
-          // " " +
-          // a.tags.join(" ")
-          .toLowerCase(),
+          a.quote +
+          " " +
+          a.tags.join(" ")
+        ).toLowerCase(),
       );
     }
 
