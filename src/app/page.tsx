@@ -9,7 +9,7 @@ import { useHome } from "./HomeContextProvider";
 
 // components
 import Footer from "./components/Footer/Footer";
-import NavBar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import images_json from "@/site_data/home_mosaic_images.json";
 
 // helpers
@@ -38,7 +38,7 @@ export default function Home() {
   return (
     <>
       {/* navbar navigation */}
-      <NavBar />
+      <Navbar />
       {/* dynamic text/images */}
       <div className="pointer-events-none relative h-[90vh]">
         <p className="absolute left-1/2 top-1/2 w-[30vw] -translate-x-[5vw] text-left">
