@@ -157,7 +157,7 @@ export default function SectionTemplate({
   if (section == "collaborators") {
     contentSection = !isLoading ? (
       FSContent.length > 0 ? (
-        <div className="grid grid-cols-3 justify-items-center">
+        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-3">
           {(FSContent as Author[]).map((author: Author) => {
             // generic section page
             return (
@@ -192,12 +192,18 @@ export default function SectionTemplate({
   else {
     contentSection = !isLoading ? (
       FSContent.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-3 justify-items-center">
+        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-3">
           {(FSContent as Post[]).map((post: Post) => {
             if (post.visibility === "wip") {
               return <PostThumbnailWIP key={post.slug} post={post} />;
             } else if (post.visibility === "visible") {
-              return <PostThumbnail key={post.slug} post={post} sortBadge={sortKeyword}/>;
+              return (
+                <PostThumbnail
+                  key={post.slug}
+                  post={post}
+                  sortBadge={sortKeyword}
+                />
+              );
             }
           })}
         </div>
@@ -223,10 +229,11 @@ export default function SectionTemplate({
       </title>
       <div className="px-[3%] py-3 xl:px-[20%]">
         {/* search + sort div */}
-        <div className="grid auto-rows-min grid-cols-7 content-center gap-2 p-[2vh]">
+        <div className="z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">
+        {/* <div className="sticky top-0 pt-[5vh] md:pt-[2vh] z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2"> */}
           {/* <div className="flex gap-2 p-[2vh] items-center"> */}
           {searchBarIncluded ? (
-            <div className="col-span-5 flex items-end">
+            <div className="col-span-full row-start-1 flex items-end md:col-span-5">
               <SearchInput
                 value={searchValue}
                 onValueChangeFn={(e) => {
@@ -239,9 +246,10 @@ export default function SectionTemplate({
             <></>
           )}
           {sortPostsIncluded ? (
-            <div className="col-span-2 flex items-end gap-1">
+            <div className="col-span-full row-start-3 flex items-end gap-1 md:col-span-2 md:row-start-1">
               {/* sort parameter */}
               <DropdownInputSelect
+                className="max-w-1/2"
                 label="sort"
                 value={sortKeyword}
                 onChangeFn={handleSortKeywordChange}
@@ -256,8 +264,10 @@ export default function SectionTemplate({
           ) : (
             <></>
           )}
-          <div className="col-span-7 row-start-2 px-3 pt-2">
-            <i className="min-h-[1em] text-gray-500">
+          <div
+            className={`md:pt-2} col-span-full row-start-2 px-1 pt-0 md:px-3`}
+          >
+            <i className="text-gray-500 md:min-h-[1em]">
               {searchValue.length > 0
                 ? FSContent.length + " results for '" + searchValue + "'"
                 : "\u00A0"}
@@ -266,7 +276,7 @@ export default function SectionTemplate({
         </div>
         {isLoading ? (
           <div className="flex items-center justify-center">
-            <p className="text-stone-700 bg-slate-200 px-3 rounded-2xl shadow-md">
+            <p className="rounded-2xl bg-slate-200 px-3 text-stone-700 shadow-md">
               loading {searchKeywordMap[section]} 🐖...
             </p>
           </div>

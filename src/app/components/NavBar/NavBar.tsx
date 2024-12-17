@@ -90,11 +90,11 @@ const NavBar = () => {
         </Link>
       </div>
       {/* mobile menu items */}
-      <div className="block md:hidden">
+      <div className="block md:hidden bg-backgroundWhite">
         <MobileNavbar />
       </div>
       {/* desktop menu items */}
-      <div className="hidden md:block">
+      <div className="hidden md:block bg-backgroundWhite">
         <DesktopNavbar tabHoverFn={handleHoveredTab} />
       </div>
     </div>

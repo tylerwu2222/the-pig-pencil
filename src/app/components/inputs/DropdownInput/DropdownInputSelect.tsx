@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, Dispatch } from "react";
+// import { SetStateAction, Dispatch } from "react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 type DropdownInputSelectProps = {
   handleChange?: (value: string | number) => void;
@@ -20,6 +21,7 @@ type DropdownInputSelectProps = {
   // setSelectedOption: Dispatch<SetStateAction<string | number>>;
   color?: string; // Hex or tailwind color
   width?: number | string | undefined;
+  className?: string;
 };
 
 const DropdownInputSelect = ({
@@ -32,6 +34,7 @@ const DropdownInputSelect = ({
   onChangeFn,
   color = "text-gray-500",
   width = "w-[300px]",
+  className,
 }: DropdownInputSelectProps) => {
   // const [selectedValue, setSelectedValue] = useState(initialOption || options[0]);
 
@@ -42,14 +45,16 @@ const DropdownInputSelect = ({
   };
 
   return (
-    <div className={`${width}`}>
-      <Label className={`${color} mb-[0.15rem] mt-2 block text-sm font-medium`}>
+    <div className={cn(`${width}`, className)}>
+      <Label
+        className={`${color} block text-sm font-medium md:mb-[0.15rem] md:mt-2`}
+      >
         {label}
       </Label>
       <Select value={String(value)} onValueChange={handleChange}>
         <div className="group">
           <SelectTrigger className="w-full rounded-sm border border-gray-300 bg-transparent text-sm transition-colors duration-500 ease-in-out group-hover:bg-highlightWhite data-[state=open]:border-hoverLightPink data-[state=open]:bg-highlightWhite">
-          {/* <SelectTrigger className="w-full rounded-sm border border-gray-300 bg-transparent text-sm transition-colors duration-500 ease-in-out group-hover:border-hoverDeepPink group-hover:bg-highlightWhite data-[state=open]:border-hoverLightPink data-[state=open]:bg-highlightWhite"> */}
+            {/* <SelectTrigger className="w-full rounded-sm border border-gray-300 bg-transparent text-sm transition-colors duration-500 ease-in-out group-hover:border-hoverDeepPink group-hover:bg-highlightWhite data-[state=open]:border-hoverLightPink data-[state=open]:bg-highlightWhite"> */}
             <SelectValue placeholder="Select an option" />
           </SelectTrigger>
           <SelectContent className="group-focus-within:block group-hover:block">

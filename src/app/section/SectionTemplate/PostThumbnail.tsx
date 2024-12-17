@@ -43,7 +43,6 @@ export default function PostThumbnail({
   if (post.authors.length > 0) {
     authorDate = post.authors[0] + " ∙ " + authorDate;
   }
-  let title = post.title;
   const [imgSrc, setImgSrc] = useState<string | null>(null);
 
   // define post thumbnail path
@@ -70,7 +69,7 @@ export default function PostThumbnail({
       > */}
       <div
         className={`group relative m-[2vh] rounded-sm border-[1px] ${isNew ? "border-orange-400" : "border-borderGrey"} p-[2vh] transition duration-700 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:border-hoverLightPink hover:bg-highlightWhite hover:shadow-[0.35em_0.35em_0_0_#f2b0ca]`}
-        title={title}
+        title={post.title}
       >
         {typeof sortBadge === "string" && sortBadge === "date" && isNew && (
           <Badge className="absolute left-0 top-0 m-[1vh] rounded-full bg-orange-400 text-xs text-white transition duration-700 ease-in-out group-hover:bg-hoverLightPink">
@@ -123,7 +122,7 @@ export default function PostThumbnail({
           </div>
           {/* heading */}
           <div className="min-h-[3em] w-full py-1 lg:max-w-52">
-            <p className="text-2xl text-textGrey sm:text-lg">{title}</p>
+            <p className="text-2xl text-textGrey sm:text-lg">{post.title}</p>
           </div>
           {/* author(s) + date */}
           <div className="text-sm sm:text-xs text-textGrey sm:text-textLightGrey">

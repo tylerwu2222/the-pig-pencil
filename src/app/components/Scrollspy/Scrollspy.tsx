@@ -73,7 +73,7 @@ export default function Scrollspy() {
     // console.log('ss titles in ss:', sectionTitles);
 
     return (
-        <div className='relative'>
+        <div className='hidden sm:relative '>
             <div className={`fixed top-[20vh] left-0 max-h-[70vh] ${isVisible? 'overflow-y-auto':'overflow-hidden'}`}>
                 {/* <nav id="articleScrollspy" className="navbar scrollspyNavbar"> */}
                 <nav className={`bg-transparent text-[14px] w-[18vw] pl-[1.5vw] flex-col flex-wrap transition-all duration-500 ease-in-out ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
