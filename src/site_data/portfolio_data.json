@@ -76,18 +76,18 @@
     "visualizations": [
         {
             "title": "BayPass Price Calculator",
-            "type": "map",
+            "type": "geographic map, tool",
             "date": "Spring 2024",
             "publication": "The Daily Californian",
             "url": "https://dailycalprojects.vercel.app/article/what-s-next-for-baypass",
             "thumbnail": "map_dc_baypass.png",
             "gif": "map_dc_baypass.gif",
-            "description": "An interactive map/calculator combination that helps Berkeley residents determine if the upcoming BayPass is worth purchasing based on their travel patterns.",
+            "description": "An interactive map/calculator that helps Berkeley residents determine if the upcoming BayPass is worth purchasing based on their travel patterns.",
             "order": 3
         },
         {
-            "title": "Tortoise Physiology Age, Size, Habitat Dynamic Scatterplot",
-            "type": "scatterplot",
+            "title": "Tortoise Physiology Age, Size, Habitat (Image) Scatter Plot",
+            "type": "scatter plot",
             "date": "Summer 2021",
             "publication": "The Pig Pencil",
             "url": "https://www.thepigpencil.com/posts/data/2021-07-13-an-intro-to-tortoise-physiology",
@@ -108,7 +108,7 @@
             "order": 6
         },
         {
-            "title": "TheNeedleDrop Music Ratings Box Plots",
+            "title": "TheNeedleDrop Music Ratings Box Plot",
             "type": "box plot",
             "date": "Summer 2021",
             "publication": "The Pig Pencil",
@@ -120,24 +120,24 @@
         },
         {
             "title": "UCLA Professor Reviews",
-            "type": "bar plot",
+            "type": "bar chart",
             "date": "Fall 2022",
             "publication": "The Daily Bruin",
             "url": "https://stack.dailybruin.com/2022/03/10/prof-reviews/",
             "thumbnail": "barchart_db_prof_review.png",
             "gif": "DB_barplot.gif",
-            "description": "A plot that shows different tortoise stats (age, size, and/or habitat) as scatter plots or bar plots.",
+            "description": "A lollipop chart that compares language used in reviews for male and female professors at UCLA on the site Bruinwalk.",
             "order": 2
         },
         {
             "title": "Berkeley Telegraph Avenue Redesign",
-            "type": "bar plot",
+            "type": "bar chart",
             "date": "Fall 2022",
             "publication": "The Daily Californian",
             "url": "https://dailycal-projects.netlify.app/2023-03-10-telegraph-pedestrianized",
             "thumbnail": "barchart_dc_telegraph.png",
             "gif": "none",
-            "description": "A bar plot/area chart hybrid that shows the different designs for Berkeley's pedestrian-heavy Telegraph Avenue.",
+            "description": "A stacked bar chart that shows the different designs for Berkeley's pedestrian-heavy Telegraph Avenue.",
             "order": 8
         },
         {
@@ -159,7 +159,7 @@
             "url": "https://dailycalprojects.vercel.app/article/mapping-construction-at-berkeley",
             "thumbnail": "barchart_dc_construction.png",
             "gif": "none",
-            "description": "A plot that shows the different types of construction projects going on around Berkeley recently (2023).",
+            "description": "A bar chart that shows the different types of construction projects going on around Berkeley recently (2023).",
             "order": 5
         },
         {
@@ -170,7 +170,7 @@
             "url": "https://www.thepigpencil.com/posts/data/2023-05-23-visualizing-nyt-mini-crossword-completion-times",
             "thumbnail": "linechart_nyt_mini.png",
             "gif": "none",
-            "description": "A plot that shows how my roommmates' NYT mini completion times changed over time.",
+            "description": "A line chart that shows how my roommmates' NYT mini completion times changed over time.",
             "order": 9
         }
     ],
