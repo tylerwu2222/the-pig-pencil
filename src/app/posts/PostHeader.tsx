@@ -131,12 +131,12 @@ export default function PostHeader({
           {/* author + date */}
           <div className="flex justify-between py-2">
             <div className="flex gap-2">
-              {post.authors.map((a) => {
+              {post.authors.map((a, index) => {
                 const mug =
                   "/img/thumbnails/collaborator_mugs/" +
                   getSnakeCase(a) +
                   ".png";
-                return <ImageIcon src={mug} />;
+                return <ImageIcon src={mug} key={index} />;
               })}
               <p className="flex items-center justify-center text-sm">
                 {post.authors.join(", ")}
