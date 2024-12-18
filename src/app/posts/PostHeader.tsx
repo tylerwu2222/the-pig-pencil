@@ -8,6 +8,7 @@ import { Post } from "@/types/extendedPrismaTypes";
 
 // helpers
 import { formatDateToLongDate } from "../../lib/dateFormatting";
+import { getSnakeCase } from "@/lib/stringFormatting";
 
 // components
 import { Button } from "@/components/ui/button";
@@ -15,6 +16,7 @@ import ShareIcon from "../components/icons/ShareIcon";
 import ShareModal from "../components/modals/ShareModal/ShareModal";
 import OinkButton from "../components/buttons/iconButtons/OinkButton";
 import { Eye } from "lucide-react";
+import ImageIcon from "../components/icons/ImageIcon";
 
 interface PostHeaderProps {
   post: Post;
@@ -127,13 +129,22 @@ export default function PostHeader({
         {/* below image, static content*/}
         <div>
           {/* author + date */}
-          <div className="flex justify-between">
-            <p className="flex items-center justify-center text-sm">
-              {post.authors.join(", ")}
-            </p>
+          <div className="flex justify-between py-2">
+            <div className="flex gap-2">
+              {post.authors.map((a) => {
+                const mug =
+                  "/img/thumbnails/collaborator_mugs/" +
+                  getSnakeCase(a) +
+                  ".png";
+                return <ImageIcon src={mug} />;
+              })}
+              <p className="flex items-center justify-center text-sm">
+                {post.authors.join(", ")}
+              </p>
+            </div>
             <p className="text-sm text-textGrey">
-            {formatDateToLongDate(post.publishDate)}
-          </p>
+              {formatDateToLongDate(post.publishDate)}
+            </p>
           </div>
           <div className="justify-between text-textLightGrey">
             {/* read-aloud if available */}
