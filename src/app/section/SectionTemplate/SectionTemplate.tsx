@@ -153,6 +153,17 @@ export default function SectionTemplate({
     }
   };
 
+  // to make wip visible on dev server, but disabled on prod.
+  const isPostVisible = (postVisibility: string) => {
+    if (postVisibility === "visible") return true; // Always visible
+    if (postVisibility === "hidden") return false; // Never visible
+    if (postVisibility === "wip") {
+      // visible in development
+      return process.env.NODE_ENV === "development";
+    }
+    return false; // Default fallback
+  };
+
   let contentSection;
   if (section == "collaborators") {
     contentSection = !isLoading ? (
@@ -198,9 +209,7 @@ export default function SectionTemplate({
       FSContent.length > 0 ? (
         <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
           {(FSContent as Post[]).map((post: Post) => {
-            if (post.visibility === "wip") {
-              return <PostThumbnailWIP key={post.slug} post={post} />;
-            } else if (post.visibility === "visible") {
+            if (isPostVisible(post.visibility)) {
               return (
                 <PostThumbnail
                   key={post.slug}
@@ -208,6 +217,8 @@ export default function SectionTemplate({
                   sortBadge={sortKeyword}
                 />
               );
+            } else {
+              return <PostThumbnailWIP key={post.slug} post={post} />;
             }
           })}
         </div>
