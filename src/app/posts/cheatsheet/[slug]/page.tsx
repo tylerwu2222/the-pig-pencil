@@ -45,7 +45,9 @@ export default async function page({
 
   return (
     <div className="py-5 pb-20">
-      <PageViewTracker postId={post.id} />
+      {process.env.NODE_ENV !== "development" && (
+        <PageViewTracker postId={post.id} />
+      )}
       {/* header content (tn, caption, date, author) */}
       <PostHeader post={post} showThumbnail={false} />
       {/* post content (queried via mdx) */}
