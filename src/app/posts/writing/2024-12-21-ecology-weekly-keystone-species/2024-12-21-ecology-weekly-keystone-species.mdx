@@ -31,30 +31,56 @@ But now, years later, I actually looked into what a keystone is. It's one of the
 And if you remove it, this happens:
 
 
-The term was coined by the ecologist Robert T Paine. The story goes that he was studying tide pool communities. 
+The term was coined by the ecologist [Robert T Paine](https://en.wikipedia.org/wiki/Robert_T._Paine_(zoologist)). The story goes that he was studying tide pool communities. 
 Namely, a community that looked like this:
 
 
-Now, for his experiment, he simply took the purple star, the top predator of this ecosystem and 
+Now, for his experiment, he simply took the purple star, (Pisaster ochraceus), the top predator of this ecosystem and repeatedly chucked it into the tide. 
+(Repeatedly because presumably the sea star kept crawling back. Science requires sacrifice).
 
-<ScrollspyHeader header="downstream effects"/>
-A related theory to keystone species is what's called the "Green Earth Hypothesis". 
-It states that the earth is green because of _, in fact, it's really the predators of herbivores that control the herbivore populations which allow for this Green Earth.
+<ScrollspyHeader header="trophic cascades (chain reactions)"/>
+A related theory to keystone species is what's called the "Green World Hypothesis". 
+It states that the world is green because of predators. 
+By controlling the herbivore population, predators are primarily responsible for the "Green World".
 
-There is a central pattern in ecology, of cause and effect. When one population wanes, the other waxes. 
+There is a central pattern you'll see in ecology, of cause and effect. When one population wanes, the other waxes. 
 Everything affects everything else, (to some degree), through these chain of events.
 
 
 
 
-<ScrollspyHeader header="some examples"/>
+<ScrollspyHeader header="examples"/>
+<ScrollspyHeader header="predators" level={3}/>
+- Gray wolves in GYE
+<ScrollspyHeader header="herbivores" level={3}/>
+- Elephants
+<ScrollspyHeader header="pollinators" level={3}/>
+- bees
 
-
-<ScrollspyHeader header="can there be more than one?"/>
+<ScrollspyHeader header="there can only be one?"/>
 Well, maybe. With ecology, (and lots of things), there are few absolutes. 
 
-A keystone species is simply one that has a "profound" impact on an ecosystem. 
-And it's really up to us to determine what counts as profound or not.
+A keystone species is simply one that "defines" an ecosystem, where without it, the ecosystem would be "dramatically" different. 
+And it's really up to us to determine what counts as dramatic or not.
+
+Now, I'm going to make a weird analogy to machine learning, (that may not click with everyone), but I think it's too good to pass up. 
+
+In machine learning we define models, or simply, equations that predict some result (y) from a set of variables (x1,x2,...). Think back to the equation of a line (y=mx+b).
+To provide an example, I could simplify Paine's tide pool ecosystem as something like:
+
+change_in_ecosystem = (presence_of_sea_star) + (presence_of_mussel) + (presence_of_kelp) ...
+
+Now, imagine the "presence" of a species as between 0 and 1, with 0 meaning no members, and 1 meaning = to the initial population size of the species.
+
+If we set the weight of the sea star to 0, (as Paine did when he threw the star repeatedly), we can then measure then change in ecosystem using some numeric representation.
+
+<LightCallout>
+Yet *another* comparison between keystone species and ML modeling is "functional redundancy". Nat Geo explains low functional redundancy as: "if the species were to disappear from the ecosystem, no other species would be able to fill its ecological niche."
+This is extremely similar to the concept of "feature importance" in ML. 
+
+Essentially, how "unique" is the impact of a predictor x on the result y. With sea stars, it's difficult to find another predator that can easily step in to clean up mussels. But, with oxygen producers, there might be more than 1 candidate.
+</LightCallout>
+
 
 <ScrollspyHeader header="what you can do"/>
 Next time you go for a walk in the park, you can try thinking about the roles different plants, animals, even abiotic members play in an ecosystem.
@@ -63,6 +89,6 @@ In fact, next week's piece will be about roles, which in ecology is called a "ni
 
 <ScrollspyHeader header="reads" level={3}/>
 I've been wanting to write about ecology for a long time, but was inspired by this book. 
-Which was my introduction the origin of the term "keystone species":
+Which was my introduction the origin of the term "keystone s    pecies":
 
-- Life in the Tides, by 
+- Life Between the Tides, by Adam Nicolson
