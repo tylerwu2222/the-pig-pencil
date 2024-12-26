@@ -1,3 +1,10 @@
+import DynamicFoodWeb from './DynamicFoodWeb';
+
+import w1 from './wecology_keystone_1.png';
+import w2 from './wecology_keystone_2.png';
+import w3 from './wecology_keystone_3.png';
+
+
 export const metadata = {
     publishDate: "2024-12-21",
     title: "Ecology Weekly: Keystone Species",
@@ -11,43 +18,62 @@ export const metadata = {
     visibility: "visible"
 };
 
-Hi! This is the first entry into what I'm hoping to make a weekly (or at least bi-weekly) series about topics in ecology.
+Hi! This is the first entry in what I'm hoping to make a weekly (probably less often than that) series about topics in ecology.
 I've always loved ecology since high school, when I first studied it for Science Olympiad. 
 
 The beauty of ecology is that the topics are all interconnected, and there's probably a lifetime's worth of interesting facts and relationships I could talk about. 
 
 That almost makes it hard to choose where to start. Still, we have to start somewhere.
-So to kick off this series, I'll talk about a concept that I think represents some big ideas very well: the keystone species . 
+So to kick off this series, I'll talk about a concept that I think represents some big ideas very well: *keystone species*. 
 
 <LightCallout>
-Note, for this series. I've created a lil feature that lets you hover (or hold on mobile) <HoverDefinitionText hoverText={'the definition would appear here...'} link={'https://thepigpencil.com'} linkText={'sometimes with a link'}>highlighted text</HoverDefinitionText> to show a definition and link to more information.
+**Note:** for this series. I've created a lil feature that lets you hover (or hold on mobile) <HoverDefinitionText hoverText={'the definition would appear here...'} link={'https://thepigpencil.com'} linkText={'sometimes with a link'}>highlighted text</HoverDefinitionText> to show a definition and link to more information.
 </LightCallout>
 
 <ScrollspyHeader header="what does keystone mean?"/>
-The first time I heard the term "keystone", it was with the term keystone species. 
-But now, years later, I actually looked into what a keystone is. It's one of these:
+The first time I heard the term "keystone", it was from the term keystone species. 
+Years later, I actually looked up what a keystone is. It's one of these:
+<Image src={w1} alt="keystone in place"/>
 
+And if you remove it, this might happen:
+<Image src={w2} alt="keystone out of place"/>
 
-And if you remove it, this happens:
+So, in terms of ecology, a keystone species is one that "defines" an ecosystem. Where, without it, the ecosystem would be "dramatically" different ([Nat Geo](https://education.nationalgeographic.org/resource/role-keystone-species-ecosystem/)).
 
+<ScrollspyHeader header="who coined the term?"/>
+The term keystone species was coined by the American ecologist [Robert T. Paine](https://en.wikipedia.org/wiki/Robert_T._Paine_(zoologist)) while he was a fellow at UW (washington). 
+The key experiment that precipitated this term took place in 1963, when he was studying <HoverDefinitionText hoverText={'shallow pools in the rock face that appear when the tide recedes'} link={'https://en.wikipedia.org/wiki/Tide_pool'}>tide pool</HoverDefinitionText> communities. 
 
-The term was coined by the ecologist [Robert T Paine](https://en.wikipedia.org/wiki/Robert_T._Paine_(zoologist)). The story goes that he was studying tide pool communities. 
-Namely, a community that looked like this:
+In this community, there were two key players: the [California Mussel](https://en.wikipedia.org/wiki/California_mussel), and the [Purple Sea Star](https://en.wikipedia.org/wiki/Pisaster_ochraceus):
+<Image src={w3} alt="sea star and mussel"/>
 
+The Mussel eats primarily algae and kelp, the Star eats a little bit of everything, including, importantly, the Mussel.
 
-Now, for his experiment, he simply took the purple star, (Pisaster ochraceus), the top predator of this ecosystem and repeatedly chucked it into the tide. 
-(Repeatedly because presumably the sea star kept crawling back. Science requires sacrifice).
+Paine was curious what would happen if he *removed* the sea star. 
+
+To do this, he used a crowbar to pry up any sea stars, and repeatedly chucked it into the tide. 
+(Repeatedly because presumably the sea star kept crawling back.)
+
+After some time, he found that the pools without the stars became <HoverDefinitionText hoverText={'habitats dominated primarily by one species. This can occur naturally or through human intervention.'} link={'https://en.wikipedia.org/wiki/Tide_pool'}>monocultures</HoverDefinitionText> dominated by mussels.
+
+This finding challenged the predominant view in ecology at the time that having diversity in a habitat was enough for a thriving ecosystem.
+Paine's experiment suggested that while all species play their role in the ecosystem, some species have more vital roles than others. 
+Such that these species have a "cascading" effect on their prey, their prey's prey, and so on... 
+
 
 <ScrollspyHeader header="trophic cascades (chain reactions)"/>
-A related theory to keystone species is what's called the "Green World Hypothesis". 
-It states that the world is green because of predators. 
-By controlling the herbivore population, predators are primarily responsible for the "Green World".
+A central pattern in ecology is relationships. Cause and effect. When a predator population grows, its prey population shrinks, and vice versa. 
+Everything affects everything else, (to some degree), whether through direct interaction or some nth-degree interaction. 
 
-There is a central pattern you'll see in ecology, of cause and effect. When one population wanes, the other waxes. 
-Everything affects everything else, (to some degree), through these chain of events.
+To better illustrate this idea, here's a much-simplified "interactive" food web representing a segment of the above tide pool food web.
+(Try changing the slider to see how changing the sea star population might hypothetically affect other species.)
 
+<DynamicFoodWeb/>
 
+Removing the starfish in the above network causes *trophic cascade*: changes in population levels that occur at one trophic level can have rippling effects up or down the food chain.
+The one that Paine witnessed is called a *top-down cascade*. But if something were to heavily impact the primary producers (plants) of an ecosystem, that would be a *bottom-up cascade*.
 
+In the biological world, it's rare for something to be truly independent from everything else.
 
 <ScrollspyHeader header="examples"/>
 <ScrollspyHeader header="predators" level={3}/>
@@ -57,38 +83,12 @@ Everything affects everything else, (to some degree), through these chain of eve
 <ScrollspyHeader header="pollinators" level={3}/>
 - bees
 
-<ScrollspyHeader header="there can only be one?"/>
-Well, maybe. With ecology, (and lots of things), there are few absolutes. 
-
-A keystone species is simply one that "defines" an ecosystem, where without it, the ecosystem would be "dramatically" different. 
-And it's really up to us to determine what counts as dramatic or not.
-
-Now, I'm going to make a weird analogy to machine learning, (that may not click with everyone), but I think it's too good to pass up. 
-
-In machine learning we define models, or simply, equations that predict some result (y) from a set of variables (x1,x2,...). Think back to the equation of a line (y=mx+b).
-To provide an example, I could simplify Paine's tide pool ecosystem as something like:
-
-change_in_ecosystem = (presence_of_sea_star) + (presence_of_mussel) + (presence_of_kelp) ...
-
-Now, imagine the "presence" of a species as between 0 and 1, with 0 meaning no members, and 1 meaning = to the initial population size of the species.
-
-If we set the weight of the sea star to 0, (as Paine did when he threw the star repeatedly), we can then measure then change in ecosystem using some numeric representation.
-
-<LightCallout>
-Yet *another* comparison between keystone species and ML modeling is "functional redundancy". Nat Geo explains low functional redundancy as: "if the species were to disappear from the ecosystem, no other species would be able to fill its ecological niche."
-This is extremely similar to the concept of "feature importance" in ML. 
-
-Essentially, how "unique" is the impact of a predictor x on the result y. With sea stars, it's difficult to find another predator that can easily step in to clean up mussels. But, with oxygen producers, there might be more than 1 candidate.
-</LightCallout>
 
 
-<ScrollspyHeader header="what you can do"/>
+<ScrollspyHeader header="takeaways"/>
 Next time you go for a walk in the park, you can try thinking about the roles different plants, animals, even abiotic members play in an ecosystem.
-In fact, next week's piece will be about roles, which in ecology is called a "niche".
+In fact, my next piece will be about these roles, which in ecology is called a "niche".
 
 
-<ScrollspyHeader header="reads" level={3}/>
-I've been wanting to write about ecology for a long time, but was inspired by this book. 
-Which was my introduction the origin of the term "keystone s    pecies":
-
-- Life Between the Tides, by Adam Nicolson
+<ScrollspyHeader header="further readings" level={3}/>
+- [Life Between the Tides](https://www.amazon.com/Life-Between-Tides-Adam-Nicolson/dp/0374251436), by Adam Nicolson. I've been wanting to write about ecology for a long time, and was recently inspired to by this book. As it introduced me the origin of the term "keystone species":

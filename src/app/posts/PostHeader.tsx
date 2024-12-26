@@ -91,7 +91,7 @@ export default function PostHeader({
 
   useEffect(() => {
     const handleBeforeUnload = () => {
-      alert("Are you sure you want to leave?");
+      alert("Are you sure you want to leave?"); // is getting blocked in console.log???
     };
     // Attach the beforeunload event listener
     window.addEventListener("beforeunload", handleBeforeUnload);

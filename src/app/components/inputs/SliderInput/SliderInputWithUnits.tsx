@@ -9,7 +9,7 @@ type SliderInputWithUnitsProps = {
   label: string | undefined;
   value: number;
   //   onChangeFn: (value: number) => void;
-  onChangeFn: (value: string) => void;
+  onChangeFn: (value: string | number) => void;
   unit: string | undefined;
   min?: number;
   max?: number;
@@ -17,6 +17,7 @@ type SliderInputWithUnitsProps = {
   className?: string; // Additional custom className
   percentWidth?: string;
   marginH?: number;
+  includeUnitInChange?: boolean;
 };
 
 export default function SliderInputWithUnits({
@@ -30,15 +31,20 @@ export default function SliderInputWithUnits({
   className,
   percentWidth = "60",
   marginH = 10,
+  includeUnitInChange = true,
 }: SliderInputWithUnitsProps) {
   const numericValue = typeof value === "string" ? parseFloat(value) : value;
-//   console.log("slider input value", value);
+  //   console.log("slider input value", value);
 
   // Handle the change event from the slider component
   const handleChange = (newValue: number[]) => {
     // console.log("new value in %", newValue);
     // onChangeFn(newValue[0]); // Only take the first value, as Slider provides an array
-    onChangeFn(`${newValue[0]}${unit}`);
+    if (includeUnitInChange) {
+      onChangeFn(`${newValue[0]}${unit}`);
+    } else {
+      onChangeFn(newValue[0]);
+    }
   };
 
   return (
