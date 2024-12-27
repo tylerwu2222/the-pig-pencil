@@ -77,7 +77,7 @@ const DynamicFoodWeb = () => {
   }
 
   const renderWeb = () => {
-    let svg = d3.select(svgRef.current);
+    const svg = d3.select(svgRef.current);
     svg
       .style("width", dimensions.viz_width_d)
       .style("height", dimensions.viz_height_d);
