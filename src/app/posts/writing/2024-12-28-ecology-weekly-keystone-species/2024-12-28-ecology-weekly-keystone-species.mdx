@@ -1,0 +1,132 @@
+import DynamicFoodWeb from './DynamicFoodWeb';
+
+import w1 from './wecology_keystone_1.png';
+import w2 from './wecology_keystone_2.png';
+import w3 from './wecology_keystone_3.png';
+
+
+export const metadata = {
+    publishDate: "2024-12-28",
+    title: "Ecology Weekly: Keystone Species",
+    authors: ["Tyler Wu"],
+    tags: ["ecology", "biology", "keystone", "species", "trophic cascade"],
+    readingTime: "8 min",
+    caption: "ecosystem-defining",
+    isSharable: true,
+    hasScrollspy: true,
+    showHeaderImage: true,
+    visibility: "visible"
+};
+
+Hi! This is the first entry in what I'm hoping to make a weekly (maybe bi-weekly) series about topics in ecology. 
+I plan to keep these short and sweet, focused on one key term and potentially some related terms.
+
+I've always loved ecology since high school, when I first studied it in Science Olympiad. 
+
+The beauty of ecology is that the topics are all interconnected, 
+and there's probably a lifetime's worth of interesting facts and relationships I could talk about.  
+
+That almost makes it hard to choose where to start. Still, we have to start somewhere.
+So to kick off this series, I'll talk about a concept that I think represents some big ideas very well: *keystone species*. 
+
+<LightCallout>
+**Note:** for this series. I've created a lil feature that lets you hover (or tap on mobile) <HoverDefinitionText hoverText={'the definition would appear here...'} link={'https://thepigpencil.com'} linkText={'sometimes with a link'}>highlighted text</HoverDefinitionText> to show a definition and link to more information.
+</LightCallout>
+
+<ScrollspyHeader header="what does keystone mean?"/>
+The first time I heard the term "keystone", it was from the term keystone species. 
+Years later, I actually looked up what a keystone is. It's one of these:
+<Image src={w1} alt="keystone in place"/>
+
+And if you remove it, this might happen:
+<Image src={w2} alt="keystone out of place"/>
+
+So, in terms of ecology, a keystone species is one that "defines" an ecosystem. 
+Such that, if it were removed, the ecosystem would be "dramatically" different ([Nat Geo](https://education.nationalgeographic.org/resource/role-keystone-species-ecosystem/)).
+
+<ScrollspyHeader header="who coined the term?"/>
+The term keystone species was coined by the American ecologist [Robert T. Paine](https://en.wikipedia.org/wiki/Robert_T._Paine_(zoologist)) while he was a fellow at the University of Washington (UW). 
+The key experiment that precipitated this term took place in 1963, when he was studying <HoverDefinitionText hoverText={'shallow pools in the rock face that appear when the tide recedes'} link={'https://en.wikipedia.org/wiki/Tide_pool'}>tide pool</HoverDefinitionText> communities. 
+
+In this community, there were two key players: the [California Mussel](https://en.wikipedia.org/wiki/California_mussel), and the [Purple Sea Star](https://en.wikipedia.org/wiki/Pisaster_ochraceus):
+<Image src={w3} alt="sea star and mussel"/>
+
+The Mussel eats primarily plankton that it filters out of that water. The Star eats a little bit of everything, including, importantly, the Mussel.
+
+Paine was curious what would happen if he *removed* the sea star. 
+
+To do this, he used a crowbar to pry up any sea stars, and repeatedly chucked it into the tide. 
+(Repeatedly because presumably the sea star kept crawling back.)
+
+After some time, he found that the pools without the stars became <HoverDefinitionText hoverText={'habitats dominated primarily by one species. This can occur naturally or through human intervention.'} link={'https://en.wikipedia.org/wiki/Tide_pool'}>monocultures</HoverDefinitionText> **dominated by mussels**.
+Without the sea star there to keep its population in check, the mussel ran rampant, having free reign to expand and crowd out other species in the pool.
+
+This finding challenged the predominant view in ecology at the time -- that having diversity in a habitat was enough for a thriving ecosystem.
+Paine's experiment suggested that while all species play their role in the ecosystem, some species have more essential roles than others. 
+
+<ScrollspyHeader header="what qualifies as keystone?"/>
+OK, So some species have more "essential" roles than others. 
+
+What does that actually mean. How do we measure this "essentialness" that qualifies some species as keystone and others not? 
+One concept we can measure this with is "functional redundancy"; the less redundant (more unique) the function/role a species plays, the more important that species is to the function of an ecosystem. 
+
+For example, say three species of fish are responsible for grazing on a coral. If one happens to disappear, that would be unfortunate, but its likely the other two fish species could compensate.
+On the other hand, in the Paine experiment the purple sea star has low functional redundancy, (in fact it was a one of one), in the role as "mussel eater". 
+Once the sea star was removed, no other species could effectively step in to fill the "mussel eater" role.
+
+Aside from the uniqueness of the role, the other logical factors to consider are the breadth and depth of a species' impact. 
+Whether through consumption, movement, shelter-building, or many other activities, each animal leaves a footprint on the environment.
+
+And each action does not just end at the direct recipient of that action. 
+Each action has a "cascading" cause and effect chain on that actions recipient, that recipient's recipient, and so on... 
+
+<ScrollspyHeader header="trophic cascades (chain reactions)"/>
+A central pattern in ecology is cause and effect. relationships. When a predator population grows, its prey population shrinks, and vice versa. 
+Everything affects everything else to some degree, whether through direct interaction or some nth-degree interaction. 
+
+To better illustrate this idea, here's a very simplified "interactive" food web representing a segment of the aforementioned tide pool ecosystem.
+Try changing the slider to see how changing the sea star population might hypothetically affect other species in the short-term.
+
+<DynamicFoodWeb/>
+
+<LightCallout>
+*Note*: the mussel eats algae, but it does not directly consume anemone, rather it out-competes anemone for space.
+</LightCallout>
+
+Removing the starfish in the above network causes <HoverDefinitionText hoverText={'the resulting change in different species population levels that occur as a result of dramatic change to one particularly essential species'} link={'https://en.wikipedia.org/wiki/Trophic_cascade'}>*trophic cascade*</HoverDefinitionText>.
+The type of cascade that Paine witnessed is called *top-down cascade*, since it was the change in a top-level predator, that caused the downward wave of population shifts. If something were to heavily impact the primary producers (e.g. plants) of an ecosystem, that would be a *bottom-up cascade*.
+
+In the ecological world, things are often dependent on other things.
+
+<ScrollspyHeader header="more examples"/>
+While the typical examples are usually predators, 
+there are also other types of roles that could have keystone-level impacts.
+
+<ScrollspyHeader header="wolves" level={3} include={false}/>
+The wolf (and its related food web) was actually what inspired the [discovery](https://en.wikipedia.org/wiki/Trophic_cascade#Origins_and_theory) of trophic cascade. 
+American ecologist Aldo Leopold observed that as hunters hunted wolves in an area, 
+the deer that the wolves preyed upon were allowed to live and repopulate, leading to overgrazing of the mountains.
+
+<ScrollspyHeader header="elephants" level={3} include={false}/>
+As herbivores in the savannah, elephants play a key role in uprooting trees and eating saplings, preventing the grasslands from turning into forests.
+In addition, they also dig up dry riverbeds to create watering holes for themselves (and other animals). 
+In this way they act as <HoverDefinitionText hoverText={'organisms that directly or indirectly modulate the availability of resources to other species, by causing physical state changes in biotic or abiotic materials'} link={'https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/ecosystem-engineers#:~:text=Ecosystem%20engineers%20are%20organisms%20that,.%2C%201994%2C%201997).'}>ecosystem engineers</HoverDefinitionText>
+Without them, many plain animals like zebras would not be able to thrive in the same way.
+
+<ScrollspyHeader header="beavers" level={3} include={false}/>
+Beavers are another ecosystem engineer that physically defines the unique riparian ecosystem. 
+While you might initially expect dams to cause floods, in reality, their dams help modulate water flow preventing flooding, 
+and provide a more consistent wetland habitat to its inhabitants. You can read more about all the good things beavers do [here](https://environmentamerica.org/articles/beavers-are-ecosystem-engineers-and-fight-climate-change-too/).
+
+<LightCallout>
+Some other keystone species include bees, ants, termites, coral, and saguaro cacti. I'll leave it as an exercise for you to Google/think about why.
+</LightCallout>
+
+<hr/>
+Hopefully, this week you learned a bit about what a keystone species is and how different species play different roles of varying importance. 
+Next time, we will be talking about these roles, (in ecology called a "niche"), and how these roles arise through competition.
+
+<ScrollspyHeader header="further readings"/>
+1) [Life Between the Tides](https://www.amazon.com/Life-Between-Tides-Adam-Nicolson/dp/0374251436), by Adam Nicolson. I've been wanting to write about ecology for a long time, and this was the book that recently inspired me to do so. It also introduced me the origin story of the term "keystone species". 
+It's a neat little book that talks about a man who created a few tide pools and the different visitors that came and went to these pools.
+2) [Role of Keystone Species in an Ecosystem (National Geographic)](https://education.nationalgeographic.org/resource/role-keystone-species-ecosystem/). I think this is a nice synopsis of keystone species and some other related terms used to describe species.
