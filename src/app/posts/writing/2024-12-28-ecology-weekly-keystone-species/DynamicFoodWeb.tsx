@@ -18,15 +18,17 @@ type SpeciesNode = {
 // export const avg_cubic = d3.transition().duration(3000).ease(d3.easeCubic);
 
 const DynamicFoodWeb = () => {
-  // initial food web (nodes and edges)
-  // population is static, modify ratio to modify displayed
+  const isMobile = window.innerWidth < 768;
+
+  // initial food web nodes
+  // population is static, modify ratio to modify displayed population
   const initialFoodWeb = {
     nodes: [
       {
         id: "Purple Sea Star",
         population: 50,
         ratio: 1,
-        x: 300,
+        x: isMobile ? 100 : 300,
         y: 50,
         color: "purple",
       },
@@ -34,29 +36,29 @@ const DynamicFoodWeb = () => {
         id: "California Mussel",
         population: 250,
         ratio: 1,
-        x: 600,
-        y: 175,
+        x: isMobile ? 225 : 600,
+        y: isMobile ? 90 : 175,
         color: "grey",
       },
       {
         id: "Algae",
         population: 1000,
         ratio: 1,
-        x: 300,
-        y: 350,
+        x: isMobile ? 100 : 300,
+        y: isMobile ? 175 : 350,
         color: "green",
       },
       {
         id: "Anemone",
         population: 300,
         ratio: 1,
-        x: 700,
-        y: 350,
+        x: isMobile ? 300 : 700,
+        y: isMobile ? 175 : 350,
         color: "orange",
       },
     ],
   };
-
+  // food web links
   const foodWebLinks = [
     { source: "Purple Sea Star", target: "California Mussel" },
     { source: "California Mussel", target: "Algae" },
@@ -65,6 +67,7 @@ const DynamicFoodWeb = () => {
 
   // population states (current and previous)
   const [foodWeb, setFoodWeb] = useState(initialFoodWeb);
+
   const svgRef = useRef(null); // Ref to the container element
 
   // Helper function to find node positions by ID
@@ -79,8 +82,14 @@ const DynamicFoodWeb = () => {
   const renderWeb = () => {
     const svg = d3.select(svgRef.current);
     svg
-      .style("width", dimensions.viz_width_d)
-      .style("height", dimensions.viz_height_d);
+      .style(
+        "width",
+        isMobile ? dimensions.viz_width_m : dimensions.viz_width_d,
+      )
+      .style(
+        "height",
+        isMobile ? dimensions.viz_height_m : dimensions.viz_height_d,
+      );
     // .style("background", "lightgrey");
 
     // const rScale = ();
@@ -88,7 +97,7 @@ const DynamicFoodWeb = () => {
     const populationScale = d3
       .scaleSqrt()
       .domain([0, 1000]) // Input range (e.g., 0 to 1000)
-      .range([0, 100]);
+      .range([0, isMobile ? 50 : 100]); // output radius
 
     // create current population circles
     svg
@@ -111,6 +120,7 @@ const DynamicFoodWeb = () => {
             .call((enter) =>
               enter
                 .transition(avg_cubic())
+                .delay((d, i) => i * 1000)
                 .attr("r", (d) => populationScale(d.population * d.ratio))
                 .style("fill", (d) => d.color)
                 .style("fill-opacity", 0.4)
@@ -120,12 +130,14 @@ const DynamicFoodWeb = () => {
           update.call((update) =>
             update
               .transition(avg_cubic())
+              .delay((d, i) => i * 1000)
               .attr("r", (d) => populationScale(d.population * d.ratio)),
           ),
         (exit) =>
           exit.call((exit) =>
             exit
               .transition(avg_cubic())
+              .delay((d, i) => i * 1000)
               .attr("r", 0)
               .style("opacity", 0)
               .remove(),
@@ -281,7 +293,7 @@ const DynamicFoodWeb = () => {
   };
 
   return (
-    <div className="my-2 h-[85vh] w-full">
+    <div className="my-2 h-[90vw] w-full md:h-[85vh]">
       <div className="flex gap-2">
         <button
           onClick={resetWeb}
