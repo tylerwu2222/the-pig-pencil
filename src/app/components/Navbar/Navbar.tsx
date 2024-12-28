@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <div
       // className={`sticky top-0 bg-backgroundWhite pt-2 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
-      className={`sticky h-10 z-50 top-0 bg-backgroundWhite pt-2 transition-transform duration-700 ease-in-out md:grid md:grid-cols-3 md:pt-0 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`sticky top-0 z-50 sm:h-10 bg-backgroundWhite pb-1 pt-2 transition-transform duration-700 ease-in-out md:grid md:grid-cols-3 md:pb-0 md:pt-0 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       {/* TPP logo */}
       <div className="h-10 justify-self-center pl-2 pt-1 md:justify-self-start">
@@ -66,7 +66,7 @@ const Navbar = () => {
             }
           >
             <p
-              className="text-end text-3xl transition-colors duration-700 ease-in-out hover:text-hoverDeepPink md:text-2xl"
+              className="text-end text-3xl transition-colors duration-700 ease-in-out hover:text-hoverDeepPink sm:text-2xl"
               style={{ fontFamily: logoFontFamily }}
               // onMouseOver={handleHover}
               // onMouseLeave={handleLeave}
