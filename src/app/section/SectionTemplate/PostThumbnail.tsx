@@ -55,7 +55,7 @@ export default function PostThumbnail({
 
   const isNew =
     differenceInDays(new Date(), post.publishDate) <= 7 &&
-    differenceInDays(new Date(), post.publishDate) > 0;
+    differenceInDays(new Date(), post.publishDate) >= 0;
 
   return (
     <>
