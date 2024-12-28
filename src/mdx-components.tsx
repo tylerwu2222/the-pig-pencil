@@ -12,6 +12,7 @@ import SearchInput from "./app/components/inputs/SearchInput/SearchInput";
 // markdown
 import LightCallout from "./app/components/markdown/callouts/LightCallout";
 import HoverDefinitionText from "./app/components/markdown/hovertext/HoverDefinitionText";
+import ClickDefinitionText from "./app/components/markdown/hovertext/ClickDefinitionText";
 import UnderConstruction from "./app/posts/UnderConstruction";
 
 // links
@@ -128,6 +129,7 @@ export function useMDXComponents(
     GithubIcon,
     LightCallout,
     HoverDefinitionText,
+    ClickDefinitionText,
     UnderConstruction
   };
 }
