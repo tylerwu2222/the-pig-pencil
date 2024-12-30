@@ -31,7 +31,7 @@ export default function BonusSection() {
             </>
           }
           content={
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
               {/* <div className='flex flex-wrap gap-[1vw]'> */}
               {portfolioData.games["mini motorways"].map((city, i) => {
                 return (
@@ -58,7 +58,7 @@ export default function BonusSection() {
                             "games/mini_motorways/" +
                             city.image
                           }
-                          className="w-[80vw]"
+                          className="max-h-[80vh] w-auto sm:w-[60vw]"
                           alt={"mm-" + city.city}
                           loading="lazy"
                         />

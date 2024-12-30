@@ -61,7 +61,7 @@ export default function ProjectsSection() {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 items-start gap-[1vw]">
+              <div className="grid grid-cols-1 items-start gap-[1vw] sm:grid-cols-3">
                 {portfolioData.projects.map((project, i) => {
                   if (project.type == "web app") {
                     return (
@@ -82,7 +82,7 @@ export default function ProjectsSection() {
                           }
                           img={
                             <img
-                              className="max-h-[70vh] w-auto"
+                              className="max-h-[80vh] w-auto sm:w-[60vw]"
                               src={portfolio_image_folder + project.thumbnail}
                               title={project.title}
                               alt={project.thumbnail}
