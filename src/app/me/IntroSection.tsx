@@ -11,7 +11,7 @@ export default function IntroSection() {
       <Link href="/" title="go to blog">
         <div className="fixed left-0 top-2 z-20 transform opacity-80 transition ease-in-out hover:translate-x-1 hover:scale-110 hover:opacity-100 lg:w-[4vw] lg:max-w-[80px]">
           <img
-            className="ml-[-10px] h-auto rounded-md"
+            className="ml-[-10px] h-[50px] sm:h-auto rounded-md"
             src="/img/pigpencil.png"
             loading="lazy"
           />
@@ -22,7 +22,7 @@ export default function IntroSection() {
       {/* <img id='hover-reminder-icon' src={portfolio_image_folder + 'icons/hover_reminder.png'}></img> */}
       {/* STARTING faucet */}
       {/* <div className='relative h-[100vh] ml-[25vw]'> */}
-      <div className="relative ml-[15vw] h-[100vh]">
+      <div className="flex flex-col justify-center items-center h-[95vh] sm:h-[100vh]">
         {/* <ScrollGrowShrinkElement
                             type="img"
                             startSize={isMobile ? 50 : 100}
@@ -35,15 +35,14 @@ export default function IntroSection() {
                             loading='lazy'
                         /> */}
         <img
-          className="h-[100%] pt-10"
+          className="h-[100vw] w-auto sm:h-[100%] sm:pt-10"
           src={portfolio_image_folder + "icons/faucet_animation.gif"}
           alt="me-faucet"
         />
         <h1
           id="title-header"
-          className='absolute right-[10vw] top-[65vh] z-10 pl-0 font-["Baskerville"] text-2xl font-bold text-[#676464] 2xl:text-6xl'
+          className='sm:absolute right-[10vw] text-center top-[65vh] z-10 pl-0 font-["Baskerville"] text-2xl font-bold text-[#676464] 2xl:text-6xl'
         >
-          {" "}
           HOW I FOUND DATA VISUALIZATION ♱
         </h1>
       </div>

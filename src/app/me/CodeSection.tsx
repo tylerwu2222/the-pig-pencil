@@ -5,10 +5,10 @@ const portfolio_image_folder = "/img/people/portfolio/";
 export default function CodeSection() {
   return (
     <>
-      <div className="min-h-[100vh] px-[20%]">
+      <div className="min-h-[100vh] px-[3%] sm:px-[20%]">
         <p>I go to UCLA and major in Data Theory and Cognitive Science.</p>
         <img
-          className="width-[80%] max-w-[600px]"
+          className="w-[80%] max-w-[600px]"
           src={portfolio_image_folder + "icons/surface.png"}
           loading="lazy"
         ></img>

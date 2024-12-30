@@ -5,7 +5,7 @@ const portfolio_image_folder = "/img/people/portfolio/";
 export default function VisSection() {
   return (
     <>
-    <div className="min-h-[100vh] px-[20%]">
+    <div className="min-h-[100vh] px-[3%] sm:px-[20%]">
           <div className="floating-graf">
             <p>
               I decide to give this "visualizations for the web" thing a try
@@ -50,7 +50,7 @@ export default function VisSection() {
                                 </FormControl> */}
               </div>
             </div>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2">
               {portfolioData.visualizations.map((v, i) => {
                 let vizTN;
                 if (v.gif == "none") {
@@ -97,7 +97,7 @@ export default function VisSection() {
                       </div>
                       <p>{v.description}</p>
                     </div>
-                    <div className="viz-grid-card-media-div">
+                    <div className="flex justify-center items-center">
                       <a href={v.url} target="_blank">
                         {vizTN}
                       </a>

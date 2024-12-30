@@ -98,7 +98,7 @@ export default function SectionTemplate({
       res = await fetch(`/api/${section}/posts`);
     }
     const content = await res.json();
-    console.log("FE: content", content);
+    // console.log("FE: content", content);
     return content;
   };
 

@@ -10,7 +10,7 @@ const portfolio_image_folder = "/img/people/portfolio/";
 export default function ProjectsSection() {
   return (
     <>
-      <div className="min-h-[100vh] px-[20%]">
+      <div className="min-h-[100vh] px-[3%] sm:px-[20%]">
         <p>
           Mid-undergrad, the pandemic happens and I start to reevaluate what I
           want to do.
@@ -61,7 +61,7 @@ export default function ProjectsSection() {
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-3 items-start gap-[1vw]">
+              <div className="grid grid-cols-1 sm:grid-cols-3 items-start gap-[1vw]">
                 {portfolioData.projects.map((project, i) => {
                   if (project.type == "web app") {
                     return (

@@ -18,8 +18,11 @@ export default function ArtSection() {
 
   return (
     <>
-      <div className="min-h-[100vh] px-[20%]" style={{ paddingBottom: "40vh" }}>
-        <div className="grid grid-cols-2 gap-4">
+      <div
+        className="min-h-[100vh] px-[3%] sm:px-[20%]"
+        style={{ paddingBottom: "40vh" }}
+      >
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div className="rounded-[2px] border-[1px] border-solid border-gray-600 px-4 py-8">
             <p>Here are a few sketchbooks for proof.</p>
             <img
@@ -82,15 +85,22 @@ export default function ArtSection() {
             </p>
 
             {/* <DroppableArea /> */}
-            <div className="flex">
-              <div className="h-[80vh] w-[80vh] border-2 border-black">
+            <div className="sm:flex">
+              <div className="h-[80vw] w-[80vw] border-2 border-black sm:h-[80vh] sm:w-[80vh] max-h-[700px] max-w-[700px]">
                 {featuredImage ? (
-                  <img className="h-full" src={featuredImage} loading="lazy"></img>
+                  <img
+                    className="h-[80vw] sm:h-full"
+                    src={featuredImage}
+                    loading="lazy"
+                  ></img>
                 ) : (
                   <div className="flex justify-center">it'll show up here.</div>
                 )}
               </div>
-              <div className="px-2 py-4"><span className="underline">Description:</span> {featuredImageDescription}</div>
+              <div className="px-2 py-4">
+                <span className="underline">Description:</span>{" "}
+                {featuredImageDescription}
+              </div>
             </div>
           </div>
         </div>

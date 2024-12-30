@@ -10,7 +10,7 @@ const portfolio_image_folder = "/img/people/portfolio/";
 export default function BonusSection() {
   return (
     <>
-      <div className="min-h-[100vh] px-[20%]">
+      <div className="min-h-[100vh] px-[3%] sm:px-[20%]">
         <PortfolioSection
           title="Misc"
           summary={
@@ -31,7 +31,7 @@ export default function BonusSection() {
             </>
           }
           content={
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {/* <div className='flex flex-wrap gap-[1vw]'> */}
               {portfolioData.games["mini motorways"].map((city, i) => {
                 return (
@@ -45,7 +45,7 @@ export default function BonusSection() {
                             "games/mini_motorways/" +
                             city.image
                           }
-                          className="ModalImageThumbnail w-[30vw]"
+                          className="ModalImageThumbnail w-[80vw] sm:w-[30vw]"
                           alt={"mm-" + city.city}
                           title={city.city}
                           loading="lazy"

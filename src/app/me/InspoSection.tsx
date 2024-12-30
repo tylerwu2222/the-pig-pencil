@@ -6,7 +6,7 @@ const portfolio_image_folder = "/img/people/portfolio/";
 export default function InspoSection() {
   return (
     <>
-    <div className="min-h-[100vh] px-[20%]">
+    <div className="min-h-[100vh] px-[3%] sm:px-[20%]">
           <div className="floating-graf">
             <p>Ideally by the time you're reading this I've found purpose.</p>
             <p>One way I recenter my purpose is to be inspired.</p>
