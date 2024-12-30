@@ -35,33 +35,26 @@ export default function CollaboratorThumbnail({
     getSnakeCase(collaborator.name) +
     ".png";
 
-  //   console.log("post id");
+  const fetchNewestPost = async (authorName: string) => {
+    // get newest, visible post for author
+    const res = await fetch(`/api/post/${authorName}/newest`);
+    const newestPost = await res.json();
+    // console.log('newest',authorName,newestPost)
+    setNewestPost(newestPost);
+  };
 
   useEffect(() => {
-    const fetchPostById = async () => {
-      console.log(
-        "first post id in FE fetch",
-        collaborator.name,
-        // collaborator.posts,
-        collaborator.posts[0],
-      );
-      const res = await fetch(
-        `/api/post/id/${collaborator.posts.slice(-1)[0]}`,
-      );
-      const postData = await res.json();
-      // console.log("new post", postData);
-      setNewestPost(postData);
-    };
     if (collaborator.posts.length > 0) {
+      fetchNewestPost(collaborator.name);
       // console.log('co')
-      fetchPostById();
+      // fetchPostById();
     }
   }, [collaborator]);
 
   // const newestPost = getPostById(collaborator.posts[0]);
   // console.log('newest post', newestPost);
 
-  console.log("sort badge", sortBadge);
+  // console.log("sort badge", sortBadge);
 
   const isNew =
     differenceInDays(new Date(), collaborator.joinDate) <= 7 &&

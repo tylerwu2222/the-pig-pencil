@@ -1,18 +1,18 @@
 import prisma from "@/db";
 
 import { flattenJoinData } from "./prismaHelpers";
-import { Post } from "@prisma/client";
+import { Post, Author } from "@prisma/client";
 import { Post as PostExtended } from "@/types/extendedPrismaTypes";
 import { getDashedString } from "../stringFormatting";
 
 // GETTERS
 
 // export const getPostById = async (id:string): Promise<PostExtended> => {
-export const getPostById = async (id:string): Promise<Post> => {
+export const getPostById = async (id: string): Promise<Post> => {
   const idPost = await prisma.post.findFirst({
     where: {
       id: id,
-    }
+    },
     // include: {
     //   AuthorsOnPosts: {
     //     select: {
@@ -89,6 +89,24 @@ export const getPostBySlug = async (slug: string): Promise<PostExtended> => {
   return formattedSectionPosts;
 };
 
+export const getContentForSection = async (
+  section: string,
+): Promise<(Post | Author)[]> => {
+  let res;
+  if (section == "collaborators") {
+    res = await fetch("/api/authors");
+  }
+  // else if (section == 'art'){
+
+  // }
+  else {
+    res = await fetch(`/api/${section}/posts`);
+  }
+  const content = await res.json();
+  console.log("BE: content", content);
+  return content;
+};
+
 export const getAuthorIDByName = async (name: string) => {
   const authorByName = await prisma.author.findFirst({
     where: {
@@ -116,6 +134,7 @@ export const getTagIDByName = async (name: string) => {
 
   return tagIDByName;
 };
+
 // CREATE ONE
 export const createPost = async (metadata: Post) => {
   const newPost = await prisma.post.create({

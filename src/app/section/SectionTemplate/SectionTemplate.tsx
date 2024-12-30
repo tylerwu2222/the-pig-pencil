@@ -7,8 +7,6 @@ import { usePathname } from "next/navigation";
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
-// import { DropdownInputRadio } from "@/app/components/inputs/DropdownInput/DropdownInputRadio";
-// import TagsBox from '../../Modules/FormInput/TagsBox/TagsBox.js';
 
 // thumbnails
 import PostThumbnail from "./PostThumbnail";
