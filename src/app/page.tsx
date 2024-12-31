@@ -25,6 +25,7 @@ export default function Home() {
 
   // update home mosaic images based on hoveredTab
   useEffect(() => {
+    // update images based on hovered tab
     if (hoveredTab == "pigs!") {
       setDisplayedImages(
         Array.from({ length: 20 }, () => home_mosaic_images["pig"]).flat(),
@@ -32,6 +33,7 @@ export default function Home() {
     } else {
       setDisplayedImages(home_mosaic_images[hoveredTab]);
     }
+    // also randomly select image display pattern:
     // setCurrentImageGeneratingProcess(get_random_int(0, 5)); // 0 to 4
   }, [hoveredTab]);
 
@@ -40,8 +42,8 @@ export default function Home() {
       {/* navbar navigation */}
       <Navbar />
       {/* dynamic text/images */}
-      <div className="pointer-events-none relative h-[90vh]">
-        <p className="absolute left-1/2 top-1/2 w-[30vw] -translate-x-[5vw] text-left">
+      <div className="pointer-events-none relative flex h-[90vh] items-center justify-center sm:block">
+        <p className="left-1/2 top-1/2 w-[30vw] text-left sm:absolute sm:-translate-x-[5vw]">
           A blog about{" "}
           <span className="font-semibold text-hoverDeepPink transition-all duration-200">
             {hoveredTab}
