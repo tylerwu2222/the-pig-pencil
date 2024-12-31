@@ -19,6 +19,7 @@ import { formatDateToShortDate } from "@/lib/dateFormatting";
 interface CollaboratorThumbnailProps {
   collaborator: Author;
   sortBadge?: string | undefined;
+  onClickFn?: () => void;
 }
 
 const validSortOptions = ["total posts", "total views", "total oinks"];
@@ -26,6 +27,7 @@ const validSortOptions = ["total posts", "total views", "total oinks"];
 export default function CollaboratorThumbnail({
   collaborator,
   sortBadge,
+  onClickFn,
 }: CollaboratorThumbnailProps) {
   const [newestPost, setNewestPost] = useState<Post | undefined>(undefined);
 
@@ -119,12 +121,12 @@ export default function CollaboratorThumbnail({
             </p>
           </div>
           {/* link to most recent post */}
-          <div className="pt-2 text-sm">
+          <div className="my-2 text-sm">
             {newestPost ? (
               <p className="">
                 <span className="font-semibold">Newest post: </span>
                 <a
-                  className="underline hover:text-hoverDeepPink"
+                  className="underline transition duration-300 hover:text-hoverDeepPink"
                   href={`/posts/${newestPost.section}/${newestPost.slug}`}
                   title={newestPost.title}
                 >
@@ -135,7 +137,12 @@ export default function CollaboratorThumbnail({
               <p>Has not written anything yet, but let 'em cook🧑‍🍳</p>
             )}
           </div>
-
+          <p
+            className="cursor-pointer text-sm underline transition duration-300 hover:text-hoverDeepPink"
+            onClick={onClickFn}
+          >
+            learn more
+          </p>
           {/* post tag(s) */}
           {/* <div className=''>
                         {post.tags.map((t, i) => {

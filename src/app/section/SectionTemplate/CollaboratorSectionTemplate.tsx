@@ -1,6 +1,5 @@
 "use client";
 
-// import Head from 'next/head';
 import { usePathname } from "next/navigation";
 
 // modules
@@ -9,8 +8,6 @@ import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownI
 import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
 
 // thumbnails
-import PostThumbnail from "./PostThumbnail";
-import PostThumbnailWIP from "./PostThumbnailWIP";
 import CollaboratorThumbnail from "./CollaboratorThumbnail";
 
 // react
@@ -21,40 +18,23 @@ import { useQuery } from "@tanstack/react-query";
 import { filterSort } from "@/lib/FilterSort";
 
 // types
-import { Post, Author } from "@/types/extendedPrismaTypes";
+import { Author } from "@/types/extendedPrismaTypes";
+import { Author as AuthorExtended } from "@/types/extendedPrismaTypes";
+import CollaboratorInfoModal from "./CollaboratorInfoModal";
+import { index } from "d3";
 
-const searchKeywordMap: Record<string, string> = {
-  data: "data stories",
-  writing: "writing",
-  cheatsheet: "cheatsheets",
-  tutorial: "tutorials",
-  project: "projects"
-};
-
-interface SectionTemplateProps {
-  section: string;
-  contentType: string;
+interface CollaboratorSectionTemplateProps {
   searchBarIncluded: boolean;
   sortPostsIncluded: boolean;
-  tagBoxIncluded: boolean;
-  // postTemplateType = 1
+  //   tagBoxIncluded: boolean;
 }
 
-// template for all section pages except art and collaborators
-export default function SectionTemplate({
-  section = "",
-  contentType = "",
+export default function CollaboratorSectionTemplate({
   searchBarIncluded = true,
   sortPostsIncluded = true,
-  tagBoxIncluded = true,
-  // postTemplateType = 1
-}: Partial<SectionTemplateProps>) {
-  let initialSortKeyword;
-  if (section == "collaborators" || section == "art") {
-    initialSortKeyword = "name";
-  } else {
-    initialSortKeyword = "date";
-  }
+  //   tagBoxIncluded = true,
+}: Partial<CollaboratorSectionTemplateProps>) {
+  const initialSortKeyword = "name";
   // update tab title
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/");
@@ -68,22 +48,27 @@ export default function SectionTemplate({
   const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // desc dates = newest first
   // posts
-  const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
-  const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
-  // different sort keywords based on section
-  let sortKeywords = ["date", "title", "views", "oinks", "author"];
-  if (section == "art") {
-    sortKeywords = ["date", "name", "views", "oinks", "artist"];
-  }
+  const [allCollaborators, setAllCollaborators] = useState<Author[]>([]);
+  const [FSCollaborators, setFSCollaborators] = useState<Author[]>([]);
+
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [currentModalIndex, setCurrentModalIndex] = useState<number>(0);
+  const [modalCollaborator, setModalCollaborator] = useState<
+    Author | AuthorExtended | undefined
+  >();
+
+  const sortKeywords = [
+    "date joined",
+    "name",
+    "role",
+    "total posts",
+    "total views",
+    "total oinks",
+  ];
 
   // initialize content for section
   const getSectionContent = async () => {
-    // let res;
-    // if (section == 'art'){
-    // }
-    // else {
-    const res = await fetch(`/api/${section}/posts`);
-    // }
+    const res = await fetch("/api/authors");
     const content = await res.json();
     // console.log("FE: content", content);
     return content;
@@ -95,31 +80,31 @@ export default function SectionTemplate({
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["sectionContent", section],
+    queryKey: ["sectionContent"],
     queryFn: () => getSectionContent(),
-    enabled: !!section,
   });
 
-  // Set your local state when necessary
+  // set local states
   useEffect(() => {
     if (content) {
-      setAllContent(content);
-      setFSContent(content);
+      setAllCollaborators(content);
+      setFSCollaborators(content);
+      setModalCollaborator(content[0]);
     }
   }, [content]);
 
   // update displayed content when any search/filter parameter changes
   useEffect(() => {
     const subsetContent = filterSort({
-      content: allContent,
+      content: allCollaborators,
       filterKeyword: searchValue,
       sortKeyword: sortKeyword,
       selectedTags: selectedTags,
       sortDirection: sortDirection,
-    });
-    setFSContent(subsetContent);
+    }) as Author[];
+    setFSCollaborators(subsetContent);
     // console.log(Filter)
-  }, [searchValue, sortKeyword, sortDirection, selectedTags, allContent]);
+  }, [searchValue, sortKeyword, sortDirection, selectedTags, allCollaborators]);
 
   //  update filter/sort parameters
   const handleSearchKeywordChange = (newSearchValue: string) => {
@@ -138,15 +123,26 @@ export default function SectionTemplate({
     }
   };
 
-  // to make wip visible on dev server, but disabled on prod.
-  const isPostVisible = (postVisibility: string) => {
-    if (postVisibility === "visible") return true; // Always visible
-    if (postVisibility === "hidden") return false; // Never visible
-    if (postVisibility === "wip") {
-      // visible in development
-      return process.env.NODE_ENV === "development";
-    }
-    return false; // Default fallback
+  const handleModalOpen = (collaborator: Author, index: number) => {
+    setModalCollaborator(collaborator);
+    setCurrentModalIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const handleModalNext = () => {
+    const nextIndex = Math.min(
+      currentModalIndex + 1,
+      FSCollaborators.length - 1,
+    );
+    const nextCollaborator = FSCollaborators[nextIndex];
+    setCurrentModalIndex(nextIndex);
+    setModalCollaborator(nextCollaborator);
+  };
+  const handleModalPrev = () => {
+    const prevIndex = Math.max(currentModalIndex - 1, 0);
+    const prevCollaborator = FSCollaborators[prevIndex];
+    setCurrentModalIndex(prevIndex);
+    setModalCollaborator(prevCollaborator);
   };
 
   return (
@@ -157,11 +153,20 @@ export default function SectionTemplate({
           pathNameLast.charAt(0).toUpperCase() +
           pathNameLast.slice(1)}
       </title>
+      <CollaboratorInfoModal
+        collaborators={FSCollaborators}
+        collaborator={modalCollaborator}
+        isOpen={isModalOpen}
+        initialIndex={currentModalIndex}
+        handleNextFn={handleModalNext}
+        handlePrevFn={handleModalPrev}
+        onCloseFn={() => {
+          setIsModalOpen(false);
+        }}
+      />
       <div className="px-[3%] py-3 xl:px-[20%]">
         {/* search + sort div */}
         <div className="grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">
-          {/* <div className="sticky top-0 pt-[5vh] md:pt-[2vh] z-50 grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2"> */}
-          {/* <div className="flex gap-2 p-[2vh] items-center"> */}
           {searchBarIncluded ? (
             <div className="col-span-full row-start-1 flex items-end md:col-span-5">
               <SearchInput
@@ -169,7 +174,7 @@ export default function SectionTemplate({
                 onValueChangeFn={(e) => {
                   handleSearchKeywordChange(e.target.value);
                 }}
-                placeholder={"search " + searchKeywordMap[section]}
+                placeholder={"search collaborators"}
               />
             </div>
           ) : (
@@ -199,7 +204,7 @@ export default function SectionTemplate({
           >
             <i className="text-gray-500 md:min-h-[1em]">
               {searchValue.length > 0
-                ? FSContent.length + " results for '" + searchValue + "'"
+                ? FSCollaborators.length + " results for '" + searchValue + "'"
                 : "\u00A0"}
             </i>
           </div>
@@ -207,36 +212,38 @@ export default function SectionTemplate({
         {isLoading ? (
           <div className="flex items-center justify-center">
             <p className="rounded-2xl bg-slate-200 px-3 text-stone-700 shadow-md">
-              loading {searchKeywordMap[section]} 🐖...
+              loading collaborators 🐖...
             </p>
           </div>
         ) : isError ? (
           <div className="flex items-center justify-center">
             <p className="text-stone-400">
-              error loading content, please contact tyler 🐷
+              error loading collaborators, please contact tyler 🐷
             </p>
           </div>
         ) : !isLoading ? (
-          FSContent.length > 0 ? (
+          FSCollaborators.length > 0 ? (
             <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
-              {(FSContent as Post[]).map((post: Post) => {
-                if (isPostVisible(post.visibility)) {
+              {(FSCollaborators as Author[]).map(
+                (author: Author, index: number) => {
+                  // generic section page
                   return (
-                    <PostThumbnail
-                      key={post.slug}
-                      post={post}
+                    <CollaboratorThumbnail
+                      key={author.name}
+                      collaborator={author}
                       sortBadge={sortKeyword}
+                      onClickFn={() => {
+                        handleModalOpen(author, index);
+                      }}
                     />
                   );
-                } else {
-                  return <PostThumbnailWIP key={post.slug} post={post} />;
-                }
-              })}
+                },
+              )}
             </div>
           ) : (
             <div className="flex items-center justify-center">
               <p className="text-stone-400">
-                No {searchKeywordMap[section]} matched these filters 😔
+                No collaborators matched these filters 😔
               </p>
             </div>
           )
