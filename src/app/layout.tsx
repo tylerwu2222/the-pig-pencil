@@ -8,7 +8,7 @@ import { Open_Sans } from "next/font/google";
 
 import "./globals.css";
 
-export const openSans = Open_Sans({
+const openSans = Open_Sans({
   weight: ['400', '600', '700'], // Adjust based on your needs
   subsets: ['latin'],
   display: 'swap',
