@@ -3,19 +3,16 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 
 import { HomeProvider } from "./HomeContextProvider";
-// import localFont from "next/font/local";
+
+import { Open_Sans } from "next/font/google";
+
 import "./globals.css";
 
-// const geistSans = localFont({
-//   src: "./fonts/GeistVF.woff",
-//   variable: "--font-geist-sans",
-//   weight: "100 900",
-// });
-// const geistMono = localFont({
-//   src: "./fonts/GeistMonoVF.woff",
-//   variable: "--font-geist-mono",
-//   weight: "100 900",
-// });
+export const openSans = Open_Sans({
+  weight: ['400', '600', '700'], // Adjust based on your needs
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "The Pig Pencil",
@@ -28,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={openSans.className}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
