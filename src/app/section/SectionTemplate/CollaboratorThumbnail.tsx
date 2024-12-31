@@ -138,7 +138,7 @@ export default function CollaboratorThumbnail({
             )}
           </div>
           <p
-            className="cursor-pointer text-sm underline transition duration-300 hover:text-hoverDeepPink"
+            className="cursor-pointer float-end text-[12px] underline transition duration-300 hover:text-hoverDeepPink"
             onClick={onClickFn}
           >
             learn more

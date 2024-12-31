@@ -5,7 +5,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+
+import { MoveLeft, MoveRight } from "lucide-react";
+
 import { Author, Post } from "@prisma/client";
 
 interface PostModalProps {
@@ -48,26 +50,32 @@ export default function NavigableModal({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:h-[80vh] sm:max-h-[90vh] sm:w-[80vw] sm:max-w-[80vw]">
+      <DialogContent className="w-[95vw] sm:h-[80vh] sm:max-h-[90vh] sm:w-[80vw] sm:max-w-[80vw]">
         <DialogHeader>
           <DialogTitle>{contentHeader}</DialogTitle>
         </DialogHeader>
         <div className="flex items-center justify-between">
-          {/* prev button */}
-          {currentIndex > 0 && (
-            <Button variant="ghost" onClick={handlePrev}>
-              &larr; Prev
-            </Button>
-          )}
           {/* allContent */}
-          <div className="flex-grow px-4">{content}</div>
-          {/* next button */}
-          {currentIndex < allContent.length - 1 && (
-            <Button variant="ghost" onClick={handleNext}>
-              Next &rarr;
-            </Button>
-          )}
+          <div className="px-4 sm:flex-grow">{content}</div>
         </div>
+        {/* prev button */}
+        {currentIndex > 0 && isOpen && (
+          <button
+            onClick={handlePrev}
+            className="absolute left-2 bottom-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:left-0 sm:bottom-1/2 sm:-translate-x-12"
+          >
+            <MoveLeft size={15} />
+          </button>
+        )}
+        {/* next button */}
+        {currentIndex < allContent.length - 1 && isOpen && (
+          <button
+            onClick={handleNext}
+            className="absolute right-2 bottom-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:right-0 sm:bottom-1/2 sm:translate-x-12"
+          >
+            <MoveRight size={15} />
+          </button>
+        )}
       </DialogContent>
     </Dialog>
   );
