@@ -48,7 +48,7 @@ export default function SectionTemplate({
   tagBoxIncluded = true,
   // postTemplateType = 1
 }: Partial<SectionTemplateProps>) {
-  let initialSortKeyword = "date";
+  const initialSortKeyword = "date";
   // update tab title
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/");
