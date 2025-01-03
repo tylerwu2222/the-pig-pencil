@@ -11,13 +11,13 @@ datasource db {
 model Art {
   id             String           @id @default(cuid()) // use eTag from bucket, fallback to cuid
   title          String           @default("untitled")
-  publicUrl      String?
+  publicUrl      String           @default("")
   views          Int              @default(0)
   oinks          Int              @default(0)
   publishDate    DateTime         @default(now())
-  updateDate     DateTime?        @default(now())
+  updateDate     DateTime         @default(now())
   visibility     String           @default("visible")
-  description    String?          @default("")
+  description    String           @default("")
   ArtTagsOnArt   ArtTagsOnArt[]
   ArtSeriesOnArt ArtSeriesOnArt[]
   AuthorsOnArt   AuthorsOnArt[]

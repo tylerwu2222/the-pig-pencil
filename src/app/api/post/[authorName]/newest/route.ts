@@ -25,7 +25,7 @@ export async function GET(
       publishDate: "desc",
     },
   });
-  console.log("BE newest post for", authorName, newestPostByAuthor);
+  // console.log("BE newest post for", authorName, newestPostByAuthor);
   // return post
   return NextResponse.json(newestPostByAuthor);
 }

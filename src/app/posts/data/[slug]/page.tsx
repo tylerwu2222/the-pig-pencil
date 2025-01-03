@@ -12,7 +12,7 @@ import { getPostBySlug } from "@/lib/prisma/prisma";
 // types
 import { Post } from "@/types/extendedPrismaTypes";
 
-export default async function page({
+export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;

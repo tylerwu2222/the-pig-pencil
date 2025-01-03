@@ -61,12 +61,12 @@ export default function ArtThumbnail({
             </div>
           </Badge>
         )}
-      <Link href={"/posts/art/" + series.seriesTitle} className="">
+      <Link href={"/art/" + series.seriesTitle} className="">
         {/* thumbnail */}
         <div>
           {series.thumbnail ? (
             <img
-              className="aspect-square w-full object-cover xl:max-w-72"
+              className="aspect-square h-full object-contain max-h-72"
               src={series.thumbnail}
               alt="post-thumbnail"
               loading="lazy"

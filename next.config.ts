@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
   pageExtensions: ['js', 'ts', 'tsx', 'md', 'mdx'], // Include MD and MDX extensions
   experimental: {
     mdxRs: true
+  },
+  images:{
+    domains:['rktdoyanvipokktqkwje.supabase.co']
   }
 };
 

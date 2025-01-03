@@ -21,7 +21,6 @@ import { filterSort } from "@/lib/FilterSort";
 import { Author } from "@/types/extendedPrismaTypes";
 import { Author as AuthorExtended } from "@/types/extendedPrismaTypes";
 import CollaboratorInfoModal from "./CollaboratorInfoModal";
-import { index } from "d3";
 
 interface CollaboratorSectionTemplateProps {
   searchBarIncluded: boolean;

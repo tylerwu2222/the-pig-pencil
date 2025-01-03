@@ -8,11 +8,11 @@ import {
 
 import { MoveLeft, MoveRight } from "lucide-react";
 
-import { Author, Post } from "@prisma/client";
+import { Art, Author, Post } from "@prisma/client";
 
 interface PostModalProps {
   isOpen: boolean;
-  allContent: (Post | Author)[];
+  allContent: (Post | Author | Art)[];
   handleNextFn: () => void;
   handlePrevFn: () => void;
   onClose?: () => void;
@@ -51,11 +51,11 @@ export default function NavigableModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-[95vw] sm:h-[80vh] sm:max-h-[90vh] sm:w-[80vw] sm:max-w-[80vw]">
-        <DialogHeader>
-          <DialogTitle>{contentHeader}</DialogTitle>
+        <DialogHeader className="h-fit">
+          <DialogTitle >{contentHeader}</DialogTitle>
         </DialogHeader>
-        <div className="flex items-center justify-between">
-          {/* allContent */}
+        {/* content */}
+        <div className="flex items-center justify-center">
           <div className="px-4 sm:flex-grow">{content}</div>
         </div>
         {/* prev button */}
