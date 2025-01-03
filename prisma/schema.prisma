@@ -20,6 +20,7 @@ model Art {
   description    String?          @default("")
   ArtTagsOnArt   ArtTagsOnArt[]
   ArtSeriesOnArt ArtSeriesOnArt[]
+  AuthorsOnArt   AuthorsOnArt[]
 }
 
 model ArtSeries {
@@ -69,6 +70,7 @@ model Author {
   AuthorsOnAuthorLinks AuthorsOnAuthorLinks[]
   AuthorsOnPosts       AuthorsOnPosts[]
   AuthorsOnTags        AuthorsOnTags[]
+  AuthorsOnArt         AuthorsOnArt[]
 }
 
 model AuthorLink {
@@ -95,6 +97,16 @@ model AuthorsOnPosts {
   Post       Post     @relation(fields: [postId], references: [id])
 
   @@id([authorId, postId])
+}
+
+model AuthorsOnArt {
+  authorId   String
+  artId      String
+  assignedAt DateTime @default(now())
+  Author     Author   @relation(fields: [authorId], references: [id])
+  Art        Art      @relation(fields: [artId], references: [id])
+
+  @@id([authorId, artId])
 }
 
 model AuthorsOnTags {

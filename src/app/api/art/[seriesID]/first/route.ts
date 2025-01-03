@@ -1,15 +1,15 @@
 // import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
 import prisma from "@/db";
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // get first art for series
-export async function GET({
-  params,
-}: {
-  params: Promise<{ seriesID: string }>;
-}) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ seriesID: string }> },
+) {
   const seriesID = (await params).seriesID;
+
   const firstArt = await prisma.art.findFirst({
     where: {
       ArtSeriesOnArt: {

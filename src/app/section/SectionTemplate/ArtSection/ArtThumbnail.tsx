@@ -66,7 +66,7 @@ export default function ArtThumbnail({
         <div>
           {series.thumbnail ? (
             <img
-              className="w-full object-cover xl:max-w-72"
+              className="aspect-square w-full object-cover xl:max-w-72"
               src={series.thumbnail}
               alt="post-thumbnail"
               loading="lazy"
