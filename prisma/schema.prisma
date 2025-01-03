@@ -9,18 +9,34 @@ datasource db {
 }
 
 model Art {
-  id           String         @id @default(cuid())
-  title        String
-  series       String?
-  slug         String?
-  thumbnail    String?
-  views        Int            @default(0)
-  oinks        Int            @default(0)
-  publishDate  DateTime       @default(now())
-  updateDate   DateTime?      @default(now())
-  visibility   String         @default("hidden")
-  description  String?        @default("it's art")
-  ArtTagsOnArt ArtTagsOnArt[]
+  id             String           @id @default(cuid()) // use eTag from bucket, fallback to cuid
+  title          String           @default("untitled")
+  publicUrl      String?
+  views          Int              @default(0)
+  oinks          Int              @default(0)
+  publishDate    DateTime         @default(now())
+  updateDate     DateTime?        @default(now())
+  visibility     String           @default("visible")
+  description    String?          @default("")
+  ArtTagsOnArt   ArtTagsOnArt[]
+  ArtSeriesOnArt ArtSeriesOnArt[]
+}
+
+model ArtSeries {
+  id             String           @id @default(cuid())
+  seriesTitle    String           @unique
+  publishDate    DateTime         @default(now())
+  updateDate     DateTime?        @default(now())
+  ArtSeriesOnArt ArtSeriesOnArt[]
+}
+
+model ArtSeriesOnArt {
+  artId       String
+  artSeriesId String
+  Art         Art       @relation(fields: [artId], references: [id])
+  ArtSeries   ArtSeries @relation(fields: [artSeriesId], references: [id])
+
+  @@id([artSeriesId, artId])
 }
 
 model ArtTag {

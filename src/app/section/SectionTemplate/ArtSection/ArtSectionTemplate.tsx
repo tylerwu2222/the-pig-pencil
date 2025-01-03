@@ -9,8 +9,7 @@ import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownI
 import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
 
 // thumbnails
-import PostThumbnail from "./PostThumbnail";
-import PostThumbnailWIP from "./PostThumbnailWIP";
+import ArtThumbnail from "./ArtThumbnail";
 
 // react
 import { useEffect, useState } from "react";
@@ -20,19 +19,9 @@ import { useQuery } from "@tanstack/react-query";
 import { filterSort } from "@/lib/FilterSort";
 
 // types
-import { Post, Author } from "@/types/extendedPrismaTypes";
+import { Art } from "@prisma/client";
 
-const searchKeywordMap: Record<string, string> = {
-  data: "data stories",
-  writing: "writing",
-  cheatsheet: "cheatsheets",
-  tutorial: "tutorials",
-  project: "projects"
-};
-
-interface SectionTemplateProps {
-  section: string;
-  contentType: string;
+interface ArtSectionTemplateProps {
   searchBarIncluded: boolean;
   sortPostsIncluded: boolean;
   tagBoxIncluded: boolean;
@@ -40,15 +29,13 @@ interface SectionTemplateProps {
 }
 
 // template for all section pages except art and collaborators
-export default function SectionTemplate({
-  section = "",
-  contentType = "",
+export default function ArtSectionTemplate({
   searchBarIncluded = true,
   sortPostsIncluded = true,
   tagBoxIncluded = true,
   // postTemplateType = 1
-}: Partial<SectionTemplateProps>) {
-  let initialSortKeyword = "date";
+}: Partial<ArtSectionTemplateProps>) {
+  const initialSortKeyword = "name";
   // update tab title
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/");
@@ -62,14 +49,15 @@ export default function SectionTemplate({
   const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // desc dates = newest first
   // posts
-  const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
-  const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
-  const sortKeywords = ["date", "title", "views", "oinks", "author"];
+  const [allContent, setAllContent] = useState<Art[]>([]);
+  const [FSContent, setFSContent] = useState<Art[]>([]);
+  const sortKeywords = ["date", "name", "views", "oinks", "artist"];
 
   // initialize content for section
   const getSectionContent = async () => {
-    const res = await fetch(`/api/${section}/posts`);
+    const res = await fetch(`/api/artSeries`);
     const content = await res.json();
+    // console.log("FE: content", content);
     return content;
   };
 
@@ -79,9 +67,8 @@ export default function SectionTemplate({
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["sectionContent", section],
+    queryKey: ["sectionContent"],
     queryFn: () => getSectionContent(),
-    enabled: !!section,
   });
 
   // Set your local state when necessary
@@ -93,17 +80,17 @@ export default function SectionTemplate({
   }, [content]);
 
   // update displayed content when any search/filter parameter changes
-  useEffect(() => {
-    const subsetContent = filterSort({
-      content: allContent,
-      filterKeyword: searchValue,
-      sortKeyword: sortKeyword,
-      selectedTags: selectedTags,
-      sortDirection: sortDirection,
-    });
-    setFSContent(subsetContent);
-    // console.log(Filter)
-  }, [searchValue, sortKeyword, sortDirection, selectedTags, allContent]);
+  //   useEffect(() => {
+  //     const subsetContent = filterSort({
+  //       content: allContent,
+  //       filterKeyword: searchValue,
+  //       sortKeyword: sortKeyword,
+  //       selectedTags: selectedTags,
+  //       sortDirection: sortDirection,
+  //     });
+  //     setFSContent(subsetContent);
+  //     // console.log(Filter)
+  //   }, [searchValue, sortKeyword, sortDirection, selectedTags, allContent]);
 
   //  update filter/sort parameters
   const handleSearchKeywordChange = (newSearchValue: string) => {
@@ -153,7 +140,7 @@ export default function SectionTemplate({
                 onValueChangeFn={(e) => {
                   handleSearchKeywordChange(e.target.value);
                 }}
-                placeholder={"search " + searchKeywordMap[section]}
+                placeholder={"search art series"}
               />
             </div>
           ) : (
@@ -191,37 +178,31 @@ export default function SectionTemplate({
         {isLoading ? (
           <div className="flex items-center justify-center">
             <p className="rounded-2xl bg-slate-200 px-3 text-stone-700 shadow-md">
-              loading {searchKeywordMap[section]} 🐖...
+              loading art 🐖...
             </p>
           </div>
         ) : isError ? (
           <div className="flex items-center justify-center">
             <p className="text-stone-400">
-              error loading content, please contact tyler 🐷
+              error loading art, please contact tyler 🐷
             </p>
           </div>
         ) : !isLoading ? (
           FSContent.length > 0 ? (
             <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
-              {(FSContent as Post[]).map((post: Post) => {
-                if (isPostVisible(post.visibility)) {
-                  return (
-                    <PostThumbnail
-                      key={post.slug}
-                      post={post}
-                      sortBadge={sortKeyword}
-                    />
-                  );
-                } else {
-                  return <PostThumbnailWIP key={post.slug} post={post} />;
-                }
+              {(FSContent as Art[]).map((art: Art) => {
+                return (
+                  <ArtThumbnail
+                    key={art.title}
+                    art={art}
+                    sortBadge={sortKeyword}
+                  />
+                );
               })}
             </div>
           ) : (
             <div className="flex items-center justify-center">
-              <p className="text-stone-400">
-                No {searchKeywordMap[section]} matched these filters 😔
-              </p>
+              <p className="text-stone-400">No art matched these filters 😔</p>
             </div>
           )
         ) : (

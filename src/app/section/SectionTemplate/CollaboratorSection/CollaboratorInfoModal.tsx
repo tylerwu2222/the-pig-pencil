@@ -66,10 +66,10 @@ const CollaboratorInfoModal = ({
                 <b>role:</b> {collaborator.role}
               </p>
               <p>
-                <b>favorite pig or pencil:</b> <i>{collaborator.pigThoughts}</i>
+                <b>favorite pig or pencil:</b> {collaborator.pigThoughts}
               </p>
               <p>
-                <b>quote:</b> <i>"{collaborator.quote}"</i>
+                <b>quote:</b> {collaborator.quote && <i>"{collaborator.quote}"</i>}
               </p>
             </div>
             {/* row 3: published articles */}

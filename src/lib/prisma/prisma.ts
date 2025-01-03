@@ -1,8 +1,11 @@
 import prisma from "@/db";
 
 import { flattenJoinData } from "./prismaHelpers";
-import { Post, Author } from "@prisma/client";
-import { Post as PostExtended } from "@/types/extendedPrismaTypes";
+import { Post, Author, Art } from "@prisma/client";
+import {
+  Post as PostExtended,
+  Art as ArtExtended,
+} from "@/types/extendedPrismaTypes";
 import { getDashedString } from "../stringFormatting";
 
 // GETTERS
@@ -135,6 +138,20 @@ export const getTagIDByName = async (name: string) => {
   return tagIDByName;
 };
 
+export const getArtSeriesIDByName = async (name: string) => {
+  const artSeriesByName = await prisma.artSeries.findFirst({
+    where: {
+      seriesTitle: name,
+    },
+    select: {
+      id: true,
+    },
+  });
+  const artSeriesID = artSeriesByName?.id;
+
+  return artSeriesID;
+};
+
 // CREATE ONE
 export const createPost = async (metadata: Post) => {
   const newPost = await prisma.post.create({
@@ -248,6 +265,20 @@ export const createAuthorsTagsConnection = async (
   });
 };
 
+export const createArtSeriesArtConnection = async (
+  artIds: string[],
+  artSeriesIds: string[],
+) => {
+  const ArtSeriesArtData = artIds.map((a, i) => {
+    return { artId: a, artSeriesId: artSeriesIds[i] };
+  });
+
+  await prisma.artSeriesOnArt.createMany({
+    data: ArtSeriesArtData,
+    skipDuplicates: true,
+  });
+};
+
 // UPDATE/UPSERT
 // export const upsertPost = async (slug: string, metadata: Post) => {
 //   await prisma.post.upsert({
@@ -310,4 +341,37 @@ export const updatePost = async (slug: string, metadata: PostExtended) => {
     await createAuthorsTagsConnection(validTagIds, validAuthorIds);
     console.log("updated authors-tags");
   }
+};
+
+export const updateArtSeries = async (folderNames: string[]) => {
+  //
+  const data = folderNames.map((name) => {
+    return {
+      seriesTitle: name,
+      updateDate: new Date(),
+    };
+  });
+
+  await prisma.artSeries.createMany({
+    data: data,
+    skipDuplicates: true,
+  });
+};
+
+export const updateArt = async (artData: Partial<ArtExtended>[]) => {
+  // console.log("art data to update", artData);
+
+  // split out series id from
+  const artDataNoConnections = artData.map(({ seriesId, ...rest }) => rest);
+
+  // create data without series id
+  await prisma.art.createMany({
+    data: artDataNoConnections,
+  });
+
+  // create art-art series connections
+  await createArtSeriesArtConnection(
+    artData.map((d) => d.id) as string[],
+    artData.map((d) => d.seriesId) as string[],
+  );
 };

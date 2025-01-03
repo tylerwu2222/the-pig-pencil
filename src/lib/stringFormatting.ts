@@ -51,6 +51,10 @@ export const sanitizeFileName = (input: string) => {
   return input.replace(forbiddenCharacters, "");
 };
 
+export const removeFileExtension = (input:string) => {
+  return input.replace(/\.[^/.]+$/, '');
+};
+
 export const quoteCommaSepString = (input: string) => {
   return input
     .split(",")
