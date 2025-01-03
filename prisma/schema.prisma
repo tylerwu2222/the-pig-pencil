@@ -25,6 +25,7 @@ model Art {
 model ArtSeries {
   id             String           @id @default(cuid())
   seriesTitle    String           @unique
+  thumbnail      String?
   publishDate    DateTime         @default(now())
   updateDate     DateTime?        @default(now())
   ArtSeriesOnArt ArtSeriesOnArt[]

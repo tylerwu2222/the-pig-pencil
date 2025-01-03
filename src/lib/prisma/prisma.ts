@@ -148,8 +148,11 @@ export const getArtSeriesIDByName = async (name: string) => {
     },
   });
   const artSeriesID = artSeriesByName?.id;
-
-  return artSeriesID;
+  if (artSeriesID) {
+    return artSeriesID;
+  } else {
+    console.log("did not find id for series", name);
+  }
 };
 
 // CREATE ONE
@@ -343,11 +346,15 @@ export const updatePost = async (slug: string, metadata: PostExtended) => {
   }
 };
 
-export const updateArtSeries = async (folderNames: string[]) => {
+export const updateArtSeries = async (
+  folderNames: string[],
+  thumbnails: string[],
+) => {
   //
-  const data = folderNames.map((name) => {
+  const data = folderNames.map((name, index) => {
     return {
       seriesTitle: name,
+      thumbnail: thumbnails[index],
       updateDate: new Date(),
     };
   });
