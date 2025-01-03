@@ -33,10 +33,10 @@ const ArtModal = ({
   if (art) {
     if (isMobile) {
       artContent = (
-        <div className="max-h-[60vh] overflow-y-scroll">
-          <div className="grid grid-flow-col gap-2">
+        <div className="h-[60vh] overflow-y-scroll">
+          <div className="grid grid-flow-row gap-2">
             {/* col 1: art */}
-            <div className="w-full">
+            <div className="w-full h-fit min-h-[45vh]">
               <img
                 className="w-full rounded-lg shadow-md"
                 src={art?.publicUrl}

@@ -34,25 +34,47 @@ export default function NavigableModal({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : allContent.length - 1));
-    handlePrevFn();
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => (prev > 0 ? prev - 1 : allContent.length - 1));
+      handlePrevFn();
+    }
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev < allContent.length - 1 ? prev + 1 : 0));
-    handleNextFn();
+    if (currentIndex < allContent.length - 1) {
+      setCurrentIndex((prev) => (prev < allContent.length - 1 ? prev + 1 : 0));
+      handleNextFn();
+    }
   };
 
-  // make modal visible with initial index
+  // when open true, make modal visible with initial index
   useEffect(() => {
     if (isOpen) setCurrentIndex(initialIndex);
   }, [isOpen, initialIndex]);
+
+  // when open true, add listeners for L/R navigation
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") {
+        handlePrev();
+      } else if (event.key === "ArrowRight") {
+        handleNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, handlePrev, handleNext]);
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="w-[95vw] sm:h-[80vh] sm:max-h-[90vh] sm:w-[80vw] sm:max-w-[80vw]">
         <DialogHeader className="h-fit">
-          <DialogTitle >{contentHeader}</DialogTitle>
+          <DialogTitle>{contentHeader}</DialogTitle>
         </DialogHeader>
         {/* content */}
         <div className="flex items-center justify-center">
@@ -62,7 +84,7 @@ export default function NavigableModal({
         {currentIndex > 0 && isOpen && (
           <button
             onClick={handlePrev}
-            className="absolute left-2 bottom-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:left-0 sm:bottom-1/2 sm:-translate-x-12"
+            className="absolute bottom-2 left-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:bottom-1/2 sm:left-0 sm:-translate-x-12"
           >
             <MoveLeft size={15} />
           </button>
@@ -71,7 +93,7 @@ export default function NavigableModal({
         {currentIndex < allContent.length - 1 && isOpen && (
           <button
             onClick={handleNext}
-            className="absolute right-2 bottom-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:right-0 sm:bottom-1/2 sm:translate-x-12"
+            className="absolute bottom-2 right-2 z-50 rounded-full bg-gray-200 p-2 hover:bg-gray-300 focus:outline-none sm:bottom-1/2 sm:right-0 sm:translate-x-12"
           >
             <MoveRight size={15} />
           </button>
