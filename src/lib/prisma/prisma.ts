@@ -1,7 +1,7 @@
 import prisma from "@/db";
 
 import { flattenJoinData } from "./prismaHelpers";
-import { Post, Author, Art } from "@prisma/client";
+import { Post, Author } from "@prisma/client";
 import {
   Post as PostExtended,
   Art as ArtExtended,
@@ -367,6 +367,7 @@ export const updateArt = async (artData: Partial<ArtExtended>[]) => {
   // create data without series id
   await prisma.art.createMany({
     data: artDataNoConnections,
+    skipDuplicates: true,
   });
 
   // create art-art series connections
