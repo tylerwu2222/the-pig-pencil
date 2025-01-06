@@ -49,6 +49,7 @@ export default function SectionTemplate({
   // postTemplateType = 1
 }: Partial<SectionTemplateProps>) {
   const initialSortKeyword = "date";
+  const sortKeywords = ["date", "title", "views", "oinks", "author"];
   // update tab title
   const pathname = usePathname();
   const pathnameSegments = pathname.split("/");
@@ -64,7 +65,7 @@ export default function SectionTemplate({
   // posts
   const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
   const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
-  const sortKeywords = ["date", "title", "views", "oinks", "author"];
+  
 
   // initialize content for section
   const getSectionContent = async () => {

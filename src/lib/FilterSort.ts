@@ -4,7 +4,6 @@ import { Author, Post, ArtSeries } from "@/types/extendedPrismaTypes";
 import { formatDateToLongDate } from "./dateFormatting";
 
 type SortOrder = "asc" | "desc";
-type Content = Post | Author | ArtSeries;
 
 function isPost(content: any): content is Post[] {
   return (
@@ -26,18 +25,18 @@ function isArtSeries(content: any): content is ArtSeries[] {
   );
 }
 
-interface filterContentProps {
+interface filterContentProps<T> {
   filterKeyword: string | undefined;
   selectedTags: string[];
-  content: Content[];
+  content: T[];
 }
 
 // filter for posts that include search keyword AND include selected tags
-const filterContent = ({
+const filterContent = <T>({
   filterKeyword,
   selectedTags,
   content,
-}: filterContentProps): Content[] => {
+}: filterContentProps<T>): T[] => {
   let filteredContent = content;
 
   if (filterKeyword && filterKeyword.length > 0) {
@@ -130,13 +129,12 @@ const artSeriesSortMap: Record<string, string> = {
 
 const visibilityOrder = { visible: 0, wip: 1, hidden: 2 };
 
-const sortByKey = (
-  // const sortByKey = <T, K extends keyof typeof postsSortMap>(
-  content: Content[],
-  key: keyof Content,
+const sortByKey = <T>(
+  content: T[],
+  key: keyof T,
   order: SortOrder = "asc",
   sortVisibility: boolean = true,
-): Content[] => {
+): T[] => {
   return [...content].sort((a, b) => {
     // Sort by visibility first if enabled
     if (sortVisibility && isPost(content)) {
@@ -168,91 +166,71 @@ const sortByKey = (
   });
 };
 
-interface sortContentProps {
+interface sortContentProps<T> {
   sortKeyword: string;
   sortDirection: SortOrder;
-  content: Content[];
+  content: T[];
 }
 
 // sort posts by an attribute
-const sortContent = ({
+const sortContent = <T>({
   sortKeyword,
   content,
   sortDirection,
-}: sortContentProps) => {
+}: sortContentProps<T>) => {
   let sortedContent = content;
-  // let internalSortOption = '';
-
-  // console.log(
-  //   "before sorting",
-  //   sortedContent.map((c) => c[postsSortMap[sortKeyword] as keyof Content]),
-  // );
-  // console.log("sorting by", sortKeyword);
+  let internalSortKeyword = "";
+  let sortKeywordStr = sortKeyword as string;
   if (isPost(content)) {
-    // console.log("sorting posts");
-    sortedContent = sortedContent as Post[];
-    sortedContent = sortByKey(
-      sortedContent,
-      postsSortMap[sortKeyword] as keyof Content,
-      sortDirection,
-    );
+    internalSortKeyword = postsSortMap[sortKeywordStr];
   } else if (isAuthor(content)) {
-    // console.log("sorting authors");
-    sortedContent = sortedContent as Author[];
-    sortedContent = sortByKey(
-      sortedContent,
-      collaboratorsSortMap[sortKeyword] as keyof Content,
-      sortDirection,
-    );
+    internalSortKeyword = collaboratorsSortMap[sortKeywordStr];
   } else if (isArtSeries(content)) {
-    // console.log("sorting authors");
-    sortedContent = sortedContent as ArtSeries[];
-    sortedContent = sortByKey(
-      sortedContent,
-      artSeriesSortMap[sortKeyword] as keyof Content,
-      sortDirection,
-    );
+    internalSortKeyword = artSeriesSortMap[sortKeywordStr];
   }
-
-
-  // console.log(
-  //   "after sorting",
-  //   sortedContent.map((c) => c[postsSortMap[sortKeyword] as keyof Content]),
-  // );
+  sortedContent = sortByKey(
+    sortedContent,
+    internalSortKeyword as keyof T,
+    sortDirection,
+  );
   // console.log('sorted after', sortedPosts);
   return sortedContent;
 };
 
-interface filterSortProps {
-  content: Content[];
-  filterKeyword: string | undefined;
-  selectedTags: string[];
-  sortKeyword: string | null;
-  sortDirection: "asc" | "desc";
-}
+type FilterSortProps<T> = {
+  content: T[];
+  filterKeyword?: string;
+  selectedTags?: string[];
+  sortKeyword?: string | null;
+  sortDirection?: "asc" | "desc";
+};
 
-// a general function that:
-// (1) filters array of objects by filter parameter
-// (2) sorts AoO by a object key
-export const filterSort = ({
+export const filterSort = <T>({
   content = [],
   filterKeyword,
   selectedTags = [],
   sortKeyword = null,
   sortDirection = "desc",
-}: Partial<filterSortProps>) => {
-  let FSContent: (Post | Author | ArtSeries)[] = [...content];
+}: Partial<FilterSortProps<T>>): T[] => {
+  let FSContent: T[] = [...content];
 
-  // filter array
+  // Filter array
   if (filterKeyword) {
-    FSContent = filterContent({ filterKeyword, selectedTags, content });
+    FSContent = filterContent({
+      filterKeyword,
+      selectedTags,
+      content: FSContent,
+    });
   }
 
-  // sort array (always add wip to end)
+  // Sort array
   if (sortKeyword) {
-    FSContent = sortContent({ sortKeyword, sortDirection, content: FSContent });
+    FSContent = sortContent({
+      sortKeyword,
+      sortDirection,
+      content: FSContent,
+    });
   }
-  //   console.log("FS", FSContent);
 
   return FSContent;
 };
