@@ -7,11 +7,12 @@ import { Eye } from "lucide-react";
 import { PiggyBank } from "lucide-react";
 
 // types
-import { ArtSeries } from "@prisma/client";
+import { ArtSeries } from "@/types/extendedPrismaTypes";
 
 // helpers
 import { differenceInDays } from "date-fns";
 import { snakeToCamel } from "@/lib/stringFormatting";
+import { formatDateToShortDate } from "@/lib/dateFormatting";
 
 import React from "react";
 
@@ -66,7 +67,7 @@ export default function ArtThumbnail({
         <div>
           {series.thumbnail ? (
             <img
-              className="aspect-square h-full object-contain max-h-72"
+              className="aspect-square h-full max-h-72 object-contain"
               src={series.thumbnail}
               alt="post-thumbnail"
               loading="lazy"
@@ -76,24 +77,30 @@ export default function ArtThumbnail({
           )}
         </div>
         {/* heading */}
-        <div className="min-h-[3em] w-full py-1 lg:max-w-52">
+        <div className="w-full py-1 lg:max-w-52">
           <p className="text-2xl text-textGrey md:text-lg">
             {snakeToCamel(series.seriesTitle, " ")}
           </p>
         </div>
+        {/* updated date */}
+        <div className="text-sm text-textGrey md:text-xs md:text-textLightGrey">
+          <p className="">
+            Last updated: {series.updateDate && formatDateToShortDate(series.updateDate)}
+          </p>
+        </div>
         {/* tag(s) */}
-        {/* <div className="text-wrap xl:max-w-72">
-      {post.tags.map((t, i) => {
-        return (
-          <Badge
-            key={i}
-            className="mb-[0.1rem] mr-1 rounded-md bg-buttonGrey font-light text-white hover:bg-buttonGrey"
-          >
-            {t}
-          </Badge>
-        );
-      })}
-    </div> */}
+        <div className="text-wrap xl:max-w-72">
+          {series.tags.map((t, i) => {
+            return (
+              <Badge
+                key={i}
+                className="mb-[0.1rem] mr-1 rounded-md bg-buttonGrey font-light text-white hover:bg-buttonGrey"
+              >
+                {t}
+              </Badge>
+            );
+          })}
+        </div>
       </Link>
     </div>
   );

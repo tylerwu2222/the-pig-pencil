@@ -1,10 +1,10 @@
 // type
-import { Tag } from "@prisma/client";
-import { Author, Post } from "@/types/extendedPrismaTypes";
+// import { Tag } from "@prisma/client";
+import { Author, Post, ArtSeries } from "@/types/extendedPrismaTypes";
 import { formatDateToLongDate } from "./dateFormatting";
 
 type SortOrder = "asc" | "desc";
-type Content = Post | Author;
+type Content = Post | Author | ArtSeries;
 
 function isPost(content: any): content is Post[] {
   return (
@@ -20,6 +20,12 @@ function isAuthor(content: any): content is Author[] {
   );
 }
 
+function isArtSeries(content: any): content is ArtSeries[] {
+  return (
+    Array.isArray(content) && content.every((item) => "seriesTitle" in item)
+  );
+}
+
 interface filterContentProps {
   filterKeyword: string | undefined;
   selectedTags: string[];
@@ -31,7 +37,7 @@ const filterContent = ({
   filterKeyword,
   selectedTags,
   content,
-}: filterContentProps): (Post | Author)[] => {
+}: filterContentProps): Content[] => {
   let filteredContent = content;
 
   if (filterKeyword && filterKeyword.length > 0) {
@@ -71,6 +77,10 @@ const filterContent = ({
           a.tags.join(" ")
         ).toLowerCase(),
       );
+    } else if (isArtSeries(content)) {
+      contentMetaStrings = content.map((a: ArtSeries) =>
+        (a.seriesTitle + " " + a.tags.join(" ")).toLowerCase(),
+      );
     }
 
     // console.log("metastrings", contentMetaStrings);
@@ -81,10 +91,11 @@ const filterContent = ({
     });
   }
   // if tags exist: check if any tag in selected tags list
-  if (selectedTags && selectedTags.length > 0) {
-    const postTags = content.map((p) => p.tags);
+  if (!isArtSeries(content) && selectedTags && selectedTags.length > 0) {
+    const nonArtContent = content as (Post | Author)[];
+    const postTags = nonArtContent.map((p) => p.tags);
     filteredContent = filteredContent.filter((p, i) => {
-      return postTags[i].some((tag) => selectedTags.includes(tag)); // check
+      return postTags[i].some((tag: string) => selectedTags.includes(tag)); // check
     });
     // }
   }
@@ -107,6 +118,14 @@ const collaboratorsSortMap: Record<string, string> = {
   "total posts": "postCount",
   "total views": "viewCount",
   "total oinks": "oinkCount",
+};
+
+const artSeriesSortMap: Record<string, string> = {
+  date: "publishDate",
+  name: "seriesTitle",
+  // "total posts": "postCount",
+  // "total views": "viewCount",
+  // "artist": "oinkCount",
 };
 
 const visibilityOrder = { visible: 0, wip: 1, hidden: 2 };
@@ -185,7 +204,16 @@ const sortContent = ({
       collaboratorsSortMap[sortKeyword] as keyof Content,
       sortDirection,
     );
+  } else if (isArtSeries(content)) {
+    // console.log("sorting authors");
+    sortedContent = sortedContent as ArtSeries[];
+    sortedContent = sortByKey(
+      sortedContent,
+      artSeriesSortMap[sortKeyword] as keyof Content,
+      sortDirection,
+    );
   }
+
 
   // console.log(
   //   "after sorting",
@@ -213,7 +241,7 @@ export const filterSort = ({
   sortKeyword = null,
   sortDirection = "desc",
 }: Partial<filterSortProps>) => {
-  let FSContent: (Post | Author)[] = [...content];
+  let FSContent: (Post | Author | ArtSeries)[] = [...content];
 
   // filter array
   if (filterKeyword) {

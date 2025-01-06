@@ -1,5 +1,11 @@
-import { Post as PrismaPost, Author as PrismaAuthor, AuthorsOnPosts, AuthorsOnTags, Art as PrismaArt } from "@prisma/client";
-
+import {
+  Post as PrismaPost,
+  Author as PrismaAuthor,
+  AuthorsOnPosts,
+  AuthorsOnTags,
+  Art as PrismaArt,
+  ArtSeries as PrismaArtSeries,
+} from "@prisma/client";
 
 export interface Post extends PrismaPost {
   authors: string[];
@@ -14,11 +20,15 @@ export interface Author extends PrismaAuthor {
   oinkCount?: number;
   postCount?: number;
   AuthorsOnPosts?: AuthorsOnPosts;
-  AuthorsOnTags?: AuthorsOnTags
+  AuthorsOnTags?: AuthorsOnTags;
 }
 
 export interface Art extends PrismaArt {
   seriesId: string;
+}
+
+export interface ArtSeries extends PrismaArtSeries {
+  tags: string[];
 }
 
 // export interface AuthorWithCounts extends Author {

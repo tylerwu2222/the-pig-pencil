@@ -24,12 +24,13 @@ model Art {
 }
 
 model ArtSeries {
-  id             String           @id @default(cuid())
-  seriesTitle    String           @unique
-  thumbnail      String?
-  publishDate    DateTime         @default(now())
-  updateDate     DateTime?        @default(now())
-  ArtSeriesOnArt ArtSeriesOnArt[]
+  id                 String               @id @default(cuid())
+  seriesTitle        String               @unique
+  thumbnail          String?
+  publishDate        DateTime             @default(now())
+  updateDate         DateTime?            @default(now())
+  ArtSeriesOnArt     ArtSeriesOnArt[]
+  ArtTagsOnArtSeries ArtTagsOnArtSeries[]
 }
 
 model ArtSeriesOnArt {
@@ -42,9 +43,10 @@ model ArtSeriesOnArt {
 }
 
 model ArtTag {
-  id           String         @id
-  artTagName   String
-  ArtTagsOnArt ArtTagsOnArt[]
+  id                 String               @id @default(cuid())
+  artTagName         String
+  ArtTagsOnArt       ArtTagsOnArt[]
+  ArtTagsOnArtSeries ArtTagsOnArtSeries[]
 }
 
 model ArtTagsOnArt {
@@ -55,6 +57,16 @@ model ArtTagsOnArt {
   ArtTag     ArtTag   @relation(fields: [artTagId], references: [id])
 
   @@id([artTagId, artId])
+}
+
+model ArtTagsOnArtSeries {
+  artSeriesId String
+  artTagId    String
+  assignedAt  DateTime  @default(now())
+  ArtSeries   ArtSeries @relation(fields: [artSeriesId], references: [id])
+  ArtTag      ArtTag    @relation(fields: [artTagId], references: [id])
+
+  @@id([artTagId, artSeriesId])
 }
 
 model Author {

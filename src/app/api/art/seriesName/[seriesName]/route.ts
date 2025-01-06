@@ -21,6 +21,9 @@ export async function GET(
         },
       },
     },
+    orderBy:{
+      title: "asc"
+    }
   });
 
   // console.log('BE art', firstArt);

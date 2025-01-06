@@ -19,7 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import { filterSort } from "@/lib/FilterSort";
 
 // types
-import { ArtSeries } from "@prisma/client";
+import { ArtSeries } from "@/types/extendedPrismaTypes";
 
 interface ArtSectionTemplateProps {
   searchBarIncluded: boolean;
@@ -51,7 +51,13 @@ export default function ArtSectionTemplate({
   // posts
   const [allSeries, setAllSeries] = useState<ArtSeries[]>([]);
   const [FSSeries, setFSSeries] = useState<ArtSeries[]>([]);
-  const sortKeywords = ["date", "name", "views", "oinks", "artist"];
+  const sortKeywords = [
+    "date",
+    "name",
+    // "total views",
+    // "total oinks",
+    // "artist"
+  ];
 
   // initialize series for section
   const getArtSeries = async () => {
@@ -80,17 +86,17 @@ export default function ArtSectionTemplate({
   }, [series]);
 
   // update displayed series when any search/filter parameter changes
-  //   useEffect(() => {
-  //     const subsetSeries = filterSort({
-  //       series: allSeries,
-  //       filterKeyword: searchValue,
-  //       sortKeyword: sortKeyword,
-  //       selectedTags: selectedTags,
-  //       sortDirection: sortDirection,
-  //     });
-  //     setFSSeries(subsetSeries);
-  //     // console.log(Filter)
-  //   }, [searchValue, sortKeyword, sortDirection, selectedTags, allSeries]);
+  useEffect(() => {
+    const subsetSeries = filterSort({
+      content: allSeries,
+      filterKeyword: searchValue,
+      sortKeyword: sortKeyword,
+      selectedTags: selectedTags,
+      sortDirection: sortDirection,
+    }) as ArtSeries[];
+    setFSSeries(subsetSeries);
+    // console.log(Filter)
+  }, [searchValue, sortKeyword, sortDirection, selectedTags, allSeries]);
 
   //  update filter/sort parameters
   const handleSearchKeywordChange = (newSearchValue: string) => {
@@ -110,7 +116,7 @@ export default function ArtSectionTemplate({
   };
 
   const getSeriesThumbnail = async (seriesID: string) => {
-    console.log('series ID in fn',seriesID);
+    console.log("series ID in fn", seriesID);
     // const res = await fetch(`/api/art/${seriesID}`);
     const res = await fetch(`/api/art/${seriesID}/first`);
     const firstArt = await res.json();
