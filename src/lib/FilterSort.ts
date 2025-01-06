@@ -180,7 +180,7 @@ const sortContent = <T>({
 }: sortContentProps<T>) => {
   let sortedContent = content;
   let internalSortKeyword = "";
-  let sortKeywordStr = sortKeyword as string;
+  const sortKeywordStr = sortKeyword as string;
   if (isPost(content)) {
     internalSortKeyword = postsSortMap[sortKeywordStr];
   } else if (isAuthor(content)) {
