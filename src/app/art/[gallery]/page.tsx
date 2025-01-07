@@ -16,7 +16,9 @@ import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
 
+// helpers
 import { filterSort } from "@/lib/FilterSort";
+import { snakeToCamel } from "@/lib/stringFormatting";
 
 export default function Page() {
   // export default function Page({ params }: { params: { gallery: string } }) {
@@ -138,7 +140,7 @@ export default function Page() {
             onValueChangeFn={(e) => {
               handleSearchKeywordChange(e.target.value);
             }}
-            placeholder={"search " + gallery}
+            placeholder={"search " + snakeToCamel(gallery, " ", false)}
           />
         </div>
 

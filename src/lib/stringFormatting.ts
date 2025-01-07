@@ -35,12 +35,20 @@ export const getDashedString = (underscoreString: string) => {
   return underscoreString.replace(/[\s_]+/g, "-").toLowerCase();
 };
 
-export const snakeToCamel = (snakeCaseString: string, delimiter = "") => {
-  return snakeCaseString
+export const snakeToCamel = (snakeCaseString: string, delimiter = "", capitalizeFirst = true) => {
+  if(capitalizeFirst){
+    return snakeCaseString
     .split("_")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(delimiter)
     .replace("-", "");
+  }
+  else{
+    return snakeCaseString
+    .split("_")
+    .join(delimiter)
+    .replace("-", "");
+  }
 };
 
 export const sanitizeFileName = (input: string) => {
