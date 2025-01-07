@@ -1,6 +1,6 @@
 // type
 // import { Tag } from "@prisma/client";
-import { Author, Post, ArtSeries } from "@/types/extendedPrismaTypes";
+import { Author, Post, ArtSeries, Art } from "@/types/extendedPrismaTypes";
 import { formatDateToLongDate } from "./dateFormatting";
 
 type SortOrder = "asc" | "desc";
@@ -22,6 +22,13 @@ function isAuthor(content: any): content is Author[] {
 function isArtSeries(content: any): content is ArtSeries[] {
   return (
     Array.isArray(content) && content.every((item) => "seriesTitle" in item)
+  );
+}
+
+function isArt(content: any): content is Art[] {
+  return (
+    Array.isArray(content) &&
+    content.every((item) => "title" in item && "description" in item)
   );
 }
 
@@ -80,6 +87,10 @@ const filterContent = <T>({
       contentMetaStrings = content.map((a: ArtSeries) =>
         (a.seriesTitle + " " + a.tags.join(" ")).toLowerCase(),
       );
+    } else if (isArt(content)) {
+      contentMetaStrings = content.map((a: Art) =>
+        (a.title + " " + a.description + " " + a.tags.join(" ")).toLowerCase(),
+      );
     }
 
     // console.log("metastrings", contentMetaStrings);
@@ -90,14 +101,14 @@ const filterContent = <T>({
     });
   }
   // if tags exist: check if any tag in selected tags list
-  if (!isArtSeries(content) && selectedTags && selectedTags.length > 0) {
-    const nonArtContent = content as (Post | Author)[];
-    const postTags = nonArtContent.map((p) => p.tags);
-    filteredContent = filteredContent.filter((p, i) => {
-      return postTags[i].some((tag: string) => selectedTags.includes(tag)); // check
-    });
-    // }
-  }
+  // if (!isArtSeries(content) && selectedTags && selectedTags.length > 0) {
+  //   const nonArtContent = content as (Post | Author)[];
+  //   const postTags = nonArtContent.map((p) => p.tags);
+  //   filteredContent = filteredContent.filter((p, i) => {
+  //     return postTags[i].some((tag: string) => selectedTags.includes(tag)); // check
+  //   });
+  //   // }
+  // }
 
   return filteredContent;
 };
@@ -125,6 +136,13 @@ const artSeriesSortMap: Record<string, string> = {
   // "total posts": "postCount",
   // "total views": "viewCount",
   // "artist": "oinkCount",
+};
+
+const artSortMap: Record<string, string> = {
+  date: "publishDate",
+  name: "title",
+  // views: "views",
+  // oinks: "oinks",
 };
 
 const visibilityOrder = { visible: 0, wip: 1, hidden: 2 };
@@ -187,6 +205,8 @@ const sortContent = <T>({
     internalSortKeyword = collaboratorsSortMap[sortKeywordStr];
   } else if (isArtSeries(content)) {
     internalSortKeyword = artSeriesSortMap[sortKeywordStr];
+  } else if (isArt(content)) {
+    internalSortKeyword = artSortMap[sortKeywordStr];
   }
   sortedContent = sortByKey(
     sortedContent,

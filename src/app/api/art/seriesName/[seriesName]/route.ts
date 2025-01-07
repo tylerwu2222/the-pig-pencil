@@ -1,4 +1,4 @@
-// import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
+import { flattenJoinData } from "@/lib/prisma/prismaHelpers";
 import prisma from "@/db";
 import { getArtSeriesIDByName } from "@/lib/prisma/prisma";
 
@@ -13,7 +13,7 @@ export async function GET(
 
   const seriesID = await getArtSeriesIDByName(seriesName);
 
-  const firstArt = await prisma.art.findMany({
+  const art = await prisma.art.findMany({
     where: {
       ArtSeriesOnArt: {
         some: {
@@ -21,12 +21,25 @@ export async function GET(
         },
       },
     },
-    orderBy:{
-      title: "asc"
-    }
+    include: {
+      ArtTagsOnArt: {
+        select: {
+          ArtTag: {
+            select: {
+              artTagName: true,
+            },
+          },
+        },
+      },
+    },
+    orderBy: {
+      title: "asc",
+    },
   });
 
-  // console.log('BE art', firstArt);
+  const formattedArt = flattenJoinData(art, {
+    ArtTagsOnArt: "tags",
+  });
 
-  return NextResponse.json(firstArt);
+  return NextResponse.json(formattedArt);
 }

@@ -6,8 +6,8 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 // types
-import { Art } from "@prisma/client";
-import { Art as ArtExtended } from "@/types/extendedPrismaTypes";
+// import { Art } from "@prisma/client";
+import { Art } from "@/types/extendedPrismaTypes";
 
 // components
 import ArtModal from "../ArtModal";
@@ -15,6 +15,8 @@ import ArtGalleryThumbnail from "./ArtGalleryThumbnail";
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
 import DropdownInputSelect from "@/app/components/inputs/DropdownInput/DropdownInputSelect";
 import AscDescToggle from "@/app/components/inputs/ToggleInputs/AscDescToggle";
+
+import { filterSort } from "@/lib/FilterSort";
 
 export default function Page() {
   // export default function Page({ params }: { params: { gallery: string } }) {
@@ -26,14 +28,15 @@ export default function Page() {
   //   const [allTags, setAllTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // desc dates = newest first
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc"); // names (A-Z)
   const [allArts, setAllArts] = useState<Art[]>([]);
   const [FSArts, setFSArts] = useState<Art[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentModalIndex, setCurrentModalIndex] = useState<number>(0);
-  const [modalArt, setModalArt] = useState<Art | ArtExtended | undefined>();
-  const sortKeywords = ["date", "name", "views", "oinks", "artist"];
+  const [modalArt, setModalArt] = useState<Art | undefined>();
+  const sortKeywords = ["date", "name"];
+  // "views", "oinks", "artist"];
 
   // console.log("gallery", gallery);
 
@@ -60,6 +63,19 @@ export default function Page() {
       setModalArt(images[0]);
     }
   }, [images]);
+
+  // update displayed images when any search/filter parameter changes
+  useEffect(() => {
+    const subsetSeries = filterSort({
+      content: allArts,
+      filterKeyword: searchValue,
+      sortKeyword: sortKeyword,
+      selectedTags: selectedTags,
+      sortDirection: sortDirection,
+    }) as Art[];
+    setFSArts(subsetSeries);
+    // console.log('filtered art',subsetSeries)
+  }, [searchValue, sortKeyword, sortDirection, selectedTags, allArts]);
 
   // search/sort handlers
   const handleSearchKeywordChange = (newSearchValue: string) => {
@@ -164,7 +180,7 @@ export default function Page() {
         </div>
       ) : !isLoading ? (
         <div className="flex flex-wrap items-center justify-center gap-3 py-5">
-          {images.map((art: Art, index: number) => {
+          {FSArts.map((art: Art, index: number) => {
             return (
               <ArtGalleryThumbnail
                 key={index}

@@ -25,6 +25,7 @@ export interface Author extends PrismaAuthor {
 
 export interface Art extends PrismaArt {
   seriesId: string;
+  tags: string[]
 }
 
 export interface ArtSeries extends PrismaArtSeries {

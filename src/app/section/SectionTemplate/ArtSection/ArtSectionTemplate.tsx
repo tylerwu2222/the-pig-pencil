@@ -47,7 +47,7 @@ export default function ArtSectionTemplate({
   //   const [allTags, setAllTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
-  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // desc dates = newest first
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc"); // asc names
   // posts
   const [allSeries, setAllSeries] = useState<ArtSeries[]>([]);
   const [FSSeries, setFSSeries] = useState<ArtSeries[]>([]);
