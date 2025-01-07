@@ -138,9 +138,12 @@ export default function PostHeader({
                   ".png";
                 return <ImageIcon src={mug} key={index} />;
               })}
-              <p className="flex items-center justify-center text-sm">
+              <a
+                className="flex items-center justify-center text-sm underline"
+                href={"/section/collaborators"}
+              >
                 {post.authors.join(", ")}
-              </p>
+              </a>
             </div>
             <p className="text-sm text-textGrey">
               {formatDateToLongDate(post.publishDate)}

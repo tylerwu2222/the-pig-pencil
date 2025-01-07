@@ -47,11 +47,11 @@ const DesktopNavbar = ({ tabHoverFn }:DesktopNavbarProps) => {
         </ul>
       </nav>
       {/* subscribe button */}
-      <div className="absolute top-2 right-2">
+      {/* <div className="absolute top-2 right-2">
         <Button className="bg-pink-200 px-2 py-1 text-sm leading-3 hover:bg-pink-300">
           Subscribe
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
