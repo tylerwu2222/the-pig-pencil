@@ -27,7 +27,7 @@ const searchKeywordMap: Record<string, string> = {
   writing: "writing",
   cheatsheet: "cheatsheets",
   tutorial: "tutorials",
-  project: "projects"
+  project: "projects",
 };
 
 interface SectionTemplateProps {
@@ -65,7 +65,6 @@ export default function SectionTemplate({
   // posts
   const [allContent, setAllContent] = useState<(Post | Author)[]>([]);
   const [FSContent, setFSContent] = useState<(Post | Author)[]>([]);
-  
 
   // initialize content for section
   const getSectionContent = async () => {
@@ -184,7 +183,9 @@ export default function SectionTemplate({
           >
             <i className="text-gray-500 md:min-h-[1em]">
               {searchValue.length > 0
-                ? FSContent.length + " results for '" + searchValue + "'"
+                ? FSContent.length === 1
+                  ? "1 result for '" + searchValue + "'"
+                  : FSContent.length + " results for '" + searchValue + "'"
                 : "\u00A0"}
             </i>
           </div>

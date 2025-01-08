@@ -173,7 +173,9 @@ export default function ArtSectionTemplate({
           >
             <i className="text-gray-500 md:min-h-[1em]">
               {searchValue.length > 0
-                ? FSSeries.length + " results for '" + searchValue + "'"
+                ? FSSeries.length === 1
+                  ? "1 result for '" + searchValue + "'"
+                  : FSSeries.length + " results for '" + searchValue + "'"
                 : "\u00A0"}
             </i>
           </div>
