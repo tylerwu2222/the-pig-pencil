@@ -131,19 +131,24 @@ export default function PostHeader({
           {/* author + date */}
           <div className="flex justify-between py-2">
             <div className="flex gap-2">
+              {/* map each author to mug + name-link */}
               {post.authors.map((a, index) => {
                 const mug =
                   "/img/thumbnails/collaborator_mugs/" +
                   getSnakeCase(a) +
                   ".png";
-                return <ImageIcon src={mug} key={index} />;
+                return (
+                  <div className="flex gap-1" key={index}>
+                    <ImageIcon src={mug} />
+                    <a
+                      className="flex items-center justify-center text-sm underline"
+                      href={`/section/collaborators?c=${a}`}
+                    >
+                      {a}
+                    </a>
+                  </div>
+                );
               })}
-              <a
-                className="flex items-center justify-center text-sm underline"
-                href={"/section/collaborators"}
-              >
-                {post.authors.join(", ")}
-              </a>
             </div>
             <p className="text-sm text-textGrey">
               {formatDateToLongDate(post.publishDate)}

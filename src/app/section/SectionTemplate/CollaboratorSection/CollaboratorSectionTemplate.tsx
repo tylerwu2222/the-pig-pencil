@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 // modules
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
@@ -32,6 +33,9 @@ export default function CollaboratorSectionTemplate({
   sortPostsIncluded = true,
   //   tagBoxIncluded = true,
 }: Partial<CollaboratorSectionTemplateProps>) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const initialSortKeyword = "name";
   // update tab title
   const pathname = usePathname();
@@ -40,7 +44,9 @@ export default function CollaboratorSectionTemplate({
   const baseTitle = "The Pig Pencil";
 
   // search, filter, sort
-  const [searchValue, setSearchValue] = useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>(
+    searchParams.get("c") || "",
+  );
   //   const [allTags, setAllTags] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortKeyword, setSortKeyword] = useState(initialSortKeyword);
@@ -105,6 +111,10 @@ export default function CollaboratorSectionTemplate({
   //  update filter/sort parameters
   const handleSearchKeywordChange = (newSearchValue: string) => {
     setSearchValue(newSearchValue);
+    // router.push({
+    //   pathname: router.pathname,
+    //   query: { ...router.query, c: newSearchValue },
+    // });
   };
 
   const handleSortKeywordChange = (newSortKeyword: string) => {
@@ -197,15 +207,22 @@ export default function CollaboratorSectionTemplate({
           ) : (
             <></>
           )}
-          <div
-            className={`md:pt-2} col-span-full row-start-2 px-1 pt-0 md:px-3`}
-          >
-            <i className="text-gray-500 md:min-h-[1em]">
-              {searchValue.length > 0
-                ? FSCollaborators.length + " results for '" + searchValue + "'"
-                : "\u00A0"}
-            </i>
-          </div>
+          {!isLoading ? (
+            <div
+              className={`md:pt-2} col-span-full row-start-2 px-1 pt-0 md:px-3`}
+            >
+              <i className="text-gray-500 md:min-h-[1em]">
+                {searchValue.length > 0
+                  ? FSCollaborators.length +
+                    " results for '" +
+                    searchValue +
+                    "'"
+                  : "\u00A0"}
+              </i>
+            </div>
+          ) : (
+            <></>
+          )}
         </div>
         {isLoading ? (
           <div className="flex items-center justify-center">
