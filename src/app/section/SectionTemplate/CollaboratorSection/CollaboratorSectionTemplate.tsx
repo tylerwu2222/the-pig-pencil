@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 
 // modules
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
@@ -154,7 +154,6 @@ export default function CollaboratorSectionTemplate({
 
   return (
     <>
-      <Suspense>
         <title>
           {baseTitle +
             " | " +
@@ -274,7 +273,6 @@ export default function CollaboratorSectionTemplate({
                         <TagsBox posts={postData} onChangeFn={setSelectedTags} />
                     </div> : <></>} */}
         </div>
-      </Suspense>
     </>
   );
 }
