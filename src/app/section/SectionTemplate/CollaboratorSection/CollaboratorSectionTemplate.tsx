@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 // modules
 import SearchInput from "@/app/components/inputs/SearchInput/SearchInput";
@@ -153,125 +154,127 @@ export default function CollaboratorSectionTemplate({
 
   return (
     <>
-      <title>
-        {baseTitle +
-          " | " +
-          pathNameLast.charAt(0).toUpperCase() +
-          pathNameLast.slice(1)}
-      </title>
-      {modalCollaborator && (
-        <CollaboratorInfoModal
-          collaborators={FSCollaborators}
-          collaborator={modalCollaborator}
-          isOpen={isModalOpen}
-          initialIndex={currentModalIndex}
-          handleNextFn={handleModalNext}
-          handlePrevFn={handleModalPrev}
-          onCloseFn={() => {
-            setIsModalOpen(false);
-          }}
-        />
-      )}
-      <div className="px-[3%] py-3 xl:px-[20%]">
-        {/* search + sort div */}
-        <div className="grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">
-          {searchBarIncluded ? (
-            <div className="col-span-full row-start-1 flex items-end md:col-span-5">
-              <SearchInput
-                value={searchValue}
-                onValueChangeFn={(e) => {
-                  handleSearchKeywordChange(e.target.value);
-                }}
-                placeholder={"search collaborators"}
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-          {sortPostsIncluded ? (
-            <div className="col-span-full row-start-3 flex items-end gap-1 md:col-span-2 md:row-start-1">
-              {/* sort parameter */}
-              <DropdownInputSelect
-                className="max-w-1/2"
-                label="sort"
-                value={sortKeyword}
-                onChangeFn={handleSortKeywordChange}
-                options={sortKeywords}
-              />
-              {/* sort direction toggle */}
-              <AscDescToggle
-                value={sortDirection}
-                onClickFn={handleSortDirectionChange}
-              />
-            </div>
-          ) : (
-            <></>
-          )}
-          {!isLoading ? (
-            <div
-              className={`md:pt-2} col-span-full row-start-2 px-1 pt-0 md:px-3`}
-            >
-              <i className="text-gray-500 md:min-h-[1em]">
-                {searchValue.length > 0
-                  ? FSCollaborators.length === 1
-                    ? "1 result for '" + searchValue + "'"
-                    : FSCollaborators.length +
-                      " results for '" +
-                      searchValue +
-                      "'"
-                  : "\u00A0"}
-              </i>
-            </div>
-          ) : (
-            <></>
-          )}
-        </div>
-        {isLoading ? (
-          <div className="flex items-center justify-center">
-            <p className="rounded-2xl bg-slate-200 px-3 text-stone-700 shadow-md">
-              loading collaborators 🐖...
-            </p>
+      <Suspense>
+        <title>
+          {baseTitle +
+            " | " +
+            pathNameLast.charAt(0).toUpperCase() +
+            pathNameLast.slice(1)}
+        </title>
+        {modalCollaborator && (
+          <CollaboratorInfoModal
+            collaborators={FSCollaborators}
+            collaborator={modalCollaborator}
+            isOpen={isModalOpen}
+            initialIndex={currentModalIndex}
+            handleNextFn={handleModalNext}
+            handlePrevFn={handleModalPrev}
+            onCloseFn={() => {
+              setIsModalOpen(false);
+            }}
+          />
+        )}
+        <div className="px-[3%] py-3 xl:px-[20%]">
+          {/* search + sort div */}
+          <div className="grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">
+            {searchBarIncluded ? (
+              <div className="col-span-full row-start-1 flex items-end md:col-span-5">
+                <SearchInput
+                  value={searchValue}
+                  onValueChangeFn={(e) => {
+                    handleSearchKeywordChange(e.target.value);
+                  }}
+                  placeholder={"search collaborators"}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+            {sortPostsIncluded ? (
+              <div className="col-span-full row-start-3 flex items-end gap-1 md:col-span-2 md:row-start-1">
+                {/* sort parameter */}
+                <DropdownInputSelect
+                  className="max-w-1/2"
+                  label="sort"
+                  value={sortKeyword}
+                  onChangeFn={handleSortKeywordChange}
+                  options={sortKeywords}
+                />
+                {/* sort direction toggle */}
+                <AscDescToggle
+                  value={sortDirection}
+                  onClickFn={handleSortDirectionChange}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+            {!isLoading ? (
+              <div
+                className={`md:pt-2} col-span-full row-start-2 px-1 pt-0 md:px-3`}
+              >
+                <i className="text-gray-500 md:min-h-[1em]">
+                  {searchValue.length > 0
+                    ? FSCollaborators.length === 1
+                      ? "1 result for '" + searchValue + "'"
+                      : FSCollaborators.length +
+                        " results for '" +
+                        searchValue +
+                        "'"
+                    : "\u00A0"}
+                </i>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
-        ) : isError ? (
-          <div className="flex items-center justify-center">
-            <p className="text-stone-400">
-              error loading collaborators, please contact tyler 🐷
-            </p>
-          </div>
-        ) : !isLoading ? (
-          FSCollaborators.length > 0 ? (
-            <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
-              {(FSCollaborators as Author[]).map(
-                (author: Author, index: number) => {
-                  // generic section page
-                  return (
-                    <CollaboratorThumbnail
-                      key={author.name}
-                      collaborator={author}
-                      sortBadge={sortKeyword}
-                      onClickFn={() => {
-                        handleModalOpen(author, index);
-                      }}
-                    />
-                  );
-                },
-              )}
-            </div>
-          ) : (
+          {isLoading ? (
             <div className="flex items-center justify-center">
-              <p className="text-stone-400">
-                No collaborators matched these filters 😔
+              <p className="rounded-2xl bg-slate-200 px-3 text-stone-700 shadow-md">
+                loading collaborators 🐖...
               </p>
             </div>
-          )
-        ) : (
-          <></>
-        )}
-        {/* tag box div */}
-        {/* {tagBoxIncluded ? <div className='tags-div'>
+          ) : isError ? (
+            <div className="flex items-center justify-center">
+              <p className="text-stone-400">
+                error loading collaborators, please contact tyler 🐷
+              </p>
+            </div>
+          ) : !isLoading ? (
+            FSCollaborators.length > 0 ? (
+              <div className="grid grid-cols-1 justify-items-center md:grid-cols-3">
+                {(FSCollaborators as Author[]).map(
+                  (author: Author, index: number) => {
+                    // generic section page
+                    return (
+                      <CollaboratorThumbnail
+                        key={author.name}
+                        collaborator={author}
+                        sortBadge={sortKeyword}
+                        onClickFn={() => {
+                          handleModalOpen(author, index);
+                        }}
+                      />
+                    );
+                  },
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center justify-center">
+                <p className="text-stone-400">
+                  No collaborators matched these filters 😔
+                </p>
+              </div>
+            )
+          ) : (
+            <></>
+          )}
+          {/* tag box div */}
+          {/* {tagBoxIncluded ? <div className='tags-div'>
                         <TagsBox posts={postData} onChangeFn={setSelectedTags} />
                     </div> : <></>} */}
-      </div>
+        </div>
+      </Suspense>
     </>
   );
 }
