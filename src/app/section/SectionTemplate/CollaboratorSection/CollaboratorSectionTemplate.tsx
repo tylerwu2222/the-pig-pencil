@@ -19,7 +19,6 @@ import { filterSort } from "@/lib/FilterSort";
 
 // types
 import { Author } from "@/types/extendedPrismaTypes";
-import { Author as AuthorExtended } from "@/types/extendedPrismaTypes";
 import CollaboratorInfoModal from "./CollaboratorInfoModal";
 
 interface CollaboratorSectionTemplateProps {
@@ -52,9 +51,7 @@ export default function CollaboratorSectionTemplate({
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [currentModalIndex, setCurrentModalIndex] = useState<number>(0);
-  const [modalCollaborator, setModalCollaborator] = useState<
-    Author | AuthorExtended | undefined
-  >();
+  const [modalCollaborator, setModalCollaborator] = useState<Author>();
 
   const sortKeywords = [
     "date joined",
@@ -152,17 +149,19 @@ export default function CollaboratorSectionTemplate({
           pathNameLast.charAt(0).toUpperCase() +
           pathNameLast.slice(1)}
       </title>
-      <CollaboratorInfoModal
-        collaborators={FSCollaborators}
-        collaborator={modalCollaborator}
-        isOpen={isModalOpen}
-        initialIndex={currentModalIndex}
-        handleNextFn={handleModalNext}
-        handlePrevFn={handleModalPrev}
-        onCloseFn={() => {
-          setIsModalOpen(false);
-        }}
-      />
+      {modalCollaborator && (
+        <CollaboratorInfoModal
+          collaborators={FSCollaborators}
+          collaborator={modalCollaborator}
+          isOpen={isModalOpen}
+          initialIndex={currentModalIndex}
+          handleNextFn={handleModalNext}
+          handlePrevFn={handleModalPrev}
+          onCloseFn={() => {
+            setIsModalOpen(false);
+          }}
+        />
+      )}
       <div className="px-[3%] py-3 xl:px-[20%]">
         {/* search + sort div */}
         <div className="grid auto-cols-min auto-rows-min grid-cols-1 content-center bg-backgroundWhite p-[2vh] md:relative md:grid-cols-7 md:grid-rows-1 md:gap-2">

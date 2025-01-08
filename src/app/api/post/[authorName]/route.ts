@@ -2,15 +2,14 @@ import prisma from "@/db";
 
 import { NextRequest, NextResponse } from "next/server";
 
-// get newest post for author by authorName, joined w tags and authors
+// get all posts for author, by authorName
 export async function GET(
   req: NextRequest,
-  // { params }: { params: { id: string } },
   { params }: { params: Promise<{ authorName: string }> },
 ) {
   const authorName = (await params).authorName;
 
-  const newestPostByAuthor = await prisma.post.findFirst({
+  const postsByAuthor = await prisma.post.findMany({
     where: {
       AuthorsOnPosts: {
         some: {
@@ -27,5 +26,5 @@ export async function GET(
   });
   // console.log("BE newest post for", authorName, newestPostByAuthor);
   // return post
-  return NextResponse.json(newestPostByAuthor);
+  return NextResponse.json(postsByAuthor);
 }
