@@ -154,11 +154,12 @@ const CollaboratorInfoModal = ({
                 <div className="mb-5 mt-2 h-[20vh] overflow-y-scroll rounded-lg bg-neutral-50 p-2">
                   {collaboratorPosts.map((p, i) => {
                     return (
-                      <a href={`/posts/${p.section}/${p.slug}`} title={p.title}>
-                        <div
-                          className="group my-2 rounded-lg border-[1px] py-3 px-2 transition duration-300 hover:-translate-y-[2px] hover:border-hoverDeepPink"
-                          key={i}
-                        >
+                      <a
+                        key={i}
+                        href={`/posts/${p.section}/${p.slug}`}
+                        title={p.title}
+                      >
+                        <div className="group my-2 rounded-lg border-[1px] px-2 py-3 transition duration-300 hover:-translate-y-[2px] hover:border-hoverDeepPink">
                           <p className="underline transition duration-300 group-hover:text-hoverDeepPink">
                             {formatDateToLongDate(p.publishDate)}: {p.title}
                           </p>
