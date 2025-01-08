@@ -41,7 +41,7 @@ const CollaboratorInfoModal = ({
   };
 
   useEffect(() => {
-    if (collaborator && collaborator.posts.length > 0) {
+    if (collaborator) {
       fetchAllPosts(collaborator.name);
     }
   }, [collaborator]);
@@ -94,14 +94,18 @@ const CollaboratorInfoModal = ({
               <h1 className="font-bold">published articles</h1>
               {collaboratorPosts.length > 0 ? (
                 <div className="mb-5 mt-2 overflow-y-scroll rounded-lg bg-neutral-50 p-2">
-                  {collaboratorPosts.map((p) => {
+                  {collaboratorPosts.map((p, i) => {
                     return (
                       <a
-                        className="underline transition duration-300 hover:text-hoverDeepPink"
+                        key={i}
                         href={`/posts/${p.section}/${p.slug}`}
                         title={p.title}
                       >
-                        {p.title}
+                        <div className="group my-2 rounded-lg border-[1px] px-2 py-3 transition duration-300 hover:-translate-y-[2px] hover:border-hoverDeepPink">
+                          <p className="underline transition duration-300 group-hover:text-hoverDeepPink">
+                            {formatDateToLongDate(p.publishDate)}: {p.title}
+                          </p>
+                        </div>
                       </a>
                     );
                   })}
@@ -117,7 +121,7 @@ const CollaboratorInfoModal = ({
     // desktop modal
     else {
       collaboratorContent = (
-        <div className="grid max-h-[60vh] grid-rows-2 gap-3 sm:max-h-[90vh]">
+        <div className="grid max-h-[90%] grid-flow-row gap-3">
           {/* row 1: profile pic + bio */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <div>
@@ -147,29 +151,28 @@ const CollaboratorInfoModal = ({
             </div>
           </div>
           {/* row 2: published articles */}
-          <div className="flex flex-col">
+          <div className="flex h-[30%] flex-col">
             <h1 className="font-bold">published articles</h1>
-            <div className="mb-5 mt-2 rounded-lg bg-neutral-50 p-2 sm:flex-grow">
+            <div className="p-2 sm:flex-grow mb-5 mt-2 overflow-y-scroll min-h-[10em] rounded-lg bg-neutral-50 shadow-inner">
               {collaboratorPosts.length > 0 ? (
-                <div className="mb-5 mt-2 h-[20vh] overflow-y-scroll rounded-lg bg-neutral-50 p-2">
-                  {collaboratorPosts.map((p, i) => {
-                    return (
-                      <a
-                        key={i}
-                        href={`/posts/${p.section}/${p.slug}`}
-                        title={p.title}
-                      >
-                        <div className="group my-2 rounded-lg border-[1px] px-2 py-3 transition duration-300 hover:-translate-y-[2px] hover:border-hoverDeepPink">
-                          <p className="underline transition duration-300 group-hover:text-hoverDeepPink">
-                            {formatDateToLongDate(p.publishDate)}: {p.title}
-                          </p>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
+                // <div className="mb-5 mt-2 rounded-lg bg-neutral-50 p-2">
+                collaboratorPosts.map((p, i) => {
+                  return (
+                    <a
+                      key={i}
+                      href={`/posts/${p.section}/${p.slug}`}
+                      title={p.title}
+                    >
+                      <div className="group my-2 rounded-lg border-[1px] px-2 py-3 transition duration-300 hover:-translate-y-[2px] hover:border-hoverDeepPink hover:bg-white">
+                        <p className="transition duration-300 group-hover:text-hoverDeepPink">
+                          {formatDateToLongDate(p.publishDate)}: {p.title}
+                        </p>
+                      </div>
+                    </a>
+                  );
+                })
               ) : (
-                <></>
+                <p>coming soon...</p>
               )}
             </div>
           </div>
