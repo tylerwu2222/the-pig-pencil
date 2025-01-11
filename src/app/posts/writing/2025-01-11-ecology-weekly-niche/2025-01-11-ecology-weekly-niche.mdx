@@ -4,53 +4,54 @@ import w1 from './wecology_niche_1.png';
 import w2 from './wecology_niche_2.jpg';
 
 export const metadata = {
-    publishDate: "2024-12-28",
+    publishDate: "2025-01-11",
     title: "Ecology Weekly: Niche",
-    authors: "[Tyler Wu]",
-    tags: "[ecology,biology]",
-    readingTime: "8 min",
+    authors: ["Tyler Wu"],
+    tags: ["ecology", "biology", "role", "species", "competition", "competitive exclusion"],
+    readingTime: "7 min",
     caption: "everything in its right place",
     hasScrollspy: true,
     visibility: "visible"
 };
 
-Welcome to the second installment of ecology weekly (wow, I actually can't believe I made another one 🥳).
+Welcome to the second installment of ecology weekly. (Hey look at us, who would've thought? 🥳)
 
 After the previous piece about <a href="/posts/writing/2024-12-28-ecology-weekly-keystone-species" target="_blank">keystone species</a>, 
-I think it makes sense to visit the idea of roles, or niches within an ecosystem.
+I think it made sense to visit the idea of roles, or niches within an ecosystem.
 
-To accompany this piece, here is a house instrumental version of "Everything in its right place" by Radiohead. Hopefully it elevates your reading experience.
+To accompany this piece, here is a instrumental house remix version of "Everything in its right place" by Radiohead. The title seems thematic. Hopefully it elevates the reading experience.
 
 <iframe className='rounded-md' src="https://open.spotify.com/embed/track/34lm24WOgfvyotqIIsf7Yw?utm_source=generator" width="100%" height="202" allowFullScreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 <ScrollspyHeader header={"what's a niche?"} />
-If you've heard of the word niche used in a non-ecological context, it was probably something like:
-1) "He really found his niche as an artist. Line work is totally his thing." 
+If you've heard of the word niche used in a non-ecological context, it was probably with something like:
+1) "He really found his niche as an artist. That Moebius-style line work is totally his thing." 
 2) "Wow niche is such a niche word, I rarely hear it." 
 
-These uses kind of give way to what niche means in an ecological sense as well. In ecology, a species' niche is about how an organism fits and interacts with its environment, the idea of fitting in (1).
+These uses hint at what niche means in an ecological sense as well. In ecology, a species' niche is about how an organism fits into and interacts with its environment (1).
 
-It also relates to the idea uniqueness, an ecological niche is something that is fitted to the animal or vice versa. An organism's niche can't be immediately filled by other members in the ecosystem willy-nilly, (2).
+It also somewhat relates to the idea of uniqueness, an ecological niche is something that is particularly suited to the organism and vice versa. An organism's niche can't be immediately filled by other members in the ecosystem willy-nilly (think back to the Purple Sea Star from <a href="/posts/writing/2024-12-28-ecology-weekly-keystone-species" target="_blank">last week</a>). (2).
 
-The niche is something that arises from the combination of the circumstances an organism finds itself in and the organisms own physiology + behavior
+The niche is something that arises from the combination of the circumstances an organism finds itself in and the organisms own physiology and behavior
 
-<ScrollspyHeader header={"who coined the term"} level={3} />
+<ScrollspyHeader header={"who coined the term"} />
 The term niche was first popularized by American ecologist, Joseph Grinnel, when [studying](https://web.archive.org/web/20160310144027/http://artifex.org/~ecoreaders/lit/Grinnell1917.pdf) California Thrashers:
 
 <Image src={w1} alt="the California Thrasher" height={500}/>
 
-The niche of the Thrasher is defined by the shrubs it lives in the <ClickDefinitionText hoverText={'a mediterranean shrubland'} link={'https://www.britannica.com/plant/chaparral'}>chaparral</ClickDefinitionText> biome. 
-As well as it's behavior eating bugs and such from the desert floor. Grinnel made particular note of how narrow the range of the Thrasher was, and deduced this was due to how the fauna restricted where it could go. 
-He focused primarily on the <ClickDefinitionText hoverText={'non-living facotrs, such as rocks, food, water'} >abiotic factors</ClickDefinitionText>, but future scientists would expand this definition later on.
+The niche of the Thrasher is defined by the shrubs it calls home in the <ClickDefinitionText hoverText={'a mediterranean shrubland'} link={'https://www.britannica.com/plant/chaparral'}>chaparral</ClickDefinitionText> biome. 
+It's anatomy is suited for this since it can camouflage and hide easily under shrubs. Grinnel made particular note of how narrow the range of the Thrasher was. He deduced this was due to the specific fauna the Thrasher relied on restricting where it could go. 
+
+While Grinnel's concept of niche focused primarily on the <ClickDefinitionText hoverText={'non-living factors of the environment, such as rocks, sunlight, water'} >abiotic factors</ClickDefinitionText>, future concepts would include biotic factors as well, such as the Thrasher's diet, eating bugs and such from the desert floor.
 
 <ScrollspyHeader header={"niche through circumstance"} />
-Circumstance can also be thought of as opportunity. When resources are readily available for a certain role, then a species that has traits that fit that role will naturally have better access to those resources, and thus survival.
+Circumstance can also be thought of as availability. When resources are readily available for a certain role, then an organism that has traits that fit that role well will naturally have better access to those resources, (thus improving survival).
 
-An extreme example of this is the Giant Panda, native to Sichuan province of China:
+An extreme example of this is the Giant Panda, native to the Sichuan province of China:
 
 <Image src={w2} alt="a Giant Panda baby facing a wall, away from the camera" title="a Giant Panda baby facing a wall, away from the camera"/>
 
-Apparently, pandas were originally carnivorous like other bears, but scientists hypothesize that due to the extreme abundance of bamboo, 
+Apparently, in the past, pandas were omnivorous like other bears, but scientists hypothesize that due to the extreme abundance of bamboo, 
 the panda ancestors that were able to consume bamboo ended up having a better chance of survival, 
 leading to the adaptation that turned them into a <ClickDefinitionText hoverText={'a species that has a very narrow niche'} link={'https://education.nationalgeographic.org/resource/generalist-and-specialist-species/'}>specialist species</ClickDefinitionText> that devours bamboo.
 
@@ -58,24 +59,25 @@ leading to the adaptation that turned them into a <ClickDefinitionText hoverText
 fun fact: due to the low nutritional value of bamboos, pandas need to eat 25 lbs of bamboo each day. That's the equivalent of 3 large human infants, or one 25 lb dumbbell.
 </LightCallout>
 
-While the bamboo to energy conversion rate is quite inefficient, there aren't really any other competitors for bamboo as a food source. "Bamboo-devourer" was an empty niche, so the panda could thrive undeterred thanks to that niche's narrow, but uncontested nature. 
+While the bamboo-to-energy conversion rate is quite inefficient, there aren't really any other competitors for bamboo as a food source. 
+"Bamboo-devourer" was an empty niche, so the panda could move in undeterred and thrive thanks to that niche's narrow, but uncontested nature. 
 
 <LightCallout>
 note: the opposite end of this spectrum would be a <ClickDefinitionText hoverText={'a species that has a wide niche'} link={'https://education.nationalgeographic.org/resource/generalist-and-specialist-species/'}>generalist species</ClickDefinitionText>, 
-that can eat a variety of foods. Generalists generally do better in volatile environments.
+that can eat a variety of foods. Generalists generally do better in volatile environments since they don't rely solely on one or a few food sources.
 </LightCallout>
 
-The role that a plant/animal adopts first and foremost has to do with its physiology. However, in reality, as mentioned last week, no organism lives in a vacuum. 
+The role that a plant or animal adopts first and foremost has to do with its physiology. However, in reality, as mentioned last week, no organism lives in a vacuum. 
 Species will compete with each other for limited resources.
 
 
 <ScrollspyHeader header={"the competitive exclusion principle"} />
 Competition arises when species have similar roles/niches. For example the role of "berry-eater" is one that can easily be fulfilled by multiple species, from birds to rodents to large mammals.
 
-And when multiple species fulfill the same role, there is overlap, and thus competition for resources, (think food, housing, basking spots, etc.).
+And when multiple species fill the same role, there is overlap, and thus competition for resources, (think food, housing, basking spots, etc.).
 
-When two species have the same niche, there are two common outcomes: 
-1. One species "bows out", changing its niche to have fewer unhappy encounters with the other species.
+When two species have overlapping niches, there are two common outcomes: 
+1. One species "bows out", changing its niche to have fewer conflicting encounters with the other species.
 2. One species is unable to adapt, and by continuously performing worse when competing, it eventually goes locally extinct.
 
 This concept is called the [*Competitive Exclusion Principle*](https://en.wikipedia.org/wiki/Competitive_exclusion_principle) or Gause's Law. It's kind of neat imo. It's one of those examples in ecology where relationships naturally sort themselves out. 
@@ -89,9 +91,9 @@ If you made it to this point, I want to end with some armchair philosophical adv
 
 I think there are some concepts that you can easily apply to school, work, sports, or really any situation that involves roles that overlap. For example:
 - Being a generalist in a team sport could be advantageous. 
-If you is not insanely good at one skill, then adopting a generalist strategy could be the way to go -- being versatile and filling in the gaps can lead to fitting in decently in most situations
+If you're not insanely good at one skill, then adopting a generalist strategy could be the way to go -- being versatile and filling in the gaps can lead to fitting in decently in most situations
 - Being a specialist at school/work could also be a strategy. e.g. there is a difficult and necessary skill for your team's work flow that no one else on the team has. 
-Then, if you're the only one who has that skill, you are probably good to go as long as that skill is needed.
+Then, if you're the only one who has that skill, you are indispensable to your work ecosystem as long as that skill remains needed.
 
 So how do you find your niche? Take a look at your traits, your behavior, your circumstance, (including potential competitors), and figure out where you might be able to carve out your niche. 
 
@@ -100,9 +102,11 @@ If you're still struggling, it may be time to try to change some of the above to
 (Results may vary).
 
 <hr/>
-Sorry about the downer ending. Next time will be a more fun topic. 
+Hopefully this wasn't too much of a downer ending. Next time will be a more fun topic. 
 
-One that's a more optimistic, wholesome type of relationship: mutualism. A situation where different species help each other out, improving both species' chance of survival.
+It'll be about a more optimistic, wholesome type of relationship: mutualism. A situationship where different species help each other out, improving both species' chance of survival.
+
+See you next time! 🐼
 
 <ScrollspyHeader header={"further readings"} />
 1. [The Ecology Book: Big Ideas Simply Explained](https://www.amazon.com/Ecology-Book-Ideas-Simply-Explained/dp/1465479589) - I think I'll reference this for every installment tbh. I recommend getting it if you love ecology.

@@ -88,7 +88,7 @@ const CompetitiveExclusion = () => {
     const svg = d3.select(svgExtinctionRef.current);
     svg
       .style("width", isMobile ? dimensions.viz_width_m : "28vw")
-      .style("height", isMobile ? dimensions.viz_height_m : "500px");
+      .style("height", isMobile ? "60vh" : "500px");
     // add circle around starting niche
     svg
       .selectAll(".starting-niche-ext")
@@ -149,7 +149,7 @@ const CompetitiveExclusion = () => {
     const svg = d3.select(svgAdaptationRef.current);
     svg
       .style("width", isMobile ? dimensions.viz_width_m : "28vw")
-      .style("height", isMobile ? dimensions.viz_height_m : "500px");
+      .style("height", isMobile ? "80vh" : "500px");
     // add circle around starting niche
     svg
       .selectAll(".starting-niche-adapt")
@@ -318,7 +318,7 @@ const CompetitiveExclusion = () => {
   }, [birdsAdaptationProgress]);
 
   return (
-    <div className="my-2 grid h-[90vw] w-full grid-cols-2 gap-2 md:h-[85vh]">
+    <div className="my-2 grid h-[180vh] sm:h-[80vh] w-full grid-cols-1 grid-rows-2 gap-8 sm:gap-2 sm:grid-cols-2 sm:grid-rows-1 ">
       {/* adaptation event*/}
       <div className="flex flex-col border-[1px] border-black p-3">
         <p className="my-1 font-bold">Adaptation</p>
